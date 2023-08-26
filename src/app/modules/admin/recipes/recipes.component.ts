@@ -39,6 +39,7 @@ import {
     ConfirmDialogComponent,
     ConfirmDialogModel,
 } from '../../../components/confirm-dialog/confirm-dialog.component';
+import { SortByPipe } from '../../../pipes/sort-by.pipe';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 
 @Component({
@@ -68,6 +69,7 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
         MatPaginatorModule,
         NgxMatSelectSearchModule,
         MatMenuModule,
+        SortByPipe,
     ],
 })
 export class RecipesComponent implements AfterViewInit, OnDestroy {
@@ -91,9 +93,65 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         sort_by: new FormControl('name'),
     });
 
-    public recipes: Recipe[] = [];
     public allRecipes: Recipe[] = [];
     public readonly ingredients$ = this.ingredientsFacade.ingredients$;
+    public readonly filteredIngredients$ = combineLatest([
+        this.recipesFacade.recipes$.pipe(
+            tap(recipes => {
+                this.allRecipes = recipes;
+            }),
+        ),
+        this.filters.valueChanges.pipe(
+            startWith(undefined),
+            pairwise(),
+            distinctUntilChanged(),
+            switchMap(([prev, curr]) => {
+                if (prev) {
+                    if (
+                        prev.search !== curr.search ||
+                        xor(prev.statuses, curr.statuses).length > 0 ||
+                        xor(prev.ingredients, curr.ingredients).length > 0
+                    ) {
+                        if (curr.page !== 1) {
+                            curr.page = 1;
+                            this.paginator.pageIndex = 0;
+                            this.filters.patchValue({ page: 1 });
+                        }
+                    }
+
+                    if (prev.search !== curr.search) {
+                        return timer(200).pipe(map(() => curr));
+                    }
+                }
+                return of(curr);
+            }),
+            distinctUntilChanged(),
+        ),
+    ]).pipe(
+        map(([recipes, filters]) => {
+            const filtersFn = [];
+            if (filters?.statuses.length) {
+                filtersFn.push((recipe: Recipe) => filters.statuses.includes(recipe.status));
+            }
+            const search = filters?.search?.trim().toLowerCase();
+            if (search) {
+                filtersFn.push((recipe: Recipe) => recipe.name?.toLowerCase().includes(search));
+            }
+            if (filters?.ingredients.length) {
+                filtersFn.push((recipe: Recipe) =>
+                    filters.ingredients.every(fi => recipe.ingredients.some(i => fi === i.name)),
+                );
+            }
+            if (filtersFn.length > 0) {
+                recipes = recipes.filter(recipe => filtersFn.every(fn => fn(recipe)));
+            }
+            if (filters.sort_dir) {
+                recipes = orderBy(recipes, filters.sort_by, filters.sort_dir);
+            }
+            this.paginator.length = recipes.length;
+            return recipes.slice((filters.page - 1) * filters.limit, filters.page * filters.limit);
+        }),
+    );
 
     private readonly bindQueryParamsManager = this.queryFactory
         .create(
@@ -123,60 +181,6 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         this.sort.sortChange.pipe(takeUntil(this.unsubscribe$)).subscribe(sort => {
             this.filters.patchValue({ sort_dir: sort.direction, sort_by: sort.active });
         });
-
-        combineLatest([
-            this.recipesFacade.recipes$.pipe(
-                tap(recipes => {
-                    this.allRecipes = recipes;
-                }),
-            ),
-            this.filters.valueChanges.pipe(
-                startWith(undefined),
-                pairwise(),
-                distinctUntilChanged(),
-                switchMap(([prev, curr]) => {
-                    if (prev) {
-                        if (
-                            prev.search !== curr.search ||
-                            xor(prev.statuses, curr.statuses).length > 0 ||
-                            xor(prev.ingredients, curr.ingredients).length > 0
-                        ) {
-                            if (curr.page !== 1) {
-                                curr.page = 1;
-                                this.paginator.pageIndex = 0;
-                                this.filters.patchValue({ page: 1 });
-                            }
-                        }
-
-                        if (prev.search !== curr.search) {
-                            return timer(200).pipe(map(() => curr));
-                        }
-                    }
-                    return of(curr);
-                }),
-                distinctUntilChanged(),
-            ),
-        ])
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(([recipes, filters]) => {
-                if (filters?.statuses.length) {
-                    recipes = recipes.filter(recipe => filters.statuses.includes(recipe.status));
-                }
-                const search = filters?.search?.trim().toLowerCase();
-                if (search) {
-                    recipes = recipes.filter(recipe => recipe.name?.toLowerCase().includes(search));
-                }
-                if (filters?.ingredients.length) {
-                    recipes = recipes.filter(recipe =>
-                        filters.ingredients.every(fi => recipe.ingredients.some(i => fi.includes(i.name))),
-                    );
-                }
-                if (filters.sort_dir) {
-                    recipes = orderBy(recipes, filters.sort_by, filters.sort_dir);
-                }
-                this.paginator.length = recipes.length;
-                this.recipes = recipes.slice((filters.page - 1) * filters.limit, filters.page * filters.limit);
-            });
 
         // FIXME: for some reason startWith is not working with pairwise in my case
         //  so let's do some hacky stuff

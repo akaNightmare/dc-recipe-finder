@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
     FormArray,
     FormBuilder,
@@ -20,12 +20,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { cloneDeep } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { combineLatest, debounceTime, distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
+import { combineLatest, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 
 import { IngredientsFacade } from '../../../../../store/ingredients';
-import { Ingredient } from '../../../../../store/ingredients/ingredients.types';
 import { RecipesFacade } from '../../../../../store/recipes';
 import { Recipe, RecipeStatus } from '../../../../../store/recipes/recipes.types';
+import { ReplacePipe } from '../../../../pipes/replace.pipe';
 
 @Component({
     selector: 'recipe-dialog',
@@ -47,9 +47,10 @@ import { Recipe, RecipeStatus } from '../../../../../store/recipes/recipes.types
         NgIf,
         NgForOf,
         NgClass,
+        ReplacePipe,
     ],
 })
-export class RecipeDialogComponent implements OnInit, OnDestroy {
+export class RecipeDialogComponent implements OnInit {
     public recipeForm: FormGroup;
     public readonly data: { recipe?: Recipe } = inject(MAT_DIALOG_DATA);
 
@@ -57,11 +58,21 @@ export class RecipeDialogComponent implements OnInit, OnDestroy {
     private readonly recipesFacade = inject(RecipesFacade);
     private readonly matDialogRef = inject(MatDialogRef<RecipeDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
-    private readonly unsubscribe$ = new Subject<void>();
 
-    public readonly searchCtrl = new FormControl();
+    public readonly searchIngredientsCtrl = new FormControl();
 
-    public ingredients: Ingredient[] = [];
+    public readonly ingredients$ = combineLatest([
+        this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
+        this.ingredientFacade.ingredients$,
+    ]).pipe(
+        map(([search, ingredients]) => {
+            search = search?.toLowerCase().trim();
+            if (search) {
+                ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
+            }
+            return ingredients;
+        }),
+    );
 
     public readonly STATUSES = Object.keys(RecipeStatus);
 
@@ -89,24 +100,6 @@ export class RecipeDialogComponent implements OnInit, OnDestroy {
         } else {
             this.addIngredientField();
         }
-
-        combineLatest([
-            this.searchCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
-            this.ingredientFacade.ingredients$,
-        ])
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(([search, ingredients]) => {
-                search = search?.toLowerCase().trim();
-                if (search) {
-                    ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
-                }
-                this.ingredients = ingredients;
-            });
-    }
-
-    ngOnDestroy(): void {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
     }
 
     get ingredientsCtrl(): FormArray {

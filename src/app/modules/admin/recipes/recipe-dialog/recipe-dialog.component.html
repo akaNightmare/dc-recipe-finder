@@ -17,10 +17,10 @@
                 <mat-label>Recipe image</mat-label>
                 <mat-select [formControlName]="'image_path'">
                     <mat-select-trigger>
-                        <div class="flex items-center" *ngIf="recipeForm.get('image_path').valueChanges | async; let imagePath">
+                        <div class="flex items-center" *ngIf="recipeForm.get('image_path').value; let imagePath">
                             <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + imagePath">
                             <div class="flex flex-col ml-1">
-                                {{ imagePath }}
+                                {{ imagePath | replace: '.png' : '' }}
                             </div>
                         </div>
                     </mat-select-trigger>
@@ -30,10 +30,9 @@
                                 placeholderLabel="Search"
                                 [clearSearchInput]="true"
                                 [enableClearOnEscapePressed]="true"
-                                [disableScrollToActiveOnOptionsChanged]="true"
-                                [formControl]="searchCtrl"></ngx-mat-select-search>
+                                [formControl]="searchIngredientsCtrl"></ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let ingredient of ingredients; trackBy: trackByFn" [value]="ingredient.image_path">
+                    <mat-option *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn" [value]="ingredient.image_path">
                         <div class="flex items-center">
                             <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
                             <div class="flex flex-col ml-1">
@@ -80,7 +79,7 @@
                                     <div class="flex items-center" *ngIf="ingrCtrl.get('image_path').value; let imagePath">
                                         <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + imagePath">
                                         <div class="flex flex-col ml-1">
-                                            {{ imagePath }}
+                                            {{ imagePath | replace: '.png' : '' }}
                                         </div>
                                     </div>
                                 </mat-select-trigger>
@@ -91,9 +90,9 @@
                                             [clearSearchInput]="true"
                                             [enableClearOnEscapePressed]="true"
                                             [disableScrollToActiveOnOptionsChanged]="true"
-                                            [formControl]="searchCtrl"></ngx-mat-select-search>
+                                            [formControl]="searchIngredientsCtrl"></ngx-mat-select-search>
                                 </mat-option>
-                                <mat-option *ngFor="let ingredient of ingredients; trackBy: trackByFn" [value]="ingredient.image_path">
+                                <mat-option *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn" [value]="ingredient.image_path">
                                     <div class="flex items-center">
                                         <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
                                         <div class="flex flex-col ml-1">
