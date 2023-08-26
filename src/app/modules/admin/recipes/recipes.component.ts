@@ -19,6 +19,7 @@ import { orderBy, xor } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {
     combineLatest,
+    debounceTime,
     distinctUntilChanged,
     filter,
     map,
@@ -88,14 +89,25 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         statuses: new FormControl([]),
         ingredients: new FormControl([]),
         page: new FormControl(1),
-        limit: new FormControl(this.pageSizeOptions[1]),
+        limit: new FormControl(this.pageSizeOptions[3]),
         sort_dir: new FormControl<SortDirection>('asc'),
         sort_by: new FormControl('name'),
     });
 
     public allRecipes: Recipe[] = [];
-    public readonly ingredients$ = this.ingredientsFacade.ingredients$;
-    public readonly searchIngredientsCtrl = new FormControl();
+    public readonly searchIngredientsCtrl = new FormControl('');
+    public readonly ingredientsToSearch$ = combineLatest([
+        this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
+        this.ingredientsFacade.ingredients$,
+    ]).pipe(
+        map(([search, ingredients]) => {
+            search = search?.toLowerCase().trim();
+            if (search) {
+                ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
+            }
+            return ingredients;
+        }),
+    );
     public readonly filteredIngredients$ = combineLatest([
         this.recipesFacade.recipes$.pipe(
             tap(recipes => {
@@ -236,12 +248,5 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             .subscribe(() => {
                 this.recipesFacade.removeRecipe(recipe.name);
             });
-    }
-
-    /**
-     * Track by function for ngFor loops
-     */
-    public trackByFn(index: number, item: { name?: string }): string | number {
-        return item.name || index;
     }
 }
