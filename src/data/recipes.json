@@ -1473,5 +1473,175 @@
     ],
     "added_at": 1693084811304,
     "name": "Solar Essence"
+  },
+  {
+    "image_path": "Cursed Scroll.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Scroll of Wisdom.png",
+        "count": 5,
+        "name": "Scroll of Wisdom"
+      },
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      }
+    ],
+    "added_at": 1693085238143,
+    "name": "Cursed Scroll"
+  },
+  {
+    "image_path": "Cursed Scroll.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Scroll of Wisdom.png",
+        "count": 5,
+        "name": "Scroll of Wisdom"
+      },
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      }
+    ],
+    "added_at": 1693085259663,
+    "name": "Cursed Scroll"
+  },
+  {
+    "image_path": "Cursed Scroll.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Scroll of Wisdom.png",
+        "count": 5,
+        "name": "Scroll of Wisdom"
+      },
+      {
+        "image_path": "Solar Essence.jpg",
+        "count": 1,
+        "name": "Solar Essence"
+      }
+    ],
+    "added_at": 1693085280128,
+    "name": "Cursed Scroll"
+  },
+  {
+    "image_path": "Oiler.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Iron Ingot.png",
+        "count": 25,
+        "name": "Iron Ingot"
+      },
+      {
+        "image_path": "Bolts.png",
+        "count": 5,
+        "name": "Bolts"
+      },
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      }
+    ],
+    "added_at": 1693085415651,
+    "name": "Oiler"
+  },
+  {
+    "image_path": "Fiery Eye.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 25,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Blood of Heroes.png",
+        "count": 5,
+        "name": "Blood of Heroes"
+      },
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      }
+    ],
+    "added_at": 1693085529388,
+    "name": "Fiery Eye"
+  },
+  {
+    "image_path": "Sapling.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Magic bottles.png",
+        "count": 25,
+        "name": "Magic bottles"
+      },
+      {
+        "image_path": "Root.png",
+        "count": 25,
+        "name": "Root"
+      },
+      {
+        "image_path": "Sprout.png",
+        "count": 25,
+        "name": "Sprout"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 10,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693085621143,
+    "name": "Sapling"
+  },
+  {
+    "image_path": "Ink.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Red Crow Feathet.png",
+        "count": 5,
+        "name": "Red Crow Feathet"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 1,
+        "name": "Mixing Potion"
+      },
+      {
+        "image_path": "Frostcap.png",
+        "count": 25,
+        "name": "Frostcap"
+      },
+      {
+        "image_path": "Magic bottles.png",
+        "count": 5,
+        "name": "Magic bottles"
+      }
+    ],
+    "added_at": 1693085734930,
+    "name": "Ink"
   }
 ]
