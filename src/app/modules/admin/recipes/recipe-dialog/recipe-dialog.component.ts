@@ -59,7 +59,7 @@ export class RecipeDialogComponent implements OnInit {
     private readonly matDialogRef = inject(MatDialogRef<RecipeDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
 
-    public readonly searchIngredientsCtrl = new FormControl();
+    public readonly searchIngredientsCtrl = new FormControl('');
 
     public readonly ingredients$ = combineLatest([
         this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),

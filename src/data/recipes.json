@@ -558,5 +558,30 @@
     ],
     "added_at": 1693077823178,
     "name": "Dust of the Void"
+  },
+  {
+    "image_path": "Skein.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Sphere of Fire.png",
+        "count": 25,
+        "name": "Sphere of Fire"
+      },
+      {
+        "image_path": "Spider Wool.png",
+        "count": 5,
+        "name": "Spider Wool"
+      },
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      }
+    ],
+    "added_at": 1693080110462,
+    "name": "Skein"
   }
 ]
