@@ -8,6 +8,10 @@
     "name": "Adamantine Ingot"
   },
   {
+    "image_path": "Angel's Heart.png",
+    "name": "Angel's Heart"
+  },
+  {
     "image_path": "Angelic Essence.png",
     "name": "Angelic Essence"
   },
@@ -568,6 +572,10 @@
     "name": "Planking"
   },
   {
+    "image_path": "Plate.png",
+    "name": "Plate"
+  },
+  {
     "image_path": "Power Unit.png",
     "name": "Power Unit"
   },
@@ -704,6 +712,10 @@
     "name": "Set of Stones"
   },
   {
+    "image_path": "Shards of the Void.png",
+    "name": "Shards of the Void"
+  },
+  {
     "image_path": "Sharp Claws.png",
     "name": "Sharp Claws"
   },
@@ -738,6 +750,10 @@
   {
     "image_path": "Solar Essence.jpg",
     "name": "Solar Essence"
+  },
+  {
+    "image_path": "Solar Heart.png",
+    "name": "Solar Heart"
   },
   {
     "image_path": "Soul Cleaner.png",
@@ -882,10 +898,6 @@
   {
     "image_path": "Viscous Gold.png",
     "name": "Viscous Gold"
-  },
-  {
-    "image_path": "Void Shard.png",
-    "name": "Void Shard"
   },
   {
     "image_path": "Walleye.png",
