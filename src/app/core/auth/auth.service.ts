@@ -6,7 +6,7 @@ import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private _authenticated: boolean = false;
+    private _authenticated = false;
 
     /**
      * Constructor

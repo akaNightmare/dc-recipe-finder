@@ -1,14 +1,15 @@
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { Subject, takeUntil, combineLatest, startWith, debounceTime, distinctUntilChanged } from 'rxjs';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { combineLatest, debounceTime, distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
+
 import { IngredientsFacade } from '../../../../store/ingredients';
 import { Ingredient } from '../../../../store/ingredients/ingredients.types';
 
@@ -43,20 +44,14 @@ export class IngredientsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         combineLatest([
-            this.filters.valueChanges.pipe(
-                startWith(null),
-                debounceTime(200),
-                distinctUntilChanged(),
-            ),
+            this.filters.valueChanges.pipe(startWith(null), debounceTime(200), distinctUntilChanged()),
             this.ingredientsFacade.ingredients$,
         ])
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(([filters, ingredients]) => {
                 const search = filters?.search?.toLowerCase().trim();
                 if (search) {
-                    ingredients = ingredients.filter(ingredient =>
-                        ingredient.name.toLowerCase().includes(search),
-                    );
+                    ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
                 }
                 this.ingredients = ingredients;
             });

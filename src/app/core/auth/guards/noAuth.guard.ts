@@ -11,7 +11,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
         .check()
         .pipe(
             map(authenticated => {
-                return authenticated ? router.parseUrl(''):  true;
+                return authenticated ? router.parseUrl('') : true;
             }),
         );
 };

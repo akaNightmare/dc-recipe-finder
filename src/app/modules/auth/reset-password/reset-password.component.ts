@@ -47,7 +47,7 @@ export class AuthResetPasswordComponent implements OnInit {
         message: '',
     };
     resetPasswordForm: UntypedFormGroup;
-    showAlert: boolean = false;
+    showAlert = false;
 
     /**
      * Constructor

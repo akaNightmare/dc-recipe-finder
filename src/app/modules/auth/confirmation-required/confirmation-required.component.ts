@@ -10,9 +10,4 @@ import { fuseAnimations } from '@fuse/animations';
     standalone: true,
     imports: [RouterLink],
 })
-export class AuthConfirmationRequiredComponent {
-    /**
-     * Constructor
-     */
-    constructor() {}
-}
+export class AuthConfirmationRequiredComponent {}

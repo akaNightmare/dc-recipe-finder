@@ -1,14 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DownloadService {
-    private readonly document = Inject(DOCUMENT);
+    private readonly document = inject(DOCUMENT);
 
     private downloadFile(data: string, filename: string, type: string): void {
-        let element = this.document.createElement('a');
+        const element = this.document.createElement('a');
         element.setAttribute('href', `data:${type};charset=utf-8,${encodeURIComponent(data)}`);
         element.setAttribute('download', filename);
 

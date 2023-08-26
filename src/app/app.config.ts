@@ -1,20 +1,21 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, isDevMode } from '@angular/core';
-import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { provideFuse } from '@fuse';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { appRoutes } from 'app/app.routes';
 import { provideAuth } from 'app/core/auth/auth.provider';
 import { provideIcons } from 'app/core/icons/icons.provider';
 import { provideTransloco } from 'app/core/transloco/transloco.provider';
 import { mockApiServices } from 'app/mock-api';
-import { provideStore } from '@ngrx/store';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { recipesReducers } from '../store/recipes';
-import { ingredientsReducers } from '../store/ingredients';
 import { storageSyncMetaReducer } from 'ngrx-store-persist';
+
+import { ingredientsReducers } from '../store/ingredients';
+import { recipesReducers } from '../store/recipes';
 
 const reducers = { recipes: recipesReducers, ingredients: ingredientsReducers };
 

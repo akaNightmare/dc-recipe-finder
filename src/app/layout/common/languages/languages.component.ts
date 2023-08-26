@@ -1,12 +1,5 @@
 import { NgFor, NgTemplateOutlet } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    OnDestroy,
-    OnInit,
-    ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
@@ -22,7 +15,7 @@ import { take } from 'rxjs';
     standalone: true,
     imports: [MatButtonModule, MatMenuModule, NgTemplateOutlet, NgFor],
 })
-export class LanguagesComponent implements OnInit, OnDestroy {
+export class LanguagesComponent implements OnInit {
     availableLangs: AvailableLangs;
     activeLang: string;
     flagCodes: any;
@@ -62,11 +55,6 @@ export class LanguagesComponent implements OnInit, OnDestroy {
             tr: 'tr',
         };
     }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods

@@ -1,44 +1,45 @@
-import { Component, inject, OnDestroy, AfterViewInit, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
+import { CdkScrollable } from '@angular/cdk/overlay';
 import { AsyncPipe, DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AfterViewInit, Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink } from '@angular/router';
+import { FuseCardComponent } from '@fuse/components/card';
+import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
+import { orderBy, xor } from 'lodash-es';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {
+    combineLatest,
     distinctUntilChanged,
     filter,
     map,
+    of,
     pairwise,
     startWith,
     Subject,
     switchMap,
     takeUntil,
-    combineLatest,
-    of,
     tap,
     timer,
 } from 'rxjs';
-import { MatTableModule } from '@angular/material/table';
-import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
-import { CdkScrollable } from '@angular/cdk/overlay';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialog } from '@angular/material/dialog';
-import {
-    ConfirmDialogComponent,
-    ConfirmDialogModel
-} from '../../../components/confirm-dialog/confirm-dialog.component';
-import { FuseCardComponent } from '@fuse/components/card';
+
+import { IngredientsFacade } from '../../../../store/ingredients';
 import { RecipesFacade } from '../../../../store/recipes';
 import { Recipe, RecipeStatus } from '../../../../store/recipes/recipes.types';
-import { RouterLink } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
-import { xor, orderBy } from 'lodash-es';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { IngredientsFacade } from '../../../../store/ingredients';
-import { MatMenuModule } from '@angular/material/menu';
+import {
+    ConfirmDialogComponent,
+    ConfirmDialogModel,
+} from '../../../components/confirm-dialog/confirm-dialog.component';
+import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 
 @Component({
     selector: 'recipes',
@@ -69,7 +70,7 @@ import { MatMenuModule } from '@angular/material/menu';
         MatMenuModule,
     ],
 })
-export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
+export class RecipesComponent implements AfterViewInit, OnDestroy {
     private readonly recipesFacade = inject(RecipesFacade);
     private readonly ingredientsFacade = inject(IngredientsFacade);
     private readonly matDialog = inject(MatDialog);
@@ -114,10 +115,6 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
     @ViewChild(MatPaginator) public readonly paginator: MatPaginator;
     @ViewChild(MatSort) public readonly sort: MatSort;
 
-    ngOnInit(): void {
-
-    }
-
     ngAfterViewInit(): void {
         this.paginator.page.pipe(takeUntil(this.unsubscribe$)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
@@ -128,16 +125,19 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
         });
 
         combineLatest([
-            this.recipesFacade.recipes$.pipe(tap(recipes => {
-                this.allRecipes = recipes;
-            })),
+            this.recipesFacade.recipes$.pipe(
+                tap(recipes => {
+                    this.allRecipes = recipes;
+                }),
+            ),
             this.filters.valueChanges.pipe(
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
                 switchMap(([prev, curr]) => {
                     if (prev) {
-                        if (prev.search !== curr.search ||
+                        if (
+                            prev.search !== curr.search ||
                             xor(prev.statuses, curr.statuses).length > 0 ||
                             xor(prev.ingredients, curr.ingredients).length > 0
                         ) {
@@ -155,19 +155,21 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
                     return of(curr);
                 }),
                 distinctUntilChanged(),
-            )
+            ),
         ])
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(([recipes, filters]) => {
                 if (filters?.statuses.length) {
                     recipes = recipes.filter(recipe => filters.statuses.includes(recipe.status));
                 }
-                if (filters?.ingredients.length) {
-                    recipes = recipes.filter(recipe => recipe.ingredients.some(i => filters.ingredients.some(fi => fi.includes(i.name))));
-                }
                 const search = filters?.search?.trim().toLowerCase();
                 if (search) {
                     recipes = recipes.filter(recipe => recipe.name?.toLowerCase().includes(search));
+                }
+                if (filters?.ingredients.length) {
+                    recipes = recipes.filter(recipe =>
+                        filters.ingredients.every(fi => recipe.ingredients.some(i => fi.includes(i.name))),
+                    );
                 }
                 if (filters.sort_dir) {
                     recipes = orderBy(recipes, filters.sort_by, filters.sort_dir);
@@ -188,9 +190,9 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     public countReceiptsByStatus(ingredientName: string, status: string): number {
-        return this.allRecipes
-            .filter(recipe => recipe.status === status && recipe.ingredients.some(i => i?.name === ingredientName))
-            .length;
+        return this.allRecipes.filter(
+            recipe => recipe.status === status && recipe.ingredients.some(i => i?.name === ingredientName),
+        ).length;
     }
 
     public updateFilters(changes: Record<string, unknown>): void {
@@ -225,14 +227,11 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
                 ),
             })
             .afterClosed()
-            .pipe(
-                filter(confirmed => confirmed === true),
-            )
+            .pipe(filter(confirmed => confirmed === true))
             .subscribe(() => {
                 this.recipesFacade.removeRecipe(recipe.name);
             });
     }
-
 
     /**
      * Track by function for ngFor loops

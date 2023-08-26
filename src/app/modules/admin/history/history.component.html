@@ -7,8 +7,19 @@
             </div>
             <div class="flex items-center ml-6">
                 <button
+                        class="bg-accent"
+                        mat-flat-button
+                        [color]="'accent'">
+                    <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:arrow-down-tray'"></mat-icon>
+                    <span class="ml-2">Import</span>
+                </button>
+
+                <button
                         class="hidden sm:inline-flex ml-3"
                         mat-flat-button
+                        (click)="exportHistory()"
                         [color]="'primary'">
                     <mat-icon
                             class="icon-size-5"
@@ -24,7 +35,8 @@
                         <mat-icon [svgIcon]="'heroicons_mini:ellipsis-vertical'"></mat-icon>
                     </button>
                     <mat-menu #actionsMenu="matMenu">
-                        <button mat-menu-item>Export</button>
+                        <button mat-menu-item>Import</button>
+                        <button mat-menu-item (click)="exportHistory()">Export</button>
                     </mat-menu>
                 </div>
             </div>

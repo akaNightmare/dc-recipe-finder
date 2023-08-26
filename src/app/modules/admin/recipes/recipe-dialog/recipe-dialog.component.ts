@@ -1,9 +1,5 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
     FormArray,
     FormBuilder,
@@ -11,27 +7,25 @@ import {
     FormGroup,
     FormsModule,
     ReactiveFormsModule,
-    Validators
+    Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {
-    debounceTime,
-    Subject,
-    takeUntil,
-    combineLatest,
-    distinctUntilChanged,
-    startWith
-} from 'rxjs';
-import { RecipesFacade } from '../../../../../store/recipes';
-import { Recipe, RecipeStatus } from '../../../../../store/recipes/recipes.types';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { cloneDeep } from 'lodash-es';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { combineLatest, debounceTime, distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
+
 import { IngredientsFacade } from '../../../../../store/ingredients';
 import { Ingredient } from '../../../../../store/ingredients/ingredients.types';
+import { RecipesFacade } from '../../../../../store/recipes';
+import { Recipe, RecipeStatus } from '../../../../../store/recipes/recipes.types';
 
 @Component({
     selector: 'recipe-dialog',
@@ -75,7 +69,14 @@ export class RecipeDialogComponent implements OnInit, OnDestroy {
         this.recipeForm = this.formBuilder.group({
             image_path: [null, [Validators.required]],
             count_from: [1, [Validators.required, Validators.min(1)]],
-            count_to: [1, [Validators.required, Validators.min(1), RxwebValidators.greaterThanEqualTo({ fieldName: 'count_from' })]],
+            count_to: [
+                1,
+                [
+                    Validators.required,
+                    Validators.min(1),
+                    RxwebValidators.greaterThanEqualTo({ fieldName: 'count_from' }),
+                ],
+            ],
             status: [RecipeStatus.SUCCESS, [Validators.required]],
             ingredients: this.formBuilder.array([], [Validators.minLength(1), Validators.maxLength(6)]),
         });
@@ -90,12 +91,7 @@ export class RecipeDialogComponent implements OnInit, OnDestroy {
         }
 
         combineLatest([
-            this.searchCtrl.valueChanges
-                .pipe(
-                    startWith(undefined),
-                    debounceTime(200),
-                    distinctUntilChanged(),
-                ),
+            this.searchCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
             this.ingredientFacade.ingredients$,
         ])
             .pipe(takeUntil(this.unsubscribe$))

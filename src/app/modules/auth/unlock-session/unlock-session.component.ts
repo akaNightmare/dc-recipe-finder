@@ -46,7 +46,7 @@ export class AuthUnlockSessionComponent implements OnInit {
         message: '',
     };
     name: string;
-    showAlert: boolean = false;
+    showAlert = false;
     unlockSessionForm: UntypedFormGroup;
     private _email: string;
 

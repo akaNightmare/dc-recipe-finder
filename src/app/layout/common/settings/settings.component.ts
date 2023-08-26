@@ -6,7 +6,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
 import { FuseConfig, FuseConfigService, Scheme, Theme, Themes } from '@fuse/services/config';
-
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

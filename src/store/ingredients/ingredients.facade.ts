@@ -1,10 +1,10 @@
-import { Store } from '@ngrx/store';
 import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Ingredient } from './ingredients.types';
-import { addIngredient } from './ingredients.actions';
+import { ingredients } from '../../data';
+import { addIngredient, addIngredients } from './ingredients.actions';
 import { selectIngredients } from './ingredients.selectors';
-import baseIngredients from './data.json';
+import { Ingredient } from './ingredients.types';
 
 @Injectable({ providedIn: 'root' })
 export class IngredientsFacade {
@@ -13,12 +13,14 @@ export class IngredientsFacade {
     readonly ingredients$ = this.store.select<Ingredient[]>(selectIngredients);
 
     constructor() {
-        for (const ingredient of baseIngredients) {
-            this.addIngredient(ingredient);
-        }
+        this.addIngredients(ingredients);
     }
 
     addIngredient(ingredient: Ingredient): void {
         this.store.dispatch(addIngredient({ ingredient }));
+    }
+
+    addIngredients(ingredients: Ingredient[]): void {
+        this.store.dispatch(addIngredients({ ingredients }));
     }
 }

@@ -44,7 +44,7 @@ export class AuthForgotPasswordComponent implements OnInit {
         message: '',
     };
     forgotPasswordForm: UntypedFormGroup;
-    showAlert: boolean = false;
+    showAlert = false;
 
     /**
      * Constructor
