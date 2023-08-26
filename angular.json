@@ -28,11 +28,10 @@
                             "crypto-js/enc-utf8",
                             "crypto-js/hmac-sha256",
                             "crypto-js/enc-base64",
-                            "flat"
+                            "flat",
+                            "ngrx-store-persist"
                         ],
                         "assets": [
-                            "src/favicon-16x16.png",
-                            "src/favicon-32x32.png",
                             "src/assets",
                             {
                                 "glob": "_redirects",
@@ -60,12 +59,12 @@
                                 {
                                     "type": "initial",
                                     "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumError": "5mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumError": "100kb"
                                 }
                             ],
                             "outputHashing": "all"
@@ -105,7 +104,7 @@
                         "polyfills": ["zone.js", "zone.js/testing"],
                         "tsConfig": "tsconfig.spec.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["src/favicon-16x16.png", "src/favicon-32x32.png", "src/assets"],
+                        "assets": ["src/assets"],
                         "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "src/styles/styles.scss"],
                         "scripts": []
                     }
