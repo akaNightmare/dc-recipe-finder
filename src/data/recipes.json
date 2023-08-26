@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "image_path": "Earring.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      },
+      {
+        "image_path": "Broken Brooch.png",
+        "count": 5,
+        "name": "Broken Brooch"
+      },
+      {
+        "image_path": "Star Ruby.png",
+        "count": 25,
+        "name": "Star Ruby"
+      }
+    ],
+    "added_at": 1693056339032,
+    "name": "Earring"
+  }
+]
