@@ -30,15 +30,14 @@
                                      [src]="'assets/images/ingredients/' + imagePath">
                             </div>
                         </mat-select-trigger>
-<!--                        <mat-option>-->
-<!--                            <ngx-mat-select-search-->
-<!--                                    noEntriesFoundLabel="No matching ingredients found"-->
-<!--                                    placeholderLabel="Search"-->
-<!--                                    [clearSearchInput]="true"-->
-<!--                                    [enableClearOnEscapePressed]="true"-->
-<!--                                    [disableScrollToActiveOnOptionsChanged]="true"-->
-<!--                                    [formControl]="searchCtrl"></ngx-mat-select-search>-->
-<!--                        </mat-option>-->
+                        <mat-option>
+                            <ngx-mat-select-search
+                                    noEntriesFoundLabel="No matching ingredients found"
+                                    placeholderLabel="Search"
+                                    [clearSearchInput]="true"
+                                    [enableClearOnEscapePressed]="true"
+                                    [formControl]="searchIngredientsCtrl"></ngx-mat-select-search>
+                        </mat-option>
                         <mat-option *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn" [value]="ingredient.image_path">
                             <div class="flex items-center">
                                 <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">

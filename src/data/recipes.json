@@ -1,6 +1,196 @@
 [
   {
-    "image_path": "Earring.png",
+    "image_path": "Magic bottles.png",
+    "count_from": 3,
+    "count_to": 6,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Pumkin.png",
+        "count": 5,
+        "name": "Pumkin"
+      }
+    ],
+    "added_at": 1693054083225,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 3,
+    "count_to": 6,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Gift.png",
+        "count": 5,
+        "name": "Gift"
+      }
+    ],
+    "added_at": 1693054113458,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 3,
+    "count_to": 6,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Sandwich.png",
+        "count": 5,
+        "name": "Sandwich"
+      }
+    ],
+    "added_at": 1693054147995,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Pine Cone Soup.png",
+    "count_from": 2,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Pine Cone.png",
+        "count": 5,
+        "name": "Pine Cone"
+      },
+      {
+        "image_path": "Soul Cleaner.png",
+        "count": 5,
+        "name": "Soul Cleaner"
+      },
+      {
+        "image_path": "Fish-mutant.png",
+        "count": 1,
+        "name": "Fish-mutant"
+      }
+    ],
+    "added_at": 1693054273466,
+    "name": "Pine Cone Soup"
+  },
+  {
+    "image_path": "Troll Bait.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Pine Cone Soup.png",
+        "count": 1,
+        "name": "Pine Cone Soup"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 15,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Magic bottles.png",
+        "count": 50,
+        "name": "Magic bottles"
+      },
+      {
+        "image_path": "Moon Sugar.png",
+        "count": 1,
+        "name": "Moon Sugar"
+      },
+      {
+        "image_path": "Root.png",
+        "count": 3,
+        "name": "Root"
+      },
+      {
+        "image_path": "Fool's Bane.png",
+        "count": 15,
+        "name": "Fool's Bane"
+      }
+    ],
+    "added_at": 1693054534875,
+    "name": "Troll Bait"
+  },
+  {
+    "image_path": "Spider Egg.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Sphere of Life.png",
+        "count": 20,
+        "name": "Sphere of Life"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 4,
+        "name": "Mixing Potion"
+      },
+      {
+        "image_path": "Sprout.png",
+        "count": 2,
+        "name": "Sprout"
+      },
+      {
+        "image_path": "Mosscap.png",
+        "count": 5,
+        "name": "Mosscap"
+      }
+    ],
+    "added_at": 1693054704845,
+    "name": "Spider Egg"
+  },
+  {
+    "image_path": "Cursed Ingot.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Iron Ingot.png",
+        "count": 25,
+        "name": "Iron Ingot"
+      },
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      },
+      {
+        "image_path": "Anvil.png",
+        "count": 5,
+        "name": "Anvil"
+      }
+    ],
+    "added_at": 1693054828599,
+    "name": "Cursed Ingot"
+  },
+  {
+    "image_path": "Carrot Summon.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Carrot.png",
+        "count": 25,
+        "name": "Carrot"
+      },
+      {
+        "image_path": "Bolts.png",
+        "count": 5,
+        "name": "Bolts"
+      },
+      {
+        "image_path": "Angelic Essence.png",
+        "count": 1,
+        "name": "Angelic Essence"
+      }
+    ],
+    "added_at": 1693055115903,
+    "name": "Carrot Summon"
+  },
+  {
+    "image_path": "Firespark in a Bottle.png",
     "count_from": 1,
     "count_to": 1,
     "status": "SUCCESS",
@@ -11,17 +201,247 @@
         "name": "Angelic Essence"
       },
       {
-        "image_path": "Broken Brooch.png",
+        "image_path": "Gilding.png",
         "count": 5,
-        "name": "Broken Brooch"
+        "name": "Gilding"
       },
       {
-        "image_path": "Star Ruby.png",
+        "image_path": "Sphere of Fire.png",
         "count": 25,
-        "name": "Star Ruby"
+        "name": "Sphere of Fire"
       }
     ],
-    "added_at": 1693056339032,
-    "name": "Earring"
+    "added_at": 1693055193503,
+    "name": "Firespark in a Bottle"
+  },
+  {
+    "image_path": "Drone.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Bolts.png",
+        "count": 3,
+        "name": "Bolts"
+      },
+      {
+        "image_path": "The Mysterious Ring.png",
+        "count": 5,
+        "name": "The Mysterious Ring"
+      },
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      },
+      {
+        "image_path": "Hypersphere.png",
+        "count": 25,
+        "name": "Hypersphere"
+      },
+      {
+        "image_path": "Hologram.png",
+        "count": 25,
+        "name": "Hologram"
+      },
+      {
+        "image_path": "Bronze Ingot.png",
+        "count": 25,
+        "name": "Bronze Ingot"
+      }
+    ],
+    "added_at": 1693055478835,
+    "name": "Drone"
+  },
+  {
+    "image_path": "Dragon's Scroll.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      },
+      {
+        "image_path": "Dragon Token.png",
+        "count": 1,
+        "name": "Dragon Token"
+      },
+      {
+        "image_path": "Blank Page.png",
+        "count": 25,
+        "name": "Blank Page"
+      }
+    ],
+    "added_at": 1693055560263,
+    "name": "Dragon's Scroll"
+  },
+  {
+    "image_path": "Cow Horn.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      },
+      {
+        "image_path": "Fibula.png",
+        "count": 5,
+        "name": "Fibula"
+      },
+      {
+        "image_path": "Sunbloom.png",
+        "count": 25,
+        "name": "Sunbloom"
+      }
+    ],
+    "added_at": 1693055713877,
+    "name": "Cow Horn"
+  },
+  {
+    "image_path": "Stone Fury.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon Essence.png",
+        "count": 1,
+        "name": "Demon Essence"
+      },
+      {
+        "image_path": "Sphere of Earth.png",
+        "count": 25,
+        "name": "Sphere of Earth"
+      },
+      {
+        "image_path": "Round Stone.png",
+        "count": 5,
+        "name": "Round Stone"
+      }
+    ],
+    "added_at": 1693055790082,
+    "name": "Stone Fury"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Cave-lion Skull.png",
+        "count": 15,
+        "name": "Cave-lion Skull"
+      },
+      {
+        "image_path": "Bat Wing.png",
+        "count": 15,
+        "name": "Bat Wing"
+      },
+      {
+        "image_path": "Rat's Tail.png",
+        "count": 15,
+        "name": "Rat's Tail"
+      }
+    ],
+    "added_at": 1693056510008,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Imperial Amethyst.png",
+        "count": 15,
+        "name": "Imperial Amethyst"
+      },
+      {
+        "image_path": "Perfect Emerald.png",
+        "count": 15,
+        "name": "Perfect Emerald"
+      },
+      {
+        "image_path": "Sphere of Lightening.png",
+        "count": 15,
+        "name": "Sphere of Lightening"
+      }
+    ],
+    "added_at": 1693056618083,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Magnetite.png",
+        "count": 15,
+        "name": "Magnetite"
+      },
+      {
+        "image_path": "Ruined Scroll.png",
+        "count": 15,
+        "name": "Ruined Scroll"
+      },
+      {
+        "image_path": "Frostweave Cloth.png",
+        "count": 15,
+        "name": "Frostweave Cloth"
+      }
+    ],
+    "added_at": 1693056766561,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 1,
+    "count_to": 3,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Celery.png",
+        "count": 5,
+        "name": "Celery"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 1,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693056832683,
+    "name": "Magic bottles"
+  },
+  {
+    "image_path": "Magic bottles.png",
+    "count_from": 1,
+    "count_to": 3,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Tomato.png",
+        "count": 5,
+        "name": "Tomato"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 1,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693056866983,
+    "name": "Magic bottles"
   }
 ]

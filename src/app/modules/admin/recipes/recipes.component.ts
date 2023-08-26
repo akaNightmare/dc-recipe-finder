@@ -95,6 +95,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
     public allRecipes: Recipe[] = [];
     public readonly ingredients$ = this.ingredientsFacade.ingredients$;
+    public readonly searchIngredientsCtrl = new FormControl();
     public readonly filteredIngredients$ = combineLatest([
         this.recipesFacade.recipes$.pipe(
             tap(recipes => {
