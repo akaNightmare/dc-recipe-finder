@@ -586,8 +586,8 @@
   },
   {
     "image_path": "Liquid of the Void.png",
-    "count_from": 1,
-    "count_to": 1,
+    "count_from": 8,
+    "count_to": 12,
     "status": "SUCCESS",
     "ingredients": [
       {
@@ -608,5 +608,125 @@
     ],
     "added_at": 1693078448146,
     "name": "Liquid of the Void"
+  },
+  {
+    "image_path": "Essence of Luck.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 10,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Counterfeit Aqua.png",
+        "count": 5,
+        "name": "Counterfeit Aqua"
+      }
+    ],
+    "added_at": 1693081294452,
+    "name": "Essence of Luck"
+  },
+  {
+    "image_path": "Essence of Luck1.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 5,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Liquid Gold.png",
+        "count": 5,
+        "name": "Liquid Gold"
+      },
+      {
+        "image_path": "Sunbloom.png",
+        "count": 5,
+        "name": "Sunbloom"
+      }
+    ],
+    "added_at": 1693081336051,
+    "name": "Essence of Luck1"
+  },
+  {
+    "image_path": "Essence of Luck2.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 5,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Blood of Heroes.png",
+        "count": 5,
+        "name": "Blood of Heroes"
+      },
+      {
+        "image_path": "Bloodroot.png",
+        "count": 5,
+        "name": "Bloodroot"
+      }
+    ],
+    "added_at": 1693081379570,
+    "name": "Essence of Luck2"
+  },
+  {
+    "image_path": "Essence of Luck3.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 5,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Frozen Drop of Magic.png",
+        "count": 5,
+        "name": "Frozen Drop of Magic"
+      },
+      {
+        "image_path": "Frostcap.png",
+        "count": 5,
+        "name": "Frostcap"
+      }
+    ],
+    "added_at": 1693081416283,
+    "name": "Essence of Luck3"
+  },
+  {
+    "image_path": "Essence of Luck4.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Deepthistle.png",
+        "count": 5,
+        "name": "Deepthistle"
+      },
+      {
+        "image_path": "Troll's Mojo.png",
+        "count": 5,
+        "name": "Troll's Mojo"
+      },
+      {
+        "image_path": "Silverleaf.png",
+        "count": 5,
+        "name": "Silverleaf"
+      }
+    ],
+    "added_at": 1693081450693,
+    "name": "Essence of Luck4"
   }
 ]
