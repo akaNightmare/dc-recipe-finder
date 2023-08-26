@@ -518,5 +518,30 @@
     ],
     "added_at": 1693077309855,
     "name": "Carved Horn"
+  },
+  {
+    "image_path": "Iridikon.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Titanium.png",
+        "count": 5,
+        "name": "Titanium"
+      },
+      {
+        "image_path": "Dust of the Void.png",
+        "count": 3,
+        "name": "Dust of the Void"
+      },
+      {
+        "image_path": "Mythical Orb.png",
+        "count": 15,
+        "name": "Mythical Orb"
+      }
+    ],
+    "added_at": 1693077653730,
+    "name": "Iridikon"
   }
 ]
