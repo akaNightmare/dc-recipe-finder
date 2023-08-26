@@ -493,5 +493,30 @@
     ],
     "added_at": 1693077134840,
     "name": "Fairy Pollen"
+  },
+  {
+    "image_path": "Carved Horn.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Raven Tusk.png",
+        "count": 1,
+        "name": "Raven Tusk"
+      },
+      {
+        "image_path": "Horn.png",
+        "count": 15,
+        "name": "Horn"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 5,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693077309855,
+    "name": "Carved Horn"
   }
 ]
