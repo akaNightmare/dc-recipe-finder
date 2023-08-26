@@ -551,9 +551,9 @@
     "status": "SUCCESS",
     "ingredients": [
       {
-        "image_path": "Void Shard.png",
+        "image_path": "Shards of the Void.png",
         "count": 1,
-        "name": "Void Shard"
+        "name": "Shards of the Void"
       }
     ],
     "added_at": 1693077823178,
@@ -728,5 +728,750 @@
     ],
     "added_at": 1693081450693,
     "name": "Essence of Luck4"
+  },
+  {
+    "image_path": "Soul Cleaner.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Counterfeit Aqua.png",
+        "count": 5,
+        "name": "Counterfeit Aqua"
+      },
+      {
+        "image_path": "Troll's Mojo.png",
+        "count": 5,
+        "name": "Troll's Mojo"
+      },
+      {
+        "image_path": "Liquid Gold.png",
+        "count": 5,
+        "name": "Liquid Gold"
+      },
+      {
+        "image_path": "Blood of Heroes.png",
+        "count": 5,
+        "name": "Blood of Heroes"
+      },
+      {
+        "image_path": "Frozen Drop of Magic.png",
+        "count": 5,
+        "name": "Frozen Drop of Magic"
+      }
+    ],
+    "added_at": 1693082404946,
+    "name": "Soul Cleaner"
+  },
+  {
+    "image_path": "Hypersphere.png",
+    "count_from": 2,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Sphere of Earth.png",
+        "count": 5,
+        "name": "Sphere of Earth"
+      },
+      {
+        "image_path": "Sphere of Fire.png",
+        "count": 5,
+        "name": "Sphere of Fire"
+      },
+      {
+        "image_path": "Sphere of Life.png",
+        "count": 5,
+        "name": "Sphere of Life"
+      },
+      {
+        "image_path": "Sphere of Lightening.png",
+        "count": 5,
+        "name": "Sphere of Lightening"
+      },
+      {
+        "image_path": "Sphere of Water.png",
+        "count": 5,
+        "name": "Sphere of Water"
+      }
+    ],
+    "added_at": 1693082472940,
+    "name": "Hypersphere"
+  },
+  {
+    "image_path": "Bird.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Bat Wing.png",
+        "count": 1,
+        "name": "Bat Wing"
+      },
+      {
+        "image_path": "Red Crow Feathet.png",
+        "count": 1,
+        "name": "Red Crow Feathet"
+      },
+      {
+        "image_path": "Sample of greenmoth.png",
+        "count": 1,
+        "name": "Sample of greenmoth"
+      },
+      {
+        "image_path": "Desert Phoenix Feather.png",
+        "count": 1,
+        "name": "Desert Phoenix Feather"
+      },
+      {
+        "image_path": "Icewind Feather.png",
+        "count": 1,
+        "name": "Icewind Feather"
+      }
+    ],
+    "added_at": 1693082534699,
+    "name": "Bird"
+  },
+  {
+    "image_path": "Bone Totem.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Cave-lion Skull.png",
+        "count": 1,
+        "name": "Cave-lion Skull"
+      },
+      {
+        "image_path": "Goblin's Teeth.png",
+        "count": 1,
+        "name": "Goblin's Teeth"
+      },
+      {
+        "image_path": "Sharp Claws.png",
+        "count": 1,
+        "name": "Sharp Claws"
+      },
+      {
+        "image_path": "Desert Beast Jaw.png",
+        "count": 1,
+        "name": "Desert Beast Jaw"
+      },
+      {
+        "image_path": "Lost Dwarf's Tooth.png",
+        "count": 1,
+        "name": "Lost Dwarf's Tooth"
+      }
+    ],
+    "added_at": 1693082610804,
+    "name": "Bone Totem"
+  },
+  {
+    "image_path": "Fish-mutant.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Walleye.png",
+        "count": 1,
+        "name": "Walleye"
+      },
+      {
+        "image_path": "Redeye.png",
+        "count": 1,
+        "name": "Redeye"
+      },
+      {
+        "image_path": "Marsh Fish.png",
+        "count": 1,
+        "name": "Marsh Fish"
+      },
+      {
+        "image_path": "Sand Trout.png",
+        "count": 1,
+        "name": "Sand Trout"
+      },
+      {
+        "image_path": "Snowfish.png",
+        "count": 1,
+        "name": "Snowfish"
+      }
+    ],
+    "added_at": 1693082663956,
+    "name": "Fish-mutant"
+  },
+  {
+    "image_path": "Banner.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Burned Cloth.png",
+        "count": 1,
+        "name": "Burned Cloth"
+      },
+      {
+        "image_path": "Ethereal Cloth.png",
+        "count": 1,
+        "name": "Ethereal Cloth"
+      },
+      {
+        "image_path": "Evercloth.png",
+        "count": 1,
+        "name": "Evercloth"
+      },
+      {
+        "image_path": "Frostweave Cloth.png",
+        "count": 1,
+        "name": "Frostweave Cloth"
+      },
+      {
+        "image_path": "Red Silk.png",
+        "count": 1,
+        "name": "Red Silk"
+      }
+    ],
+    "added_at": 1693082749818,
+    "name": "Banner"
+  },
+  {
+    "image_path": "Talisman of Cows.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Iron Ingot.png",
+        "count": 5,
+        "name": "Iron Ingot"
+      },
+      {
+        "image_path": "Heavy Leather.png",
+        "count": 25,
+        "name": "Heavy Leather"
+      },
+      {
+        "image_path": "Sharp Claws.png",
+        "count": 25,
+        "name": "Sharp Claws"
+      },
+      {
+        "image_path": "Horn.png",
+        "count": 10,
+        "name": "Horn"
+      },
+      {
+        "image_path": "Cockatrice's Pelt.png",
+        "count": 2,
+        "name": "Cockatrice's Pelt"
+      }
+    ],
+    "added_at": 1693082847814,
+    "name": "Talisman of Cows"
+  },
+  {
+    "image_path": "Viscous Gold.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Gold Ingot.png",
+        "count": 5,
+        "name": "Gold Ingot"
+      },
+      {
+        "image_path": "Liquid Gold.png",
+        "count": 25,
+        "name": "Liquid Gold"
+      },
+      {
+        "image_path": "Regular Topaz.png",
+        "count": 25,
+        "name": "Regular Topaz"
+      },
+      {
+        "image_path": "Fibula.png",
+        "count": 10,
+        "name": "Fibula"
+      },
+      {
+        "image_path": "Gilding.png",
+        "count": 2,
+        "name": "Gilding"
+      }
+    ],
+    "added_at": 1693082984349,
+    "name": "Viscous Gold"
+  },
+  {
+    "image_path": "Set of Stones.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Magnetite.png",
+        "count": 25,
+        "name": "Magnetite"
+      },
+      {
+        "image_path": "Stone.png",
+        "count": 5,
+        "name": "Stone"
+      },
+      {
+        "image_path": "Sphere of Earth.png",
+        "count": 25,
+        "name": "Sphere of Earth"
+      },
+      {
+        "image_path": "Round Stone.png",
+        "count": 10,
+        "name": "Round Stone"
+      },
+      {
+        "image_path": "Saw-Leaf.png",
+        "count": 2,
+        "name": "Saw-Leaf"
+      }
+    ],
+    "added_at": 1693083227628,
+    "name": "Set of Stones"
+  },
+  {
+    "image_path": "Stone Claw.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Block of Sand.png",
+        "count": 25,
+        "name": "Block of Sand"
+      },
+      {
+        "image_path": "Stone.png",
+        "count": 5,
+        "name": "Stone"
+      },
+      {
+        "image_path": "Scroll of Craft.png",
+        "count": 25,
+        "name": "Scroll of Craft"
+      },
+      {
+        "image_path": "Horn.png",
+        "count": 10,
+        "name": "Horn"
+      },
+      {
+        "image_path": "Stout Horn.png",
+        "count": 2,
+        "name": "Stout Horn"
+      }
+    ],
+    "added_at": 1693083468724,
+    "name": "Stone Claw"
+  },
+  {
+    "image_path": "Old Gear.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Scroll of Craft.png",
+        "count": 25,
+        "name": "Scroll of Craft"
+      },
+      {
+        "image_path": "Iron Ingot.png",
+        "count": 5,
+        "name": "Iron Ingot"
+      },
+      {
+        "image_path": "Metal Dust.png",
+        "count": 25,
+        "name": "Metal Dust"
+      },
+      {
+        "image_path": "Bronze Ingot.png",
+        "count": 10,
+        "name": "Bronze Ingot"
+      },
+      {
+        "image_path": "Bolts.png",
+        "count": 2,
+        "name": "Bolts"
+      }
+    ],
+    "added_at": 1693083561213,
+    "name": "Old Gear"
+  },
+  {
+    "image_path": "Scroll of Folder lvl.1.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Blank Page.png",
+        "count": 50,
+        "name": "Blank Page"
+      },
+      {
+        "image_path": "Gold Ingot.png",
+        "count": 5,
+        "name": "Gold Ingot"
+      },
+      {
+        "image_path": "Dust of the Void.png",
+        "count": 1,
+        "name": "Dust of the Void"
+      },
+      {
+        "image_path": "Heavy Leather.png",
+        "count": 15,
+        "name": "Heavy Leather"
+      }
+    ],
+    "added_at": 1693083735239,
+    "name": "Scroll of Folder lvl.1"
+  },
+  {
+    "image_path": "Scroll Folder lvl.2.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Scroll of Folder lvl.1.png",
+        "count": 5,
+        "name": "Scroll of Folder lvl.1"
+      },
+      {
+        "image_path": "Gold Ingot.png",
+        "count": 5,
+        "name": "Gold Ingot"
+      },
+      {
+        "image_path": "Dust of the Void.png",
+        "count": 3,
+        "name": "Dust of the Void"
+      }
+    ],
+    "added_at": 1693083814471,
+    "name": "Scroll Folder lvl.2"
+  },
+  {
+    "image_path": "Stone of Stars.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Radiant Sapphire.png",
+        "count": 1,
+        "name": "Radiant Sapphire"
+      },
+      {
+        "image_path": "Imperial Amethyst.png",
+        "count": 1,
+        "name": "Imperial Amethyst"
+      },
+      {
+        "image_path": "Perfect Emerald.png",
+        "count": 1,
+        "name": "Perfect Emerald"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 1,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693083907069,
+    "name": "Stone of Stars"
+  },
+  {
+    "image_path": "Mixing Potion.png",
+    "count_from": 1,
+    "count_to": 5,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Counterfeit Aqua.png",
+        "count": 3,
+        "name": "Counterfeit Aqua"
+      },
+      {
+        "image_path": "Deep Water.png",
+        "count": 2,
+        "name": "Deep Water"
+      }
+    ],
+    "added_at": 1693084074227,
+    "name": "Mixing Potion"
+  },
+  {
+    "image_path": "Frost Salts.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Radiant Sapphire.png",
+        "count": 25,
+        "name": "Radiant Sapphire"
+      },
+      {
+        "image_path": "Stone of Stars.png",
+        "count": 10,
+        "name": "Stone of Stars"
+      },
+      {
+        "image_path": "Dust of the Void.png",
+        "count": 3,
+        "name": "Dust of the Void"
+      }
+    ],
+    "added_at": 1693084115830,
+    "name": "Frost Salts"
+  },
+  {
+    "image_path": "Plate.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Metal Dust.png",
+        "count": 25,
+        "name": "Metal Dust"
+      },
+      {
+        "image_path": "Mithril Ingot.png",
+        "count": 5,
+        "name": "Mithril Ingot"
+      },
+      {
+        "image_path": "Bronze Ingot.png",
+        "count": 25,
+        "name": "Bronze Ingot"
+      },
+      {
+        "image_path": "Round Stone.png",
+        "count": 10,
+        "name": "Round Stone"
+      },
+      {
+        "image_path": "Bolts.png",
+        "count": 2,
+        "name": "Bolts"
+      }
+    ],
+    "added_at": 1693084482892,
+    "name": "Plate"
+  },
+  {
+    "image_path": "Chalice of Blood.png",
+    "count_from": 3,
+    "count_to": 7,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 7,
+        "name": "Liquid of the Void"
+      },
+      {
+        "image_path": "Snowpaw's Heart.png",
+        "count": 25,
+        "name": "Snowpaw's Heart"
+      },
+      {
+        "image_path": "Gold Ingot.png",
+        "count": 5,
+        "name": "Gold Ingot"
+      },
+      {
+        "image_path": "Blood of Heroes.png",
+        "count": 25,
+        "name": "Blood of Heroes"
+      },
+      {
+        "image_path": "Flower.png",
+        "count": 10,
+        "name": "Flower"
+      },
+      {
+        "image_path": "Angel's Heart.png",
+        "count": 2,
+        "name": "Angel's Heart"
+      }
+    ],
+    "added_at": 1693084556366,
+    "name": "Chalice of Blood"
+  },
+  {
+    "image_path": "Demon Powder.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon's Bones.png",
+        "count": 3,
+        "name": "Demon's Bones"
+      },
+      {
+        "image_path": "Demon's Horn.png",
+        "count": 2,
+        "name": "Demon's Horn"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 10,
+        "name": "Liquid of the Void"
+      }
+    ],
+    "added_at": 1693084684356,
+    "name": "Demon Powder"
+  },
+  {
+    "image_path": "Demon Essence.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon's Heart.png",
+        "count": 3,
+        "name": "Demon's Heart"
+      },
+      {
+        "image_path": "Demon's Horn.png",
+        "count": 2,
+        "name": "Demon's Horn"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 10,
+        "name": "Liquid of the Void"
+      }
+    ],
+    "added_at": 1693084720511,
+    "name": "Demon Essence"
+  },
+  {
+    "image_path": "Demon Soul.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Demon's Larva.png",
+        "count": 3,
+        "name": "Demon's Larva"
+      },
+      {
+        "image_path": "Demon's Horn.png",
+        "count": 2,
+        "name": "Demon's Horn"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 10,
+        "name": "Liquid of the Void"
+      }
+    ],
+    "added_at": 1693084752066,
+    "name": "Demon Soul"
+  },
+  {
+    "image_path": "Angelic Essence.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Angel's Heart.png",
+        "count": 3,
+        "name": "Angel's Heart"
+      },
+      {
+        "image_path": "Demon's Horn.png",
+        "count": 2,
+        "name": "Demon's Horn"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 10,
+        "name": "Liquid of the Void"
+      }
+    ],
+    "added_at": 1693084781612,
+    "name": "Angelic Essence"
+  },
+  {
+    "image_path": "Solar Essence.jpg",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Solar Heart.png",
+        "count": 3,
+        "name": "Solar Heart"
+      },
+      {
+        "image_path": "Demon's Horn.png",
+        "count": 2,
+        "name": "Demon's Horn"
+      },
+      {
+        "image_path": "Liquid of the Void.png",
+        "count": 10,
+        "name": "Liquid of the Void"
+      }
+    ],
+    "added_at": 1693084811304,
+    "name": "Solar Essence"
   }
 ]
