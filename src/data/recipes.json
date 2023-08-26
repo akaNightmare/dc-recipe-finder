@@ -583,5 +583,30 @@
     ],
     "added_at": 1693080110462,
     "name": "Skein"
+  },
+  {
+    "image_path": "Liquid of the Void.png",
+    "count_from": 1,
+    "count_to": 1,
+    "status": "SUCCESS",
+    "ingredients": [
+      {
+        "image_path": "Dust of the Void.png",
+        "count": 1,
+        "name": "Dust of the Void"
+      },
+      {
+        "image_path": "Soul Cleaner.png",
+        "count": 10,
+        "name": "Soul Cleaner"
+      },
+      {
+        "image_path": "Mixing Potion.png",
+        "count": 10,
+        "name": "Mixing Potion"
+      }
+    ],
+    "added_at": 1693078448146,
+    "name": "Liquid of the Void"
   }
 ]

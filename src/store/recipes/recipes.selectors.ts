@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import xor from 'lodash-es/xor';
 
 import { recipes } from '../../data';
 import { AppState } from '../index';
@@ -16,5 +17,16 @@ export const selectRecipes: MemoizedSelector<AppState, Recipe[]> = createSelecto
 export const selectCustomRecipes: MemoizedSelector<AppState, Recipe[]> = createSelector(
     selectRecipes,
     (allRecipes: Recipe[]): Recipe[] =>
-        allRecipes.filter(ar => !recipes.some(r => r.name === ar.name && r.status === ar.status)),
+        allRecipes.filter(
+            ar =>
+                !recipes.some(
+                    r =>
+                        r.name === ar.name &&
+                        r.status === ar.status &&
+                        xor(
+                            r.ingredients.map(({ name }) => name).sort(),
+                            ar.ingredients.map(({ name }) => name).sort(),
+                        ).length === 0,
+                ),
+        ),
 );

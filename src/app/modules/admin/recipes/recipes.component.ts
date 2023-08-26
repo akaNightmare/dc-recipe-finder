@@ -99,16 +99,15 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     public readonly ingredientsToSearch$ = combineLatest([
         this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
         this.ingredientsFacade.ingredients$,
-    ])
-        .pipe(
-            map(([search, ingredients]) => {
-                search = search?.toLowerCase().trim();
-                if (search) {
-                    ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
-                }
-                return ingredients;
-            }),
-        );
+    ]).pipe(
+        map(([search, ingredients]) => {
+            search = search?.toLowerCase().trim();
+            if (search) {
+                ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
+            }
+            return ingredients;
+        }),
+    );
     public readonly filteredIngredients$ = combineLatest([
         this.recipesFacade.recipes$.pipe(
             tap(recipes => {
