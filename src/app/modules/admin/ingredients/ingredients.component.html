@@ -1,0 +1,38 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+            class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
+    >
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Ingredients</div>
+        <!-- Actions -->
+        <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
+            <form class="flex flex-auto" [formGroup]="filters">
+                <!-- Search -->
+                <mat-form-field
+                        [subscriptSizing]="'dynamic'"
+                        class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-80 sm:ml-4"
+                >
+                    <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
+                    <input
+                            matInput
+                            [formControlName]="'search'"
+                            [autocomplete]="'off'"
+                            [placeholder]="'Search ingredients'"
+                    />
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+        <div class="flex flex-auto flex-col overflow-hidden sm:mb-18">
+            <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
+                <div class="p-1 m-0 inline-block" *ngFor="let ingredient of ingredients; trackBy: trackByFn">
+                    <img class="w-14 h-14 rounded object-cover" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

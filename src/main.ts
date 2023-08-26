@@ -1,7 +1,14 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from 'app/app.component';
+import { appConfig } from 'app/app.config';
+import {
+    getAllDataFromLocalForage,
+    default as localForage,
+} from 'ngrx-store-persist';
 
-import { AppModule } from './app/app.module';
-
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+getAllDataFromLocalForage({
+    driver: localForage.INDEXEDDB,
+    keys: ['recipes'],
+}).then(() => {
+    bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));
+});

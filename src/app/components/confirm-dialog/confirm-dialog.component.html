@@ -1,0 +1,33 @@
+<div class="-m-6 flex max-w-140 flex-col md:min-w-100">
+    <!-- Header -->
+    <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
+        <div class="text-lg font-medium">{{ data.title }}</div>
+        <button mat-icon-button matTooltip="Close" (click)="onDismiss()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <!-- Contents -->
+    <div class="flex flex-auto flex-col overflow-y-auto p-6 sm:p-8">
+        <div class="flex">{{ data.message }}</div>
+        <!-- Actions -->
+        <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row sm:items-center">
+            <div class="mt-4 flex items-center sm:mt-0">
+                <!-- Decline -->
+                <button type="button" class="sm:mx-3" mat-button (click)="onDismiss()">
+                    <span>Decline</span>
+                </button>
+                <!-- Accept -->
+                <button
+                    type="submit"
+                    class="order-first sm:order-last"
+                    mat-flat-button
+                    [color]="'primary'"
+                    (click)="onConfirm()"
+                >
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
