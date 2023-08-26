@@ -551,9 +551,9 @@
     "status": "SUCCESS",
     "ingredients": [
       {
-        "image_path": "Void Shards.png",
+        "image_path": "Void Shard.png",
         "count": 1,
-        "name": "Void Shards"
+        "name": "Void Shard"
       }
     ],
     "added_at": 1693077823178,
