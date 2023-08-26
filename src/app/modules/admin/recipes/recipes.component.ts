@@ -163,7 +163,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy, OnInit {
                     recipes = recipes.filter(recipe => filters.statuses.includes(recipe.status));
                 }
                 if (filters?.ingredients.length) {
-                    recipes = recipes.filter(recipe => recipe.ingredients.some(i => filters.ingredients.includes(i.name)));
+                    recipes = recipes.filter(recipe => recipe.ingredients.some(i => filters.ingredients.some(fi => fi.includes(i.name))));
                 }
                 const search = filters?.search?.trim().toLowerCase();
                 if (search) {

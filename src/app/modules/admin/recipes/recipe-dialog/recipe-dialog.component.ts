@@ -159,7 +159,6 @@ export class RecipeDialogComponent implements OnInit, OnDestroy {
         for (const ingredient of recipe.ingredients) {
             ingredient.name = ingredient.image_path.replace(/(\.png|\.jpg)/, '');
         }
-        console.log(recipe);
         this.recipesFacade.addRecipe(recipe);
         this.matDialogRef.close(recipe);
     }

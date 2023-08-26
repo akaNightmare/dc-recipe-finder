@@ -85,6 +85,7 @@ export const appRoutes: Route[] = [
         children: [
             { path: 'recipes', loadChildren: () => import('app/modules/admin/recipes/recipes.routes') },
             { path: 'ingredients', loadChildren: () => import('app/modules/admin/ingredients/ingredients.routes') },
+            { path: 'history', loadChildren: () => import('app/modules/admin/history/history.routes') },
         ],
     },
 ];

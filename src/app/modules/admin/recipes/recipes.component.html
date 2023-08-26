@@ -20,10 +20,10 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field [subscriptSizing]="'dynamic'" class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4">
+                <mat-form-field [subscriptSizing]="'dynamic'" class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-72 sm:ml-4">
                     <mat-select multiple="true" [formControlName]="'ingredients'" matTooltip="Filter by ingredients" placeholder="Ingredients">
                         <mat-select-trigger>
-                            <div class="flex" *ngIf="filters.get('ingredients').valueChanges | async; let imagePaths">
+                            <div class="flex items-center" *ngIf="filters.get('ingredients').valueChanges | async; let imagePaths">
                                 <img class="w-8 h-8 rounded"
                                      [class.mr-1]="!last"
                                      *ngFor="let imagePath of imagePaths; let last = last"
@@ -40,7 +40,7 @@
 <!--                                    [formControl]="searchCtrl"></ngx-mat-select-search>-->
 <!--                        </mat-option>-->
                         <mat-option *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn" [value]="ingredient.image_path">
-                            <div class="flex">
+                            <div class="flex items-center">
                                 <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
                                 <div class="flex flex-col ml-1">
                                     {{ ingredient.name }}

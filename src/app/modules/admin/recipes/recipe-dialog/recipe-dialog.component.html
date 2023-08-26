@@ -15,9 +15,9 @@
         <div class="flex">
             <mat-form-field class="flex-auto w-1/2">
                 <mat-label>Recipe image</mat-label>
-                <mat-select [formControlName]="'image_path'" placeholder="Image">
+                <mat-select [formControlName]="'image_path'">
                     <mat-select-trigger>
-                        <div class="flex" *ngIf="recipeForm.get('image_path').valueChanges | async; let imagePath">
+                        <div class="flex items-center" *ngIf="recipeForm.get('image_path').valueChanges | async; let imagePath">
                             <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + imagePath">
                             <div class="flex flex-col ml-1">
                                 {{ imagePath }}
@@ -34,7 +34,7 @@
                                 [formControl]="searchCtrl"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let ingredient of ingredients; trackBy: trackByFn" [value]="ingredient.image_path">
-                        <div class="flex">
+                        <div class="flex items-center">
                             <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
                             <div class="flex flex-col ml-1">
                                 {{ingredient.name}}
@@ -75,9 +75,9 @@
                     <div class="flex">
                         <mat-form-field class="flex-auto">
                             <mat-label *ngIf="first">Ingredient Image</mat-label>
-                            <mat-select [formControl]="ingrCtrl.get('image_path')" [placeholder]="'Ingredient Image ' + (i + 1)">
+                            <mat-select [formControl]="ingrCtrl.get('image_path')">
                                 <mat-select-trigger>
-                                    <div class="flex" *ngIf="ingrCtrl.get('image_path').value; let imagePath">
+                                    <div class="flex items-center" *ngIf="ingrCtrl.get('image_path').value; let imagePath">
                                         <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + imagePath">
                                         <div class="flex flex-col ml-1">
                                             {{ imagePath }}
@@ -94,7 +94,7 @@
                                             [formControl]="searchCtrl"></ngx-mat-select-search>
                                 </mat-option>
                                 <mat-option *ngFor="let ingredient of ingredients; trackBy: trackByFn" [value]="ingredient.image_path">
-                                    <div class="flex">
+                                    <div class="flex items-center">
                                         <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
                                         <div class="flex flex-col ml-1">
                                             {{ingredient.name}}
@@ -103,7 +103,7 @@
                                 </mat-option>
                             </mat-select>
                             <mat-error *ngIf="ingrCtrl.get('image_path').hasError('required')">
-                                Ingredient Image {{ i + 1 }} is required
+                                Ingredient image {{ i + 1 }} is required
                             </mat-error>
                         </mat-form-field>
 
