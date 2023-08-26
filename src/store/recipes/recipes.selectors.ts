@@ -14,9 +14,7 @@ export const selectRecipes: MemoizedSelector<AppState, Recipe[]> = createSelecto
 );
 
 export const selectCustomRecipes: MemoizedSelector<AppState, Recipe[]> = createSelector(
-    selectRecipesFeature,
-    ({ entities }: RecipesState): Recipe[] => {
-        const allRecipes = Object.values(entities) as Recipe[];
-        return allRecipes.filter(ar => !recipes.some(r => r.name === ar.name && r.status === ar.status));
-    },
+    selectRecipes,
+    (allRecipes: Recipe[]): Recipe[] =>
+        allRecipes.filter(ar => !recipes.some(r => r.name === ar.name && r.status === ar.status)),
 );
