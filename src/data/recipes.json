@@ -426,8 +426,8 @@
   },
   {
     "image_path": "Magic bottles.png",
-    "count_from": 1,
-    "count_to": 3,
+    "count_from": 2,
+    "count_to": 4,
     "status": "SUCCESS",
     "ingredients": [
       {
