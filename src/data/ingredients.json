@@ -108,6 +108,42 @@
     "name": "Book lvl.3"
   },
   {
+    "image_path": "Book of Demons.png",
+    "name": "Book of Demons"
+  },
+  {
+    "image_path": "Book of Earth.png",
+    "name": "Book of Earth"
+  },
+  {
+    "image_path": "Book of Fire.png",
+    "name": "Book of Fire"
+  },
+  {
+    "image_path": "Book of Life.png",
+    "name": "Book of Life"
+  },
+  {
+    "image_path": "Book of Lightning.png",
+    "name": "Book of Lightning"
+  },
+  {
+    "image_path": "Book of Mechanisms.png",
+    "name": "Book of Mechanisms"
+  },
+  {
+    "image_path": "Book of Plants.png",
+    "name": "Book of Plants"
+  },
+  {
+    "image_path": "Book of Water.png",
+    "name": "Book of Water"
+  },
+  {
+    "image_path": "Book of the Dead.png",
+    "name": "Book of the Dead"
+  },
+  {
     "image_path": "Branches.png",
     "name": "Branches"
   },
@@ -538,6 +574,10 @@
   {
     "image_path": "Mechanical Egg.png",
     "name": "Mechanical Egg"
+  },
+  {
+    "image_path": "Memoirs.png",
+    "name": "Memoirs"
   },
   {
     "image_path": "Memory Card.png",
