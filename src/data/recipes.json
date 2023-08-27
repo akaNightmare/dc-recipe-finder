@@ -6,9 +6,9 @@
         "status": "SUCCESS",
         "ingredients": [
             {
-                "image_path": "Pumkin.png",
+                "image_path": "Pumpkin.png",
                 "count": 5,
-                "name": "Pumkin"
+                "name": "Pumpkin"
             }
         ],
         "added_at": 1693054083225,
