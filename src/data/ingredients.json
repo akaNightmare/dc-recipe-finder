@@ -20,6 +20,18 @@
     "name": "Anvil"
   },
   {
+    "image_path": "Armor lvl 1.png",
+    "name": "Armor lvl 1"
+  },
+  {
+    "image_path": "Armor lvl 3.png",
+    "name": "Armor lvl 3"
+  },
+  {
+    "image_path": "Armor lvl 5.png",
+    "name": "Armor lvl 5"
+  },
+  {
     "image_path": "Arrows.png",
     "name": "Arrows"
   },
@@ -544,6 +556,18 @@
     "name": "Lost Dwarf's Tooth"
   },
   {
+    "image_path": "Mage's Robe lvl 1.png",
+    "name": "Mage's Robe lvl 1"
+  },
+  {
+    "image_path": "Mage's Robe lvl 3.png",
+    "name": "Mage's Robe lvl 3"
+  },
+  {
+    "image_path": "Mage's Robe lvl 5.png",
+    "name": "Mage's Robe lvl 5"
+  },
+  {
     "image_path": "Magic bottles.png",
     "name": "Magic bottles"
   },
@@ -982,6 +1006,14 @@
   {
     "image_path": "The Mysterious Ring.png",
     "name": "The Mysterious Ring"
+  },
+  {
+    "image_path": "Theif's Armor lvl 3.png",
+    "name": "Theif's Armor lvl 3"
+  },
+  {
+    "image_path": "Theif's Armor lvl 5.png",
+    "name": "Theif's Armor lvl 5"
   },
   {
     "image_path": "Titanium.png",
