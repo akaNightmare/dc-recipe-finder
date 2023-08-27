@@ -1693,5 +1693,1460 @@
         ],
         "added_at": 1693086586228,
         "name": "Cursed Ingot"
+    },
+    {
+        "image_path": "Magic bottles.png",
+        "count_from": 100,
+        "count_to": 300,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Dragon Token.png",
+                "count": 1,
+                "name": "Dragon Token"
+            },
+            {
+                "image_path": "Hypersphere.png",
+                "count": 1,
+                "name": "Hypersphere"
+            }
+        ],
+        "added_at": 1693087699788,
+        "name": "Magic bottles"
+    },
+    {
+        "image_path": "Star Elixir.png",
+        "count_from": 1,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Demon's Bones.png",
+                "count": 3,
+                "name": "Demon's Bones"
+            },
+            {
+                "image_path": "Demon's Heart.png",
+                "count": 3,
+                "name": "Demon's Heart"
+            },
+            {
+                "image_path": "Demon's Larva.png",
+                "count": 3,
+                "name": "Demon's Larva"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 15,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693087765442,
+        "name": "Star Elixir"
+    },
+    {
+        "image_path": "Star Elixir.png",
+        "count_from": 1,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Counterfeit Aqua.png",
+                "count": 7,
+                "name": "Counterfeit Aqua"
+            },
+            {
+                "image_path": "Moon Sugar.png",
+                "count": 3,
+                "name": "Moon Sugar"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 7,
+                "name": "Regular Topaz"
+            },
+            {
+                "image_path": "Liquid Gold.png",
+                "count": 7,
+                "name": "Liquid Gold"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 7,
+                "name": "Imperial Amethyst"
+            },
+            {
+                "image_path": "Flower.png",
+                "count": 3,
+                "name": "Flower"
+            }
+        ],
+        "added_at": 1693087962400,
+        "name": "Star Elixir"
+    },
+    {
+        "image_path": "Star Elixir.png",
+        "count_from": 1,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Angel's Heart.png",
+                "count": 9,
+                "name": "Angel's Heart"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 15,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693087985738,
+        "name": "Star Elixir"
+    },
+    {
+        "image_path": "Spider Wool.png",
+        "count_from": 2,
+        "count_to": 7,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Spider Thread.png",
+                "count": 5,
+                "name": "Spider Thread"
+            },
+            {
+                "image_path": "Banner.png",
+                "count": 1,
+                "name": "Banner"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 1,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693088168189,
+        "name": "Spider Wool"
+    },
+    {
+        "image_path": "Counterfeit Aqua.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Deepthistle.png",
+                "count": 5,
+                "name": "Deepthistle"
+            },
+            {
+                "image_path": "Bluebelly.png",
+                "count": 5,
+                "name": "Bluebelly"
+            }
+        ],
+        "added_at": 1693088278738,
+        "name": "Counterfeit Aqua"
+    },
+    {
+        "image_path": "Frozen Drop of Magic.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Frostcap.png",
+                "count": 5,
+                "name": "Frostcap"
+            },
+            {
+                "image_path": "Icestone Cap.png",
+                "count": 5,
+                "name": "Icestone Cap"
+            }
+        ],
+        "added_at": 1693088308919,
+        "name": "Frozen Drop of Magic"
+    },
+    {
+        "image_path": "Troll's Mojo.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Silverleaf.png",
+                "count": 5,
+                "name": "Silverleaf"
+            },
+            {
+                "image_path": "Mosscap.png",
+                "count": 5,
+                "name": "Mosscap"
+            }
+        ],
+        "added_at": 1693088336647,
+        "name": "Troll's Mojo"
+    },
+    {
+        "image_path": "Sphere of Life.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Jade.png",
+                "count": 6,
+                "name": "Jade"
+            },
+            {
+                "image_path": "Troll's Mojo.png",
+                "count": 1,
+                "name": "Troll's Mojo"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 2,
+                "name": "Sloppy Spellscroll"
+            }
+        ],
+        "added_at": 1693088392147,
+        "name": "Sphere of Life"
+    },
+    {
+        "image_path": "Ethereal Cloth.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Light Leather.png",
+                "count": 5,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Counterfeit Aqua.png",
+                "count": 3,
+                "name": "Counterfeit Aqua"
+            }
+        ],
+        "added_at": 1693088428510,
+        "name": "Ethereal Cloth"
+    },
+    {
+        "image_path": "Frostweave Cloth.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Light Leather.png",
+                "count": 5,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Frozen Drop of Magic.png",
+                "count": 3,
+                "name": "Frozen Drop of Magic"
+            }
+        ],
+        "added_at": 1693088478812,
+        "name": "Frostweave Cloth"
+    },
+    {
+        "image_path": "Imperial Amethyst.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Magnetite.png",
+                "count": 3,
+                "name": "Magnetite"
+            },
+            {
+                "image_path": "Counterfeit Aqua.png",
+                "count": 1,
+                "name": "Counterfeit Aqua"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            }
+        ],
+        "added_at": 1693088513784,
+        "name": "Imperial Amethyst"
+    },
+    {
+        "image_path": "Perfect Emerald.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Jade.png",
+                "count": 3,
+                "name": "Jade"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            },
+            {
+                "image_path": "Troll's Mojo.png",
+                "count": 1,
+                "name": "Troll's Mojo"
+            }
+        ],
+        "added_at": 1693088588418,
+        "name": "Perfect Emerald"
+    },
+    {
+        "image_path": "Imperial Amethyst.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 1,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Counterfeit Aqua.png",
+                "count": 1,
+                "name": "Counterfeit Aqua"
+            }
+        ],
+        "added_at": 1693088631625,
+        "name": "Imperial Amethyst"
+    },
+    {
+        "image_path": "Perfect Emerald.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 1,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Troll's Mojo.png",
+                "count": 1,
+                "name": "Troll's Mojo"
+            }
+        ],
+        "added_at": 1693088655681,
+        "name": "Perfect Emerald"
+    },
+    {
+        "image_path": "Sphere of Earth.png",
+        "count_from": 100,
+        "count_to": 100,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Fibula.png",
+                "count": 1,
+                "name": "Fibula"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 100,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 1,
+                "name": "Regular Topaz"
+            }
+        ],
+        "added_at": 1693088739975,
+        "name": "Sphere of Earth"
+    },
+    {
+        "image_path": "Sphere of Lightening.png",
+        "count_from": 100,
+        "count_to": 100,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Flower.png",
+                "count": 1,
+                "name": "Flower"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 100,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 1,
+                "name": "Imperial Amethyst"
+            }
+        ],
+        "added_at": 1693088795232,
+        "name": "Sphere of Lightening"
+    },
+    {
+        "image_path": "Sphere of Fire.png",
+        "count_from": 100,
+        "count_to": 100,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Root.png",
+                "count": 1,
+                "name": "Root"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 100,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 1,
+                "name": "Star Ruby"
+            }
+        ],
+        "added_at": 1693088866096,
+        "name": "Sphere of Fire"
+    },
+    {
+        "image_path": "Sphere of Water.png",
+        "count_from": 100,
+        "count_to": 100,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Round Stone.png",
+                "count": 1,
+                "name": "Round Stone"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 100,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Radiant Sapphire.png",
+                "count": 1,
+                "name": "Radiant Sapphire"
+            }
+        ],
+        "added_at": 1693088953143,
+        "name": "Sphere of Water"
+    },
+    {
+        "image_path": "Sphere of Life.png",
+        "count_from": 100,
+        "count_to": 100,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sprout.png",
+                "count": 1,
+                "name": "Sprout"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 100,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 1,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693089031241,
+        "name": "Sphere of Life"
+    },
+    {
+        "image_path": "Golden Horseshoe.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bugl.png",
+                "count": 10,
+                "name": "Bugl"
+            },
+            {
+                "image_path": "Red Silk.png",
+                "count": 20,
+                "name": "Red Silk"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 10,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 50,
+                "name": "Magic bottles"
+            }
+        ],
+        "added_at": 1693089116334,
+        "name": "Golden Horseshoe"
+    },
+    {
+        "image_path": "Adamantine Horseshoe.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Golden Horseshoe.png",
+                "count": 5,
+                "name": "Golden Horseshoe"
+            },
+            {
+                "image_path": "Frostweave Cloth.png",
+                "count": 5,
+                "name": "Frostweave Cloth"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 1,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 10,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 5,
+                "name": "Imperial Amethyst"
+            }
+        ],
+        "added_at": 1693089180187,
+        "name": "Adamantine Horseshoe"
+    },
+    {
+        "image_path": "Bear.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sprout.png",
+                "count": 2,
+                "name": "Sprout"
+            },
+            {
+                "image_path": "Sandveil.png",
+                "count": 5,
+                "name": "Sandveil"
+            },
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 20,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 4,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693089268873,
+        "name": "Bear"
+    },
+    {
+        "image_path": "Pumpkin Bait 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Tomato.png",
+                "count": 2,
+                "name": "Tomato"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Zucchini.png",
+                "count": 1,
+                "name": "Zucchini"
+            },
+            {
+                "image_path": "Cabbage.png",
+                "count": 1,
+                "name": "Cabbage"
+            },
+            {
+                "image_path": "Carrot.png",
+                "count": 1,
+                "name": "Carrot"
+            },
+            {
+                "image_path": "Eggplant.png",
+                "count": 1,
+                "name": "Eggplant"
+            }
+        ],
+        "added_at": 1693089659969,
+        "name": "Pumpkin Bait 2.png"
+    },
+    {
+        "image_path": "Pumpkin Bait 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Tomato.png",
+                "count": 5,
+                "name": "Tomato"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Zucchini.png",
+                "count": 3,
+                "name": "Zucchini"
+            },
+            {
+                "image_path": "Cabbage.png",
+                "count": 3,
+                "name": "Cabbage"
+            },
+            {
+                "image_path": "Carrot.png",
+                "count": 3,
+                "name": "Carrot"
+            },
+            {
+                "image_path": "Cucumber.png",
+                "count": 3,
+                "name": "Cucumber"
+            }
+        ],
+        "added_at": 1693089858973,
+        "name": "Pumpkin Bait 3"
+    },
+    {
+        "image_path": "Anvil.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 5,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Magnetite.png",
+                "count": 1,
+                "name": "Magnetite"
+            }
+        ],
+        "added_at": 1693089960251,
+        "name": "Anvil"
+    },
+    {
+        "image_path": "Bronze Ingot.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Block of Sand.png",
+                "count": 5,
+                "name": "Block of Sand"
+            }
+        ],
+        "added_at": 1693090040397,
+        "name": "Bronze Ingot"
+    },
+    {
+        "image_path": "Iron Ingot.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Metal Dust.png",
+                "count": 5,
+                "name": "Metal Dust"
+            }
+        ],
+        "added_at": 1693090059832,
+        "name": "Iron Ingot"
+    },
+    {
+        "image_path": "Iron Ingot.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Metal Dust.png",
+                "count": 50,
+                "name": "Metal Dust"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            }
+        ],
+        "added_at": 1693090111816,
+        "name": "Iron Ingot"
+    },
+    {
+        "image_path": "Gold Ingot.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 5,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 5,
+                "name": "Regular Topaz"
+            }
+        ],
+        "added_at": 1693090179715,
+        "name": "Gold Ingot"
+    },
+    {
+        "image_path": "Mithril Ingot.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 15,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 15,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693090203581,
+        "name": "Mithril Ingot"
+    },
+    {
+        "image_path": "Adamantine Ingot.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 25,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 25,
+                "name": "Imperial Amethyst"
+            }
+        ],
+        "added_at": 1693090236662,
+        "name": "Adamantine Ingot"
+    },
+    {
+        "image_path": "Adamantine Ingot.png",
+        "count_from": 4,
+        "count_to": 4,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 100,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 100,
+                "name": "Imperial Amethyst"
+            }
+        ],
+        "added_at": 1693090293607,
+        "name": "Adamantine Ingot"
+    },
+    {
+        "image_path": "Dark blood.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Snuts' Brain.png",
+                "count": 25,
+                "name": "Snuts' Brain"
+            },
+            {
+                "image_path": "Angel's Heart.png",
+                "count": 5,
+                "name": "Angel's Heart"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693090724078,
+        "name": "Dark blood"
+    },
+    {
+        "image_path": "Bugl.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Horn.png",
+                "count": 1,
+                "name": "Horn"
+            },
+            {
+                "image_path": "Red Silk.png",
+                "count": 5,
+                "name": "Red Silk"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 10,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 2,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Bone Totem.png",
+                "count": 2,
+                "name": "Bone Totem"
+            }
+        ],
+        "added_at": 1693090992183,
+        "name": "Bugl"
+    },
+    {
+        "image_path": "Bugl.png",
+        "count_from": 30,
+        "count_to": 30,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Gjallarhorn.png",
+                "count": 10,
+                "name": "Gjallarhorn"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Hologram.png",
+                "count": 1,
+                "name": "Hologram"
+            }
+        ],
+        "added_at": 1693091038980,
+        "name": "Bugl"
+    },
+    {
+        "image_path": "Gjallarhorn.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Horn.png",
+                "count": 1,
+                "name": "Horn"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 1,
+                "name": "Star Ruby"
+            },
+            {
+                "image_path": "Evercloth.png",
+                "count": 5,
+                "name": "Evercloth"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 2,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Bone Totem.png",
+                "count": 2,
+                "name": "Bone Totem"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 30,
+                "name": "Magic bottles"
+            }
+        ],
+        "added_at": 1693091110710,
+        "name": "Gjallarhorn"
+    },
+    {
+        "image_path": "Gjallarhorn.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bugl.png",
+                "count": 30,
+                "name": "Bugl"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Hologram.png",
+                "count": 1,
+                "name": "Hologram"
+            }
+        ],
+        "added_at": 1693091141660,
+        "name": "Gjallarhorn"
+    },
+    {
+        "image_path": "Pickaxe.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Staff.png",
+                "count": 5,
+                "name": "Staff"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 10,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Bolts.png",
+                "count": 1,
+                "name": "Bolts"
+            }
+        ],
+        "added_at": 1693091225785,
+        "name": "Pickaxe"
+    },
+    {
+        "image_path": "Saw.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Edge.png",
+                "count": 5,
+                "name": "Edge"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 10,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Bolts.png",
+                "count": 1,
+                "name": "Bolts"
+            }
+        ],
+        "added_at": 1693091314355,
+        "name": "Saw"
+    },
+    {
+        "image_path": "Arrows.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Edge.png",
+                "count": 10,
+                "name": "Edge"
+            },
+            {
+                "image_path": "Branches.png",
+                "count": 10,
+                "name": "Branches"
+            }
+        ],
+        "added_at": 1693091420145,
+        "name": "Arrows"
+    },
+    {
+        "image_path": "Burned Cloth.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Light Leather.png",
+                "count": 5,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Liquid Gold.png",
+                "count": 3,
+                "name": "Liquid Gold"
+            }
+        ],
+        "added_at": 1693091533628,
+        "name": "Burned Cloth"
+    },
+    {
+        "image_path": "Red Silk.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Light Leather.png",
+                "count": 5,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Blood of Heroes.png",
+                "count": 3,
+                "name": "Blood of Heroes"
+            }
+        ],
+        "added_at": 1693091609755,
+        "name": "Red Silk"
+    },
+    {
+        "image_path": "Evercloth.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Light Leather.png",
+                "count": 5,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Troll's Mojo.png",
+                "count": 3,
+                "name": "Troll's Mojo"
+            }
+        ],
+        "added_at": 1693091665407,
+        "name": "Evercloth"
+    },
+    {
+        "image_path": "Scroll of Craft.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Ruined Scroll.png",
+                "count": 1,
+                "name": "Ruined Scroll"
+            },
+            {
+                "image_path": "Scroll of Grudges.png",
+                "count": 1,
+                "name": "Scroll of Grudges"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 1,
+                "name": "Sloppy Spellscroll"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Old Trade Document.png",
+                "count": 1,
+                "name": "Old Trade Document"
+            }
+        ],
+        "added_at": 1693091787492,
+        "name": "Scroll of Craft"
+    },
+    {
+        "image_path": "Mithril Ingot.png",
+        "count_from": 1,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 75,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 75,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            }
+        ],
+        "added_at": 1693091927555,
+        "name": "Mithril Ingot"
+    },
+    {
+        "image_path": "Gold Ingot.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 50,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 50,
+                "name": "Regular Topaz"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            }
+        ],
+        "added_at": 1693092015308,
+        "name": "Gold Ingot"
+    },
+    {
+        "image_path": "The Dark Stone.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 1,
+                "name": "Imperial Amethyst"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 1,
+                "name": "Regular Topaz"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 1,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 1,
+                "name": "Star Ruby"
+            },
+            {
+                "image_path": "Radiant Sapphire.png",
+                "count": 1,
+                "name": "Radiant Sapphire"
+            }
+        ],
+        "added_at": 1693092206329,
+        "name": "The Dark Stone"
+    },
+    {
+        "image_path": "The Dark Stone.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 10,
+                "name": "Imperial Amethyst"
+            },
+            {
+                "image_path": "Radiant Sapphire.png",
+                "count": 10,
+                "name": "Radiant Sapphire"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 10,
+                "name": "Regular Topaz"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 10,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 10,
+                "name": "Star Ruby"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 10,
+                "name": "Mysterious Scroll"
+            }
+        ],
+        "added_at": 1693092305705,
+        "name": "The Dark Stone"
+    },
+    {
+        "image_path": "Star Ruby.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            },
+            {
+                "image_path": "Blood of Heroes.png",
+                "count": 1,
+                "name": "Blood of Heroes"
+            },
+            {
+                "image_path": "Red Stone.png",
+                "count": 3,
+                "name": "Red Stone"
+            }
+        ],
+        "added_at": 1693092468093,
+        "name": "Star Ruby"
+    },
+    {
+        "image_path": "Star Ruby.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 1,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Blood of Heroes.png",
+                "count": 1,
+                "name": "Blood of Heroes"
+            }
+        ],
+        "added_at": 1693092490067,
+        "name": "Star Ruby"
+    },
+    {
+        "image_path": "Regular Topaz.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Block of Sand.png",
+                "count": 3,
+                "name": "Block of Sand"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            },
+            {
+                "image_path": "Liquid Gold.png",
+                "count": 1,
+                "name": "Liquid Gold"
+            }
+        ],
+        "added_at": 1693092535729,
+        "name": "Regular Topaz"
+    },
+    {
+        "image_path": "Regular Topaz.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 1,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Liquid Gold.png",
+                "count": 1,
+                "name": "Liquid Gold"
+            }
+        ],
+        "added_at": 1693092556978,
+        "name": "Regular Topaz"
+    },
+    {
+        "image_path": "Radiant Sapphire.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Blue Stone.png",
+                "count": 3,
+                "name": "Blue Stone"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 3,
+                "name": "Pure Ice"
+            },
+            {
+                "image_path": "Frozen Drop of Magic.png",
+                "count": 1,
+                "name": "Frozen Drop of Magic"
+            }
+        ],
+        "added_at": 1693092602980,
+        "name": "Radiant Sapphire"
+    },
+    {
+        "image_path": "Radiant Sapphire.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 1,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Frozen Drop of Magic.png",
+                "count": 1,
+                "name": "Frozen Drop of Magic"
+            }
+        ],
+        "added_at": 1693092629133,
+        "name": "Radiant Sapphire"
+    },
+    {
+        "image_path": "Liquid Gold.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sandveil.png",
+                "count": 5,
+                "name": "Sandveil"
+            },
+            {
+                "image_path": "Sunbloom.png",
+                "count": 5,
+                "name": "Sunbloom"
+            }
+        ],
+        "added_at": 1693092811743,
+        "name": "Liquid Gold"
+    },
+    {
+        "image_path": "Blood of Heroes.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bloodroot.png",
+                "count": 5,
+                "name": "Bloodroot"
+            },
+            {
+                "image_path": "Fool's Bane.png",
+                "count": 5,
+                "name": "Fool's Bane"
+            }
+        ],
+        "added_at": 1693092862718,
+        "name": "Blood of Heroes"
     }
 ]
