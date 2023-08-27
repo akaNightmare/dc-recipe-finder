@@ -672,6 +672,10 @@
         "name": "Gold Ingot"
     },
     {
+        "image_path": "Golden Gnome.jpg",
+        "name": "Golden Gnome"
+    },
+    {
         "image_path": "Golden Horseshoe.png",
         "name": "Golden Horseshoe"
     },
@@ -744,8 +748,8 @@
         "name": "Great Rune Key"
     },
     {
-        "image_path": "Guardian Seed.png",
-        "name": "Guardian Seed"
+        "image_path": "Guardian's Seed.png",
+        "name": "Guardian's Seed"
     },
     {
         "image_path": "Heart.png",
