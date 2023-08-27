@@ -3843,5 +3843,175 @@
         ],
         "added_at": 1693160681731,
         "name": "Activated Totem 8"
+    },
+    {
+        "image_path": "Call of the Wild.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Silverleaf.png",
+                "count": 25,
+                "name": "Silverleaf"
+            },
+            {
+                "image_path": "Talisman of Cows.png",
+                "count": 5,
+                "name": "Talisman of Cows"
+            },
+            {
+                "image_path": "Solar Essence.jpg",
+                "count": 1,
+                "name": "Solar Essence"
+            }
+        ],
+        "added_at": 1693156366665,
+        "name": "Call of the Wild"
+    },
+    {
+        "image_path": "Solar Diode.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bronze Ingot.png",
+                "count": 25,
+                "name": "Bronze Ingot"
+            },
+            {
+                "image_path": "Old Gear.png",
+                "count": 5,
+                "name": "Old Gear"
+            },
+            {
+                "image_path": "Solar Essence.jpg",
+                "count": 1,
+                "name": "Solar Essence"
+            }
+        ],
+        "added_at": 1693156519752,
+        "name": "Solar Diode"
+    },
+    {
+        "image_path": "Blank Page.png",
+        "count_from": 5,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book lvl.1.png",
+                "count": 1,
+                "name": "Book lvl.1"
+            },
+            {
+                "image_path": "Dagger lvl 1.png",
+                "count": 1,
+                "name": "Dagger lvl 1"
+            }
+        ],
+        "added_at": 1693156612043,
+        "name": "Blank Page"
+    },
+    {
+        "image_path": "Blank Page.png",
+        "count_from": 5,
+        "count_to": 20,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book lvl.2.png",
+                "count": 1,
+                "name": "Book lvl.2"
+            },
+            {
+                "image_path": "Dagger lvl 1.png",
+                "count": 1,
+                "name": "Dagger lvl 1"
+            }
+        ],
+        "added_at": 1693156641395,
+        "name": "Blank Page"
+    },
+    {
+        "image_path": "Blank Page.png",
+        "count_from": 5,
+        "count_to": 30,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Memoirs.png",
+                "count": 1,
+                "name": "Memoirs"
+            },
+            {
+                "image_path": "Dagger lvl 1.png",
+                "count": 1,
+                "name": "Dagger lvl 1"
+            }
+        ],
+        "added_at": 1693156737835,
+        "name": "Blank Page"
+    },
+    {
+        "image_path": "Jack-o'-lantern.png",
+        "count_from": 5,
+        "count_to": 5,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Pumpkin.png",
+                "count": 5,
+                "name": "Pumpkin"
+            },
+            {
+                "image_path": "Dagger lvl 1.png",
+                "count": 5,
+                "name": "Dagger lvl 1"
+            }
+        ],
+        "added_at": 1693156887812,
+        "name": "Jack-o'-lantern"
+    },
+    {
+        "image_path": "Scarecrows.png",
+        "count_from": 10,
+        "count_to": 10,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Jack-o'-lantern.png",
+                "count": 10,
+                "name": "Jack-o'-lantern"
+            },
+            {
+                "image_path": "Stone of Stars.png",
+                "count": 1,
+                "name": "Stone of Stars"
+            },
+            {
+                "image_path": "Stone of Wisdom.png",
+                "count": 1,
+                "name": "Stone of Wisdom"
+            },
+            {
+                "image_path": "Stone of Power.png",
+                "count": 1,
+                "name": "Stone of Power"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 3,
+                "name": "Sloppy Spellscroll"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 10,
+                "name": "Magic bottles"
+            }
+        ],
+        "added_at": 1693157099847,
+        "name": "Scarecrows"
     }
 ]
