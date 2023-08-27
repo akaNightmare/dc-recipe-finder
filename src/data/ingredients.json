@@ -24,18 +24,6 @@
     "name": "Arrows"
   },
   {
-    "image_path": "Bait Pumpkin 1.png",
-    "name": "Bait Pumpkin 1"
-  },
-  {
-    "image_path": "Bait Pumpkin 2.png",
-    "name": "Bait Pumpkin 2"
-  },
-  {
-    "image_path": "Bait Pumpkin 3.png",
-    "name": "Bait Pumpkin 3"
-  },
-  {
     "image_path": "Banner.png",
     "name": "Banner"
   },
@@ -632,12 +620,6 @@
     "name": "Primal Pelt"
   },
   {
-    "image_path": "Pumkin.png",
-    "name": "Pumkin"
-  },
-  {
-<<<<<<< HEAD
-=======
     "image_path": "Pumpkin Bait 1.png",
     "name": "Pumpkin Bait 1"
   },
@@ -650,7 +632,6 @@
     "name": "Pumpkin Bait 3"
   },
   {
->>>>>>> e11de0f3ca2cd33804b5c03dceb9d0f122382869
     "image_path": "Pure Ice.png",
     "name": "Pure Ice"
   },
