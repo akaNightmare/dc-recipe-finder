@@ -628,6 +628,10 @@
         "name": "Gift"
     },
     {
+        "image_path": "Gild Points.png",
+        "name": "Gild Points"
+    },
+    {
         "image_path": "Gilding.png",
         "name": "Gilding"
     },
@@ -722,6 +726,10 @@
     {
         "image_path": "Guardian Seed.png",
         "name": "Guardian Seed"
+    },
+    {
+        "image_path": "Heart.png",
+        "name": "Heart"
     },
     {
         "image_path": "Heavy Leather.png",
@@ -1292,6 +1300,10 @@
         "name": "Rune Hunters Ring 3"
     },
     {
+        "image_path": "Rune Key.png",
+        "name": "Rune Key"
+    },
+    {
         "image_path": "Runic Bomb.png",
         "name": "Runic Bomb"
     },
@@ -1430,6 +1442,10 @@
     {
         "image_path": "Shards of the Void.png",
         "name": "Shards of the Void"
+    },
+    {
+        "image_path": "Shards.png",
+        "name": "Shards"
     },
     {
         "image_path": "Sharp Claws.png",
@@ -1726,10 +1742,6 @@
     {
         "image_path": "Trolls Poo.png",
         "name": "Trolls Poo"
-    },
-    {
-        "image_path": "UI_chest_reward_runes_medium_key.png",
-        "name": "UI_chest_reward_runes_medium_key"
     },
     {
         "image_path": "Unactivated Totem 1.png",
