@@ -804,6 +804,10 @@
         "name": "Horn"
     },
     {
+        "image_path": "Human Key.png",
+        "name": "Human Key"
+    },
+    {
         "image_path": "Hypersphere.png",
         "name": "Hypersphere"
     },
