@@ -304,12 +304,44 @@
     "name": "Doubloon"
   },
   {
+    "image_path": "Dragon Armor lvl 3.png",
+    "name": "Dragon Armor lvl 3"
+  },
+  {
+    "image_path": "Dragon Armor lvl 5.png",
+    "name": "Dragon Armor lvl 5"
+  },
+  {
+    "image_path": "Dragon Boots lvl 3.png",
+    "name": "Dragon Boots lvl 3"
+  },
+  {
+    "image_path": "Dragon Boots lvl 5.png",
+    "name": "Dragon Boots lvl 5"
+  },
+  {
+    "image_path": "Dragon Helm lvl 3.png",
+    "name": "Dragon Helm lvl 3"
+  },
+  {
+    "image_path": "Dragon Helm lvl 5.png",
+    "name": "Dragon Helm lvl 5"
+  },
+  {
     "image_path": "Dragon Seal.png",
     "name": "Dragon Seal"
   },
   {
     "image_path": "Dragon Token.png",
     "name": "Dragon Token"
+  },
+  {
+    "image_path": "Dragon Weapon lvl 3.png",
+    "name": "Dragon Weapon lvl 3"
+  },
+  {
+    "image_path": "Dragon Weapon lvl 5.png",
+    "name": "Dragon Weapon lvl 5"
   },
   {
     "image_path": "Dragon's Scroll.png",
