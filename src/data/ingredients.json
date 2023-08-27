@@ -288,6 +288,22 @@
         "name": "Chalice of Blood"
     },
     {
+        "image_path": "Charged Cube.png",
+        "name": "Charged Cube"
+    },
+    {
+        "image_path": "Charged Pyramid.png",
+        "name": "Charged Pyramid"
+    },
+    {
+        "image_path": "Charged Sphere.png",
+        "name": "Charged Sphere"
+    },
+    {
+        "image_path": "Charged Stone.png",
+        "name": "Charged Stone"
+    },
+    {
         "image_path": "Cockatrice's Pelt.png",
         "name": "Cockatrice's Pelt"
     },
@@ -972,8 +988,24 @@
         "name": "Mosscap"
     },
     {
+        "image_path": "Mysterious Cube.png",
+        "name": "Mysterious Cube"
+    },
+    {
+        "image_path": "Mysterious Pyramid.png",
+        "name": "Mysterious Pyramid"
+    },
+    {
         "image_path": "Mysterious Scroll.png",
         "name": "Mysterious Scroll"
+    },
+    {
+        "image_path": "Mysterious Sphere.png",
+        "name": "Mysterious Sphere"
+    },
+    {
+        "image_path": "Mysterious Stone.png",
+        "name": "Mysterious Stone"
     },
     {
         "image_path": "Mystery of Infinity.png",
