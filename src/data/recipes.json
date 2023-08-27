@@ -3148,5 +3148,270 @@
         ],
         "added_at": 1693092862718,
         "name": "Blood of Heroes"
+    },
+    {
+        "image_path": "Memoirs.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Blank Page.png",
+                "count": 50,
+                "name": "Blank Page"
+            },
+            {
+                "image_path": "Ink.png",
+                "count": 1,
+                "name": "Ink"
+            }
+        ],
+        "added_at": 1693124297818,
+        "name": "Memoirs"
+    },
+    {
+        "image_path": "Grand Sphere of Fire.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Fire.png",
+                "count": 1,
+                "name": "Book of Fire"
+            },
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 25,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693124737540,
+        "name": "Grand Sphere of Fire"
+    },
+    {
+        "image_path": "Grand Sphere of Earth.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Earth.png",
+                "count": 1,
+                "name": "Book of Earth"
+            },
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 25,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693124763126,
+        "name": "Grand Sphere of Earth"
+    },
+    {
+        "image_path": "Grand Sphere of Life.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Life.png",
+                "count": 1,
+                "name": "Book of Life"
+            },
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 25,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693124794070,
+        "name": "Grand Sphere of Life"
+    },
+    {
+        "image_path": "Grand Sphere of the Lightning.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Lightning.png",
+                "count": 1,
+                "name": "Book of Lightning"
+            },
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 25,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693124823452,
+        "name": "Grand Sphere of the Lightning"
+    },
+    {
+        "image_path": "Grand Sphere of Water.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Water.png",
+                "count": 1,
+                "name": "Book of Water"
+            },
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 25,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            }
+        ],
+        "added_at": 1693124853241,
+        "name": "Grand Sphere of Water"
+    },
+    {
+        "image_path": "Grand Sphere of Demons.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Demons.png",
+                "count": 1,
+                "name": "Book of Demons"
+            },
+            {
+                "image_path": "Angelic Essence.png",
+                "count": 1,
+                "name": "Angelic Essence"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Cockatrice's Pelt.png",
+                "count": 25,
+                "name": "Cockatrice's Pelt"
+            }
+        ],
+        "added_at": 1693124942438,
+        "name": "Grand Sphere of Demons"
+    },
+    {
+        "image_path": "Grand Sphere of Plants.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Plants.png",
+                "count": 1,
+                "name": "Book of Plants"
+            },
+            {
+                "image_path": "Angelic Essence.png",
+                "count": 1,
+                "name": "Angelic Essence"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Saw-Leaf.png",
+                "count": 25,
+                "name": "Saw-Leaf"
+            }
+        ],
+        "added_at": 1693125018267,
+        "name": "Grand Sphere of Plants"
+    },
+    {
+        "image_path": "Grand Sphere of the Dead.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of the Dead.png",
+                "count": 1,
+                "name": "Book of the Dead"
+            },
+            {
+                "image_path": "Angelic Essence.png",
+                "count": 1,
+                "name": "Angelic Essence"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Coin.png",
+                "count": 25,
+                "name": "Coin"
+            }
+        ],
+        "added_at": 1693125062546,
+        "name": "Grand Sphere of the Dead"
+    },
+    {
+        "image_path": "Grand Sphere of Mechanisms.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book of Mechanisms.png",
+                "count": 1,
+                "name": "Book of Mechanisms"
+            },
+            {
+                "image_path": "Angel's Heart.png",
+                "count": 1,
+                "name": "Angel's Heart"
+            },
+            {
+                "image_path": "Demon Essence.png",
+                "count": 1,
+                "name": "Demon Essence"
+            },
+            {
+                "image_path": "Bolts.png",
+                "count": 25,
+                "name": "Bolts"
+            }
+        ],
+        "added_at": 1693125157706,
+        "name": "Grand Sphere of Mechanisms"
     }
 ]

@@ -33,6 +33,7 @@
             <div class="flex mt-8 justify-center flex-wrap gap-1.5">
                 <img
                     *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn"
+                    [matTooltip]="ingredient.name"
                     class="w-14 h-14 rounded object-cover"
                     [src]="'assets/images/ingredients/' + ingredient.image_path"
                     [alt]="ingredient.name"
