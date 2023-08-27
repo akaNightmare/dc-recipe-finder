@@ -360,6 +360,10 @@
         "name": "Cursed Tin Knight"
     },
     {
+        "image_path": "Cyndor's Gift.png",
+        "name": "Cyndor's Gift"
+    },
+    {
         "image_path": "Dagger lvl 1.png",
         "name": "Dagger lvl 1"
     },
@@ -438,6 +442,10 @@
     {
         "image_path": "Device.png",
         "name": "Device"
+    },
+    {
+        "image_path": "Door to Anything.png",
+        "name": "Door to Anything"
     },
     {
         "image_path": "Doubloon.png",
@@ -960,6 +968,10 @@
         "name": "Mysterious Scroll"
     },
     {
+        "image_path": "Mystery of Infinity.png",
+        "name": "Mystery of Infinity"
+    },
+    {
         "image_path": "Mythical Armor lvl 1.png",
         "name": "Mythical Armor lvl 1"
     },
@@ -1140,6 +1152,10 @@
         "name": "Pure Ice"
     },
     {
+        "image_path": "Purification.png",
+        "name": "Purification"
+    },
+    {
         "image_path": "Pyre The Spark.png",
         "name": "Pyre The Spark"
     },
@@ -1274,6 +1290,10 @@
     {
         "image_path": "Rune Hunters Ring 3.png",
         "name": "Rune Hunters Ring 3"
+    },
+    {
+        "image_path": "Runic Bomb.png",
+        "name": "Runic Bomb"
     },
     {
         "image_path": "Sample of greenmoth.png",
@@ -1442,6 +1462,10 @@
     {
         "image_path": "Skein.png",
         "name": "Skein"
+    },
+    {
+        "image_path": "Slaughterhouse.png",
+        "name": "Slaughterhouse"
     },
     {
         "image_path": "Sloppy Spellscroll.png",
