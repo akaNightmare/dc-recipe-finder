@@ -3413,5 +3413,435 @@
         ],
         "added_at": 1693125157706,
         "name": "Grand Sphere of Mechanisms"
+    },
+    {
+        "image_path": "Blank Page.png",
+        "count_from": 5,
+        "count_to": 30,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Book lvl.4.png",
+                "count": 1,
+                "name": "Book lvl.4"
+            },
+            {
+                "image_path": "Dagger lvl 1.png",
+                "count": 1,
+                "name": "Dagger lvl 1"
+            }
+        ],
+        "added_at": 1693158686136,
+        "name": "Blank Page"
+    },
+    {
+        "image_path": "Pendant of the Conqueror.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Core Leather.png",
+                "count": 25,
+                "name": "Core Leather"
+            },
+            {
+                "image_path": "Solar Essence.jpg",
+                "count": 1,
+                "name": "Solar Essence"
+            },
+            {
+                "image_path": "Viscous Gold.png",
+                "count": 5,
+                "name": "Viscous Gold"
+            }
+        ],
+        "added_at": 1693158763344,
+        "name": "Pendant of the Conqueror"
+    },
+    {
+        "image_path": "Unactivated Totem 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Cow King.png",
+                "count": 25,
+                "name": "Cow King"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Talisman of Cows.png",
+                "count": 1,
+                "name": "Talisman of Cows"
+            }
+        ],
+        "added_at": 1693159586354,
+        "name": "Unactivated Totem 1"
+    },
+    {
+        "image_path": "Unactivated Totem 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Tin Knight.png",
+                "count": 25,
+                "name": "Tin Knight"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Plate.png",
+                "count": 1,
+                "name": "Plate"
+            }
+        ],
+        "added_at": 1693159680441,
+        "name": "Unactivated Totem 2"
+    },
+    {
+        "image_path": "Unactivated Totem 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sawad The Cmuggler.png",
+                "count": 25,
+                "name": "Sawad The Cmuggler"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Viscous Gold.png",
+                "count": 1,
+                "name": "Viscous Gold"
+            }
+        ],
+        "added_at": 1693159727324,
+        "name": "Unactivated Totem 3"
+    },
+    {
+        "image_path": "Unactivated Totem 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Shale Golem.png",
+                "count": 25,
+                "name": "Shale Golem"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Set of Stones.png",
+                "count": 1,
+                "name": "Set of Stones"
+            }
+        ],
+        "added_at": 1693159767323,
+        "name": "Unactivated Totem 4"
+    },
+    {
+        "image_path": "Unactivated Totem 6.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Irska Vess.png",
+                "count": 25,
+                "name": "Irska Vess"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Chalice of Blood.png",
+                "count": 1,
+                "name": "Chalice of Blood"
+            }
+        ],
+        "added_at": 1693160055745,
+        "name": "Unactivated Totem 6"
+    },
+    {
+        "image_path": "Unactivated Totem 7.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Granados, the Lion King.png",
+                "count": 25,
+                "name": "Granados, the Lion King"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Stone Claw.png",
+                "count": 1,
+                "name": "Stone Claw"
+            }
+        ],
+        "added_at": 1693160117270,
+        "name": "Unactivated Totem 7"
+    },
+    {
+        "image_path": "Unactivated Totem 8.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "K. Lee Fly.png",
+                "count": 25,
+                "name": "K. Lee Fly"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Demon Soul.png",
+                "count": 1,
+                "name": "Demon Soul"
+            },
+            {
+                "image_path": "Old Gear.png",
+                "count": 1,
+                "name": "Old Gear"
+            }
+        ],
+        "added_at": 1693160159739,
+        "name": "Unactivated Totem 8"
+    },
+    {
+        "image_path": "Activated Totem 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 1.png",
+                "count": 1,
+                "name": "Unactivated Totem 1"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Amber.png",
+                "count": 1,
+                "name": "Scroll of Amber"
+            }
+        ],
+        "added_at": 1693160362650,
+        "name": "Activated Totem 1"
+    },
+    {
+        "image_path": "Activated Totem 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 2.png",
+                "count": 1,
+                "name": "Unactivated Totem 2"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Law.png",
+                "count": 1,
+                "name": "Scroll of Law"
+            }
+        ],
+        "added_at": 1693160387958,
+        "name": "Activated Totem 2"
+    },
+    {
+        "image_path": "Activated Totem 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 3.png",
+                "count": 1,
+                "name": "Unactivated Totem 3"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Diamond.png",
+                "count": 1,
+                "name": "Scroll of Diamond"
+            }
+        ],
+        "added_at": 1693160412229,
+        "name": "Activated Totem 3"
+    },
+    {
+        "image_path": "Activated Totem 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 4.png",
+                "count": 1,
+                "name": "Unactivated Totem 4"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Mystery.png",
+                "count": 1,
+                "name": "Scroll of Mystery"
+            }
+        ],
+        "added_at": 1693160448750,
+        "name": "Activated Totem 4"
+    },
+    {
+        "image_path": "Activated Totem 6.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 6.png",
+                "count": 1,
+                "name": "Unactivated Totem 6"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Doom.png",
+                "count": 1,
+                "name": "Scroll of Doom"
+            }
+        ],
+        "added_at": 1693160616571,
+        "name": "Activated Totem 6"
+    },
+    {
+        "image_path": "Activated Totem 7.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 7.png",
+                "count": 1,
+                "name": "Unactivated Totem 7"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Life.png",
+                "count": 1,
+                "name": "Scroll of Life"
+            }
+        ],
+        "added_at": 1693160653093,
+        "name": "Activated Totem 7"
+    },
+    {
+        "image_path": "Activated Totem 8.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Unactivated Totem 8.png",
+                "count": 1,
+                "name": "Unactivated Totem 8"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Rowan.png",
+                "count": 1,
+                "name": "Scroll of Rowan"
+            }
+        ],
+        "added_at": 1693160681731,
+        "name": "Activated Totem 8"
     }
 ]
