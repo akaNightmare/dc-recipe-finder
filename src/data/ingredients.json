@@ -20,6 +20,10 @@
         "name": "Anvil"
     },
     {
+        "image_path": "Archer.png",
+        "name": "Archer"
+    },
+    {
         "image_path": "Armor lvl 1.png",
         "name": "Armor lvl 1"
     },
@@ -246,6 +250,10 @@
     {
         "image_path": "Cow King.png",
         "name": "Cow King"
+    },
+    {
+        "image_path": "Crossbowmen.png",
+        "name": "Crossbowmen"
     },
     {
         "image_path": "Cucumber.png",
@@ -740,6 +748,10 @@
         "name": "Mage's Robe lvl 5"
     },
     {
+        "image_path": "Mage.png",
+        "name": "Mage"
+    },
+    {
         "image_path": "Magic bottles.png",
         "name": "Magic bottles"
     },
@@ -1136,6 +1148,10 @@
         "name": "Sawad The Cmuggler"
     },
     {
+        "image_path": "Scarecrows.png",
+        "name": "Scarecrows"
+    },
+    {
         "image_path": "Scroll Folder lvl.2.png",
         "name": "Scroll Folder lvl.2"
     },
@@ -1530,6 +1546,18 @@
     {
         "image_path": "Walleye.png",
         "name": "Walleye"
+    },
+    {
+        "image_path": "Warrior.png",
+        "name": "Warrior"
+    },
+    {
+        "image_path": "Warriors.png",
+        "name": "Warriors"
+    },
+    {
+        "image_path": "Wizards.png",
+        "name": "Wizards"
     },
     {
         "image_path": "Zucchini.png",
