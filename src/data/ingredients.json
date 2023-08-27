@@ -232,6 +232,10 @@
         "name": "Cow Cursed King"
     },
     {
+        "image_path": "Cow Horn 1.png",
+        "name": "Cow Horn 1"
+    },
+    {
         "image_path": "Cow Horn.png",
         "name": "Cow Horn"
     },
@@ -1004,6 +1008,50 @@
         "name": "Round Stone"
     },
     {
+        "image_path": "Rubinium Armor.png",
+        "name": "Rubinium Armor"
+    },
+    {
+        "image_path": "Rubinium Assault Armor.png",
+        "name": "Rubinium Assault Armor"
+    },
+    {
+        "image_path": "Rubinium Cartridges.png",
+        "name": "Rubinium Cartridges"
+    },
+    {
+        "image_path": "Rubinium Gravity Grenade.png",
+        "name": "Rubinium Gravity Grenade"
+    },
+    {
+        "image_path": "Rubinium Helm.png",
+        "name": "Rubinium Helm"
+    },
+    {
+        "image_path": "Rubinium Laser Pistol.png",
+        "name": "Rubinium Laser Pistol"
+    },
+    {
+        "image_path": "Rubinium Necklace.png",
+        "name": "Rubinium Necklace"
+    },
+    {
+        "image_path": "Rubinium Orb.png",
+        "name": "Rubinium Orb"
+    },
+    {
+        "image_path": "Rubinium Ring.png",
+        "name": "Rubinium Ring"
+    },
+    {
+        "image_path": "Rubinium Shoes.png",
+        "name": "Rubinium Shoes"
+    },
+    {
+        "image_path": "Rubinium Weapon.png",
+        "name": "Rubinium Weapon"
+    },
+    {
         "image_path": "Ruined Scroll.png",
         "name": "Ruined Scroll"
     },
@@ -1422,6 +1470,10 @@
     {
         "image_path": "Trolls Poo.png",
         "name": "Trolls Poo"
+    },
+    {
+        "image_path": "UI_loot_rnd_vlr.png",
+        "name": "UI_loot_rnd_vlr"
     },
     {
         "image_path": "Unicorn Milk.png",
