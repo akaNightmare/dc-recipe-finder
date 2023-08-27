@@ -4343,5 +4343,940 @@
         ],
         "added_at": 1693163392303,
         "name": "Gild Points"
+    },
+    {
+        "image_path": "Armor.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 10,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Frostweave Cloth.png",
+                "count": 10,
+                "name": "Frostweave Cloth"
+            },
+            {
+                "image_path": "Heavy Leather.png",
+                "count": 10,
+                "name": "Heavy Leather"
+            },
+            {
+                "image_path": "Light Leather.png",
+                "count": 10,
+                "name": "Light Leather"
+            }
+        ],
+        "added_at": 1693168133727,
+        "name": "Armor"
+    },
+    {
+        "image_path": "Weapon.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Staff.png",
+                "count": 10,
+                "name": "Staff"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Edge.png",
+                "count": 10,
+                "name": "Edge"
+            },
+            {
+                "image_path": "Blade.png",
+                "count": 10,
+                "name": "Blade"
+            }
+        ],
+        "added_at": 1693168288969,
+        "name": "Weapon"
+    },
+    {
+        "image_path": "Lock Pick.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 50,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 5,
+                "name": "Iron Ingot"
+            }
+        ],
+        "added_at": 1693168362917,
+        "name": "Lock Pick"
+    },
+    {
+        "image_path": "Goblin Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 3,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 25,
+                "name": "Star Ruby"
+            }
+        ],
+        "added_at": 1693168412054,
+        "name": "Goblin Key"
+    },
+    {
+        "image_path": "Elven Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 3,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 25,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693168511609,
+        "name": "Elven Key"
+    },
+    {
+        "image_path": "Undead Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 3,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 25,
+                "name": "Imperial Amethyst"
+            }
+        ],
+        "added_at": 1693168614361,
+        "name": "Undead Key"
+    },
+    {
+        "image_path": "Human Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 3,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 25,
+                "name": "Regular Topaz"
+            }
+        ],
+        "added_at": 1693168845664,
+        "name": "Human Key"
+    },
+    {
+        "image_path": "Great Rune Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Rune Key.png",
+                "count": 1,
+                "name": "Rune Key"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 10,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 10,
+                "name": "Gold Ingot"
+            }
+        ],
+        "added_at": 1693168883510,
+        "name": "Great Rune Key"
+    },
+    {
+        "image_path": "Bronze Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Bronze Ingot.png",
+                "count": 5,
+                "name": "Bronze Ingot"
+            },
+            {
+                "image_path": "The Mysterious Ring.png",
+                "count": 5,
+                "name": "The Mysterious Ring"
+            }
+        ],
+        "added_at": 1693168930864,
+        "name": "Bronze Key"
+    },
+    {
+        "image_path": "Golden Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Coin.png",
+                "count": 5,
+                "name": "Coin"
+            }
+        ],
+        "added_at": 1693168967314,
+        "name": "Golden Key"
+    },
+    {
+        "image_path": "Burner.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Hypersphere.png",
+                "count": 25,
+                "name": "Hypersphere"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            }
+        ],
+        "added_at": 1693169013716,
+        "name": "Burner"
+    },
+    {
+        "image_path": "Rune Key.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Lock Pick.png",
+                "count": 1,
+                "name": "Lock Pick"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 5,
+                "name": "Adamantine Ingot"
+            }
+        ],
+        "added_at": 1693169060955,
+        "name": "Rune Key"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Cave-lion Skull.png",
+                "count": 10,
+                "name": "Cave-lion Skull"
+            },
+            {
+                "image_path": "Goblin's Teeth.png",
+                "count": 10,
+                "name": "Goblin's Teeth"
+            },
+            {
+                "image_path": "Sharp Claws.png",
+                "count": 10,
+                "name": "Sharp Claws"
+            },
+            {
+                "image_path": "Desert Beast Jaw.png",
+                "count": 10,
+                "name": "Desert Beast Jaw"
+            },
+            {
+                "image_path": "Lost Dwarf's Tooth.png",
+                "count": 10,
+                "name": "Lost Dwarf's Tooth"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169408982,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bat Wing.png",
+                "count": 10,
+                "name": "Bat Wing"
+            },
+            {
+                "image_path": "Red Crow Feathet.png",
+                "count": 10,
+                "name": "Red Crow Feathet"
+            },
+            {
+                "image_path": "Sample of greenmoth.png",
+                "count": 10,
+                "name": "Sample of greenmoth"
+            },
+            {
+                "image_path": "Desert Phoenix Feather.png",
+                "count": 10,
+                "name": "Desert Phoenix Feather"
+            },
+            {
+                "image_path": "Icewind Feather.png",
+                "count": 10,
+                "name": "Icewind Feather"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169494015,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Rat's Tail.png",
+                "count": 10,
+                "name": "Rat's Tail"
+            },
+            {
+                "image_path": "Snuts' Brain.png",
+                "count": 10,
+                "name": "Snuts' Brain"
+            },
+            {
+                "image_path": "Cat's Eye.png",
+                "count": 10,
+                "name": "Cat's Eye"
+            },
+            {
+                "image_path": "Buzzard's Guts.png",
+                "count": 10,
+                "name": "Buzzard's Guts"
+            },
+            {
+                "image_path": "Snowpaw's Heart.png",
+                "count": 10,
+                "name": "Snowpaw's Heart"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169580734,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Deepthistle.png",
+                "count": 10,
+                "name": "Deepthistle"
+            },
+            {
+                "image_path": "Bloodroot.png",
+                "count": 10,
+                "name": "Bloodroot"
+            },
+            {
+                "image_path": "Silverleaf.png",
+                "count": 10,
+                "name": "Silverleaf"
+            },
+            {
+                "image_path": "Sunbloom.png",
+                "count": 10,
+                "name": "Sunbloom"
+            },
+            {
+                "image_path": "Frostcap.png",
+                "count": 10,
+                "name": "Frostcap"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169659264,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Walleye.png",
+                "count": 10,
+                "name": "Walleye"
+            },
+            {
+                "image_path": "Redeye.png",
+                "count": 10,
+                "name": "Redeye"
+            },
+            {
+                "image_path": "Marsh Fish.png",
+                "count": 10,
+                "name": "Marsh Fish"
+            },
+            {
+                "image_path": "Snowfish.png",
+                "count": 10,
+                "name": "Snowfish"
+            },
+            {
+                "image_path": "Sand Trout.png",
+                "count": 10,
+                "name": "Sand Trout"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169733657,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Bluebelly.png",
+                "count": 10,
+                "name": "Bluebelly"
+            },
+            {
+                "image_path": "Fool's Bane.png",
+                "count": 10,
+                "name": "Fool's Bane"
+            },
+            {
+                "image_path": "Mosscap.png",
+                "count": 10,
+                "name": "Mosscap"
+            },
+            {
+                "image_path": "Sandveil.png",
+                "count": 10,
+                "name": "Sandveil"
+            },
+            {
+                "image_path": "Icestone Cap.png",
+                "count": 10,
+                "name": "Icestone Cap"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169804019,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Counterfeit Aqua.png",
+                "count": 10,
+                "name": "Counterfeit Aqua"
+            },
+            {
+                "image_path": "Blood of Heroes.png",
+                "count": 10,
+                "name": "Blood of Heroes"
+            },
+            {
+                "image_path": "Troll's Mojo.png",
+                "count": 10,
+                "name": "Troll's Mojo"
+            },
+            {
+                "image_path": "Liquid Gold.png",
+                "count": 10,
+                "name": "Liquid Gold"
+            },
+            {
+                "image_path": "Frozen Drop of Magic.png",
+                "count": 10,
+                "name": "Frozen Drop of Magic"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169876430,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Burned Cloth.png",
+                "count": 10,
+                "name": "Burned Cloth"
+            },
+            {
+                "image_path": "Ethereal Cloth.png",
+                "count": 10,
+                "name": "Ethereal Cloth"
+            },
+            {
+                "image_path": "Evercloth.png",
+                "count": 10,
+                "name": "Evercloth"
+            },
+            {
+                "image_path": "Frostweave Cloth.png",
+                "count": 10,
+                "name": "Frostweave Cloth"
+            },
+            {
+                "image_path": "Red Silk.png",
+                "count": 10,
+                "name": "Red Silk"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169933306,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Core Leather.png",
+                "count": 10,
+                "name": "Core Leather"
+            },
+            {
+                "image_path": "Heavy Leather.png",
+                "count": 10,
+                "name": "Heavy Leather"
+            },
+            {
+                "image_path": "Light Leather.png",
+                "count": 10,
+                "name": "Light Leather"
+            },
+            {
+                "image_path": "Primal Pelt.png",
+                "count": 10,
+                "name": "Primal Pelt"
+            },
+            {
+                "image_path": "Frostbeast Pelt.png",
+                "count": 10,
+                "name": "Frostbeast Pelt"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693169996923,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Magnetite.png",
+                "count": 10,
+                "name": "Magnetite"
+            },
+            {
+                "image_path": "Block of Sand.png",
+                "count": 10,
+                "name": "Block of Sand"
+            },
+            {
+                "image_path": "Red Stone.png",
+                "count": 10,
+                "name": "Red Stone"
+            },
+            {
+                "image_path": "Jade.png",
+                "count": 10,
+                "name": "Jade"
+            },
+            {
+                "image_path": "Blue Stone.png",
+                "count": 10,
+                "name": "Blue Stone"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693170064590,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Metal Dust.png",
+                "count": 10,
+                "name": "Metal Dust"
+            },
+            {
+                "image_path": "Deep Water.png",
+                "count": 10,
+                "name": "Deep Water"
+            },
+            {
+                "image_path": "Sticky Moss.png",
+                "count": 10,
+                "name": "Sticky Moss"
+            },
+            {
+                "image_path": "Deser Sand Samle.png",
+                "count": 10,
+                "name": "Deser Sand Samle"
+            },
+            {
+                "image_path": "Pure Ice.png",
+                "count": 10,
+                "name": "Pure Ice"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693170128426,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Ruined Scroll.png",
+                "count": 10,
+                "name": "Ruined Scroll"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 10,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 10,
+                "name": "Sloppy Spellscroll"
+            },
+            {
+                "image_path": "Old Trade Document.png",
+                "count": 10,
+                "name": "Old Trade Document"
+            },
+            {
+                "image_path": "Scroll of Grudges.png",
+                "count": 10,
+                "name": "Scroll of Grudges"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693170218452,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 10,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 10,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 10,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 10,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 10,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693170281645,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Random Item.png",
+        "count_from": 25,
+        "count_to": 25,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Imperial Amethyst.png",
+                "count": 10,
+                "name": "Imperial Amethyst"
+            },
+            {
+                "image_path": "Radiant Sapphire.png",
+                "count": 10,
+                "name": "Radiant Sapphire"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 10,
+                "name": "Star Ruby"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 10,
+                "name": "Regular Topaz"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 10,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            }
+        ],
+        "added_at": 1693170338874,
+        "name": "Random Item"
+    },
+    {
+        "image_path": "Horn of a Hundred Demons.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Demon's Horn.png",
+                "count": 100,
+                "name": "Demon's Horn"
+            },
+            {
+                "image_path": "Liquid of the Void.png",
+                "count": 3,
+                "name": "Liquid of the Void"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Sharp Claws.png",
+                "count": 25,
+                "name": "Sharp Claws"
+            }
+        ],
+        "added_at": 1693170398345,
+        "name": "Horn of a Hundred Demons"
     }
 ]
