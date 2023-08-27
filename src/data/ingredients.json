@@ -96,6 +96,10 @@
         "name": "Bear"
     },
     {
+        "image_path": "Big Rune Key.png",
+        "name": "Big Rune Key"
+    },
+    {
         "image_path": "Bird.png",
         "name": "Bird"
     },
@@ -208,12 +212,20 @@
         "name": "Bronze Ingot"
     },
     {
+        "image_path": "Bronze Key.png",
+        "name": "Bronze Key"
+    },
+    {
         "image_path": "Bugl.png",
         "name": "Bugl"
     },
     {
         "image_path": "Burned Cloth.png",
         "name": "Burned Cloth"
+    },
+    {
+        "image_path": "Burner.png",
+        "name": "Burner"
     },
     {
         "image_path": "Buzzard's Guts.png",
@@ -496,6 +508,10 @@
         "name": "Eggplant"
     },
     {
+        "image_path": "Elven Key.png",
+        "name": "Elven Key"
+    },
+    {
         "image_path": "Essence of Luck.png",
         "name": "Essence of Luck"
     },
@@ -596,6 +612,10 @@
         "name": "Gjallarhorn"
     },
     {
+        "image_path": "Goblin Key.png",
+        "name": "Goblin Key"
+    },
+    {
         "image_path": "Goblin's Teeth.png",
         "name": "Goblin's Teeth"
     },
@@ -606,6 +626,10 @@
     {
         "image_path": "Golden Horseshoe.png",
         "name": "Golden Horseshoe"
+    },
+    {
+        "image_path": "Golden Key.png",
+        "name": "Golden Key"
     },
     {
         "image_path": "Granados The Cursed.png",
@@ -662,6 +686,10 @@
     {
         "image_path": "Gravity Grenade lvl 3.png",
         "name": "Gravity Grenade lvl 3"
+    },
+    {
+        "image_path": "Great Rune Key.png",
+        "name": "Great Rune Key"
     },
     {
         "image_path": "Guardian Seed.png",
@@ -776,6 +804,14 @@
         "name": "K. Lee Fly"
     },
     {
+        "image_path": "Keepers Key.png",
+        "name": "Keepers Key"
+    },
+    {
+        "image_path": "Key of Great Secrets.png",
+        "name": "Key of Great Secrets"
+    },
+    {
         "image_path": "Laser Pistol lvl 1.png",
         "name": "Laser Pistol lvl 1"
     },
@@ -798,6 +834,10 @@
     {
         "image_path": "Liquid of the Void.png",
         "name": "Liquid of the Void"
+    },
+    {
+        "image_path": "Lock Pick.png",
+        "name": "Lock Pick"
     },
     {
         "image_path": "Lost Dwarf's Tooth.png",
@@ -1312,6 +1352,10 @@
         "name": "Scroll of the Void"
     },
     {
+        "image_path": "Sea Key.png",
+        "name": "Sea Key"
+    },
+    {
         "image_path": "Seal of Doom.png",
         "name": "Seal of Doom"
     },
@@ -1628,6 +1672,10 @@
         "name": "Trolls Poo"
     },
     {
+        "image_path": "UI_chest_reward_runes_medium_key.png",
+        "name": "UI_chest_reward_runes_medium_key"
+    },
+    {
         "image_path": "Unactivated Totem 1.png",
         "name": "Unactivated Totem 1"
     },
@@ -1658,6 +1706,10 @@
     {
         "image_path": "Unactivated Totem 8.png",
         "name": "Unactivated Totem 8"
+    },
+    {
+        "image_path": "Undead Key.png",
+        "name": "Undead Key"
     },
     {
         "image_path": "Unicorn Milk.png",
