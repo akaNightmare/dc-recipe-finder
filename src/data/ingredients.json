@@ -756,12 +756,28 @@
     "name": "Scroll Folder lvl.2"
   },
   {
+    "image_path": "Scroll of Amber.png",
+    "name": "Scroll of Amber"
+  },
+  {
     "image_path": "Scroll of Antiquity.png",
     "name": "Scroll of Antiquity"
   },
   {
     "image_path": "Scroll of Craft.png",
     "name": "Scroll of Craft"
+  },
+  {
+    "image_path": "Scroll of Deadly Cold.png",
+    "name": "Scroll of Deadly Cold"
+  },
+  {
+    "image_path": "Scroll of Diamond.png",
+    "name": "Scroll of Diamond"
+  },
+  {
+    "image_path": "Scroll of Doom.png",
+    "name": "Scroll of Doom"
   },
   {
     "image_path": "Scroll of Folder lvl.1.png",
@@ -772,12 +788,36 @@
     "name": "Scroll of Grudges"
   },
   {
+    "image_path": "Scroll of Law.png",
+    "name": "Scroll of Law"
+  },
+  {
+    "image_path": "Scroll of Life.png",
+    "name": "Scroll of Life"
+  },
+  {
+    "image_path": "Scroll of Mystery.png",
+    "name": "Scroll of Mystery"
+  },
+  {
+    "image_path": "Scroll of Rowan.png",
+    "name": "Scroll of Rowan"
+  },
+  {
+    "image_path": "Scroll of Ruby.png",
+    "name": "Scroll of Ruby"
+  },
+  {
     "image_path": "Scroll of Wisdom.png",
     "name": "Scroll of Wisdom"
   },
   {
     "image_path": "Scroll of the Abyss.png",
     "name": "Scroll of the Abyss"
+  },
+  {
+    "image_path": "Scroll of the Void.png",
+    "name": "Scroll of the Void"
   },
   {
     "image_path": "Seal of Doom.png",
