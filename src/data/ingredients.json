@@ -176,8 +176,8 @@
         "name": "Cabbage"
     },
     {
-        "image_path": "Call of the Forest.png",
-        "name": "Call of the Forest"
+        "image_path": "Call of the Wild.png",
+        "name": "Call of the Wild"
     },
     {
         "image_path": "Candy.png",
@@ -218,10 +218,6 @@
     {
         "image_path": "Coin.png",
         "name": "Coin"
-    },
-    {
-        "image_path": "Conqueror Pendant.png",
-        "name": "Conqueror Pendant"
     },
     {
         "image_path": "Construction Tools.png",
@@ -632,6 +628,10 @@
         "name": "Hologram"
     },
     {
+        "image_path": "Horn of a Hundred Demons.png",
+        "name": "Horn of a Hundred Demons"
+    },
+    {
         "image_path": "Horn.png",
         "name": "Horn"
     },
@@ -898,6 +898,10 @@
     {
         "image_path": "Peach Seed.png",
         "name": "Peach Seed"
+    },
+    {
+        "image_path": "Pedant of the Conqueror.png",
+        "name": "Pedant of the Conqueror"
     },
     {
         "image_path": "Perfect Emerald.png",
@@ -1514,10 +1518,6 @@
     {
         "image_path": "Trolls Poo.png",
         "name": "Trolls Poo"
-    },
-    {
-        "image_path": "UI_loot_rnd_vlr.png",
-        "name": "UI_loot_rnd_vlr"
     },
     {
         "image_path": "Unicorn Milk.png",
