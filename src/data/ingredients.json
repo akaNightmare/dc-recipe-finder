@@ -636,21 +636,10 @@
     "name": "Pumkin"
   },
   {
-<<<<<<< HEAD
-=======
     "image_path": "Pumpkin Bait 1.png",
     "name": "Pumpkin Bait 1"
   },
   {
-    "image_path": "Pumpkin Bait 2.png",
-    "name": "Pumpkin Bait 2"
-  },
-  {
-    "image_path": "Pumpkin Bait 3.png",
-    "name": "Pumpkin Bait 3"
-  },
-  {
->>>>>>> e11de0f3ca2cd33804b5c03dceb9d0f122382869
     "image_path": "Pure Ice.png",
     "name": "Pure Ice"
   },
