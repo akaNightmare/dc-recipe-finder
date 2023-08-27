@@ -40,6 +40,10 @@
         "name": "Adamantine Ingot"
     },
     {
+        "image_path": "Altar of Power.png",
+        "name": "Altar of Power"
+    },
+    {
         "image_path": "Angel's Heart.png",
         "name": "Angel's Heart"
     },
@@ -488,6 +492,10 @@
         "name": "Drone"
     },
     {
+        "image_path": "Drow Hut.png",
+        "name": "Drow Hut"
+    },
+    {
         "image_path": "Dust of Change.png",
         "name": "Dust of Change"
     },
@@ -556,6 +564,10 @@
         "name": "Fife"
     },
     {
+        "image_path": "Fire Stone.png",
+        "name": "Fire Stone"
+    },
+    {
         "image_path": "Fire of the Abyss.png",
         "name": "Fire of the Abyss"
     },
@@ -578,6 +590,10 @@
     {
         "image_path": "Fool's Bane.png",
         "name": "Fool's Bane"
+    },
+    {
+        "image_path": "Forge.png",
+        "name": "Forge"
     },
     {
         "image_path": "Frost Salts.png",
@@ -674,6 +690,10 @@
     {
         "image_path": "Grand Sphere of the Lightning.png",
         "name": "Grand Sphere of the Lightning"
+    },
+    {
+        "image_path": "Graveyard.png",
+        "name": "Graveyard"
     },
     {
         "image_path": "Gravity Grenade lvl 1.png",
@@ -856,6 +876,10 @@
         "name": "Mage Shoes lvl 5"
     },
     {
+        "image_path": "Mage Watchtower.png",
+        "name": "Mage Watchtower"
+    },
+    {
         "image_path": "Mage's Robe lvl 1.png",
         "name": "Mage's Robe lvl 1"
     },
@@ -1032,6 +1056,10 @@
         "name": "Old Trade Document"
     },
     {
+        "image_path": "Orc Watchtower.png",
+        "name": "Orc Watchtower"
+    },
+    {
         "image_path": "Part of the Armor.png",
         "name": "Part of the Armor"
     },
@@ -1122,6 +1150,10 @@
     {
         "image_path": "Radiant Sapphire.png",
         "name": "Radiant Sapphire"
+    },
+    {
+        "image_path": "Random Item.png",
+        "name": "Random Item"
     },
     {
         "image_path": "Rat's Tail.png",
@@ -1730,6 +1762,10 @@
     {
         "image_path": "Warriors.png",
         "name": "Warriors"
+    },
+    {
+        "image_path": "Wathtower of the Void.png",
+        "name": "Wathtower of the Void"
     },
     {
         "image_path": "Wizards.png",
