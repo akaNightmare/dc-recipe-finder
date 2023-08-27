@@ -620,6 +620,10 @@
     "name": "Primal Pelt"
   },
   {
+    "image_path": "Pumkin.png",
+    "name": "Pumkin"
+  },
+  {
     "image_path": "Pumpkin Bait 1.png",
     "name": "Pumpkin Bait 1"
   },
