@@ -7,7 +7,7 @@ export type RecipesState = EntityState<Recipe>;
 export const selectId = (recipe: Recipe): string =>
     recipe.name + recipe.ingredients?.length
         ? recipe.ingredients
-              .map(i => i?.name)
+              .map(i => [i?.name, i?.count].join(','))
               .sort()
               .join('|')
         : '';
