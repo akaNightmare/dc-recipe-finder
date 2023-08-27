@@ -816,6 +816,30 @@
         "name": "Regular Topaz"
     },
     {
+        "image_path": "Ring lvl 1.png",
+        "name": "Ring lvl 1"
+    },
+    {
+        "image_path": "Ring lvl 2.png",
+        "name": "Ring lvl 2"
+    },
+    {
+        "image_path": "Ring lvl 3.png",
+        "name": "Ring lvl 3"
+    },
+    {
+        "image_path": "Ring lvl 4.png",
+        "name": "Ring lvl 4"
+    },
+    {
+        "image_path": "Ring lvl 5.png",
+        "name": "Ring lvl 5"
+    },
+    {
+        "image_path": "Ring lvl 6.png",
+        "name": "Ring lvl 6"
+    },
+    {
         "image_path": "Root.png",
         "name": "Root"
     },
