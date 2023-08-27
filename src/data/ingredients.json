@@ -700,8 +700,60 @@
         "name": "Mysterious Scroll"
     },
     {
+        "image_path": "Mythical Armor lvl 1.png",
+        "name": "Mythical Armor lvl 1"
+    },
+    {
+        "image_path": "Mythical Assault Armor lvl 1.png",
+        "name": "Mythical Assault Armor lvl 1"
+    },
+    {
+        "image_path": "Mythical Bow lvl 1.png",
+        "name": "Mythical Bow lvl 1"
+    },
+    {
+        "image_path": "Mythical Cartridges lvl 1.png",
+        "name": "Mythical Cartridges lvl 1"
+    },
+    {
+        "image_path": "Mythical Gravity grenade lvl 1.png",
+        "name": "Mythical Gravity grenade lvl 1"
+    },
+    {
+        "image_path": "Mythical Helm lvl 1.png",
+        "name": "Mythical Helm lvl 1"
+    },
+    {
+        "image_path": "Mythical Laser pistol lvl 1.png",
+        "name": "Mythical Laser pistol lvl 1"
+    },
+    {
+        "image_path": "Mythical Necklace lvl 1.png",
+        "name": "Mythical Necklace lvl 1"
+    },
+    {
         "image_path": "Mythical Orb.png",
         "name": "Mythical Orb"
+    },
+    {
+        "image_path": "Mythical Plasma Rifle lvl 1.png",
+        "name": "Mythical Plasma Rifle lvl 1"
+    },
+    {
+        "image_path": "Mythical Ring lvl 1.png",
+        "name": "Mythical Ring lvl 1"
+    },
+    {
+        "image_path": "Mythical Shoes lvl 1.png",
+        "name": "Mythical Shoes lvl 1"
+    },
+    {
+        "image_path": "Mythical Staff lvl 1.png",
+        "name": "Mythical Staff lvl 1"
+    },
+    {
+        "image_path": "Mythical Sword lvl 1.png",
+        "name": "Mythical Sword lvl 1"
     },
     {
         "image_path": "Necklace lvl 1.png",
