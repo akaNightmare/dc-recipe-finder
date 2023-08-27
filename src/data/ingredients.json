@@ -72,6 +72,10 @@
         "name": "Armor lvl 5"
     },
     {
+        "image_path": "Armor.png",
+        "name": "Armor"
+    },
+    {
         "image_path": "Arrows.png",
         "name": "Arrows"
     },
@@ -1834,6 +1838,10 @@
     {
         "image_path": "Wathtower of the Void.png",
         "name": "Wathtower of the Void"
+    },
+    {
+        "image_path": "Weapon.png",
+        "name": "Weapon"
     },
     {
         "image_path": "Wizards.png",
