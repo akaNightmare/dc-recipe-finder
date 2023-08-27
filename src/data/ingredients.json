@@ -176,6 +176,10 @@
         "name": "Cabbage"
     },
     {
+        "image_path": "Call of the Forest.png",
+        "name": "Call of the Forest"
+    },
+    {
         "image_path": "Candy.png",
         "name": "Candy"
     },
@@ -216,6 +220,10 @@
         "name": "Coin"
     },
     {
+        "image_path": "Conqueror Pendant.png",
+        "name": "Conqueror Pendant"
+    },
+    {
         "image_path": "Construction Tools.png",
         "name": "Construction Tools"
     },
@@ -246,6 +254,14 @@
     {
         "image_path": "Cucumber.png",
         "name": "Cucumber"
+    },
+    {
+        "image_path": "Cursed Ignot 2.png",
+        "name": "Cursed Ignot 2"
+    },
+    {
+        "image_path": "Cursed Ignot 3.png",
+        "name": "Cursed Ignot 3"
     },
     {
         "image_path": "Cursed Ingot.png",
@@ -566,6 +582,10 @@
     {
         "image_path": "Grand Sphere of the Lightning.png",
         "name": "Grand Sphere of the Lightning"
+    },
+    {
+        "image_path": "Guardian Seed.png",
+        "name": "Guardian Seed"
     },
     {
         "image_path": "Heavy Leather.png",
@@ -1056,6 +1076,18 @@
         "name": "Ruined Scroll"
     },
     {
+        "image_path": "Rune Hunters Ring 1.png",
+        "name": "Rune Hunters Ring 1"
+    },
+    {
+        "image_path": "Rune Hunters Ring 2.png",
+        "name": "Rune Hunters Ring 2"
+    },
+    {
+        "image_path": "Rune Hunters Ring 3.png",
+        "name": "Rune Hunters Ring 3"
+    },
+    {
         "image_path": "Sample of greenmoth.png",
         "name": "Sample of greenmoth"
     },
@@ -1232,6 +1264,10 @@
         "name": "Snuts' Brain"
     },
     {
+        "image_path": "Solar Diode.png",
+        "name": "Solar Diode"
+    },
+    {
         "image_path": "Solar Essence.jpg",
         "name": "Solar Essence"
     },
@@ -1398,6 +1434,14 @@
     {
         "image_path": "Talisman of Cows.png",
         "name": "Talisman of Cows"
+    },
+    {
+        "image_path": "The Damned Scroll 2.png",
+        "name": "The Damned Scroll 2"
+    },
+    {
+        "image_path": "The Damned Scroll 3.png",
+        "name": "The Damned Scroll 3"
     },
     {
         "image_path": "The Dark Stone.png",
