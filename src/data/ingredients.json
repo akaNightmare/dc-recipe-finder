@@ -24,10 +24,6 @@
     "name": "Arrows"
   },
   {
-    "image_path": "Bait pumpkin 1.png",
-    "name": "Bait pumpkin 1"
-  },
-  {
     "image_path": "Banner.png",
     "name": "Banner"
   },
@@ -188,8 +184,8 @@
     "name": "Cow Horn"
   },
   {
-    "image_path": "Cumber.png",
-    "name": "Cumber"
+    "image_path": "Cucumber.png",
+    "name": "Cucumber"
   },
   {
     "image_path": "Cursed Ingot.png",
@@ -408,6 +404,42 @@
     "name": "Golden Horseshoe"
   },
   {
+    "image_path": "Grand Sphere of Demons.png",
+    "name": "Grand Sphere of Demons"
+  },
+  {
+    "image_path": "Grand Sphere of Earth.png",
+    "name": "Grand Sphere of Earth"
+  },
+  {
+    "image_path": "Grand Sphere of Fire.png",
+    "name": "Grand Sphere of Fire"
+  },
+  {
+    "image_path": "Grand Sphere of Life.png",
+    "name": "Grand Sphere of Life"
+  },
+  {
+    "image_path": "Grand Sphere of Mechanisms.png",
+    "name": "Grand Sphere of Mechanisms"
+  },
+  {
+    "image_path": "Grand Sphere of Plants.png",
+    "name": "Grand Sphere of Plants"
+  },
+  {
+    "image_path": "Grand Sphere of Water.png",
+    "name": "Grand Sphere of Water"
+  },
+  {
+    "image_path": "Grand Sphere of the Dead.png",
+    "name": "Grand Sphere of the Dead"
+  },
+  {
+    "image_path": "Grand Sphere of the Lightning.png",
+    "name": "Grand Sphere of the Lightning"
+  },
+  {
     "image_path": "Heavy Leather.png",
     "name": "Heavy Leather"
   },
@@ -592,12 +624,16 @@
     "name": "Pumkin"
   },
   {
+    "image_path": "Pumpkin Bait 2.png",
+    "name": "Pumpkin Bait 2"
+  },
+  {
     "image_path": "Pumpkin Bait 3.png",
     "name": "Pumpkin Bait 3"
   },
   {
-    "image_path": "Pumpkin Bite.png",
-    "name": "Pumpkin Bite"
+    "image_path": "Pumpkin Bite 1.png",
+    "name": "Pumpkin Bite 1"
   },
   {
     "image_path": "Pure Ice.png",
@@ -874,6 +910,10 @@
   {
     "image_path": "Tomato Coin.png",
     "name": "Tomato Coin"
+  },
+  {
+    "image_path": "Tomato Orb.png",
+    "name": "Tomato Orb"
   },
   {
     "image_path": "Tomato.png",
