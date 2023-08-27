@@ -40,6 +40,18 @@
         "name": "Arrows"
     },
     {
+        "image_path": "Assault Armor lvl 1.png",
+        "name": "Assault Armor lvl 1"
+    },
+    {
+        "image_path": "Assault Armor lvl 2.png",
+        "name": "Assault Armor lvl 2"
+    },
+    {
+        "image_path": "Assault Armor lvl 3.png",
+        "name": "Assault Armor lvl 3"
+    },
+    {
         "image_path": "Banner.png",
         "name": "Banner"
     },
@@ -194,6 +206,18 @@
     {
         "image_path": "Carrot.png",
         "name": "Carrot"
+    },
+    {
+        "image_path": "Cartridges lvl 1.png",
+        "name": "Cartridges lvl 1"
+    },
+    {
+        "image_path": "Cartridges lvl 2.png",
+        "name": "Cartridges lvl 2"
+    },
+    {
+        "image_path": "Cartridges lvl 3.png",
+        "name": "Cartridges lvl 3"
     },
     {
         "image_path": "Carved Horn.png",
@@ -596,6 +620,18 @@
         "name": "Grand Sphere of the Lightning"
     },
     {
+        "image_path": "Gravity Grenade lvl 1.png",
+        "name": "Gravity Grenade lvl 1"
+    },
+    {
+        "image_path": "Gravity Grenade lvl 2.png",
+        "name": "Gravity Grenade lvl 2"
+    },
+    {
+        "image_path": "Gravity Grenade lvl 3.png",
+        "name": "Gravity Grenade lvl 3"
+    },
+    {
         "image_path": "Guardian Seed.png",
         "name": "Guardian Seed"
     },
@@ -706,6 +742,18 @@
     {
         "image_path": "K. Lee Fly.png",
         "name": "K. Lee Fly"
+    },
+    {
+        "image_path": "Laser Pistol lvl 1.png",
+        "name": "Laser Pistol lvl 1"
+    },
+    {
+        "image_path": "Laser Pistol lvl 2.png",
+        "name": "Laser Pistol lvl 2"
+    },
+    {
+        "image_path": "Laser Pistol lvl 3.png",
+        "name": "Laser Pistol lvl 3"
     },
     {
         "image_path": "Light Leather.png",
@@ -946,6 +994,18 @@
     {
         "image_path": "Planking.png",
         "name": "Planking"
+    },
+    {
+        "image_path": "Plasma Rifle lvl 1.png",
+        "name": "Plasma Rifle lvl 1"
+    },
+    {
+        "image_path": "Plasma Rifle lvl 2.png",
+        "name": "Plasma Rifle lvl 2"
+    },
+    {
+        "image_path": "Plasma Rifle lvl 3.png",
+        "name": "Plasma Rifle lvl 3"
     },
     {
         "image_path": "Plate.png",
