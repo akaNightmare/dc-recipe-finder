@@ -23,10 +23,8 @@ export const selectCustomRecipes: MemoizedSelector<AppState, Recipe[]> = createS
                     r =>
                         r.name === ar.name &&
                         r.status === ar.status &&
-                        xor(
-                            r.ingredients.map(({ name }) => name).sort(),
-                            ar.ingredients.map(({ name }) => name).sort(),
-                        ).length === 0,
+                        xor(r.ingredients.map(({ name }) => name).sort(), ar.ingredients.map(({ name }) => name).sort())
+                            .length === 0,
                 ),
         ),
 );

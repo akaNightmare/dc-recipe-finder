@@ -1,7 +1,7 @@
 <div class="bg-card absolute inset-0 flex min-w-0 flex-col overflow-hidden dark:bg-transparent">
     <!-- Header -->
     <div
-            class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
+        class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
     >
         <!-- Title -->
         <div class="text-4xl font-extrabold tracking-tight">Recipes</div>
@@ -10,40 +10,61 @@
             <form class="flex flex-auto" [formGroup]="filters">
                 <!-- Status -->
                 <mat-form-field
-                        [subscriptSizing]="'dynamic'"
-                        class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-40 sm:ml-4"
+                    [subscriptSizing]="'dynamic'"
+                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-40 sm:ml-4"
                 >
-                    <mat-select multiple="true" matTooltip="Filter by statuses" placeholder="Statuses" [formControlName]="'statuses'">
+                    <mat-select
+                        multiple="true"
+                        matTooltip="Filter by statuses"
+                        placeholder="Statuses"
+                        [formControlName]="'statuses'"
+                    >
                         <ng-container *ngFor="let status of STATUSES">
                             <mat-option [value]="status">{{ status }}</mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field [subscriptSizing]="'dynamic'" class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-72 sm:ml-4">
-                    <mat-select multiple="true" [formControlName]="'ingredients'" matTooltip="Filter by ingredients" placeholder="Ingredients">
+                <mat-form-field
+                    [subscriptSizing]="'dynamic'"
+                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-72 sm:ml-4"
+                >
+                    <mat-select
+                        multiple="true"
+                        [formControlName]="'ingredients'"
+                        matTooltip="Filter by ingredients"
+                        placeholder="Ingredients"
+                    >
                         <mat-select-trigger>
-                            <div class="flex items-center" *ngIf="filters.get('ingredients').valueChanges | async; let imagePaths">
-                                <img class="w-8 h-8 rounded"
-                                     [class.mr-1]="!last"
-                                     *ngFor="let imagePath of imagePaths; let last = last"
-                                     [src]="'assets/images/ingredients/' + imagePath">
+                            <div
+                                class="flex items-center"
+                                *ngIf="filters.get('ingredients').valueChanges | async; let imageNames"
+                            >
+                                <img
+                                    class="w-8 h-8 rounded"
+                                    [class.mr-1]="!last"
+                                    *ngFor="let imageName of imageNames; let last = last"
+                                    [src]="'assets/images/ingredients/' + imageName + '.png'"
+                                />
                             </div>
                         </mat-select-trigger>
                         <mat-option>
                             <ngx-mat-select-search
-                                    noEntriesFoundLabel="No matching ingredients found"
-                                    placeholderLabel="Search"
-                                    [clearSearchInput]="true"
-                                    [enableClearOnEscapePressed]="true"
-                                    [formControl]="searchIngredientsCtrl"></ngx-mat-select-search>
+                                noEntriesFoundLabel="No matching ingredients found"
+                                placeholderLabel="Search"
+                                [clearSearchInput]="true"
+                                [enableClearOnEscapePressed]="true"
+                                [formControl]="searchIngredientsCtrl"
+                            ></ngx-mat-select-search>
                         </mat-option>
-                        <mat-option *ngFor="let ingredient of ingredientsToSearch$ | async" [value]="ingredient.image_path">
+                        <mat-option *ngFor="let ingredient of ingredientsToSearch$ | async" [value]="ingredient.name">
                             <div class="flex items-center">
-                                <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + ingredient.image_path" [alt]="ingredient.name">
-                                <div class="flex flex-col ml-1">
-                                    {{ ingredient.name }}
-                                </div>
+                                <img
+                                    class="w-8 h-8 rounded"
+                                    [src]="'assets/images/ingredients/' + ingredient.image_path"
+                                    [alt]="ingredient.name"
+                                />
+                                <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
                             </div>
                         </mat-option>
                     </mat-select>
@@ -51,25 +72,20 @@
 
                 <!-- Search -->
                 <mat-form-field
-                        [subscriptSizing]="'dynamic'"
-                        class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
+                    [subscriptSizing]="'dynamic'"
+                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
                 >
                     <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
                     <input
-                            matInput
-                            [formControlName]="'search'"
-                            [autocomplete]="'off'"
-                            [placeholder]="'Search recipes'"
+                        matInput
+                        [formControlName]="'search'"
+                        [autocomplete]="'off'"
+                        [placeholder]="'Search recipes'"
                     />
                 </mat-form-field>
 
                 <!-- Add recipe button -->
-                <button
-                        class="ml-4"
-                        mat-flat-button
-                        [color]="'primary'"
-                        (click)="openRecipeDialog()"
-                >
+                <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openRecipeDialog()">
                     <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
                     <span class="ml-2 mr-1">Add</span>
                 </button>
@@ -83,82 +99,94 @@
             <!-- Table wrapper -->
             <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
                 <table
-                        class="w-full min-w-320 table-fixed bg-transparent"
-                        mat-table
-                        matSort
-                        [matSortActive]="this.filters.get('sort_by').value"
-                        [matSortDisableClear]="true"
-                        [matSortDirection]="this.filters.get('sort_dir').value"
-                        [multiTemplateDataRows]="true"
-                        [dataSource]="filteredIngredients$ | async"
+                    class="w-full min-w-320 table-fixed bg-transparent"
+                    mat-table
+                    matSort
+                    [matSortActive]="this.filters.get('sort_by').value"
+                    [matSortDisableClear]="true"
+                    [matSortDirection]="this.filters.get('sort_dir').value"
+                    [multiTemplateDataRows]="true"
+                    [dataSource]="filteredIngredients$ | async"
                 >
                     <!-- Name -->
                     <ng-container matColumnDef="name">
                         <th
-                                class="bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
-                                mat-sort-header
-                                disableClear
+                            class="bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            disableClear
                         >
                             Name
                         </th>
                         <td class="px-4" mat-cell *matCellDef="let recipe">
                             <div class="flex items-center">
+                                <span
+                                    class="relative mr-4 flex h-12 w-12 flex-0 items-center justify-center overflow-hidden rounded border"
+                                >
+                                    <img
+                                        class="w-12"
+                                        *ngIf="recipe.image_path"
+                                        [src]="'assets/images/ingredients/' + recipe.image_path"
+                                        [alt]="recipe.name"
+                                    />
                                     <span
-                                            class="relative mr-4 flex h-12 w-12 flex-0 items-center justify-center overflow-hidden rounded border"
+                                        class="flex h-full w-full items-center justify-center text-center text-xs font-semibold uppercase leading-none"
+                                        *ngIf="!recipe.image_path"
                                     >
-                                        <img class="w-12" *ngIf="recipe.image_path" [src]="'assets/images/ingredients/' + recipe.image_path" [alt]="recipe.name" />
-                                        <span
-                                                class="flex h-full w-full items-center justify-center text-center text-xs font-semibold uppercase leading-none"
-                                                *ngIf="!recipe.image_path"
-                                        >
-                                            <img *ngIf="recipe.status === 'FAILED'" class="h-12" src="assets/images/system/craft_failed.png" [alt]="'Failed craft'" />
-                                            <ng-template [ngIf]="recipe.status !== 'FAILED'">No image</ng-template>
-                                        </span>
-                                        <div
-                                                *ngIf="recipe.count_from && recipe.count_to"
-                                                class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-on-primary">
-                                            <ng-template [ngIf]="recipe.count_from === recipe.count_to">
-                                                {{ recipe.count_from }}
-                                            </ng-template>
-                                            <ng-template [ngIf]="recipe.count_from !== recipe.count_to">
-                                                {{ recipe.count_from }}-{{ recipe.count_to }}
-                                            </ng-template>
-                                        </div>
+                                        <img
+                                            *ngIf="recipe.status === 'FAILED'"
+                                            class="h-12"
+                                            src="assets/images/system/craft_failed.png"
+                                            [alt]="'Failed craft'"
+                                        />
+                                        <ng-template [ngIf]="recipe.status !== 'FAILED'">No image</ng-template>
                                     </span>
+                                    <span
+                                        *ngIf="recipe.count_from && recipe.count_to"
+                                        class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-on-primary"
+                                    >
+                                        <ng-template [ngIf]="recipe.count_from === recipe.count_to">
+                                            {{ recipe.count_from }}
+                                        </ng-template>
+                                        <ng-template [ngIf]="recipe.count_from !== recipe.count_to">
+                                            {{ recipe.count_from }}-{{ recipe.count_to }}
+                                        </ng-template>
+                                    </span>
+                                </span>
                                 <span class="truncate">
-                                        <ng-template [ngIf]="recipe.name">{{recipe.name}}</ng-template>
-                                        <ng-template [ngIf]="!recipe.name"><i>-no name-</i></ng-template>
-                                    </span>
+                                    <ng-template [ngIf]="recipe.name">{{recipe.name}}</ng-template>
+                                    <ng-template [ngIf]="!recipe.name"><i>-no name-</i></ng-template>
+                                </span>
                             </div>
                         </td>
                     </ng-container>
 
                     <!-- Ingredients -->
                     <ng-container matColumnDef="ingredients">
-                        <th
-                                class="w-72 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
-                        >
+                        <th class="w-72 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
                             Ingredients
                         </th>
                         <td class="px-4" mat-cell *matCellDef="let recipe">
                             <div class="flex flex-col pl-1">
                                 <div class="flex justify-start">
                                     <div
-                                            *ngFor="let ingredient of recipe.ingredients | sortBy: 'asc' : 'name'; let columnLast = last"
-                                            [matTooltip]="'Click to filter by ' + ingredient.name + ' ingredient'"
-                                            [class.mr-1]="!columnLast"
-                                            (click)="updateFilters({ ingredients: [ingredient.name] })"
-                                            class="relative cursor-pointer">
-                                        <div class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-on-primary">
+                                        *ngFor="let ingredient of recipe.ingredients | sortBy: 'asc' : 'name'; let columnLast = last"
+                                        [matTooltip]="'Click to filter by ' + ingredient.name + ' ingredient'"
+                                        [class.mr-1]="!columnLast"
+                                        (click)="updateFilters({ ingredients: [ingredient.name] })"
+                                        class="relative cursor-pointer"
+                                    >
+                                        <div
+                                            class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-on-primary"
+                                        >
                                             {{ ingredient.count }}
                                         </div>
-                                        <img [src]="'assets/images/ingredients/' + ingredient.image_path"
-                                             [alt]="ingredient.name"
-                                             class="w-9 h-9 rounded object-cover">
+                                        <img
+                                            [src]="'assets/images/ingredients/' + ingredient.image_path"
+                                            [alt]="ingredient.name"
+                                            class="w-9 h-9 rounded object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -167,26 +195,25 @@
 
                     <!-- Used in other recipes -->
                     <ng-container matColumnDef="used_in">
-                        <th
-                                class="w-80 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
-                        >
+                        <th class="w-80 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
                             Used in other recipes
                         </th>
                         <td class="px-4" mat-cell *matCellDef="let recipe">
                             <ng-template [ngIf]="recipe.status === 'SUCCESS'">
-                                    <span *ngFor="let status of STATUSES; let last = last" class="text-secondary whitespace-nowrap text-sm font-medium">
-                                        {{ status }} -
-                                        <span
-                                                [matTooltip]="'Click to filter receipts by ' + recipe.name + ' ingredient with ' + status + ' status'"
-                                                class="text-primary cursor-pointer hover:underline"
-                                                (click)="updateFilters({ ingredients: [recipe.name], statuses: [status] })"
-                                        >
-                                            {{ countReceiptsByStatus(recipe.name, status) }}
-                                        </span>
-                                        <ng-template [ngIf]="!last">, </ng-template>
+                                <span
+                                    *ngFor="let status of STATUSES; let last = last"
+                                    class="text-secondary whitespace-nowrap text-sm font-medium"
+                                >
+                                    {{ status }} -
+                                    <span
+                                        [matTooltip]="'Click to filter receipts by ' + recipe.name + ' ingredient with ' + status + ' status'"
+                                        class="text-primary cursor-pointer hover:underline"
+                                        (click)="updateFilters({ ingredients: [recipe.name], statuses: [status] })"
+                                    >
+                                        {{ countReceiptsByStatus(recipe.name, status) }}
                                     </span>
+                                    <ng-template [ngIf]="!last">, </ng-template>
+                                </span>
                             </ng-template>
                             <i *ngIf="recipe.status !== 'SUCCESS'">-no info-</i>
                         </td>
@@ -195,61 +222,59 @@
                     <!-- Status -->
                     <ng-container matColumnDef="status">
                         <th
-                                class="w-40 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
-                                mat-sort-header
-                                disableClear
+                            class="w-40 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            disableClear
                         >
                             Status
                         </th>
                         <td class="truncate pr-6" mat-cell *matCellDef="let recipe">
-                                <span
-                                        class="rounded-full py-0.5 px-3 text-sm font-semibold"
-                                        [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === 'UNFULFILLED',
+                            <span
+                                class="rounded-full py-0.5 px-3 text-sm font-semibold"
+                                [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === 'UNFULFILLED',
                                                 'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': recipe.status === 'SUCCESS',
                                                 'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': recipe.status === 'FAILED'}"
-                                >
-                                    {{recipe.status}}
-                                </span>
+                            >
+                                {{recipe.status}}
+                            </span>
                         </td>
                     </ng-container>
 
                     <!-- Added At -->
                     <ng-container matColumnDef="added_at">
                         <th
-                                class="w-36 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
-                                mat-sort-header
-                                disableClear
+                            class="w-36 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            disableClear
                         >
                             Added at
                         </th>
-                        <td class="truncate pr-6" mat-cell *matCellDef="let recipe">
-                            {{ recipe.added_at | date }}
-                        </td>
+                        <td class="truncate pr-6" mat-cell *matCellDef="let recipe">{{ recipe.added_at | date }}</td>
                     </ng-container>
 
                     <!-- Actions -->
                     <ng-container matColumnDef="actions">
                         <th
-                                class="w-24 bg-gray-50 pr-6 dark:bg-black dark:bg-opacity-5"
-                                mat-header-cell
-                                *matHeaderCellDef
+                            class="w-24 bg-gray-50 pr-6 dark:bg-black dark:bg-opacity-5"
+                            mat-header-cell
+                            *matHeaderCellDef
                         >
                             Actions
                         </th>
                         <td class="pr-6" mat-cell *matCellDef="let recipe">
                             <button
-                                    class="h-7 min-h-7 min-w-10 px-2 leading-6"
-                                    mat-stroked-button
-                                    #t="matMenuTrigger"
-                                    [matMenuTriggerFor]="userActionsMenu"
+                                class="h-7 min-h-7 min-w-10 px-2 leading-6"
+                                mat-stroked-button
+                                #t="matMenuTrigger"
+                                [matMenuTriggerFor]="userActionsMenu"
                             >
                                 <mat-icon
-                                        class="icon-size-5"
-                                        [svgIcon]="t.menuOpen ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"
+                                    class="icon-size-5"
+                                    [svgIcon]="t.menuOpen ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"
                                 ></mat-icon>
                                 <mat-menu #userActionsMenu>
                                     <button mat-menu-item (click)="openRecipeDialog(recipe)">
@@ -267,19 +292,19 @@
 
                     <tr class="shadow" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                     <tr
-                            class="h-18 hover:bg-gray-100 dark:hover:bg-hover"
-                            mat-row
-                            *matRowDef="let recipe; columns: displayedColumns;"
+                        class="h-18 hover:bg-gray-100 dark:hover:bg-hover"
+                        mat-row
+                        *matRowDef="let recipe; columns: displayedColumns;"
                     ></tr>
                 </table>
             </div>
 
             <mat-paginator
-                    class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
-                    [pageSizeOptions]="pageSizeOptions"
-                    [pageSize]="this.filters.get('limit').value"
-                    [pageIndex]="this.filters.get('page').value - 1"
-                    [showFirstLastButtons]="true"
+                class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
+                [pageSizeOptions]="pageSizeOptions"
+                [pageSize]="this.filters.get('limit').value"
+                [pageIndex]="this.filters.get('page').value - 1"
+                [showFirstLastButtons]="true"
             ></mat-paginator>
         </div>
     </div>

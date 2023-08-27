@@ -6,6 +6,9 @@ const directoryPath = path.join(__dirname, '..', 'src', 'assets', 'images', 'ing
 (async () => {
     const files = await fs.readdir(directoryPath);
     for (const file of files) {
-        await fs.rename(path.join(directoryPath, file), path.join(directoryPath, file.toLowerCase().replace(/ui_loot_/g, '')));
+        await fs.rename(
+            path.join(directoryPath, file),
+            path.join(directoryPath, file.toLowerCase().replace(/ui_loot_/g, '')),
+        );
     }
 })();

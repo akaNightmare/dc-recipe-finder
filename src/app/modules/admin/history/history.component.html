@@ -6,34 +6,27 @@
                 <div class="font-medium tracking-tight text-secondary">Keep track of your searching recipe status</div>
             </div>
             <div class="flex items-center ml-6">
-                <button
-                        class="bg-accent"
-                        mat-flat-button
-                        (click)="historyFile.click()"
-                        [color]="'accent'">
-                    <mat-icon
-                            class="icon-size-5"
-                            [svgIcon]="'heroicons_solid:arrow-down-tray'"></mat-icon>
+                <button class="bg-accent" mat-flat-button (click)="historyFile.click()" [color]="'accent'">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:arrow-down-tray'"></mat-icon>
                     <span class="ml-2">Import</span>
                     <input
-                            id="history-file-input"
-                            class="pointer-events-none invisible absolute h-0 w-0 opacity-0"
-                            type="file"
-                            [multiple]="false"
-                            [accept]="'application/json,text/plain'"
-                            (change)="importHistory(historyFile.files)"
-                            #historyFile
+                        id="history-file-input"
+                        class="pointer-events-none invisible absolute h-0 w-0 opacity-0"
+                        type="file"
+                        [multiple]="false"
+                        [accept]="'application/json,text/plain'"
+                        (change)="importHistory(historyFile.files)"
+                        #historyFile
                     />
                 </button>
 
                 <button
-                        class="hidden sm:inline-flex ml-3"
-                        mat-flat-button
-                        (click)="exportHistory()"
-                        [color]="'primary'">
-                    <mat-icon
-                            class="icon-size-5"
-                            [svgIcon]="'heroicons_solid:arrow-up-tray'"></mat-icon>
+                    class="hidden sm:inline-flex ml-3"
+                    mat-flat-button
+                    (click)="exportHistory()"
+                    [color]="'primary'"
+                >
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:arrow-up-tray'"></mat-icon>
                     <span class="ml-2">Export</span>
                 </button>
             </div>
