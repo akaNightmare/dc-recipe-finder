@@ -228,6 +228,10 @@
         "name": "Counterfeit Aqua"
     },
     {
+        "image_path": "Cow Cursed King.png",
+        "name": "Cow Cursed King"
+    },
+    {
         "image_path": "Cow Horn.png",
         "name": "Cow Horn"
     },
@@ -242,6 +246,34 @@
     {
         "image_path": "Cursed Scroll.png",
         "name": "Cursed Scroll"
+    },
+    {
+        "image_path": "Cursed Tin Knight.png",
+        "name": "Cursed Tin Knight"
+    },
+    {
+        "image_path": "Dagger lvl 1.png",
+        "name": "Dagger lvl 1"
+    },
+    {
+        "image_path": "Dagger lvl 2.png",
+        "name": "Dagger lvl 2"
+    },
+    {
+        "image_path": "Dagger lvl 3.png",
+        "name": "Dagger lvl 3"
+    },
+    {
+        "image_path": "Dagger lvl 4.png",
+        "name": "Dagger lvl 4"
+    },
+    {
+        "image_path": "Dagger lvl 5.png",
+        "name": "Dagger lvl 5"
+    },
+    {
+        "image_path": "Dagger lvl 6.png",
+        "name": "Dagger lvl 6"
     },
     {
         "image_path": "Dark blood.png",
@@ -484,6 +516,10 @@
         "name": "Golden Horseshoe"
     },
     {
+        "image_path": "Granados The Cursed.png",
+        "name": "Granados The Cursed"
+    },
+    {
         "image_path": "Grand Sphere of Demons.png",
         "name": "Grand Sphere of Demons"
     },
@@ -596,6 +632,10 @@
         "name": "Iron Ingot"
     },
     {
+        "image_path": "Irska the Cursed.png",
+        "name": "Irska the Cursed"
+    },
+    {
         "image_path": "Jack-o'-lantern.png",
         "name": "Jack-o'-lantern"
     },
@@ -690,6 +730,18 @@
     {
         "image_path": "Moon Sugar.png",
         "name": "Moon Sugar"
+    },
+    {
+        "image_path": "Morgernstern lvl 1.png",
+        "name": "Morgernstern lvl 1"
+    },
+    {
+        "image_path": "Morgernstern lvl 3.png",
+        "name": "Morgernstern lvl 3"
+    },
+    {
+        "image_path": "Morgernstern lvl 5.png",
+        "name": "Morgernstern lvl 5"
     },
     {
         "image_path": "Mosscap.png",
@@ -860,6 +912,10 @@
         "name": "Pure Ice"
     },
     {
+        "image_path": "Pyre the Cursed.png",
+        "name": "Pyre the Cursed"
+    },
+    {
         "image_path": "Radiant Sapphire.png",
         "name": "Radiant Sapphire"
     },
@@ -946,6 +1002,10 @@
     {
         "image_path": "Sapling.png",
         "name": "Sapling"
+    },
+    {
+        "image_path": "Savad the Cursed.png",
+        "name": "Savad the Cursed"
     },
     {
         "image_path": "Saw-Leaf.png",
@@ -1036,6 +1096,10 @@
         "name": "Set of Stones"
     },
     {
+        "image_path": "Shale the Cursed.png",
+        "name": "Shale the Cursed"
+    },
+    {
         "image_path": "Shards of the Void.png",
         "name": "Shards of the Void"
     },
@@ -1100,6 +1164,14 @@
         "name": "Soul Cleaner"
     },
     {
+        "image_path": "Spear lvl 1.png",
+        "name": "Spear lvl 1"
+    },
+    {
+        "image_path": "Spear lvl 3.png",
+        "name": "Spear lvl 3"
+    },
+    {
         "image_path": "Sphere of Earth.png",
         "name": "Sphere of Earth"
     },
@@ -1134,6 +1206,38 @@
     {
         "image_path": "Sprout.png",
         "name": "Sprout"
+    },
+    {
+        "image_path": "Staf of Darkness lvl 1.png",
+        "name": "Staf of Darkness lvl 1"
+    },
+    {
+        "image_path": "Staf of Darkness lvl 3.png",
+        "name": "Staf of Darkness lvl 3"
+    },
+    {
+        "image_path": "Staf of Darkness lvl 5.png",
+        "name": "Staf of Darkness lvl 5"
+    },
+    {
+        "image_path": "Staf of Darkness lvl 6.png",
+        "name": "Staf of Darkness lvl 6"
+    },
+    {
+        "image_path": "Staf of Light lvl 1.png",
+        "name": "Staf of Light lvl 1"
+    },
+    {
+        "image_path": "Staf of Light lvl 3.png",
+        "name": "Staf of Light lvl 3"
+    },
+    {
+        "image_path": "Staf of Light lvl 5.png",
+        "name": "Staf of Light lvl 5"
+    },
+    {
+        "image_path": "Staf of Light lvl 6.png",
+        "name": "Staf of Light lvl 6"
     },
     {
         "image_path": "Staff.png",
@@ -1186,6 +1290,30 @@
     {
         "image_path": "Sunbloom.png",
         "name": "Sunbloom"
+    },
+    {
+        "image_path": "Sword lvl 1.png",
+        "name": "Sword lvl 1"
+    },
+    {
+        "image_path": "Sword lvl 2.png",
+        "name": "Sword lvl 2"
+    },
+    {
+        "image_path": "Sword lvl 3.png",
+        "name": "Sword lvl 3"
+    },
+    {
+        "image_path": "Sword lvl 4.png",
+        "name": "Sword lvl 4"
+    },
+    {
+        "image_path": "Sword lvl 5.png",
+        "name": "Sword lvl 5"
+    },
+    {
+        "image_path": "Sword lvl 6.png",
+        "name": "Sword lvl 6"
     },
     {
         "image_path": "Talisman of Cows.png",
