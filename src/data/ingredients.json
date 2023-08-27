@@ -556,6 +556,18 @@
     "name": "Lost Dwarf's Tooth"
   },
   {
+    "image_path": "Mage Shoes lvl 2.png",
+    "name": "Mage Shoes lvl 2"
+  },
+  {
+    "image_path": "Mage Shoes lvl 3.png",
+    "name": "Mage Shoes lvl 3"
+  },
+  {
+    "image_path": "Mage Shoes lvl 5.png",
+    "name": "Mage Shoes lvl 5"
+  },
+  {
     "image_path": "Mage's Robe lvl 1.png",
     "name": "Mage's Robe lvl 1"
   },
@@ -864,6 +876,22 @@
     "name": "Sharp Claws"
   },
   {
+    "image_path": "Shoes lvl 1.png",
+    "name": "Shoes lvl 1"
+  },
+  {
+    "image_path": "Shoes lvl 2.png",
+    "name": "Shoes lvl 2"
+  },
+  {
+    "image_path": "Shoes lvl 3.png",
+    "name": "Shoes lvl 3"
+  },
+  {
+    "image_path": "Shoes lvl 5.png",
+    "name": "Shoes lvl 5"
+  },
+  {
     "image_path": "Shrimp.png",
     "name": "Shrimp"
   },
@@ -1006,6 +1034,22 @@
   {
     "image_path": "The Mysterious Ring.png",
     "name": "The Mysterious Ring"
+  },
+  {
+    "image_path": "Theif Shoes lvl 2.png",
+    "name": "Theif Shoes lvl 2"
+  },
+  {
+    "image_path": "Theif Shoes lvl 3.png",
+    "name": "Theif Shoes lvl 3"
+  },
+  {
+    "image_path": "Theif Shoes lvl 4.png",
+    "name": "Theif Shoes lvl 4"
+  },
+  {
+    "image_path": "Theif Shoes lvl 5.png",
+    "name": "Theif Shoes lvl 5"
   },
   {
     "image_path": "Theif's Armor lvl 3.png",
