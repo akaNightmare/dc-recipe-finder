@@ -1,5 +1,37 @@
 [
     {
+        "image_path": "Activated Totem 1.png",
+        "name": "Activated Totem 1"
+    },
+    {
+        "image_path": "Activated Totem 2.png",
+        "name": "Activated Totem 2"
+    },
+    {
+        "image_path": "Activated Totem 3.png",
+        "name": "Activated Totem 3"
+    },
+    {
+        "image_path": "Activated Totem 4.png",
+        "name": "Activated Totem 4"
+    },
+    {
+        "image_path": "Activated Totem 5.png",
+        "name": "Activated Totem 5"
+    },
+    {
+        "image_path": "Activated Totem 6.png",
+        "name": "Activated Totem 6"
+    },
+    {
+        "image_path": "Activated Totem 7.png",
+        "name": "Activated Totem 7"
+    },
+    {
+        "image_path": "Activated Totem 8.png",
+        "name": "Activated Totem 8"
+    },
+    {
         "image_path": "Adamantine Horseshoe.png",
         "name": "Adamantine Horseshoe"
     },
@@ -1594,6 +1626,38 @@
     {
         "image_path": "Trolls Poo.png",
         "name": "Trolls Poo"
+    },
+    {
+        "image_path": "Unactivated Totem 1.png",
+        "name": "Unactivated Totem 1"
+    },
+    {
+        "image_path": "Unactivated Totem 2.png",
+        "name": "Unactivated Totem 2"
+    },
+    {
+        "image_path": "Unactivated Totem 3.png",
+        "name": "Unactivated Totem 3"
+    },
+    {
+        "image_path": "Unactivated Totem 4.png",
+        "name": "Unactivated Totem 4"
+    },
+    {
+        "image_path": "Unactivated Totem 5.png",
+        "name": "Unactivated Totem 5"
+    },
+    {
+        "image_path": "Unactivated Totem 6.png",
+        "name": "Unactivated Totem 6"
+    },
+    {
+        "image_path": "Unactivated Totem 7.png",
+        "name": "Unactivated Totem 7"
+    },
+    {
+        "image_path": "Unactivated Totem 8.png",
+        "name": "Unactivated Totem 8"
     },
     {
         "image_path": "Unicorn Milk.png",
