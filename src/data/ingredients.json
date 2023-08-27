@@ -24,6 +24,18 @@
     "name": "Arrows"
   },
   {
+    "image_path": "Bait Pumpkin 1.png",
+    "name": "Bait Pumpkin 1"
+  },
+  {
+    "image_path": "Bait Pumpkin 2.png",
+    "name": "Bait Pumpkin 2"
+  },
+  {
+    "image_path": "Bait Pumpkin 3.png",
+    "name": "Bait Pumpkin 3"
+  },
+  {
     "image_path": "Banner.png",
     "name": "Banner"
   },
@@ -622,18 +634,6 @@
   {
     "image_path": "Pumkin.png",
     "name": "Pumkin"
-  },
-  {
-    "image_path": "Pumpkin Bait 2.png",
-    "name": "Pumpkin Bait 2"
-  },
-  {
-    "image_path": "Pumpkin Bait 3.png",
-    "name": "Pumpkin Bait 3"
-  },
-  {
-    "image_path": "Pumpkin Bite 1.png",
-    "name": "Pumpkin Bite 1"
   },
   {
     "image_path": "Pure Ice.png",
