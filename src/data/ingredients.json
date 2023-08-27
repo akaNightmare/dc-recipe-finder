@@ -236,6 +236,10 @@
         "name": "Cow Horn"
     },
     {
+        "image_path": "Cow King.png",
+        "name": "Cow King"
+    },
+    {
         "image_path": "Cucumber.png",
         "name": "Cucumber"
     },
@@ -520,6 +524,10 @@
         "name": "Granados The Cursed"
     },
     {
+        "image_path": "Granados, the Lion King.png",
+        "name": "Granados, the Lion King"
+    },
+    {
         "image_path": "Grand Sphere of Demons.png",
         "name": "Grand Sphere of Demons"
     },
@@ -632,6 +640,10 @@
         "name": "Iron Ingot"
     },
     {
+        "image_path": "Irska Vess.png",
+        "name": "Irska Vess"
+    },
+    {
         "image_path": "Irska the Cursed.png",
         "name": "Irska the Cursed"
     },
@@ -646,6 +658,14 @@
     {
         "image_path": "Judje Token.png",
         "name": "Judje Token"
+    },
+    {
+        "image_path": "K. Lee Fly the Cursed.png",
+        "name": "K. Lee Fly the Cursed"
+    },
+    {
+        "image_path": "K. Lee Fly.png",
+        "name": "K. Lee Fly"
     },
     {
         "image_path": "Light Leather.png",
@@ -912,6 +932,10 @@
         "name": "Pure Ice"
     },
     {
+        "image_path": "Pyre The Spark.png",
+        "name": "Pyre The Spark"
+    },
+    {
         "image_path": "Pyre the Cursed.png",
         "name": "Pyre the Cursed"
     },
@@ -1016,6 +1040,10 @@
         "name": "Saw"
     },
     {
+        "image_path": "Sawad The Cmuggler.png",
+        "name": "Sawad The Cmuggler"
+    },
+    {
         "image_path": "Scroll Folder lvl.2.png",
         "name": "Scroll Folder lvl.2"
     },
@@ -1094,6 +1122,10 @@
     {
         "image_path": "Set of Stones.png",
         "name": "Set of Stones"
+    },
+    {
+        "image_path": "Shale Golem.png",
+        "name": "Shale Golem"
     },
     {
         "image_path": "Shale the Cursed.png",
@@ -1354,6 +1386,10 @@
     {
         "image_path": "Theif's Armor lvl 5.png",
         "name": "Theif's Armor lvl 5"
+    },
+    {
+        "image_path": "Tin Knight.png",
+        "name": "Tin Knight"
     },
     {
         "image_path": "Titanium.png",
