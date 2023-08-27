@@ -17,6 +17,5 @@ const imageRe = /(\.png|\.jpg)/i;
             name: file.replace(imageRe, ''),
         });
     }
-    await fs.writeFile(dataPath, JSON.stringify(ingredients, null, 2));
+    await fs.writeFile(dataPath, JSON.stringify(ingredients, null, 4));
 })();
-
