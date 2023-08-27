@@ -704,6 +704,30 @@
         "name": "Mythical Orb"
     },
     {
+        "image_path": "Necklace lvl 1.png",
+        "name": "Necklace lvl 1"
+    },
+    {
+        "image_path": "Necklace lvl 2.png",
+        "name": "Necklace lvl 2"
+    },
+    {
+        "image_path": "Necklace lvl 3.png",
+        "name": "Necklace lvl 3"
+    },
+    {
+        "image_path": "Necklace lvl 4.png",
+        "name": "Necklace lvl 4"
+    },
+    {
+        "image_path": "Necklace lvl 5.png",
+        "name": "Necklace lvl 5"
+    },
+    {
+        "image_path": "Necklace lvl 6.png",
+        "name": "Necklace lvl 6"
+    },
+    {
         "image_path": "Nut.png",
         "name": "Nut"
     },
