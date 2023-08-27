@@ -264,6 +264,14 @@
         "name": "Cursed Ingot"
     },
     {
+        "image_path": "Cursed Scroll 2.png",
+        "name": "Cursed Scroll 2"
+    },
+    {
+        "image_path": "Cursed Scroll 3.png",
+        "name": "Cursed Scroll 3"
+    },
+    {
         "image_path": "Cursed Scroll.png",
         "name": "Cursed Scroll"
     },
@@ -1438,14 +1446,6 @@
     {
         "image_path": "Talisman of Cows.png",
         "name": "Talisman of Cows"
-    },
-    {
-        "image_path": "The Damned Scroll 2.png",
-        "name": "The Damned Scroll 2"
-    },
-    {
-        "image_path": "The Damned Scroll 3.png",
-        "name": "The Damned Scroll 3"
     },
     {
         "image_path": "The Dark Stone.png",
