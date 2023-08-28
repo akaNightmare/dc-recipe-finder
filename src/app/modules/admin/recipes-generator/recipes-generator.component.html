@@ -5,5 +5,30 @@
     >
         <!-- Title -->
         <div class="text-4xl font-extrabold tracking-tight">Recipes generator</div>
+
+        <!-- Actions -->
+        <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
+            <form class="flex items-center flex-auto" [formGroup]="filters">
+                <!-- Search -->
+                <mat-form-field
+                        [subscriptSizing]="'dynamic'"
+                        class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
+                >
+                    <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
+                    <input
+                            matInput
+                            [formControlName]="'search'"
+                            [autocomplete]="'off'"
+                            [placeholder]="'Search generated list'"
+                    />
+                </mat-form-field>
+
+                <!-- Add banned ingredient list button -->
+                <button class="ml-4" mat-flat-button [color]="'primary'">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2 mr-1">Add</span>
+                </button>
+            </form>
+        </div>
     </div>
 </div>

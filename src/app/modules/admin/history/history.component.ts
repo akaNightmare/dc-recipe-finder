@@ -14,9 +14,9 @@ import { forkJoin, map, take } from 'rxjs';
 
 import { BannedIngredientListsFacade } from '../../../../store/banned-ingredient-lists';
 import { RecipesFacade } from '../../../../store/recipes';
+import { RecipeStatus } from '../../../../store/recipes/recipes.types';
 import { DownloadService } from '../../../core/download/download.service';
 import { History } from './history.types';
-import { RecipeStatus } from '../../../../store/recipes/recipes.types';
 
 @Component({
     selector: 'history',
@@ -55,9 +55,7 @@ export class HistoryComponent {
 
     public readonly recipesStats$ = this.recipesFacade.recipes$.pipe(
         map(recipes => {
-            const statsObj = Object
-                .keys(RecipeStatus)
-                .reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
+            const statsObj = Object.keys(RecipeStatus).reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
 
             for (const recipe of recipes) {
                 statsObj[recipe.status]++;

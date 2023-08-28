@@ -1,14 +1,6 @@
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-    FormArray,
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    FormsModule,
-    ReactiveFormsModule,
-    Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -25,6 +17,7 @@ import { combineLatest, debounceTime, distinctUntilChanged, map, startWith } fro
 import { BannedIngredientListsFacade } from '../../../../../store/banned-ingredient-lists';
 import { BannedIngredientList } from '../../../../../store/banned-ingredient-lists/banned-ingredient-lists.types';
 import { IngredientsFacade } from '../../../../../store/ingredients';
+import { Ingredient } from '../../../../../store/ingredients/ingredients.types';
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
 
 @Component({
@@ -54,7 +47,6 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
     ],
 })
 export class BannedIngredientListsDialogComponent implements OnInit {
-    public bilForm: FormGroup;
     public readonly data: { banned_ingredient_list?: BannedIngredientList } = inject(MAT_DIALOG_DATA);
 
     private readonly bilFacade = inject(BannedIngredientListsFacade);
@@ -65,43 +57,48 @@ export class BannedIngredientListsDialogComponent implements OnInit {
 
     public readonly searchIngredientsCtrl = new FormControl('');
 
+    public readonly bilForm = this.formBuilder.group({
+        name: [
+            '',
+            {
+                validators: [Validators.required],
+                asyncValidators: [this.bilFacade.createNameValidator()],
+            },
+        ],
+        ingredients: new FormControl<string[]>([], { validators: [Validators.required] }),
+    });
+
     public readonly ingredients$ = combineLatest([
         this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
         this.ingredientFacade.ingredients$,
+        this.bilForm.get('ingredients').valueChanges.pipe(startWith([])),
     ]).pipe(
-        map(([search, ingredients]) => {
+        map(([search, ingredients, ingredientNames]) => {
             search = search?.toLowerCase().trim();
+            const filtersFn = [];
+            let filterIngredients = [];
             if (search) {
-                ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
+                filtersFn.push((ingredient: Ingredient) => ingredient.name?.toLowerCase().includes(search));
             }
-            return ingredients;
+            if (ingredientNames.length > 0) {
+                filterIngredients = ingredients.filter(ingredient => ingredientNames.includes(ingredient.name));
+            }
+            if (filtersFn.length > 0) {
+                ingredients = ingredients.filter(ingredient => filtersFn.every(fn => fn(ingredient)));
+            }
+            return filterIngredients.concat(
+                ingredients
+                    .filter(i => !filterIngredients.includes(i))
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .slice(0, 20),
+            );
         }),
     );
 
     ngOnInit(): void {
-        this.bilForm = this.formBuilder.group({
-            name: [
-                undefined,
-                {
-                    validators: [Validators.required],
-                    asyncValidators: [this.bilFacade.createNameValidator()],
-                },
-            ],
-            ingredients: this.formBuilder.array([], [Validators.minLength(1)]),
-        });
-
         if (this.data.banned_ingredient_list) {
-            this.data.banned_ingredient_list.ingredients.forEach(() => {
-                this.addIngredientField();
-            });
             this.bilForm.patchValue(this.data.banned_ingredient_list);
-        } else {
-            this.addIngredientField();
         }
-    }
-
-    get ingredientsCtrl(): FormArray {
-        return this.bilForm.get('ingredients') as FormArray;
     }
 
     /**
@@ -109,17 +106,6 @@ export class BannedIngredientListsDialogComponent implements OnInit {
      */
     trackByFn(index: number, item: { name?: string }): string | number {
         return item.name || index;
-    }
-
-    removeIngredientField(index: number): void {
-        this.ingredientsCtrl.removeAt(index);
-    }
-
-    addIngredientField(): void {
-        const attrFormGroup = this.formBuilder.group({
-            image_path: [null, [Validators.required]],
-        });
-        this.ingredientsCtrl.push(attrFormGroup);
     }
 
     /**
@@ -137,10 +123,7 @@ export class BannedIngredientListsDialogComponent implements OnInit {
             return;
         }
 
-        const bannedIngredientList = cloneDeep(this.bilForm.value);
-        for (const ingredient of bannedIngredientList.ingredients) {
-            ingredient.name = ingredient.image_path.replace(/(\.png|\.jpg)/, '');
-        }
+        const bannedIngredientList = cloneDeep(this.bilForm.value) as BannedIngredientList;
         this.bannedIngredientListsFacade.addBannedIngredientList(bannedIngredientList);
         this.matDialogRef.close(bannedIngredientList);
     }

@@ -1,10 +1,6 @@
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-    FormBuilder,
-    FormsModule,
-    ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -48,8 +44,7 @@ export class RecipesGeneratorDialogComponent implements OnInit {
     private readonly matDialogRef = inject(MatDialogRef<RecipesGeneratorDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     /**
      * Track by function for ngFor loops
@@ -65,6 +60,5 @@ export class RecipesGeneratorDialogComponent implements OnInit {
         this.matDialogRef.close();
     }
 
-    save(): void {
-    }
+    save(): void {}
 }

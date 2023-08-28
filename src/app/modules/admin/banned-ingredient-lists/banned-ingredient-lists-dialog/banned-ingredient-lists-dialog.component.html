@@ -1,4 +1,4 @@
-<div class="-m-6 relative flex flex-auto max-w-120 flex-col md:min-w-120">
+<div class="-m-6 relative flex flex-auto max-w-160 flex-col md:min-w-160">
     <!-- Header -->
     <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
         <div class="text-lg font-medium">
@@ -15,7 +15,7 @@
         <div class="flex">
             <mat-form-field class="flex-auto">
                 <mat-label>Name</mat-label>
-                <input matInput min="1" [formControlName]="'name'" />
+                <input matInput [formControlName]="'name'" />
                 <mat-error *ngIf="bilForm.get('name').hasError('required')">
                     Name is required
                 </mat-error>
@@ -25,105 +25,78 @@
             </mat-form-field>
         </div>
 
-        <!-- Ingredients -->
-        <div class="mt-1">
-            <div class="space-y-2">
-                <ng-container
-                        formArrayName="ingredients"
-                        *ngFor="let ingrCtrl of bilForm.get('ingredients')['controls']; let i = index; let first = first; trackBy: trackByFn"
-                >
-                    <div class="flex">
-                        <mat-form-field class="flex-auto">
-                            <mat-label *ngIf="first">Ingredient Image</mat-label>
-                            <mat-select [formControl]="ingrCtrl.get('image_path')">
-                                <mat-select-trigger>
-                                    <div
-                                            class="flex items-center"
-                                            *ngIf="ingrCtrl.get('image_path').value; let imagePath"
-                                    >
-                                        <img class="w-8 h-8 rounded" [src]="'assets/images/ingredients/' + imagePath" />
-                                        <div class="flex flex-col ml-1">{{ imagePath | replace: '.png' : '' }}</div>
-                                    </div>
-                                </mat-select-trigger>
-                                <mat-option>
-                                    <ngx-mat-select-search
-                                            noEntriesFoundLabel="No matching ingredients found"
-                                            placeholderLabel="Search"
-                                            [clearSearchInput]="true"
-                                            [enableClearOnEscapePressed]="true"
-                                            [disableScrollToActiveOnOptionsChanged]="true"
-                                            [formControl]="searchIngredientsCtrl"
-                                    ></ngx-mat-select-search>
-                                </mat-option>
-                                <mat-option
-                                        *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn"
-                                        [value]="ingredient.image_path"
-                                >
-                                    <div class="flex items-center">
-                                        <img
-                                                class="w-8 h-8 rounded"
-                                                [src]="'assets/images/ingredients/' + ingredient.image_path"
-                                                [alt]="ingredient.name"
-                                        />
-                                        <div class="flex flex-col ml-1">{{ingredient.name}}</div>
-                                    </div>
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="ingrCtrl.get('image_path').hasError('required')">
-                                Ingredient image {{ i + 1 }} is required
-                            </mat-error>
-                        </mat-form-field>
+        <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Ingredients</mat-label>
+                <mat-select multiple="true" [formControlName]="'ingredients'">
+                    <mat-select-trigger>
+                        <div
+                                class="flex items-center"
+                                *ngIf="bilForm.get('ingredients').valueChanges | async; let imageNames"
+                        >
+                            <img
+                                    class="w-8 h-8 rounded"
+                                    [class.mr-1]="!last"
+                                    [matTooltip]="imageName"
+                                    *ngFor="let imageName of imageNames; let last = last"
+                                    [alt]="imageName"
+                                    [src]="'assets/images/ingredients/' + imageName + '.png'"
+                            />
+                        </div>
+                    </mat-select-trigger>
+                    <mat-option>
+                        <ngx-mat-select-search
+                                noEntriesFoundLabel="No matching ingredients found"
+                                placeholderLabel="Type to search"
+                                [clearSearchInput]="true"
+                                [enableClearOnEscapePressed]="true"
+                                [disableScrollToActiveOnOptionsChanged]="true"
+                                [formControl]="searchIngredientsCtrl"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option
+                            *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn"
+                            [value]="ingredient.name"
+                    >
+                        <div class="flex items-center">
+                            <img
+                                    class="w-8 h-8 rounded"
+                                    [src]="'assets/images/ingredients/' + ingredient.image_path"
+                                    [alt]="ingredient.name"
+                            />
+                            <div class="flex flex-col ml-1">{{ingredient.name}}</div>
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bilForm.get('ingredients').hasError('required')">
+                    Ingredients are required
+                </mat-error>
+            </mat-form-field>
+        </div>
 
-                        <!-- Remove ingredient -->
-                        <ng-container *ngIf="ingredientsCtrl.length > 1">
-                            <div class="flex w-10 items-center pl-2" [ngClass]="{'mt-6': first}">
-                                <button
-                                        type="button"
-                                        class="h-8 min-h-8 w-8"
-                                        mat-icon-button
-                                        (click)="removeIngredientField(i)"
-                                        matTooltip="Remove"
-                                >
-                                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:trash'"></mat-icon>
-                                </button>
-                            </div>
-                        </ng-container>
-                    </div>
-                </ng-container>
-            </div>
-            <div
-                    class="group mt-2 -ml-4 inline-flex cursor-pointer items-center rounded py-2 px-4"
-                    (click)="addIngredientField()"
-            >
-                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
-                <span class="text-secondary ml-2 font-medium group-hover:underline">Add ingredient</span>
+        <!-- Actions -->
+        <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+            <div class="mt-4 flex items-center sm:mt-0">
+                <!-- Close -->
+                <button type="button" class="sm:mx-3" mat-button [disabled]="bilForm.disabled" (click)="close()">
+                    <span>Close</span>
+                </button>
+                <!-- Save -->
+                <button
+                        type="submit"
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [disabled]="bilForm.disabled"
+                        [color]="'primary'"
+                >
+                    <span *ngIf="!bilForm.disabled"> Save </span>
+                    <mat-progress-spinner
+                            *ngIf="bilForm.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'"
+                    ></mat-progress-spinner>
+                </button>
             </div>
         </div>
     </form>
-
-    <!-- Actions -->
-    <div class="flex flex-col justify-end sm:flex-row items-center sm:p-8">
-        <div class="mt-4 flex items-center sm:mt-0">
-            <!-- Close -->
-            <button type="button" class="sm:mx-3" mat-button [disabled]="bilForm.disabled" (click)="close()">
-                <span>Close</span>
-            </button>
-            <!-- Save -->
-            <button
-                    type="submit"
-                    class="order-first sm:order-last"
-                    mat-flat-button
-                    (click)="save()"
-                    [disabled]="bilForm.disabled"
-                    [color]="'primary'"
-            >
-                <span *ngIf="!bilForm.disabled"> Save </span>
-                <mat-progress-spinner
-                        *ngIf="bilForm.disabled"
-                        [diameter]="24"
-                        [mode]="'indeterminate'"
-                ></mat-progress-spinner>
-            </button>
-        </div>
-    </div>
 </div>

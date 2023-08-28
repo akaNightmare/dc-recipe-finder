@@ -1,11 +1,11 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -30,4 +30,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ],
 })
 export class RecipesGeneratorComponent {
+
+    public readonly displayedColumns = ['name', 'actions'];
+    public readonly pageSizeOptions = [5, 10, 25, 100];
+
+    public readonly filters = new FormGroup({
+        search: new FormControl(),
+        page: new FormControl(1),
+        limit: new FormControl(this.pageSizeOptions[3]),
+        sort_dir: new FormControl<SortDirection>('asc'),
+        sort_by: new FormControl('name'),
+    });
 }

@@ -2,149 +2,157 @@
   {
     "name": "Activated Totems",
     "ingredients": [
-      {
-        "image_path": "Activated Totem 1.png",
-        "count": 1,
-        "name": "Activated Totem 1"
-      },
-      {
-        "image_path": "Activated Totem 2.png",
-        "count": 1,
-        "name": "Activated Totem 2"
-      },
-      {
-        "image_path": "Activated Totem 3.png",
-        "count": 1,
-        "name": "Activated Totem 3"
-      },
-      {
-        "image_path": "Activated Totem 4.png",
-        "count": 1,
-        "name": "Activated Totem 4"
-      },
-      {
-        "image_path": "Activated Totem 5.png",
-        "count": 1,
-        "name": "Activated Totem 5"
-      },
-      {
-        "image_path": "Activated Totem 6.png",
-        "count": 1,
-        "name": "Activated Totem 6"
-      },
-      {
-        "image_path": "Activated Totem 7.png",
-        "count": 1,
-        "name": "Activated Totem 7"
-      },
-      {
-        "image_path": "Activated Totem 8.png",
-        "count": 1,
-        "name": "Activated Totem 8"
-      }
+      "Activated Totem 1",
+      "Activated Totem 2",
+      "Activated Totem 3",
+      "Activated Totem 4",
+      "Activated Totem 5",
+      "Activated Totem 6",
+      "Activated Totem 7",
+      "Activated Totem 8"
     ]
   },
   {
     "name": "Unactivated Totems",
     "ingredients": [
-      {
-        "image_path": "Unactivated Totem 1.png",
-        "name": "Unactivated Totem 1"
-      },
-      {
-        "image_path": "Unactivated Totem 2.png",
-        "name": "Unactivated Totem 2"
-      },
-      {
-        "image_path": "Unactivated Totem 3.png",
-        "name": "Unactivated Totem 3"
-      },
-      {
-        "image_path": "Unactivated Totem 4.png",
-        "name": "Unactivated Totem 4"
-      },
-      {
-        "image_path": "Unactivated Totem 5.png",
-        "name": "Unactivated Totem 5"
-      },
-      {
-        "image_path": "Unactivated Totem 6.png",
-        "name": "Unactivated Totem 6"
-      },
-      {
-        "image_path": "Unactivated Totem 7.png",
-        "name": "Unactivated Totem 7"
-      },
-      {
-        "image_path": "Unactivated Totem 8.png",
-        "name": "Unactivated Totem 8"
-      }
+      "Unactivated Totem 1",
+      "Unactivated Totem 2",
+      "Unactivated Totem 3",
+      "Unactivated Totem 4",
+      "Unactivated Totem 5",
+      "Unactivated Totem 6",
+      "Unactivated Totem 8",
+      "Unactivated Totem 7"
     ]
   },
   {
     "name": "Cursed Event Heroes",
     "ingredients": [
-      {
-        "image_path": "Cow Cursed King.png",
-        "name": "Cow Cursed King"
-      },
-      {
-        "image_path": "Cursed Tin Knight.png",
-        "name": "Cursed Tin Knight"
-      },
-      {
-        "image_path": "Granados The Cursed.png",
-        "name": "Granados The Cursed"
-      },
-      {
-        "image_path": "Irska the Cursed.png",
-        "name": "Irska the Cursed"
-      },
-      {
-        "image_path": "K. Lee Fly the Cursed.png",
-        "name": "K. Lee Fly the Cursed"
-      },
-      {
-        "image_path": "Pyre the Cursed.png",
-        "name": "Pyre the Cursed"
-      },
-      {
-        "image_path": "Savad the Cursed.png",
-        "name": "Savad the Cursed"
-      },
-      {
-        "image_path": "Shale the Cursed.png",
-        "name": "Shale the Cursed"
-      }
+      "Cow Cursed King",
+      "Cursed Tin Knight",
+      "Granados The Cursed",
+      "Irska the Cursed",
+      "K. Lee Fly the Cursed",
+      "Pyre the Cursed",
+      "Savad the Cursed",
+      "Shale the Cursed"
     ]
   },
   {
     "name": "Expendables",
     "ingredients": [
-      {
-        "image_path": "Slaughterhouse.png",
-        "name": "Slaughterhouse"
-      },
-      {
-        "image_path": "Runic Bomb.png",
-        "name": "Runic Bomb"
-      },
-      {
-        "image_path": "Cyndor's Gift.png",
-        "name": "Cyndor's Gift"
-      },
-      {
-        "image_path": "Purification.png",
-        "name": "Purification"
-      },
-      {
-        "image_path": "Mystery of Infinity.png",
-        "name": "Mystery of Infinity"
-      },
-      {
-        "image_path": "Door to Anything.png",
-        "name": "Door to Anything"
-      }
+      "Cyndor's Gift",
+      "Mystery of Infinity",
+      "Purification",
+      "Runic Bomb",
+      "Slaughterhouse",
+      "Door to Anything"
+    ]
+  },
+  {
+    "name": "Mythical",
+    "ingredients": [
+      "Mythical Armor lvl 1",
+      "Mythical Armor lvl 2",
+      "Mythical Armor lvl 3",
+      "Mythical Armor lvl 4",
+      "Mythical Assault Armor lvl 1",
+      "Mythical Assault Armor lvl 2",
+      "Mythical Assault Armor lvl 3",
+      "Mythical Assault Armor lvl 4",
+      "Mythical Bow lvl 1",
+      "Mythical Bow lvl 2",
+      "Mythical Bow lvl 3",
+      "Mythical Bow lvl 4",
+      "Mythical Cartridges lvl 1",
+      "Mythical Cartridges lvl 2",
+      "Mythical Cartridges lvl 3",
+      "Mythical Cartridges lvl 4",
+      "Mythical Gravity grenade lvl 1",
+      "Mythical Gravity grenade lvl 2",
+      "Mythical Gravity grenade lvl 3",
+      "Mythical Gravity grenade lvl 4",
+      "Mythical Helm lvl 1",
+      "Mythical Helm lvl 2",
+      "Mythical Helm lvl 3",
+      "Mythical Helm lvl 4",
+      "Mythical Laser pistol lvl 1",
+      "Mythical Laser pistol lvl 2",
+      "Mythical Laser pistol lvl 3",
+      "Mythical Laser pistol lvl 4",
+      "Mythical Necklace lvl 1",
+      "Mythical Necklace lvl 2",
+      "Mythical Necklace lvl 3",
+      "Mythical Necklace lvl 4",
+      "Mythical Plasma Rifle lvl 1",
+      "Mythical Plasma Rifle lvl 2",
+      "Mythical Plasma Rifle lvl 3y",
+      "Mythical Plasma Rifle lvl 4",
+      "Mythical Ring lvl 1",
+      "Mythical Ring lvl 2",
+      "Mythical Ring lvl 3",
+      "Mythical Ring lvl 4",
+      "Mythical Shoes lvl 1",
+      "Mythical Shoes lvl 2",
+      "Mythical Shoes lvl 3",
+      "Mythical Shoes lvl 4",
+      "Mythical Staff lvl 1",
+      "Mythical Staff lvl 2",
+      "Mythical Staff lvl 4",
+      "Mythical Sword lvl 1",
+      "Mythical Sword lvl 2",
+      "Mythical Sword lvl 3",
+      "Mythical Sword lvl 4",
+      "Mythical Staff lvl 3"
+    ]
+  },
+  {
+    "name": "Event Heroes",
+    "ingredients": [
+      "Cow King",
+      "Granados, the Lion King",
+      "Irska Vess",
+      "K. Lee Fly",
+      "Pyre The Spark",
+      "Savad the Cursed",
+      "Tin Knight",
+      "Shale Golem"
+    ]
+  },
+  {
+    "name": "Vegetables",
+    "ingredients": [
+      "Cabbage",
+      "Carrot",
+      "Celery",
+      "Eggplant",
+      "Tomato",
+      "Zucchini",
+      "Cucumber"
+    ]
+  },
+  {
+    "name": "Spheres",
+    "ingredients": [
+      "Sphere of Fire",
+      "Sphere of Life",
+      "Sphere of Lightening",
+      "Sphere of Water",
+      "Sphere of Earth"
+    ]
+  },
+  {
+    "name": "Grand Spheres",
+    "ingredients": [
+      "Grand Sphere of Earth",
+      "Grand Sphere of Fire",
+      "Grand Sphere of Life",
+      "Grand Sphere of Mechanisms",
+      "Grand Sphere of Plants",
+      "Grand Sphere of the Dead",
+      "Grand Sphere of the Lightning",
+      "Grand Sphere of Water",
+      "Grand Sphere of Demons"
     ]
   }
 ]

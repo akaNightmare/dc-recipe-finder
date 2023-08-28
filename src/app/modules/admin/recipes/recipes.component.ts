@@ -34,6 +34,7 @@ import {
 } from 'rxjs';
 
 import { IngredientsFacade } from '../../../../store/ingredients';
+import { Ingredient } from '../../../../store/ingredients/ingredients.types';
 import { RecipesFacade } from '../../../../store/recipes';
 import { Recipe, RecipeStatus } from '../../../../store/recipes/recipes.types';
 import {
@@ -42,7 +43,6 @@ import {
 } from '../../../components/confirm-dialog/confirm-dialog.component';
 import { SortByPipe } from '../../../pipes/sort-by.pipe';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
-import { Ingredient } from '../../../../store/ingredients/ingredients.types';
 
 @Component({
     selector: 'recipes',
@@ -115,7 +115,12 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             if (filtersFn.length > 0) {
                 ingredients = ingredients.filter(ingredient => filtersFn.every(fn => fn(ingredient)));
             }
-            return filterIngredients.concat(ingredients.slice(0, 10));
+            return filterIngredients.concat(
+                ingredients
+                    .filter(i => !filterIngredients.includes(i))
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .slice(0, 10),
+            );
         }),
     );
 
