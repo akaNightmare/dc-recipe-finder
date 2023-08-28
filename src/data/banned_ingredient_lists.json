@@ -154,5 +154,15 @@
       "Grand Sphere of Water",
       "Grand Sphere of Demons"
     ]
+  },
+  {
+    "name": "Essence of Luck",
+    "ingredients": [
+      "Essence of Luck",
+      "Essence of Luck2",
+      "Essence of Luck3",
+      "Essence of Luck4",
+      "Essence of Luck1"
+    ]
   }
 ]
