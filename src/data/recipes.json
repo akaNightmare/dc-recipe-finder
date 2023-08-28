@@ -5278,5 +5278,435 @@
         ],
         "added_at": 1693170398345,
         "name": "Horn of a Hundred Demons"
+    },
+    {
+        "image_path": "Golden Gnome.jpg",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Flatron.png",
+                "count": 100,
+                "name": "Flatron"
+            },
+            {
+                "image_path": "Liquid of the Void.png",
+                "count": 3,
+                "name": "Liquid of the Void"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 25,
+                "name": "Gold Ingot"
+            }
+        ],
+        "added_at": 1693170971073,
+        "name": "Golden Gnome"
+    },
+    {
+        "image_path": "Guardian's Seed.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Blueleaf's Seed.png",
+                "count": 100,
+                "name": "Blueleaf's Seed"
+            },
+            {
+                "image_path": "Liquid of the Void.png",
+                "count": 3,
+                "name": "Liquid of the Void"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Silverleaf.png",
+                "count": 25,
+                "name": "Silverleaf"
+            }
+        ],
+        "added_at": 1693171032295,
+        "name": "Guardian's Seed"
+    },
+    {
+        "image_path": "Guardian's Seed.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Peach Seed.png",
+                "count": 100,
+                "name": "Peach Seed"
+            },
+            {
+                "image_path": "Liquid of the Void.png",
+                "count": 3,
+                "name": "Liquid of the Void"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Silverleaf.png",
+                "count": 25,
+                "name": "Silverleaf"
+            }
+        ],
+        "added_at": 1693171070583,
+        "name": "Guardian's Seed"
+    },
+    {
+        "image_path": "Guardian's Seed.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Trent Seed.png",
+                "count": 100,
+                "name": "Trent Seed"
+            },
+            {
+                "image_path": "Liquid of the Void.png",
+                "count": 3,
+                "name": "Liquid of the Void"
+            },
+            {
+                "image_path": "Mixing Potion.png",
+                "count": 5,
+                "name": "Mixing Potion"
+            },
+            {
+                "image_path": "Silverleaf.png",
+                "count": 25,
+                "name": "Silverleaf"
+            }
+        ],
+        "added_at": 1693171108764,
+        "name": "Guardian's Seed"
+    },
+    {
+        "image_path": "Charged Cube.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Mysterious Cube.png",
+                "count": 1,
+                "name": "Mysterious Cube"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Antiquity.png",
+                "count": 1,
+                "name": "Scroll of Antiquity"
+            }
+        ],
+        "added_at": 1693171174739,
+        "name": "Charged Cube"
+    },
+    {
+        "image_path": "Charged Pyramid.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Mysterious Pyramid.png",
+                "count": 1,
+                "name": "Mysterious Pyramid"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of Wisdom.png",
+                "count": 1,
+                "name": "Scroll of Wisdom"
+            }
+        ],
+        "added_at": 1693171247468,
+        "name": "Charged Pyramid"
+    },
+    {
+        "image_path": "Charged Stone.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Mysterious Stone.png",
+                "count": 1,
+                "name": "Mysterious Stone"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of the Abyss.png",
+                "count": 1,
+                "name": "Scroll of the Abyss"
+            }
+        ],
+        "added_at": 1693171291114,
+        "name": "Charged Stone"
+    },
+    {
+        "image_path": "Charged Sphere.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Mysterious Sphere.png",
+                "count": 1,
+                "name": "Mysterious Sphere"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 5,
+                "name": "Dust of the Void"
+            },
+            {
+                "image_path": "Scroll of the Void.png",
+                "count": 1,
+                "name": "Scroll of the Void"
+            }
+        ],
+        "added_at": 1693171331534,
+        "name": "Charged Sphere"
+    },
+    {
+        "image_path": "Altar of Power.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Round Stone.png",
+                "count": 5,
+                "name": "Round Stone"
+            },
+            {
+                "image_path": "Stone.png",
+                "count": 10,
+                "name": "Stone"
+            },
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            }
+        ],
+        "added_at": 1693171449333,
+        "name": "Altar of Power"
+    },
+    {
+        "image_path": "Drow Hut.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Arrows.png",
+                "count": 5,
+                "name": "Arrows"
+            },
+            {
+                "image_path": "Planking.png",
+                "count": 10,
+                "name": "Planking"
+            }
+        ],
+        "added_at": 1693171490653,
+        "name": "Drow Hut"
+    },
+    {
+        "image_path": "Orc Watchtower.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Horn.png",
+                "count": 5,
+                "name": "Horn"
+            },
+            {
+                "image_path": "Planking.png",
+                "count": 10,
+                "name": "Planking"
+            }
+        ],
+        "added_at": 1693171535614,
+        "name": "Orc Watchtower"
+    },
+    {
+        "image_path": "Forge.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 5,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Stone.png",
+                "count": 10,
+                "name": "Stone"
+            }
+        ],
+        "added_at": 1693171574044,
+        "name": "Forge"
+    },
+    {
+        "image_path": "Graveyard.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Broken Gemstone.png",
+                "count": 5,
+                "name": "Broken Gemstone"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Stone.png",
+                "count": 10,
+                "name": "Stone"
+            }
+        ],
+        "added_at": 1693171619263,
+        "name": "Graveyard"
+    },
+    {
+        "image_path": "Mage Watchtower.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Construction Tools.png",
+                "count": 1,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Fibula.png",
+                "count": 5,
+                "name": "Fibula"
+            },
+            {
+                "image_path": "Magic bottles.png",
+                "count": 100,
+                "name": "Magic bottles"
+            },
+            {
+                "image_path": "Stone.png",
+                "count": 10,
+                "name": "Stone"
+            }
+        ],
+        "added_at": 1693171721570,
+        "name": "Mage Watchtower"
+    },
+    {
+        "image_path": "Watchtower of the Void.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Construction Tools.png",
+                "count": 5,
+                "name": "Construction Tools"
+            },
+            {
+                "image_path": "Planking.png",
+                "count": 50,
+                "name": "Planking"
+            },
+            {
+                "image_path": "Stone.png",
+                "count": 50,
+                "name": "Stone"
+            },
+            {
+                "image_path": "Dust of the Void.png",
+                "count": 85,
+                "name": "Dust of the Void"
+            }
+        ],
+        "added_at": 1693171783486,
+        "name": "Watchtower of the Void"
     }
 ]
