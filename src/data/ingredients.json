@@ -380,6 +380,10 @@
         "name": "Cursed Tin Knight"
     },
     {
+        "image_path": "Cursed Water.png",
+        "name": "Cursed Water"
+    },
+    {
         "image_path": "Cyndor's Gift.png",
         "name": "Cyndor's Gift"
     },
@@ -462,6 +466,10 @@
     {
         "image_path": "Device.png",
         "name": "Device"
+    },
+    {
+        "image_path": "Divination Card.png",
+        "name": "Divination Card"
     },
     {
         "image_path": "Door to Anything.png",
@@ -1470,6 +1478,10 @@
     {
         "image_path": "Seal.png",
         "name": "Seal"
+    },
+    {
+        "image_path": "Serpen Bait.png",
+        "name": "Serpen Bait"
     },
     {
         "image_path": "Set of Stones.png",
