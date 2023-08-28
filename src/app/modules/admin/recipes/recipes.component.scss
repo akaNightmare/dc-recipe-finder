@@ -6,3 +6,7 @@
         -1px 1px 0 #000,
         1px 1px 0 #000;
 }
+
+ngx-mat-select-search .mat-select-search-input {
+    background-color: var(--mat-select-panel-background-color) !important;
+}

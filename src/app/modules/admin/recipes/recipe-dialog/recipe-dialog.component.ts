@@ -30,6 +30,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
 @Component({
     selector: 'recipe-dialog',
     templateUrl: './recipe-dialog.component.html',
+    styleUrls: ['./recipe-dialog.component.scss'],
     standalone: true,
     imports: [
         MatIconModule,
