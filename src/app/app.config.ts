@@ -14,10 +14,15 @@ import { provideTransloco } from 'app/core/transloco/transloco.provider';
 import { mockApiServices } from 'app/mock-api';
 import { storageSyncMetaReducer } from 'ngrx-store-persist';
 
+import { bannedIngredientListsReducers } from '../store/banned-ingredient-lists';
 import { ingredientsReducers } from '../store/ingredients';
 import { recipesReducers } from '../store/recipes';
 
-const reducers = { recipes: recipesReducers, ingredients: ingredientsReducers };
+const reducers = {
+    recipes: recipesReducers,
+    ingredients: ingredientsReducers,
+    banned_ingredient_lists: bannedIngredientListsReducers,
+};
 
 export const appConfig: ApplicationConfig = {
     providers: [

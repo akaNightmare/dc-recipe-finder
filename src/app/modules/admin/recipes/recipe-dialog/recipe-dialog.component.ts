@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     FormArray,
     FormBuilder,
@@ -32,6 +32,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
     templateUrl: './recipe-dialog.component.html',
     styleUrls: ['./recipe-dialog.component.scss'],
     standalone: true,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         MatIconModule,
         MatButtonModule,

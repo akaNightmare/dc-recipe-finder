@@ -86,6 +86,10 @@ export const appRoutes: Route[] = [
             { path: 'recipes', loadChildren: () => import('app/modules/admin/recipes/recipes.routes') },
             { path: 'ingredients', loadChildren: () => import('app/modules/admin/ingredients/ingredients.routes') },
             { path: 'history', loadChildren: () => import('app/modules/admin/history/history.routes') },
+            {
+                path: 'banned-ingredient-lists',
+                loadChildren: () => import('app/modules/admin/banned-ingredient-lists/banned-ingredient-lists.routes'),
+            },
         ],
     },
 ];
