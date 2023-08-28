@@ -25,14 +25,15 @@
             "style": "camelCase"
           }
         ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
+//        "@angular-eslint/component-selector": [
+//          "error",
+//          {
+//            "type": "element",
+//            "prefix": "app",
+//            "style": "kebab-case"
+//          }
+//        ],
+        "@angular-eslint/component-selector": "off",
         "import/first": "error",
         "import/newline-after-import": "error",
         "import/no-absolute-path": "error",

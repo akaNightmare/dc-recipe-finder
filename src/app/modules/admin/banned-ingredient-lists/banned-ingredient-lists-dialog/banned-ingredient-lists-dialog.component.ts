@@ -11,26 +11,26 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { cloneDeep } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { combineLatest, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 
+import { BannedIngredientListsFacade } from '../../../../../store/banned-ingredient-lists';
+import { BannedIngredientList } from '../../../../../store/banned-ingredient-lists/banned-ingredient-lists.types';
 import { IngredientsFacade } from '../../../../../store/ingredients';
-import { RecipesFacade } from '../../../../../store/recipes';
-import { Recipe, RecipeStatus } from '../../../../../store/recipes/recipes.types';
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
 
 @Component({
-    selector: 'recipe-dialog',
-    templateUrl: './recipe-dialog.component.html',
-    styleUrls: ['./recipe-dialog.component.scss'],
+    selector: 'banned-ingredient-lists-dialog',
+    templateUrl: './banned-ingredient-lists-dialog.component.html',
+    styleUrls: ['./banned-ingredient-lists-dialog.component.scss'],
     standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -50,15 +50,17 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         NgForOf,
         NgClass,
         ReplacePipe,
+        MatDialogModule,
     ],
 })
-export class RecipeDialogComponent implements OnInit {
-    public recipeForm: FormGroup;
-    public readonly data: { recipe?: Recipe } = inject(MAT_DIALOG_DATA);
+export class BannedIngredientListsDialogComponent implements OnInit {
+    public bilForm: FormGroup;
+    public readonly data: { banned_ingredient_list?: BannedIngredientList } = inject(MAT_DIALOG_DATA);
 
+    private readonly bilFacade = inject(BannedIngredientListsFacade);
     private readonly ingredientFacade = inject(IngredientsFacade);
-    private readonly recipesFacade = inject(RecipesFacade);
-    private readonly matDialogRef = inject(MatDialogRef<RecipeDialogComponent>);
+    private readonly bannedIngredientListsFacade = inject(BannedIngredientListsFacade);
+    private readonly matDialogRef = inject(MatDialogRef<BannedIngredientListsDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
 
     public readonly searchIngredientsCtrl = new FormControl('');
@@ -76,39 +78,30 @@ export class RecipeDialogComponent implements OnInit {
         }),
     );
 
-    public readonly STATUSES = Object.keys(RecipeStatus);
-
     ngOnInit(): void {
-        this.recipeForm = this.formBuilder.group({
-            image_path: [null, [Validators.required]],
-            count_from: [1, [Validators.required, Validators.min(1)]],
-            count_to: [
-                1,
-                [
-                    Validators.required,
-                    Validators.min(1),
-                    RxwebValidators.greaterThanEqualTo({ fieldName: 'count_from' }),
-                ],
+        this.bilForm = this.formBuilder.group({
+            name: [
+                undefined,
+                {
+                    validators: [Validators.required],
+                    asyncValidators: [this.bilFacade.createNameValidator()],
+                },
             ],
-            status: [RecipeStatus.SUCCESS, [Validators.required]],
-            ingredients: this.formBuilder.array(
-                [],
-                [Validators.minLength(1), Validators.maxLength(6), RxwebValidators.unique()],
-            ),
+            ingredients: this.formBuilder.array([], [Validators.minLength(1)]),
         });
 
-        if (this.data.recipe) {
-            this.data.recipe.ingredients.forEach(() => {
+        if (this.data.banned_ingredient_list) {
+            this.data.banned_ingredient_list.ingredients.forEach(() => {
                 this.addIngredientField();
             });
-            this.recipeForm.patchValue(this.data.recipe);
+            this.bilForm.patchValue(this.data.banned_ingredient_list);
         } else {
             this.addIngredientField();
         }
     }
 
     get ingredientsCtrl(): FormArray {
-        return this.recipeForm.get('ingredients') as FormArray;
+        return this.bilForm.get('ingredients') as FormArray;
     }
 
     /**
@@ -125,7 +118,6 @@ export class RecipeDialogComponent implements OnInit {
     addIngredientField(): void {
         const attrFormGroup = this.formBuilder.group({
             image_path: [null, [Validators.required]],
-            count: [1, [Validators.required, Validators.min(1), Validators.max(100)]],
         });
         this.ingredientsCtrl.push(attrFormGroup);
     }
@@ -141,34 +133,15 @@ export class RecipeDialogComponent implements OnInit {
      * Save the ingredient
      */
     save(): void {
-        if (this.recipeForm.invalid) {
+        if (this.bilForm.invalid) {
             return;
         }
 
-        const recipe = cloneDeep(this.recipeForm.value);
-        recipe.added_at = Date.now();
-        if (recipe.image_path) {
-            recipe.name = recipe.image_path.replace(/(\.png|\.jpg)/, '');
-        }
-        for (const ingredient of recipe.ingredients) {
+        const bannedIngredientList = cloneDeep(this.bilForm.value);
+        for (const ingredient of bannedIngredientList.ingredients) {
             ingredient.name = ingredient.image_path.replace(/(\.png|\.jpg)/, '');
         }
-        this.recipesFacade.addRecipe(recipe);
-        this.matDialogRef.close(recipe);
-    }
-
-    onStatusChanged({ value }: { value: RecipeStatus }): void {
-        const imagePathCtrl = this.recipeForm.get('image_path');
-        const countFromCtrl = this.recipeForm.get('count_from');
-        const countToCtrl = this.recipeForm.get('count_to');
-        if (value === RecipeStatus.FAILED) {
-            imagePathCtrl.disable();
-            countFromCtrl.disable();
-            countToCtrl.disable();
-        } else {
-            imagePathCtrl.enable();
-            countFromCtrl.enable();
-            countToCtrl.enable();
-        }
+        this.bannedIngredientListsFacade.addBannedIngredientList(bannedIngredientList);
+        this.matDialogRef.close(bannedIngredientList);
     }
 }

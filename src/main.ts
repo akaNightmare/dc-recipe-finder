@@ -5,7 +5,7 @@ import { default as localForage, getAllDataFromLocalForage } from 'ngrx-store-pe
 
 getAllDataFromLocalForage({
     driver: localForage.INDEXEDDB,
-    keys: ['recipes'],
+    keys: ['recipes', 'banned_ingredient_lists'],
 }).then(() => {
     bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));
 });

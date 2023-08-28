@@ -13,3 +13,8 @@ export const addBannedIngredientLists = createAction(
     `${bannedIngredientListsKey} Add banned ingredient lists`,
     props<{ banned_ingredient_lists: BannedIngredientList[] }>(),
 );
+
+export const deleteBannedIngredientList = createAction(
+    `${bannedIngredientListsKey} Delete banned ingredient list`,
+    props<{ banned_ingredient_list: BannedIngredientList }>(),
+);

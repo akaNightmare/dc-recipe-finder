@@ -25,8 +25,8 @@ export class RecipesFacade {
         this.store.dispatch(addRecipes({ recipes }));
     }
 
-    removeRecipe(name: string): void {
-        this.store.dispatch(deleteRecipe({ name }));
+    removeRecipe(recipe: Recipe): void {
+        this.store.dispatch(deleteRecipe({ recipe }));
     }
 
     clearRecipes(): void {

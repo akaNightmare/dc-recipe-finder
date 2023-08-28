@@ -246,7 +246,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             .afterClosed()
             .pipe(filter(confirmed => confirmed === true))
             .subscribe(() => {
-                this.recipesFacade.removeRecipe(recipe.name);
+                this.recipesFacade.removeRecipe(recipe);
             });
     }
 }

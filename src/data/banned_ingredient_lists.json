@@ -1,1 +1,121 @@
-[]
+[
+  {
+    "name": "Activated Totems",
+    "ingredients": [
+      {
+        "image_path": "Activated Totem 1.png",
+        "count": 1,
+        "name": "Activated Totem 1"
+      },
+      {
+        "image_path": "Activated Totem 2.png",
+        "count": 1,
+        "name": "Activated Totem 2"
+      },
+      {
+        "image_path": "Activated Totem 3.png",
+        "count": 1,
+        "name": "Activated Totem 3"
+      },
+      {
+        "image_path": "Activated Totem 4.png",
+        "count": 1,
+        "name": "Activated Totem 4"
+      },
+      {
+        "image_path": "Activated Totem 5.png",
+        "count": 1,
+        "name": "Activated Totem 5"
+      },
+      {
+        "image_path": "Activated Totem 6.png",
+        "count": 1,
+        "name": "Activated Totem 6"
+      },
+      {
+        "image_path": "Activated Totem 7.png",
+        "count": 1,
+        "name": "Activated Totem 7"
+      },
+      {
+        "image_path": "Activated Totem 8.png",
+        "count": 1,
+        "name": "Activated Totem 8"
+      }
+    ]
+  },
+  {
+    "name": "Unactivated Totems",
+    "ingredients": [
+      {
+        "image_path": "Unactivated Totem 1.png",
+        "name": "Unactivated Totem 1"
+      },
+      {
+        "image_path": "Unactivated Totem 2.png",
+        "name": "Unactivated Totem 2"
+      },
+      {
+        "image_path": "Unactivated Totem 3.png",
+        "name": "Unactivated Totem 3"
+      },
+      {
+        "image_path": "Unactivated Totem 4.png",
+        "name": "Unactivated Totem 4"
+      },
+      {
+        "image_path": "Unactivated Totem 5.png",
+        "name": "Unactivated Totem 5"
+      },
+      {
+        "image_path": "Unactivated Totem 6.png",
+        "name": "Unactivated Totem 6"
+      },
+      {
+        "image_path": "Unactivated Totem 7.png",
+        "name": "Unactivated Totem 7"
+      },
+      {
+        "image_path": "Unactivated Totem 8.png",
+        "name": "Unactivated Totem 8"
+      }
+    ]
+  },
+  {
+    "name": "Cursed Events Heroes",
+    "ingredients": [
+      {
+        "image_path": "Cow Cursed King.png",
+        "name": "Cow Cursed King"
+      },
+      {
+        "image_path": "Cursed Tin Knight.png",
+        "name": "Cursed Tin Knight"
+      },
+      {
+        "image_path": "Granados The Cursed.png",
+        "name": "Granados The Cursed"
+      },
+      {
+        "image_path": "Irska the Cursed.png",
+        "name": "Irska the Cursed"
+      },
+      {
+        "image_path": "K. Lee Fly the Cursed.png",
+        "name": "K. Lee Fly the Cursed"
+      },
+      {
+        "image_path": "Pyre the Cursed.png",
+        "name": "Pyre the Cursed"
+      },
+      {
+        "image_path": "Savad the Cursed.png",
+        "name": "Savad the Cursed"
+      },
+      {
+        "image_path": "Shale the Cursed.png",
+        "name": "Shale the Cursed"
+      }
+    ]
+  }
+]

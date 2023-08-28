@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { forkJoin, take } from 'rxjs';
 
+import { BannedIngredientListsFacade } from '../../../../store/banned-ingredient-lists';
 import { RecipesFacade } from '../../../../store/recipes';
 import { DownloadService } from '../../../core/download/download.service';
 import { History } from './history.types';
@@ -40,6 +41,7 @@ import { History } from './history.types';
 export class HistoryComponent {
     private readonly downloadService = inject(DownloadService);
     private readonly recipesFacade = inject(RecipesFacade);
+    private readonly bilFacade = inject(BannedIngredientListsFacade);
     private readonly snackBar = inject(MatSnackBar);
     private readonly defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 3500,
@@ -48,8 +50,11 @@ export class HistoryComponent {
     };
 
     public exportHistory(): void {
-        forkJoin([this.recipesFacade.customRecipes$.pipe(take(1))]).subscribe(([recipes]) => {
-            this.downloadService.downloadJSON({ recipes }, `history-${Date.now()}.json`);
+        forkJoin([
+            this.recipesFacade.customRecipes$.pipe(take(1)),
+            this.bilFacade.customBannedIngredientList$.pipe(take(1)),
+        ]).subscribe(([recipes, banned_ingredient_lists]) => {
+            this.downloadService.downloadJSON({ recipes, banned_ingredient_lists }, `history-${Date.now()}.json`);
         });
     }
 
@@ -65,6 +70,7 @@ export class HistoryComponent {
         const snackBar = this.snackBar;
         const defaultSnackBarConfig = this.defaultSnackBarConfig;
         const recipesFacade = this.recipesFacade;
+        const bilFacade = this.bilFacade;
 
         reader.onload = function (event) {
             let history: History;
@@ -75,8 +81,13 @@ export class HistoryComponent {
                 return;
             }
             recipesFacade.addRecipes(history.recipes);
+            bilFacade.addBannedIngredientLists(history.banned_ingredient_lists);
             snackBar.open(
-                'Imported ' + [`receipts: ${history.recipes.length}`].join(', '),
+                'Imported ' +
+                    [
+                        `recipes: ${history.recipes.length}`,
+                        `banned ingredient lists: ${history.banned_ingredient_lists.length}`,
+                    ].join(', '),
                 undefined,
                 defaultSnackBarConfig,
             );

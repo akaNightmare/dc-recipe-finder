@@ -8,6 +8,6 @@ export const addRecipe = createAction(`${recipesKey} Add Recipe`, props<{ recipe
 
 export const addRecipes = createAction(`${recipesKey} Add Recipes`, props<{ recipes: Recipe[] }>());
 
-export const deleteRecipe = createAction(`${recipesKey} Delete Recipe`, props<{ name: string }>());
+export const deleteRecipe = createAction(`${recipesKey} Delete Recipe`, props<{ recipe: Recipe }>());
 
 export const clearRecipes = createAction(`${recipesKey} Clear Recipes`);

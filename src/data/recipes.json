@@ -7148,5 +7148,1080 @@
         ],
         "added_at": 1693211648079,
         "name": "Mystery of Infinity"
+    },
+    {
+        "image_path": "Helm lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 3,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 1,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 1,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Ruined Scroll.png",
+                "count": 1,
+                "name": "Ruined Scroll"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Ethereal Cloth.png",
+                "count": 1,
+                "name": "Ethereal Cloth"
+            }
+        ],
+        "added_at": 1693222267235,
+        "name": "Helm lvl 1"
+    },
+    {
+        "image_path": "Helm lvl 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 5,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Iron Ingot.png",
+                "count": 5,
+                "name": "Iron Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 3,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Ruined Scroll.png",
+                "count": 1,
+                "name": "Ruined Scroll"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Helm lvl 1.png",
+                "count": 3,
+                "name": "Helm lvl 1"
+            }
+        ],
+        "added_at": 1693224146700,
+        "name": "Helm lvl 2"
+    },
+    {
+        "image_path": "Helm lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 10,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 3,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Helm lvl 2.png",
+                "count": 5,
+                "name": "Helm lvl 2"
+            }
+        ],
+        "added_at": 1693224244006,
+        "name": "Helm lvl 3"
+    },
+    {
+        "image_path": "Helm lvl 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 25,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 5,
+                "name": "Mithril Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 4,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Helm lvl 3.png",
+                "count": 5,
+                "name": "Helm lvl 3"
+            }
+        ],
+        "added_at": 1693224313406,
+        "name": "Helm lvl 4"
+    },
+    {
+        "image_path": "Helm lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Lightening.png",
+                "count": 50,
+                "name": "Sphere of Lightening"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 5,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 5,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Helm lvl 4.png",
+                "count": 5,
+                "name": "Helm lvl 4"
+            }
+        ],
+        "added_at": 1693224392221,
+        "name": "Helm lvl 5"
+    },
+    {
+        "image_path": "Helm of the Thief lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 50,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 5,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 5,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 1,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Helm lvl 4.png",
+                "count": 5,
+                "name": "Helm lvl 4"
+            }
+        ],
+        "added_at": 1693224471878,
+        "name": "Helm of the Thief lvl 5"
+    },
+    {
+        "image_path": "Dragon Helm lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Anvil.png",
+                "count": 5,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 15,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Helm lvl 3.png",
+                "count": 10,
+                "name": "Helm lvl 3"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 25,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Mithril Ingot.png",
+                "count": 25,
+                "name": "Mithril Ingot"
+            }
+        ],
+        "added_at": 1693224630692,
+        "name": "Dragon Helm lvl 3"
+    },
+    {
+        "image_path": "Dragon Helm lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Anvil.png",
+                "count": 25,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 25,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Part of the Armor.png",
+                "count": 35,
+                "name": "Part of the Armor"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 25,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 25,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Dragon Helm lvl 3.png",
+                "count": 10,
+                "name": "Dragon Helm lvl 3"
+            }
+        ],
+        "added_at": 1693224693465,
+        "name": "Dragon Helm lvl 5"
+    },
+    {
+        "image_path": "Helm of the Mage lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 3,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Frostweave Cloth.png",
+                "count": 4,
+                "name": "Frostweave Cloth"
+            },
+            {
+                "image_path": "Scroll of Grudges.png",
+                "count": 1,
+                "name": "Scroll of Grudges"
+            }
+        ],
+        "added_at": 1693224740920,
+        "name": "Helm of the Mage lvl 1"
+    },
+    {
+        "image_path": "Helm of the Mage lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 10,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Red Silk.png",
+                "count": 20,
+                "name": "Red Silk"
+            },
+            {
+                "image_path": "The Dark Stone.png",
+                "count": 5,
+                "name": "The Dark Stone"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Helm of the Mage lvl 1.png",
+                "count": 5,
+                "name": "Helm of the Mage lvl 1"
+            },
+            {
+                "image_path": "The Light Stone.png",
+                "count": 5,
+                "name": "The Light Stone"
+            }
+        ],
+        "added_at": 1693224856697,
+        "name": "Helm of the Mage lvl 3"
+    },
+    {
+        "image_path": "Helm of the Mage lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 50,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Frostweave Cloth.png",
+                "count": 20,
+                "name": "Frostweave Cloth"
+            },
+            {
+                "image_path": "The Dark Stone.png",
+                "count": 10,
+                "name": "The Dark Stone"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Helm of the Mage lvl 3.png",
+                "count": 5,
+                "name": "Helm of the Mage lvl 3"
+            },
+            {
+                "image_path": "The Light Stone.png",
+                "count": 10,
+                "name": "The Light Stone"
+            }
+        ],
+        "added_at": 1693224942613,
+        "name": "Helm of the Mage lvl 5"
+    },
+    {
+        "image_path": "Gravity Grenade lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "The Mysterious Ring.png",
+                "count": 3,
+                "name": "The Mysterious Ring"
+            },
+            {
+                "image_path": "Sphere of Water.png",
+                "count": 10,
+                "name": "Sphere of Water"
+            },
+            {
+                "image_path": "Adamantine Ingot.png",
+                "count": 2,
+                "name": "Adamantine Ingot"
+            },
+            {
+                "image_path": "Anvil.png",
+                "count": 5,
+                "name": "Anvil"
+            },
+            {
+                "image_path": "Radiant Sapphire.png",
+                "count": 10,
+                "name": "Radiant Sapphire"
+            }
+        ],
+        "added_at": 1693225035298,
+        "name": "Gravity Grenade lvl 1"
+    },
+    {
+        "image_path": "Gravity Grenade lvl 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Gravity Grenade lvl 1.png",
+                "count": 10,
+                "name": "Gravity Grenade lvl 1"
+            },
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 20,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Hologram.png",
+                "count": 1,
+                "name": "Hologram"
+            },
+            {
+                "image_path": "Star Ruby.png",
+                "count": 20,
+                "name": "Star Ruby"
+            }
+        ],
+        "added_at": 1693225099352,
+        "name": "Gravity Grenade lvl 2"
+    },
+    {
+        "image_path": "Gravity Grenade lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Gravity Grenade lvl 2.png",
+                "count": 5,
+                "name": "Gravity Grenade lvl 2"
+            },
+            {
+                "image_path": "Sphere of Earth.png",
+                "count": 30,
+                "name": "Sphere of Earth"
+            },
+            {
+                "image_path": "Hologram.png",
+                "count": 1,
+                "name": "Hologram"
+            },
+            {
+                "image_path": "Regular Topaz.png",
+                "count": 30,
+                "name": "Regular Topaz"
+            }
+        ],
+        "added_at": 1693225143464,
+        "name": "Gravity Grenade lvl 3"
+    },
+    {
+        "image_path": "Ring lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 3,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 1,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Bronze Ingot.png",
+                "count": 1,
+                "name": "Bronze Ingot"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 1,
+                "name": "Sloppy Spellscroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 4,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225249267,
+        "name": "Ring lvl 1"
+    },
+    {
+        "image_path": "Ring lvl 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 5,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 2,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Ring lvl 1.png",
+                "count": 3,
+                "name": "Ring lvl 1"
+            },
+            {
+                "image_path": "Sloppy Spellscroll.png",
+                "count": 1,
+                "name": "Sloppy Spellscroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 8,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225308784,
+        "name": "Ring lvl 2"
+    },
+    {
+        "image_path": "Ring lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 10,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Ring lvl 2.png",
+                "count": 5,
+                "name": "Ring lvl 2"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 16,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225367382,
+        "name": "Ring lvl 3"
+    },
+    {
+        "image_path": "Ring lvl 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 25,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Ring lvl 3.png",
+                "count": 5,
+                "name": "Ring lvl 3"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 30,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225426207,
+        "name": "Ring lvl 4"
+    },
+    {
+        "image_path": "Ring lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 50,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Ring lvl 4.png",
+                "count": 5,
+                "name": "Ring lvl 4"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 50,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225558407,
+        "name": "Ring lvl 5"
+    },
+    {
+        "image_path": "Ring lvl 6.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Fire.png",
+                "count": 50,
+                "name": "Sphere of Fire"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Ring lvl 5.png",
+                "count": 5,
+                "name": "Ring lvl 5"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 50,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693225639163,
+        "name": "Ring lvl 6"
+    },
+    {
+        "image_path": "Necklace lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 3,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 1,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Bronze Ingot.png",
+                "count": 1,
+                "name": "Bronze Ingot"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 4,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227313436,
+        "name": "Necklace lvl 1"
+    },
+    {
+        "image_path": "Necklace lvl 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 5,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 2,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Necklace lvl 1.png",
+                "count": 3,
+                "name": "Necklace lvl 1"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 8,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227382266,
+        "name": "Necklace lvl 2"
+    },
+    {
+        "image_path": "Necklace lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 10,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Necklace lvl 2.png",
+                "count": 5,
+                "name": "Necklace lvl 2"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 1,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 16,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227440565,
+        "name": "Necklace lvl 3"
+    },
+    {
+        "image_path": "Necklace lvl 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 25,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Mysterious Scroll.png",
+                "count": 5,
+                "name": "Mysterious Scroll"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 30,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Necklace lvl 3.png",
+                "count": 5,
+                "name": "Necklace lvl 3"
+            }
+        ],
+        "added_at": 1693227509782,
+        "name": "Necklace lvl 4"
+    },
+    {
+        "image_path": "Necklace lvl 5.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 50,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Necklace lvl 4.png",
+                "count": 5,
+                "name": "Necklace lvl 4"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 50,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227559413,
+        "name": "Necklace lvl 5"
+    },
+    {
+        "image_path": "Necklace lvl 6.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 50,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 10,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Necklace lvl 5.png",
+                "count": 5,
+                "name": "Necklace lvl 5"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 50,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227645943,
+        "name": "Necklace lvl 6"
+    },
+    {
+        "image_path": "Necklace lvl 1.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 3,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 1,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Bronze Ingot.png",
+                "count": 1,
+                "name": "Bronze Ingot"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 4,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227664058,
+        "name": "Necklace lvl 1"
+    },
+    {
+        "image_path": "Necklace lvl 2.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 5,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 2,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Necklace lvl 1.png",
+                "count": 3,
+                "name": "Necklace lvl 1"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 8,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227746939,
+        "name": "Necklace lvl 2"
+    },
+    {
+        "image_path": "Necklace lvl 3.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 10,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Necklace lvl 2.png",
+                "count": 5,
+                "name": "Necklace lvl 2"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 1,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 16,
+                "name": "Perfect Emerald"
+            }
+        ],
+        "added_at": 1693227764489,
+        "name": "Necklace lvl 3"
+    },
+    {
+        "image_path": "Necklace lvl 4.png",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "image_path": "Sphere of Life.png",
+                "count": 25,
+                "name": "Sphere of Life"
+            },
+            {
+                "image_path": "Gold Ingot.png",
+                "count": 5,
+                "name": "Gold Ingot"
+            },
+            {
+                "image_path": "Scroll of Craft.png",
+                "count": 5,
+                "name": "Scroll of Craft"
+            },
+            {
+                "image_path": "Perfect Emerald.png",
+                "count": 30,
+                "name": "Perfect Emerald"
+            },
+            {
+                "image_path": "Necklace lvl 3.png",
+                "count": 5,
+                "name": "Necklace lvl 3"
+            }
+        ],
+        "added_at": 1693227778614,
+        "name": "Necklace lvl 4"
     }
 ]
