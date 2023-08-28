@@ -42,6 +42,7 @@ import {
 } from '../../../components/confirm-dialog/confirm-dialog.component';
 import { SortByPipe } from '../../../pipes/sort-by.pipe';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
+import { Ingredient } from '../../../../store/ingredients/ingredients.types';
 
 @Component({
     selector: 'recipes',
@@ -99,15 +100,25 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     public readonly ingredientsToSearch$ = combineLatest([
         this.searchIngredientsCtrl.valueChanges.pipe(startWith(undefined), debounceTime(200), distinctUntilChanged()),
         this.ingredientsFacade.ingredients$,
+        this.filters.get('ingredients').valueChanges.pipe(startWith([])),
     ]).pipe(
-        map(([search, ingredients]) => {
+        map(([search, ingredients, filterIngredientNames]) => {
             search = search?.toLowerCase().trim();
+            const filtersFn = [];
+            let filterIngredients = [];
             if (search) {
-                ingredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(search));
+                filtersFn.push((ingredient: Ingredient) => ingredient.name?.toLowerCase().includes(search));
             }
-            return ingredients;
+            if (filterIngredientNames.length > 0) {
+                filterIngredients = ingredients.filter(ingredient => filterIngredientNames.includes(ingredient.name));
+            }
+            if (filtersFn.length > 0) {
+                ingredients = ingredients.filter(ingredient => filtersFn.every(fn => fn(ingredient)));
+            }
+            return filterIngredients.concat(ingredients.slice(0, 10));
         }),
     );
+
     public readonly filteredIngredients$ = combineLatest([
         this.recipesFacade.recipes$.pipe(
             tap(recipes => {

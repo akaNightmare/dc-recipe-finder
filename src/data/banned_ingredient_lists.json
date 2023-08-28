@@ -82,7 +82,7 @@
     ]
   },
   {
-    "name": "Cursed Events Heroes",
+    "name": "Cursed Event Heroes",
     "ingredients": [
       {
         "image_path": "Cow Cursed King.png",
@@ -115,6 +115,35 @@
       {
         "image_path": "Shale the Cursed.png",
         "name": "Shale the Cursed"
+      }
+    ]
+  },
+  {
+    "name": "Expendables",
+    "ingredients": [
+      {
+        "image_path": "Slaughterhouse.png",
+        "name": "Slaughterhouse"
+      },
+      {
+        "image_path": "Runic Bomb.png",
+        "name": "Runic Bomb"
+      },
+      {
+        "image_path": "Cyndor's Gift.png",
+        "name": "Cyndor's Gift"
+      },
+      {
+        "image_path": "Purification.png",
+        "name": "Purification"
+      },
+      {
+        "image_path": "Mystery of Infinity.png",
+        "name": "Mystery of Infinity"
+      },
+      {
+        "image_path": "Door to Anything.png",
+        "name": "Door to Anything"
       }
     ]
   }

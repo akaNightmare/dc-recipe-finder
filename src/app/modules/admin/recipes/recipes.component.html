@@ -11,12 +11,11 @@
                 <!-- Status -->
                 <mat-form-field
                     [subscriptSizing]="'dynamic'"
-                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-40 sm:ml-4"
+                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-44 sm:ml-4"
                 >
                     <mat-select
                         multiple="true"
-                        matTooltip="Filter by statuses"
-                        placeholder="Statuses"
+                        placeholder="Filter by statuses"
                         [formControlName]="'statuses'"
                     >
                         <ng-container *ngFor="let status of STATUSES">
@@ -32,8 +31,7 @@
                     <mat-select
                         multiple="true"
                         [formControlName]="'ingredients'"
-                        matTooltip="Filter by ingredients"
-                        placeholder="Ingredients"
+                        placeholder="Filter by ingredients"
                     >
                         <mat-select-trigger>
                             <div
@@ -43,6 +41,7 @@
                                 <img
                                     class="w-8 h-8 rounded"
                                     [class.mr-1]="!last"
+                                    [matTooltip]="imageName"
                                     *ngFor="let imageName of imageNames; let last = last"
                                     [src]="'assets/images/ingredients/' + imageName + '.png'"
                                 />

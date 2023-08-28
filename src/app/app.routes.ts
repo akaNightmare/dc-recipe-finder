@@ -90,6 +90,10 @@ export const appRoutes: Route[] = [
                 path: 'banned-ingredient-lists',
                 loadChildren: () => import('app/modules/admin/banned-ingredient-lists/banned-ingredient-lists.routes'),
             },
+            {
+                path: 'recipes-generator',
+                loadChildren: () => import('app/modules/admin/recipes-generator/recipes-generator.routes'),
+            },
         ],
     },
 ];

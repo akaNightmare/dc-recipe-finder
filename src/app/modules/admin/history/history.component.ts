@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,12 +10,13 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/mate
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { forkJoin, take } from 'rxjs';
+import { forkJoin, map, take } from 'rxjs';
 
 import { BannedIngredientListsFacade } from '../../../../store/banned-ingredient-lists';
 import { RecipesFacade } from '../../../../store/recipes';
 import { DownloadService } from '../../../core/download/download.service';
 import { History } from './history.types';
+import { RecipeStatus } from '../../../../store/recipes/recipes.types';
 
 @Component({
     selector: 'history',
@@ -36,6 +37,7 @@ import { History } from './history.types';
         MatInputModule,
         ReactiveFormsModule,
         MatMenuModule,
+        NgClass,
     ],
 })
 export class HistoryComponent {
@@ -48,6 +50,25 @@ export class HistoryComponent {
         horizontalPosition: 'right',
         verticalPosition: 'top',
     };
+
+    public readonly RecipeStatus = RecipeStatus;
+
+    public readonly recipesStats$ = this.recipesFacade.recipes$.pipe(
+        map(recipes => {
+            const statsObj = Object
+                .keys(RecipeStatus)
+                .reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
+
+            for (const recipe of recipes) {
+                statsObj[recipe.status]++;
+            }
+            const stats = [];
+            for (const [status, count] of Object.entries(statsObj)) {
+                stats.push({ status, count });
+            }
+            return stats;
+        }),
+    );
 
     public exportHistory(): void {
         forkJoin([
