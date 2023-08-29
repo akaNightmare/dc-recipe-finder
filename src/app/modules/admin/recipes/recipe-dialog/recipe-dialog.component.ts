@@ -80,7 +80,7 @@ export class RecipeDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.recipeForm = this.formBuilder.group({
-            image_path: [null, [Validators.required]],
+            name: [null, [Validators.required]],
             count_from: [1, [Validators.required, Validators.min(1)]],
             count_to: [
                 1,
@@ -124,7 +124,7 @@ export class RecipeDialogComponent implements OnInit {
 
     addIngredientField(): void {
         const attrFormGroup = this.formBuilder.group({
-            image_path: [null, [Validators.required]],
+            name: [null, [Validators.required]],
             count: [1, [Validators.required, Validators.min(1), Validators.max(100)]],
         });
         this.ingredientsCtrl.push(attrFormGroup);
@@ -147,26 +147,20 @@ export class RecipeDialogComponent implements OnInit {
 
         const recipe = cloneDeep(this.recipeForm.value);
         recipe.added_at = Date.now();
-        if (recipe.image_path) {
-            recipe.name = recipe.image_path.replace(/(\.png|\.jpg)/, '');
-        }
-        for (const ingredient of recipe.ingredients) {
-            ingredient.name = ingredient.image_path.replace(/(\.png|\.jpg)/, '');
-        }
         this.recipesFacade.addRecipe(recipe);
         this.matDialogRef.close(recipe);
     }
 
     onStatusChanged({ value }: { value: RecipeStatus }): void {
-        const imagePathCtrl = this.recipeForm.get('image_path');
+        const imageNameCtrl = this.recipeForm.get('name');
         const countFromCtrl = this.recipeForm.get('count_from');
         const countToCtrl = this.recipeForm.get('count_to');
         if (value === RecipeStatus.FAILED) {
-            imagePathCtrl.disable();
+            imageNameCtrl.disable();
             countFromCtrl.disable();
             countToCtrl.disable();
         } else {
-            imagePathCtrl.enable();
+            imageNameCtrl.enable();
             countFromCtrl.enable();
             countToCtrl.enable();
         }

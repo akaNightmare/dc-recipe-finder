@@ -12,10 +12,7 @@ const imageRe = /(\.png|\.jpg)/i;
     const files = await fs.readdir(directoryPath);
     const ingredients = [];
     for (const file of files) {
-        ingredients.push({
-            image_path: file,
-            name: file.replace(imageRe, ''),
-        });
+        ingredients.push({ name: file.replace(imageRe, '') });
     }
     await fs.writeFile(dataPath, JSON.stringify(ingredients, null, 4));
 })();

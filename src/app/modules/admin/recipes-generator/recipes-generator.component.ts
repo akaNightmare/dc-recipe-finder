@@ -1,6 +1,6 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
+import { RecipesGeneratorDialogComponent } from './recipes-generator-dialog/recipes-generator-dialog.component';
 
 @Component({
     selector: 'ingredients',
@@ -30,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ],
 })
 export class RecipesGeneratorComponent {
+    private readonly matDialog = inject(MatDialog);
 
     public readonly displayedColumns = ['name', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
@@ -41,4 +44,23 @@ export class RecipesGeneratorComponent {
         sort_dir: new FormControl<SortDirection>('asc'),
         sort_by: new FormControl('name'),
     });
+
+    public openRecipesGeneratorDialog(): void {
+        this.matDialog
+            .open(RecipesGeneratorDialogComponent, {
+                disableClose: true,
+                maxHeight: '90vh',
+                data: {},
+            })
+            .afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    // this._snackBar.open(
+                    //     `Ingredient has been ${organization ? 'updated' : 'created'}`,
+                    //     undefined,
+                    //     this._defaultSnackBarConfig,
+                    // );
+                }
+            });
+    }
 }

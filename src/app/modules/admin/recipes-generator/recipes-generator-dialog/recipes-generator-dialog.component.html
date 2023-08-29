@@ -1,0 +1,77 @@
+<div class="-m-6 relative flex flex-auto max-w-120 flex-col md:min-w-120">
+    <!-- Header -->
+    <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
+        <div class="text-lg font-medium">Create a new recipe generated list</div>
+        <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="form.disabled">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+        </button>
+    </div>
+
+    <!-- Compose form -->
+    <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="form">
+        <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Name</mat-label>
+                <input matInput [formControlName]="'name'" />
+                <mat-error *ngIf="form.get('name').hasError('required')">
+                    Name is required
+                </mat-error>
+                <mat-error *ngIf="form.get('name').hasError('nameAlreadyExists')">
+                    List with such name already exists
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Ingredients</mat-label>
+                <mat-select multiple="true" [formControlName]="'banned_ingredient_lists'">
+                    <mat-option>
+                        <ngx-mat-select-search
+                                noEntriesFoundLabel="No matching lists found"
+                                placeholderLabel="Type to search"
+                                [clearSearchInput]="true"
+                                [enableClearOnEscapePressed]="true"
+                                [disableScrollToActiveOnOptionsChanged]="true"
+                                [formControl]="searchIngredientsCtrl"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+<!--                    <mat-option-->
+<!--                            *ngFor="let list of bannedIngredientLists$ | async; trackBy: trackByFn"-->
+<!--                            [value]="list.name"-->
+<!--                    >-->
+<!--                        <a>{{list.name}}</a>-->
+<!--                    </mat-option>-->
+                </mat-select>
+                <mat-error *ngIf="form.get('banned_ingredient_lists').hasError('required')">
+                    Banned ingredient lists are required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+            <div class="mt-4 flex items-center sm:mt-0">
+                <!-- Close -->
+                <button type="button" class="sm:mx-3" mat-button [disabled]="form.disabled" (click)="close()">
+                    <span>Close</span>
+                </button>
+                <!-- Save -->
+                <button
+                        type="submit"
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [disabled]="form.disabled"
+                        [color]="'primary'"
+                >
+                    <span *ngIf="!form.disabled"> Save </span>
+                    <mat-progress-spinner
+                            *ngIf="form.disabled"
+                            [diameter]="24"
+                            [mode]="'indeterminate'"
+                    ></mat-progress-spinner>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

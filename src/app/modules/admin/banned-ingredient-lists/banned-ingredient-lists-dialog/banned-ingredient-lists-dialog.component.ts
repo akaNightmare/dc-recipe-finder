@@ -51,7 +51,6 @@ export class BannedIngredientListsDialogComponent implements OnInit {
 
     private readonly bilFacade = inject(BannedIngredientListsFacade);
     private readonly ingredientFacade = inject(IngredientsFacade);
-    private readonly bannedIngredientListsFacade = inject(BannedIngredientListsFacade);
     private readonly matDialogRef = inject(MatDialogRef<BannedIngredientListsDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
 
@@ -124,7 +123,7 @@ export class BannedIngredientListsDialogComponent implements OnInit {
         }
 
         const bannedIngredientList = cloneDeep(this.bilForm.value) as BannedIngredientList;
-        this.bannedIngredientListsFacade.addBannedIngredientList(bannedIngredientList);
+        this.bilFacade.addBannedIngredientList(bannedIngredientList);
         this.matDialogRef.close(bannedIngredientList);
     }
 }

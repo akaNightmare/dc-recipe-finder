@@ -1,6 +1,6 @@
 import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -13,11 +13,12 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
+import { BannedIngredientListsFacade } from '../../../../../store/banned-ingredient-lists';
 
 @Component({
-    selector: 'banned-ingredient-lists-dialog',
-    templateUrl: './banned-ingredient-lists-dialog.component.html',
-    styleUrls: ['./banned-ingredient-lists-dialog.component.scss'],
+    selector: 'recipes-generator-dialog',
+    templateUrl: './recipes-generator-dialog.component.html',
+    styleUrls: ['./recipes-generator-dialog.component.html'],
     standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -42,7 +43,15 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
 })
 export class RecipesGeneratorDialogComponent implements OnInit {
     private readonly matDialogRef = inject(MatDialogRef<RecipesGeneratorDialogComponent>);
+    private readonly bilFacade = inject(BannedIngredientListsFacade);
     private readonly formBuilder = inject(FormBuilder);
+
+    public readonly searchIngredientsCtrl = new FormControl('');
+
+    public readonly form = this.formBuilder.group({
+        name: ['', [Validators.required]],
+        banned_ingredient_lists: new FormControl<string[]>([], { validators: [Validators.required] }),
+    });
 
     ngOnInit(): void {}
 
