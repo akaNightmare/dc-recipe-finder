@@ -126,7 +126,7 @@
     ]
   },
   {
-    "name": "Vegetables",
+    "name": "Veggies",
     "type": "BANLIST",
     "ingredients": [
       "Cabbage",
@@ -173,6 +173,175 @@
       "Essence of Luck3",
       "Essence of Luck4",
       "Essence of Luck1"
+    ]
+  },
+  {
+    "name": "Simple loot",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Bat Wing",
+      "Block of Sand",
+      "Blood of Heroes",
+      "Bloodroot",
+      "Blue Stone",
+      "Bluebelly",
+      "Burned Cloth",
+      "Buzzard's Guts",
+      "Cat's Eye",
+      "Cave-lion Skull",
+      "Core Leather",
+      "Counterfeit Aqua",
+      "Deep Water",
+      "Deepthistle",
+      "Deser Sand Samle",
+      "Desert Beast Jaw",
+      "Desert Phoenix Feather",
+      "Ethereal Cloth",
+      "Evercloth",
+      "Fool's Bane",
+      "Frostbeast Pelt",
+      "Frostcap",
+      "Frostweave Cloth",
+      "Frozen Drop of Magic",
+      "Goblin's Teeth",
+      "Heavy Leather",
+      "Icestone Cap",
+      "Icewind Feather",
+      "Imperial Amethyst",
+      "Jade",
+      "Light Leather",
+      "Liquid Gold",
+      "Lost Dwarf's Tooth",
+      "Magnetite",
+      "Marsh Fish",
+      "Metal Dust",
+      "Mosscap",
+      "Mysterious Scroll",
+      "Old Trade Document",
+      "Primal Pelt",
+      "Pure Ice",
+      "Radiant Sapphire",
+      "Rat's Tail",
+      "Red Crow Feathet",
+      "Red Silk",
+      "Red Stone",
+      "Redeye",
+      "Regular Topaz",
+      "Ruined Scroll",
+      "Sample of greenmoth",
+      "Sand Trout",
+      "Sandveil",
+      "Scroll of Grudges",
+      "Sharp Claws",
+      "Silverleaf",
+      "Sloppy Spellscroll",
+      "Snowfish",
+      "Snowpaw's Heart",
+      "Snuts' Brain",
+      "Sphere of Earth",
+      "Sphere of Fire",
+      "Sphere of Life",
+      "Sphere of Lightening",
+      "Sphere of Water",
+      "Star Ruby",
+      "Sticky Moss",
+      "Sunbloom",
+      "Troll's Mojo",
+      "Walleye",
+      "Perfect Emerald"
+    ]
+  },
+  {
+    "name": "Simple rare loot",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Branches",
+      "Broken Gemstone",
+      "Device",
+      "Fibula",
+      "Fife",
+      "Flower",
+      "Horn",
+      "Piece of Armor",
+      "Power Unit",
+      "Root",
+      "Round Stone",
+      "Seal",
+      "The Mysterious Ring",
+      "Memory Card"
+    ]
+  },
+  {
+    "name": "Veggies",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Cabbage",
+      "Carrot",
+      "Celery",
+      "Cucumber",
+      "Eggplant",
+      "Zucchini",
+      "Tomato"
+    ]
+  },
+  {
+    "name": "Ina loot",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Bolts",
+      "Broken Brooch",
+      "Cockatrice's Pelt",
+      "Coin",
+      "Gilding",
+      "Saw-Leaf",
+      "Stout Horn"
+    ]
+  },
+  {
+    "name": "Some bosses loot",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Moon Sugar",
+      "Pine Cone",
+      "Pine Cone Soup",
+      "Spider Thread",
+      "Spider Wool",
+      "Dragon Seal"
+    ]
+  },
+  {
+    "name": "Talismans",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Chalice of Blood",
+      "Old Gear",
+      "Set of Stones",
+      "Stone Claw",
+      "Talisman of Cows",
+      "Viscous Gold",
+      "Fire Stone"
+    ]
+  },
+  {
+    "name": "Tools loot",
+    "type": "ALLOWLIST",
+    "ingredients": [
+      "Anvil",
+      "Blade",
+      "Bronze Ingot",
+      "Construction Tools",
+      "Edge",
+      "Gold Ingot",
+      "Iron Ingot",
+      "Mithril Ingot",
+      "Part of the Armor",
+      "Planking",
+      "Scroll of Craft",
+      "Staff",
+      "Stone",
+      "The Dark Stone",
+      "The Light Stone",
+      "Adamantine Ingot"
     ]
   }
 ]

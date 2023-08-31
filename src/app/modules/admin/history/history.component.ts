@@ -16,6 +16,7 @@ import { IngredientListsFacade } from '../../../../store/ingredient-lists';
 import { RecipesFacade } from '../../../../store/recipes';
 import { RecipeStatus } from '../../../../store/recipes/recipes.types';
 import { DownloadService } from '../../../core/download/download.service';
+import { historyValidator } from '../../../validations';
 import { History } from './history.types';
 
 @Component({
@@ -55,7 +56,7 @@ export class HistoryComponent {
 
     public readonly recipesStats$ = this.recipesFacade.recipes$.pipe(
         map(recipes => {
-            const statsObj = Object.keys(RecipeStatus).reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
+            const statsObj = Object.values(RecipeStatus).reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
 
             for (const recipe of recipes) {
                 statsObj[recipe.status]++;
@@ -96,9 +97,21 @@ export class HistoryComponent {
             try {
                 history = JSON.parse(event.target.result as string);
             } catch (err) {
+                console.log(err);
                 snackBar.open('Cannot parse history file', undefined, defaultSnackBarConfig);
                 return;
             }
+            const isValid = historyValidator(history);
+            if (!isValid) {
+                console.log(historyValidator.errors);
+                snackBar.open(
+                    'Invalid history file. Please do not modify the file manually',
+                    undefined,
+                    defaultSnackBarConfig,
+                );
+                return;
+            }
+
             recipesFacade.addRecipes(history.recipes);
             ilFacade.addIngredientLists(history.ingredient_lists);
             snackBar.open(

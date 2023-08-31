@@ -83,7 +83,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
     public readonly displayedColumns = ['name', 'used_in', 'ingredients', 'status', 'added_at', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
-    public readonly STATUSES = Object.keys(RecipeStatus);
+    public readonly STATUSES = Object.values(RecipeStatus);
     public readonly RecipeStatus = RecipeStatus;
 
     public readonly filters = new FormGroup({

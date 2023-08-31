@@ -17,7 +17,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     {
         id: 'history',
-        title: 'History',
+        title: 'History and analytics',
         type: 'basic',
         icon: 'heroicons_outline:clipboard-document-list',
         link: '/history',
@@ -54,7 +54,7 @@ export const compactNavigation: FuseNavigationItem[] = [
     },
     {
         id: 'history',
-        title: 'History',
+        title: 'History and analytics',
         type: 'basic',
         icon: 'heroicons_outline:clipboard-document-list',
         link: '/history',
@@ -91,7 +91,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     },
     {
         id: 'history',
-        title: 'History',
+        title: 'History and analytics',
         type: 'basic',
         icon: 'heroicons_outline:clipboard-document-list',
         link: '/history',
@@ -128,7 +128,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
     },
     {
         id: 'history',
-        title: 'History',
+        title: 'History and analytics',
         type: 'basic',
         icon: 'heroicons_outline:clipboard-document-list',
         link: '/history',

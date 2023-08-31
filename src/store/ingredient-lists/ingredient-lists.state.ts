@@ -4,7 +4,7 @@ import { IngredientList } from './ingredient-lists.types';
 
 export type IngredientListsState = EntityState<IngredientList>;
 
-export const selectId = ({ name }: IngredientList): string => name;
+export const selectId = ({ name, type }: IngredientList): string => `${name}|${type}`;
 
 export const sortComparer = (a: IngredientList, b: IngredientList): number => a.name.localeCompare(b.name);
 

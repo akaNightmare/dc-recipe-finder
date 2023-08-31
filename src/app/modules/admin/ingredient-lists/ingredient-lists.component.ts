@@ -75,7 +75,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
 
     public readonly displayedColumns = ['name', 'type', 'ingredients', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
-    public readonly TYPES = Object.keys(IngredientListType);
+    public readonly TYPES = Object.values(IngredientListType);
     public readonly ingredientListType = IngredientListType;
     public readonly filters = new FormGroup({
         search: new FormControl(),
@@ -112,6 +112,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
         ),
     ]).pipe(
         map(([lists, filters]) => {
+            console.log(lists);
             const filtersFn = [];
             const search = filters?.search?.trim().toLowerCase();
             if (search) {

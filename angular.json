@@ -29,7 +29,11 @@
                             "crypto-js/hmac-sha256",
                             "crypto-js/enc-base64",
                             "flat",
-                            "ngrx-store-persist"
+                            "ngrx-store-persist",
+                            "ajv",
+                            "ajv-formats",
+                            "ajv-keywords",
+                            "fluent-json-schema"
                         ],
                         "assets": [
                             "src/assets",

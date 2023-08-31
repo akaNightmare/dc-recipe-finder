@@ -55,7 +55,7 @@ export class IngredientListsDialogComponent implements OnInit {
     private readonly formBuilder = inject(FormBuilder);
 
     public readonly searchIngredientsCtrl = new FormControl('');
-    public readonly TYPES = Object.keys(IngredientListType);
+    public readonly TYPES = Object.values(IngredientListType);
 
     public readonly bilForm = this.formBuilder.group({
         name: [

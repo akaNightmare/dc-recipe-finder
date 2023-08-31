@@ -75,7 +75,7 @@ export class RecipeDialogComponent implements OnInit {
         }),
     );
 
-    public readonly STATUSES = Object.keys(RecipeStatus);
+    public readonly STATUSES = Object.values(RecipeStatus);
 
     ngOnInit(): void {
         this.recipeForm = this.formBuilder.group({
