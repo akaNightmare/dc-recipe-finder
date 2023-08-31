@@ -4,8 +4,14 @@ import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 
 import { ingredientLists } from '../../data';
-import { addIngredientList, addIngredientLists, deleteIngredientList } from './ingredient-lists.actions';
+import {
+    addIngredientList,
+    addIngredientLists,
+    deleteIngredientList,
+    updateIngredientList,
+} from './ingredient-lists.actions';
 import { selectCustomIngredientLists, selectIngredientLists } from './ingredient-lists.selectors';
+import { selectId } from './ingredient-lists.state';
 import { IngredientList } from './ingredient-lists.types';
 
 @Injectable({ providedIn: 'root' })
@@ -21,6 +27,10 @@ export class IngredientListsFacade {
 
     addIngredientList(ingredient_list: IngredientList): void {
         this.store.dispatch(addIngredientList({ ingredient_list }));
+    }
+
+    updateIngredientList(base: IngredientList, changes: Partial<IngredientList>): void {
+        this.store.dispatch(updateIngredientList({ id: selectId(base), ingredient_list: changes }));
     }
 
     addIngredientLists(ingredient_lists: IngredientList[]): void {

@@ -39,8 +39,8 @@
                 <mat-select multiple="true" [formControlName]="'ingredients'">
                     <mat-select-trigger>
                         <div
-                                class="flex items-center"
-                                *ngIf="bilForm.get('ingredients').valueChanges | async; let imageNames"
+                                class="flex items-center overflow-x-auto"
+                                *ngIf="bilForm.get('ingredients').value; let imageNames"
                         >
                             <img
                                     class="w-8 h-8 rounded"

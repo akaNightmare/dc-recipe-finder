@@ -139,11 +139,10 @@
                                         [svgIcon]="'heroicons_solid:chevron-' + (t.menuOpen ? 'up' : 'down')"
                                 ></mat-icon>
                                 <mat-menu #userActionsMenu>
-                                    <!-- TODO: finish -->
-<!--                                    <button mat-menu-item>-->
-<!--                                        <mat-icon color="primary" svgIcon="heroicons_outline:pencil"></mat-icon>-->
-<!--                                        Edit list-->
-<!--                                    </button>-->
+                                    <button mat-menu-item (click)="openBannedIngredientListDialog(bil)">
+                                        <mat-icon color="primary" svgIcon="heroicons_outline:pencil"></mat-icon>
+                                        Edit list
+                                    </button>
                                     <button mat-menu-item (click)="deleteBannedIngredientList(bil)">
                                         <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
                                         Delete list

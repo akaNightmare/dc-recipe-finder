@@ -1,11 +1,19 @@
 import { ActionReducer, createReducer, on } from '@ngrx/store';
 
-import { addIngredientList, addIngredientLists, deleteIngredientList } from './ingredient-lists.actions';
+import {
+    addIngredientList,
+    addIngredientLists,
+    deleteIngredientList,
+    updateIngredientList,
+} from './ingredient-lists.actions';
 import { adapter, IngredientListsState, initialState, selectId } from './ingredient-lists.state';
 
 export const ingredientListsReducers: ActionReducer<IngredientListsState> = createReducer(
     initialState,
     on(addIngredientList, (state: IngredientListsState, { ingredient_list }) => adapter.addOne(ingredient_list, state)),
+    on(updateIngredientList, (state: IngredientListsState, { id, ingredient_list }) =>
+        adapter.updateOne({ id, changes: ingredient_list }, state),
+    ),
     on(addIngredientLists, (state: IngredientListsState, { ingredient_lists }) =>
         adapter.addMany(ingredient_lists, state),
     ),

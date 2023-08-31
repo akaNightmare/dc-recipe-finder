@@ -1,5 +1,5 @@
 import { AsyncPipe, LowerCasePipe, NgClass, NgForOf, NgIf } from '@angular/common';
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -46,7 +46,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         LowerCasePipe,
     ],
 })
-export class IngredientListsDialogComponent implements OnInit {
+export class IngredientListsDialogComponent implements AfterContentInit {
     public readonly data: { ingredient_list?: IngredientList } = inject(MAT_DIALOG_DATA);
 
     private readonly ilFacade = inject(IngredientListsFacade);
@@ -96,9 +96,9 @@ export class IngredientListsDialogComponent implements OnInit {
         }),
     );
 
-    ngOnInit(): void {
+    ngAfterContentInit(): void {
         if (this.data.ingredient_list) {
-            this.bilForm.patchValue(this.data.ingredient_list);
+            setTimeout(() => this.bilForm.patchValue(this.data.ingredient_list), 0);
         }
     }
 
@@ -125,7 +125,11 @@ export class IngredientListsDialogComponent implements OnInit {
         }
 
         const bannedIngredientList = cloneDeep(this.bilForm.value) as IngredientList;
-        this.ilFacade.addIngredientList(bannedIngredientList);
+        if (this.data.ingredient_list) {
+            this.ilFacade.updateIngredientList(this.data.ingredient_list, bannedIngredientList);
+        } else {
+            this.ilFacade.addIngredientList(bannedIngredientList);
+        }
         this.matDialogRef.close(bannedIngredientList);
     }
 }

@@ -9,6 +9,11 @@ export const addIngredientList = createAction(
     props<{ ingredient_list: IngredientList }>(),
 );
 
+export const updateIngredientList = createAction(
+    `${ingredientListsKey} Update ingredient list`,
+    props<{ id: string; ingredient_list: Partial<IngredientList> }>(),
+);
+
 export const addIngredientLists = createAction(
     `${ingredientListsKey} Add ingredient lists`,
     props<{ ingredient_lists: IngredientList[] }>(),

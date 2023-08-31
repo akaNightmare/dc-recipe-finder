@@ -112,7 +112,6 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
         ),
     ]).pipe(
         map(([lists, filters]) => {
-            console.log(lists);
             const filtersFn = [];
             const search = filters?.search?.trim().toLowerCase();
             if (search) {
