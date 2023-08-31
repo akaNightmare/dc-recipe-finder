@@ -1,10 +1,10 @@
-export enum IngredientListStatus {
-    ALLOWED = 'ALLOWED',
-    BANNED = 'BANNED',
+export enum IngredientListType {
+    ALLOWLIST = 'ALLOWLIST',
+    BANLIST = 'BANLIST',
 }
 
 export interface IngredientList {
     name: string;
     ingredients: string[];
-    status: IngredientListStatus;
+    type: IngredientListType;
 }

@@ -3,7 +3,7 @@
     <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
         <div class="text-lg font-medium">
             <ng-template [ngIf]="data.ingredient_list">Update the {{data.ingredient_list.name}} ingredient list</ng-template>
-            <ng-template [ngIf]="!data.ingredient_list">Create a new {{ bilForm.get('status').value | lowercase }} ingredient list</ng-template>
+            <ng-template [ngIf]="!data.ingredient_list">Create a new {{ bilForm.get('type').value | lowercase }} ingredient list</ng-template>
         </div>
         <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="bilForm.disabled">
             <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
@@ -24,10 +24,10 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="ml-2 flex-auto sm:ml-4">
-                <mat-label>Status</mat-label>
-                <mat-select [formControlName]="'status'">
-                    <ng-container *ngFor="let status of STATUSES">
-                        <mat-option [value]="status">{{ status }}</mat-option>
+                <mat-label>Type</mat-label>
+                <mat-select [formControlName]="'type'">
+                    <ng-container *ngFor="let type of TYPES">
+                        <mat-option [value]="type">{{ type }}</mat-option>
                     </ng-container>
                 </mat-select>
             </mat-form-field>

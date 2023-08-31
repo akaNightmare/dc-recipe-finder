@@ -14,7 +14,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { combineLatest, map, startWith } from 'rxjs';
 
 import { IngredientListsFacade } from '../../../../../store/ingredient-lists';
-import { IngredientListStatus } from '../../../../../store/ingredient-lists/ingredient-lists.types';
+import { IngredientListType } from '../../../../../store/ingredient-lists/ingredient-lists.types';
 import { IngredientsFacade } from '../../../../../store/ingredients';
 import { combination } from '../../../../helpers';
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
@@ -61,7 +61,7 @@ export class RecipesGeneratorDialogComponent implements OnInit {
 
     public readonly bannedIngredientLists$ = combineLatest([
         this.ilFacade.ingredientList$.pipe(
-            map(lists => lists.filter(({ status }) => status === IngredientListStatus.BANNED)),
+            map(lists => lists.filter(({ type }) => type === IngredientListType.BANLIST)),
         ),
     ]).pipe(
         map(([bannedIngredientLists]) => {
@@ -71,7 +71,7 @@ export class RecipesGeneratorDialogComponent implements OnInit {
 
     public readonly allowedIngredientLists$ = combineLatest([
         this.ilFacade.ingredientList$.pipe(
-            map(lists => lists.filter(({ status }) => status === IngredientListStatus.ALLOWED)),
+            map(lists => lists.filter(({ type }) => type === IngredientListType.ALLOWLIST)),
         ),
     ]).pipe(
         map(([allowedIngredientLists]) => {

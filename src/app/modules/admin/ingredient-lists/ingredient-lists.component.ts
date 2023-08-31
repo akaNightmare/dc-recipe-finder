@@ -32,7 +32,7 @@ import {
 } from 'rxjs';
 
 import { IngredientListsFacade } from '../../../../store/ingredient-lists';
-import { IngredientList, IngredientListStatus } from '../../../../store/ingredient-lists/ingredient-lists.types';
+import { IngredientList, IngredientListType } from '../../../../store/ingredient-lists/ingredient-lists.types';
 import {
     ConfirmDialogComponent,
     ConfirmDialogModel,
@@ -73,13 +73,13 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     private readonly unsubscribe$ = new Subject<void>();
     private readonly queryFactory = inject(BindQueryParamsFactory);
 
-    public readonly displayedColumns = ['name', 'status', 'ingredients', 'actions'];
+    public readonly displayedColumns = ['name', 'type', 'ingredients', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
-    public readonly STATUSES = Object.keys(IngredientListStatus);
-    public readonly IngredientListStatus = IngredientListStatus;
+    public readonly TYPES = Object.keys(IngredientListType);
+    public readonly ingredientListType = IngredientListType;
     public readonly filters = new FormGroup({
         search: new FormControl(),
-        statuses: new FormControl([]),
+        types: new FormControl([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[3]),
         sort_dir: new FormControl<SortDirection>('asc'),
@@ -94,7 +94,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
             distinctUntilChanged(),
             switchMap(([prev, curr]) => {
                 if (prev) {
-                    if (prev.search !== curr.search || xor(prev.statuses, curr.statuses).length > 0) {
+                    if (prev.search !== curr.search || xor(prev.types, curr.types).length > 0) {
                         if (curr.page !== 1) {
                             curr.page = 1;
                             this.paginator.pageIndex = 0;
@@ -117,8 +117,8 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
             if (search) {
                 filtersFn.push((list: IngredientList) => list.name?.toLowerCase().includes(search));
             }
-            if (filters?.statuses.length > 0) {
-                filtersFn.push((list: IngredientList) => filters.statuses.includes(list.status));
+            if (filters?.types.length > 0) {
+                filtersFn.push((list: IngredientList) => filters.types.includes(list.type));
             }
             if (filtersFn.length > 0) {
                 lists = lists.filter(list => filtersFn.every(fn => fn(list)));
@@ -135,7 +135,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
         .create(
             [
                 { queryKey: 'search' },
-                { queryKey: 'statuses', type: 'array' },
+                { queryKey: 'types', type: 'array' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
                 { queryKey: 'sort_dir' },

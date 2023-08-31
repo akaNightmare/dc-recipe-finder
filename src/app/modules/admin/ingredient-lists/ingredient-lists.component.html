@@ -9,18 +9,18 @@
         <!-- Actions -->
         <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
             <form class="flex items-center flex-auto" [formGroup]="filters">
-                <!-- Status -->
+                <!-- Types -->
                 <mat-form-field
                     [subscriptSizing]="'dynamic'"
                     class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-44 sm:ml-4"
                 >
                     <mat-select
                         multiple="true"
-                        placeholder="Filter by statuses"
-                        [formControlName]="'statuses'"
+                        placeholder="Filter by types"
+                        [formControlName]="'types'"
                     >
-                        <ng-container *ngFor="let status of STATUSES">
-                            <mat-option [value]="status">{{ status }}</mat-option>
+                        <ng-container *ngFor="let type of TYPES">
+                            <mat-option [value]="type">{{ type }}</mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
@@ -78,8 +78,8 @@
                         </td>
                     </ng-container>
 
-                    <!-- Status -->
-                    <ng-container matColumnDef="status">
+                    <!-- Type -->
+                    <ng-container matColumnDef="type">
                         <th
                             class="w-32 bg-gray-50 dark:bg-black dark:bg-opacity-5"
                             mat-header-cell
@@ -87,15 +87,15 @@
                             mat-sort-header
                             disableClear
                         >
-                            Status
+                            Type
                         </th>
                         <td class="truncate pr-6" mat-cell *matCellDef="let il">
                             <span
                                 class="rounded-full py-0.5 px-3 text-sm font-semibold"
-                                [ngClass]="{'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': il.status === IngredientListStatus.ALLOWED,
-                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': il.status === IngredientListStatus.BANNED}"
+                                [ngClass]="{'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': il.type === ingredientListType.ALLOWLIST,
+                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': il.type === ingredientListType.BANLIST}"
                             >
-                                {{il.status}}
+                                {{il.type}}
                             </span>
                         </td>
                     </ng-container>

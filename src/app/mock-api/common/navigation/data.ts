@@ -12,7 +12,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         id: 'ingredients',
         title: 'Ingredients',
         type: 'basic',
-        icon: 'heroicons_outline:chart-pie',
+        icon: 'heroicons_outline:puzzle-piece',
         link: '/ingredients',
     },
     {
@@ -49,7 +49,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         id: 'ingredients',
         title: 'Ingredients',
         type: 'basic',
-        icon: 'heroicons_outline:chart-pie',
+        icon: 'heroicons_outline:puzzle-piece',
         link: '/ingredients',
     },
     {
@@ -86,7 +86,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         id: 'ingredients',
         title: 'Ingredients',
         type: 'basic',
-        icon: 'heroicons_outline:chart-pie',
+        icon: 'heroicons_outline:puzzle-piece',
         link: '/ingredients',
     },
     {
@@ -123,7 +123,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         id: 'ingredients',
         title: 'Ingredients',
         type: 'basic',
-        icon: 'heroicons_outline:chart-pie',
+        icon: 'heroicons_outline:puzzle-piece',
         link: '/ingredients',
     },
     {

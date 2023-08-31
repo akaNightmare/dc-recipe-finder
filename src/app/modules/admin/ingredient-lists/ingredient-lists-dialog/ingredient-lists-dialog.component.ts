@@ -15,7 +15,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { combineLatest, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 
 import { IngredientListsFacade } from '../../../../../store/ingredient-lists';
-import { IngredientList, IngredientListStatus } from '../../../../../store/ingredient-lists/ingredient-lists.types';
+import { IngredientList, IngredientListType } from '../../../../../store/ingredient-lists/ingredient-lists.types';
 import { IngredientsFacade } from '../../../../../store/ingredients';
 import { Ingredient } from '../../../../../store/ingredients/ingredients.types';
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
@@ -55,7 +55,7 @@ export class IngredientListsDialogComponent implements OnInit {
     private readonly formBuilder = inject(FormBuilder);
 
     public readonly searchIngredientsCtrl = new FormControl('');
-    public readonly STATUSES = Object.keys(IngredientListStatus);
+    public readonly TYPES = Object.keys(IngredientListType);
 
     public readonly bilForm = this.formBuilder.group({
         name: [
@@ -65,7 +65,7 @@ export class IngredientListsDialogComponent implements OnInit {
                 asyncValidators: [this.ilFacade.createNameValidator()],
             },
         ],
-        status: [IngredientListStatus.ALLOWED, [Validators.required]],
+        type: [IngredientListType.ALLOWLIST, [Validators.required]],
         ingredients: new FormControl<string[]>([], { validators: [Validators.required] }),
     });
 
