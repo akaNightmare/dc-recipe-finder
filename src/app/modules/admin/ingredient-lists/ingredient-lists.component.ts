@@ -163,9 +163,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
             this.filters.patchValue({ sort_dir: sort.direction, sort_by: sort.active });
         });
 
-        // FIXME: for some reason startWith is not working with pairwise in my case
-        //  so let's do some hacky stuff
-        this.filters.patchValue(this.filters.value);
+        setTimeout(() => this.filters.patchValue(this.filters.value), 0);
     }
 
     public openBannedIngredientListDialog(ingredientList?: IngredientList): void {

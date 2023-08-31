@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,6 +42,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         NgClass,
         ReplacePipe,
         MatDialogModule,
+        DecimalPipe,
     ],
 })
 export class RecipesGeneratorDialogComponent implements OnInit {
@@ -81,19 +82,26 @@ export class RecipesGeneratorDialogComponent implements OnInit {
 
     public readonly filteredIngredients$ = combineLatest([
         this.form.get('banned_ingredient_lists').valueChanges.pipe(startWith([])),
+        this.form.get('allowed_ingredient_lists').valueChanges.pipe(startWith([])),
         this.ilFacade.ingredientList$,
         this.ingredientFacade.ingredients$,
     ]).pipe(
-        map(([bannedIngredientListNames, bannedIngredientList, ingredients]) => {
-            const bannedIngredients = new Set();
-            for (const list of bannedIngredientList) {
+        map(([bannedIngredientListNames, allowedIngredientListNames, ingredientList, ingredients]) => {
+            const bannedIngredients = new Set<string>();
+            const allowedIngredients = new Set<string>();
+            for (const list of ingredientList) {
                 if (bannedIngredientListNames.includes(list.name)) {
                     for (const ingredient of list.ingredients) {
                         bannedIngredients.add(ingredient);
                     }
                 }
+                if (allowedIngredientListNames.includes(list.name)) {
+                    for (const ingredient of list.ingredients) {
+                        allowedIngredients.add(ingredient);
+                    }
+                }
             }
-            return ingredients.filter(({ name }) => !bannedIngredients.has(name));
+            return ingredients.filter(({ name }) => !bannedIngredients.has(name) && allowedIngredients.has(name));
         }),
     );
 
@@ -105,12 +113,13 @@ export class RecipesGeneratorDialogComponent implements OnInit {
             if (!baseIngredients.length || !filteredIngredients.length) {
                 return 0;
             }
-            console.log(filteredIngredients.length, filteredIngredients.length - baseIngredients.length);
-            return combination(filteredIngredients.length, 6 - baseIngredients.length);
+            const count = combination(filteredIngredients.length - baseIngredients.length, 6 - baseIngredients.length)
+            return isFinite(count) ? Math.floor(count) : count;
         }),
     );
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 
     /**
      * Track by function for ngFor loops
