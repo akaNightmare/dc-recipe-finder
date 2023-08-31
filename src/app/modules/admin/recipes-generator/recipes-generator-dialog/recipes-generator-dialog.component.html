@@ -9,23 +9,28 @@
 
     <!-- Compose form -->
     <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="form">
-        <div class="flex">
+        <div class="flex items-center">
             <mat-form-field class="flex-auto">
                 <mat-label>Name</mat-label>
                 <input matInput [formControlName]="'name'" />
                 <mat-error *ngIf="form.get('name').hasError('required')">
                     Name is required
                 </mat-error>
-                <mat-error *ngIf="form.get('name').hasError('nameAlreadyExists')">
-                    List with such name already exists
-                </mat-error>
             </mat-form-field>
+            <div class="flex-auto ml-4 text-end">
+                <span class="text-2xl font-bold tracking-tight leading-none">{{ combinationsCount$ | async }}</span> recipes
+            </div>
         </div>
 
         <div class="flex">
             <mat-form-field class="flex-auto">
-                <mat-label>Ingredients</mat-label>
+                <mat-label>Banned ingredient lists</mat-label>
                 <mat-select multiple="true" [formControlName]="'banned_ingredient_lists'">
+                    <mat-select-trigger>
+                        <span *ngIf="form.get('banned_ingredient_lists').valueChanges | async; let lists">
+                            {{ lists.join(', ') }}
+                        </span>
+                    </mat-select-trigger>
                     <mat-option>
                         <ngx-mat-select-search
                                 noEntriesFoundLabel="No matching lists found"
@@ -36,15 +41,84 @@
                                 [formControl]="searchIngredientsCtrl"
                         ></ngx-mat-select-search>
                     </mat-option>
-<!--                    <mat-option-->
-<!--                            *ngFor="let list of bannedIngredientLists$ | async; trackBy: trackByFn"-->
-<!--                            [value]="list.name"-->
-<!--                    >-->
-<!--                        <a>{{list.name}}</a>-->
-<!--                    </mat-option>-->
+                    <mat-option
+                            *ngFor="let list of bannedIngredientLists$ | async; trackBy: trackByFn"
+                            [value]="list.name"
+                    >
+                        {{list.name}} <small>({{ list.ingredients.length }} ingredients)</small>
+                    </mat-option>
                 </mat-select>
                 <mat-error *ngIf="form.get('banned_ingredient_lists').hasError('required')">
                     Banned ingredient lists are required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Allowed ingredient lists</mat-label>
+                <mat-select multiple="true" [formControlName]="'allowed_ingredient_lists'">
+                    <mat-select-trigger>
+                        <span *ngIf="form.get('allowed_ingredient_lists').valueChanges | async; let lists">
+                            {{ lists.join(', ') }}
+                        </span>
+                    </mat-select-trigger>
+                    <mat-option>
+                        <ngx-mat-select-search
+                                noEntriesFoundLabel="No matching lists found"
+                                placeholderLabel="Type to search"
+                                [clearSearchInput]="true"
+                                [enableClearOnEscapePressed]="true"
+                                [disableScrollToActiveOnOptionsChanged]="true"
+                                [formControl]="searchIngredientsCtrl"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option
+                            *ngFor="let list of allowedIngredientLists$ | async; trackBy: trackByFn"
+                            [value]="list.name"
+                    >
+                        {{list.name}} <small>({{ list.ingredients.length }} ingredients)</small>
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('allowed_ingredient_lists').hasError('required')">
+                    Allowed ingredient lists are required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex">
+            <mat-form-field class="flex-auto">
+                <mat-label>Base ingredients</mat-label>
+                <mat-select multiple="true" [formControlName]="'base_ingredients'">
+                    <mat-option>
+                        <ngx-mat-select-search
+                                noEntriesFoundLabel="No matching lists found"
+                                placeholderLabel="Type to search"
+                                [clearSearchInput]="true"
+                                [enableClearOnEscapePressed]="true"
+                                [disableScrollToActiveOnOptionsChanged]="true"
+                                [formControl]="searchIngredientsCtrl"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option
+                            *ngFor="let ingredient of filteredIngredients$ | async; trackBy: trackByFn"
+                            [value]="ingredient.name"
+                    >
+                        <div class="flex items-center">
+                            <img
+                                class="w-8 h-8 rounded"
+                                [src]="'assets/images/ingredients/' + ingredient.name + '.png'"
+                                [alt]="ingredient.name"
+                            />
+                            <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('base_ingredients').hasError('required')">
+                    Base ingredients are required
+                </mat-error>
+                <mat-error *ngIf="form.get('base_ingredients').hasError('maxlength')">
+                    Maximum 5 base ingredients are allowed
                 </mat-error>
             </mat-form-field>
         </div>
@@ -64,7 +138,7 @@
                         [disabled]="form.disabled"
                         [color]="'primary'"
                 >
-                    <span *ngIf="!form.disabled"> Save </span>
+                    <span *ngIf="!form.disabled"> Generate </span>
                     <mat-progress-spinner
                             *ngIf="form.disabled"
                             [diameter]="24"

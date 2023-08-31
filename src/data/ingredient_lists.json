@@ -1,6 +1,7 @@
 [
   {
     "name": "Activated Totems",
+    "status": "BANNED",
     "ingredients": [
       "Activated Totem 1",
       "Activated Totem 2",
@@ -14,6 +15,7 @@
   },
   {
     "name": "Unactivated Totems",
+    "status": "BANNED",
     "ingredients": [
       "Unactivated Totem 1",
       "Unactivated Totem 2",
@@ -27,6 +29,7 @@
   },
   {
     "name": "Cursed Event Heroes",
+    "status": "BANNED",
     "ingredients": [
       "Cow Cursed King",
       "Cursed Tin Knight",
@@ -40,6 +43,7 @@
   },
   {
     "name": "Expendables",
+    "status": "BANNED",
     "ingredients": [
       "Cyndor's Gift",
       "Mystery of Infinity",
@@ -51,6 +55,7 @@
   },
   {
     "name": "Mythical",
+    "status": "BANNED",
     "ingredients": [
       "Mythical Armor lvl 1",
       "Mythical Armor lvl 2",
@@ -108,6 +113,7 @@
   },
   {
     "name": "Event Heroes",
+    "status": "BANNED",
     "ingredients": [
       "Cow King",
       "Granados, the Lion King",
@@ -121,6 +127,7 @@
   },
   {
     "name": "Vegetables",
+    "status": "BANNED",
     "ingredients": [
       "Cabbage",
       "Carrot",
@@ -133,6 +140,7 @@
   },
   {
     "name": "Spheres",
+    "status": "BANNED",
     "ingredients": [
       "Sphere of Fire",
       "Sphere of Life",
@@ -143,6 +151,7 @@
   },
   {
     "name": "Grand Spheres",
+    "status": "BANNED",
     "ingredients": [
       "Grand Sphere of Earth",
       "Grand Sphere of Fire",
@@ -157,6 +166,7 @@
   },
   {
     "name": "Essence of Luck",
+    "status": "BANNED",
     "ingredients": [
       "Essence of Luck",
       "Essence of Luck2",

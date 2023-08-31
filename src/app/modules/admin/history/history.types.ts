@@ -1,7 +1,7 @@
-import { BannedIngredientList } from '../../../../store/banned-ingredient-lists/banned-ingredient-lists.types';
+import { IngredientList } from '../../../../store/ingredient-lists/ingredient-lists.types';
 import { Recipe } from '../../../../store/recipes/recipes.types';
 
 export interface History {
     recipes: Recipe[];
-    banned_ingredient_lists: BannedIngredientList[];
+    ingredient_lists: IngredientList[];
 }

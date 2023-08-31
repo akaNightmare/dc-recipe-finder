@@ -12,7 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { forkJoin, map, take } from 'rxjs';
 
-import { BannedIngredientListsFacade } from '../../../../store/banned-ingredient-lists';
+import { IngredientListsFacade } from '../../../../store/ingredient-lists';
 import { RecipesFacade } from '../../../../store/recipes';
 import { RecipeStatus } from '../../../../store/recipes/recipes.types';
 import { DownloadService } from '../../../core/download/download.service';
@@ -43,7 +43,7 @@ import { History } from './history.types';
 export class HistoryComponent {
     private readonly downloadService = inject(DownloadService);
     private readonly recipesFacade = inject(RecipesFacade);
-    private readonly bilFacade = inject(BannedIngredientListsFacade);
+    private readonly ilFacade = inject(IngredientListsFacade);
     private readonly snackBar = inject(MatSnackBar);
     private readonly defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 3500,
@@ -71,9 +71,9 @@ export class HistoryComponent {
     public exportHistory(): void {
         forkJoin([
             this.recipesFacade.customRecipes$.pipe(take(1)),
-            this.bilFacade.customBannedIngredientList$.pipe(take(1)),
-        ]).subscribe(([recipes, banned_ingredient_lists]) => {
-            this.downloadService.downloadJSON({ recipes, banned_ingredient_lists }, `history-${Date.now()}.json`);
+            this.ilFacade.customIngredientList$.pipe(take(1)),
+        ]).subscribe(([recipes, ingredient_lists]) => {
+            this.downloadService.downloadJSON({ recipes, ingredient_lists }, `history-${Date.now()}.json`);
         });
     }
 
@@ -89,7 +89,7 @@ export class HistoryComponent {
         const snackBar = this.snackBar;
         const defaultSnackBarConfig = this.defaultSnackBarConfig;
         const recipesFacade = this.recipesFacade;
-        const bilFacade = this.bilFacade;
+        const ilFacade = this.ilFacade;
 
         reader.onload = function (event) {
             let history: History;
@@ -100,13 +100,12 @@ export class HistoryComponent {
                 return;
             }
             recipesFacade.addRecipes(history.recipes);
-            bilFacade.addBannedIngredientLists(history.banned_ingredient_lists);
+            ilFacade.addIngredientLists(history.ingredient_lists);
             snackBar.open(
                 'Imported ' +
-                    [
-                        `recipes: ${history.recipes.length}`,
-                        `banned ingredient lists: ${history.banned_ingredient_lists.length}`,
-                    ].join(', '),
+                    [`recipes: ${history.recipes.length}`, `ingredient lists: ${history.ingredient_lists.length}`].join(
+                        ', ',
+                    ),
                 undefined,
                 defaultSnackBarConfig,
             );

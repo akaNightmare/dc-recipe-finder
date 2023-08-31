@@ -4,11 +4,27 @@
         class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
     >
         <!-- Title -->
-        <div class="text-4xl font-extrabold tracking-tight">Banned ingredient lists</div>
+        <div class="text-4xl font-extrabold tracking-tight">Ingredient lists</div>
 
         <!-- Actions -->
         <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
             <form class="flex items-center flex-auto" [formGroup]="filters">
+                <!-- Status -->
+                <mat-form-field
+                    [subscriptSizing]="'dynamic'"
+                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-44 sm:ml-4"
+                >
+                    <mat-select
+                        multiple="true"
+                        placeholder="Filter by statuses"
+                        [formControlName]="'statuses'"
+                    >
+                        <ng-container *ngFor="let status of STATUSES">
+                            <mat-option [value]="status">{{ status }}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+
                 <!-- Search -->
                 <mat-form-field
                         [subscriptSizing]="'dynamic'"
@@ -23,7 +39,7 @@
                     />
                 </mat-form-field>
 
-                <!-- Add banned ingredient list button -->
+                <!-- Add ingredient list button -->
                 <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openBannedIngredientListDialog()">
                     <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
                     <span class="ml-2 mr-1">Add</span>
@@ -59,6 +75,28 @@
                         </th>
                         <td class="px-4" mat-cell *matCellDef="let bil">
                             <span class="truncate">{{bil.name}}</span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Status -->
+                    <ng-container matColumnDef="status">
+                        <th
+                            class="w-32 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            disableClear
+                        >
+                            Status
+                        </th>
+                        <td class="truncate pr-6" mat-cell *matCellDef="let il">
+                            <span
+                                class="rounded-full py-0.5 px-3 text-sm font-semibold"
+                                [ngClass]="{'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': il.status === IngredientListStatus.ALLOWED,
+                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': il.status === IngredientListStatus.BANNED}"
+                            >
+                                {{il.status}}
+                            </span>
                         </td>
                     </ng-container>
 

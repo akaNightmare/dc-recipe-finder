@@ -23,11 +23,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link: '/history',
     },
     {
-        id: 'banned-ingredient-lists',
-        title: 'Banned ingredient lists',
+        id: 'ingredient-lists',
+        title: 'Ingredient lists',
         type: 'basic',
-        icon: 'heroicons_outline:bars-arrow-down',
-        link: '/banned-ingredient-lists',
+        icon: 'heroicons_outline:queue-list',
+        link: '/ingredient-lists',
     },
     {
         id: 'recipes-generator',
@@ -60,11 +60,11 @@ export const compactNavigation: FuseNavigationItem[] = [
         link: '/history',
     },
     {
-        id: 'banned-ingredient-lists',
-        title: 'Banned ingredient lists',
+        id: 'ingredient-lists',
+        title: 'Ingredient lists',
         type: 'basic',
-        icon: 'heroicons_outline:bars-arrow-down',
-        link: '/banned-ingredient-lists',
+        icon: 'heroicons_outline:queue-list',
+        link: '/ingredient-lists',
     },
     {
         id: 'recipes-generator',
@@ -97,11 +97,11 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link: '/history',
     },
     {
-        id: 'banned-ingredient-lists',
-        title: 'Banned ingredient lists',
+        id: 'ingredient-lists',
+        title: 'Ingredient lists',
         type: 'basic',
-        icon: 'heroicons_outline:bars-arrow-down',
-        link: '/banned-ingredient-lists',
+        icon: 'heroicons_outline:queue-list',
+        link: '/ingredient-lists',
     },
     {
         id: 'recipes-generator',
@@ -134,11 +134,11 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         link: '/history',
     },
     {
-        id: 'banned-ingredient-lists',
-        title: 'Banned ingredient lists',
+        id: 'ingredient-lists',
+        title: 'Ingredient lists',
         type: 'basic',
-        icon: 'heroicons_outline:bars-arrow-down',
-        link: '/banned-ingredient-lists',
+        icon: 'heroicons_outline:queue-list',
+        link: '/ingredient-lists',
     },
     {
         id: 'recipes-generator',

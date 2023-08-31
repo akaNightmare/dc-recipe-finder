@@ -233,9 +233,9 @@
                         <td class="truncate pr-6" mat-cell *matCellDef="let recipe">
                             <span
                                 class="rounded-full py-0.5 px-3 text-sm font-semibold"
-                                [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === 'UNFULFILLED',
-                                                'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': recipe.status === 'SUCCESS',
-                                                'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': recipe.status === 'FAILED'}"
+                                [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === RecipeStatus.UNFULFILLED,
+                                                'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': recipe.status === RecipeStatus.SUCCESS,
+                                                'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': recipe.status === RecipeStatus.FAILED}"
                             >
                                 {{recipe.status}}
                             </span>

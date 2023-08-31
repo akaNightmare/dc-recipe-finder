@@ -1,10 +1,10 @@
-import { BannedIngredientList } from '../store/banned-ingredient-lists/banned-ingredient-lists.types';
+import { IngredientList } from '../store/ingredient-lists/ingredient-lists.types';
 import { Ingredient } from '../store/ingredients/ingredients.types';
 import { Recipe } from '../store/recipes/recipes.types';
-import bannedIngredientListsData from './banned_ingredient_lists.json';
+import ingredientListsData from './ingredient_lists.json';
 import ingredientsData from './ingredients.json';
 import recipesData from './recipes.json';
 
 export const ingredients = ingredientsData as Ingredient[];
 export const recipes = recipesData as Recipe[];
-export const bannedIngredientLists = bannedIngredientListsData as BannedIngredientList[];
+export const ingredientLists = ingredientListsData as IngredientList[];

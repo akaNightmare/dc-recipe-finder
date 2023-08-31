@@ -3,19 +3,19 @@ import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialog } from '@angular/material/dialog';
+
 import { RecipesGeneratorDialogComponent } from './recipes-generator-dialog/recipes-generator-dialog.component';
 
 @Component({
     selector: 'ingredients',
     standalone: true,
     templateUrl: './recipes-generator.component.html',
-    styleUrls: ['./recipes-generator.component.scss'],
     encapsulation: ViewEncapsulation.None,
     imports: [
         NgForOf,

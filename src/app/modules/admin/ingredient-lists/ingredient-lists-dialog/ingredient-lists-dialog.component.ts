@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, LowerCasePipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,16 +14,15 @@ import { cloneDeep } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { combineLatest, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 
-import { BannedIngredientListsFacade } from '../../../../../store/banned-ingredient-lists';
-import { BannedIngredientList } from '../../../../../store/banned-ingredient-lists/banned-ingredient-lists.types';
+import { IngredientListsFacade } from '../../../../../store/ingredient-lists';
+import { IngredientList, IngredientListStatus } from '../../../../../store/ingredient-lists/ingredient-lists.types';
 import { IngredientsFacade } from '../../../../../store/ingredients';
 import { Ingredient } from '../../../../../store/ingredients/ingredients.types';
 import { ReplacePipe } from '../../../../pipes/replace.pipe';
 
 @Component({
-    selector: 'banned-ingredient-lists-dialog',
-    templateUrl: './banned-ingredient-lists-dialog.component.html',
-    styleUrls: ['./banned-ingredient-lists-dialog.component.scss'],
+    selector: 'ingredient-lists-dialog',
+    templateUrl: './ingredient-lists-dialog.component.html',
     standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -44,26 +43,29 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         NgClass,
         ReplacePipe,
         MatDialogModule,
+        LowerCasePipe,
     ],
 })
-export class BannedIngredientListsDialogComponent implements OnInit {
-    public readonly data: { banned_ingredient_list?: BannedIngredientList } = inject(MAT_DIALOG_DATA);
+export class IngredientListsDialogComponent implements OnInit {
+    public readonly data: { ingredient_list?: IngredientList } = inject(MAT_DIALOG_DATA);
 
-    private readonly bilFacade = inject(BannedIngredientListsFacade);
+    private readonly ilFacade = inject(IngredientListsFacade);
     private readonly ingredientFacade = inject(IngredientsFacade);
-    private readonly matDialogRef = inject(MatDialogRef<BannedIngredientListsDialogComponent>);
+    private readonly matDialogRef = inject(MatDialogRef<IngredientListsDialogComponent>);
     private readonly formBuilder = inject(FormBuilder);
 
     public readonly searchIngredientsCtrl = new FormControl('');
+    public readonly STATUSES = Object.keys(IngredientListStatus);
 
     public readonly bilForm = this.formBuilder.group({
         name: [
             '',
             {
                 validators: [Validators.required],
-                asyncValidators: [this.bilFacade.createNameValidator()],
+                asyncValidators: [this.ilFacade.createNameValidator()],
             },
         ],
+        status: [IngredientListStatus.ALLOWED, [Validators.required]],
         ingredients: new FormControl<string[]>([], { validators: [Validators.required] }),
     });
 
@@ -95,8 +97,8 @@ export class BannedIngredientListsDialogComponent implements OnInit {
     );
 
     ngOnInit(): void {
-        if (this.data.banned_ingredient_list) {
-            this.bilForm.patchValue(this.data.banned_ingredient_list);
+        if (this.data.ingredient_list) {
+            this.bilForm.patchValue(this.data.ingredient_list);
         }
     }
 
@@ -115,15 +117,15 @@ export class BannedIngredientListsDialogComponent implements OnInit {
     }
 
     /**
-     * Save the ingredient
+     * Save the ingredient list
      */
     save(): void {
         if (this.bilForm.invalid) {
             return;
         }
 
-        const bannedIngredientList = cloneDeep(this.bilForm.value) as BannedIngredientList;
-        this.bilFacade.addBannedIngredientList(bannedIngredientList);
+        const bannedIngredientList = cloneDeep(this.bilForm.value) as IngredientList;
+        this.ilFacade.addIngredientList(bannedIngredientList);
         this.matDialogRef.close(bannedIngredientList);
     }
 }

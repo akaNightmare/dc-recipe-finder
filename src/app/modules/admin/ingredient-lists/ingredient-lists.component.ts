@@ -1,19 +1,22 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, DatePipe, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { AfterViewInit, Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
-import { orderBy } from 'lodash-es';
+import orderBy from 'lodash-es/orderBy';
+import xor from 'lodash-es/xor';
 import {
     combineLatest,
     distinctUntilChanged,
@@ -28,20 +31,19 @@ import {
     timer,
 } from 'rxjs';
 
-import { BannedIngredientListsFacade } from '../../../../store/banned-ingredient-lists';
-import { BannedIngredientList } from '../../../../store/banned-ingredient-lists/banned-ingredient-lists.types';
-import { Recipe } from '../../../../store/recipes/recipes.types';
+import { IngredientListsFacade } from '../../../../store/ingredient-lists';
+import { IngredientList, IngredientListStatus } from '../../../../store/ingredient-lists/ingredient-lists.types';
 import {
     ConfirmDialogComponent,
     ConfirmDialogModel,
 } from '../../../components/confirm-dialog/confirm-dialog.component';
 import { SortByPipe } from '../../../pipes/sort-by.pipe';
-import { BannedIngredientListsDialogComponent } from './banned-ingredient-lists-dialog/banned-ingredient-lists-dialog.component';
+import { IngredientListsDialogComponent } from './ingredient-lists-dialog/ingredient-lists-dialog.component';
 
 @Component({
-    selector: 'banned-ingredient-lists',
+    selector: 'ingredient-lists',
     standalone: true,
-    templateUrl: './banned-ingredient-lists.component.html',
+    templateUrl: './ingredient-lists.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
         AsyncPipe,
@@ -60,18 +62,24 @@ import { BannedIngredientListsDialogComponent } from './banned-ingredient-lists-
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
+        MatOptionModule,
+        MatSelectModule,
+        NgClass,
     ],
 })
-export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit {
-    private readonly bilFacade = inject(BannedIngredientListsFacade);
+export class IngredientListsComponent implements OnDestroy, AfterViewInit {
+    private readonly ilFacade = inject(IngredientListsFacade);
     private readonly matDialog = inject(MatDialog);
     private readonly unsubscribe$ = new Subject<void>();
     private readonly queryFactory = inject(BindQueryParamsFactory);
 
-    public readonly displayedColumns = ['name', 'ingredients', 'actions'];
+    public readonly displayedColumns = ['name', 'status', 'ingredients', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
+    public readonly STATUSES = Object.keys(IngredientListStatus);
+    public readonly IngredientListStatus = IngredientListStatus;
     public readonly filters = new FormGroup({
         search: new FormControl(),
+        statuses: new FormControl([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[3]),
         sort_dir: new FormControl<SortDirection>('asc'),
@@ -79,14 +87,14 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
     });
 
     public readonly filteredBannedIngredientLists$ = combineLatest([
-        this.bilFacade.bannedIngredientList$,
+        this.ilFacade.ingredientList$,
         this.filters.valueChanges.pipe(
             startWith(undefined),
             pairwise(),
             distinctUntilChanged(),
             switchMap(([prev, curr]) => {
                 if (prev) {
-                    if (prev.search !== curr.search) {
+                    if (prev.search !== curr.search || xor(prev.statuses, curr.statuses).length > 0) {
                         if (curr.page !== 1) {
                             curr.page = 1;
                             this.paginator.pageIndex = 0;
@@ -107,12 +115,15 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
             const filtersFn = [];
             const search = filters?.search?.trim().toLowerCase();
             if (search) {
-                filtersFn.push((recipe: Recipe) => recipe.name?.toLowerCase().includes(search));
+                filtersFn.push((list: IngredientList) => list.name?.toLowerCase().includes(search));
+            }
+            if (filters?.statuses.length > 0) {
+                filtersFn.push((list: IngredientList) => filters.statuses.includes(list.status));
             }
             if (filtersFn.length > 0) {
-                lists = lists.filter(recipe => filtersFn.every(fn => fn(recipe)));
+                lists = lists.filter(list => filtersFn.every(fn => fn(list)));
             }
-            if (filters.sort_dir) {
+            if (filters?.sort_dir) {
                 lists = orderBy(lists, filters.sort_by, filters.sort_dir);
             }
             this.paginator.length = lists.length;
@@ -124,6 +135,7 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
         .create(
             [
                 { queryKey: 'search' },
+                { queryKey: 'statuses', type: 'array' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
                 { queryKey: 'sort_dir' },
@@ -156,12 +168,12 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
         this.filters.patchValue(this.filters.value);
     }
 
-    public openBannedIngredientListDialog(bannedIngredientList?: BannedIngredientList): void {
+    public openBannedIngredientListDialog(ingredientList?: IngredientList): void {
         this.matDialog
-            .open(BannedIngredientListsDialogComponent, {
+            .open(IngredientListsDialogComponent, {
                 disableClose: true,
                 maxHeight: '80vh',
-                data: { banned_ingredient_list: bannedIngredientList },
+                data: { ingredient_list: ingredientList },
             })
             .afterClosed()
             .subscribe(result => {
@@ -175,7 +187,7 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
             });
     }
 
-    public deleteBannedIngredientList(bannedIngredientList: BannedIngredientList) {
+    public deleteBannedIngredientList(bannedIngredientList: IngredientList) {
         this.matDialog
             .open(ConfirmDialogComponent, {
                 data: new ConfirmDialogModel(
@@ -186,7 +198,7 @@ export class BannedIngredientListsComponent implements OnDestroy, AfterViewInit 
             .afterClosed()
             .pipe(filter(confirmed => confirmed === true))
             .subscribe(() => {
-                this.bilFacade.removeBannedIngredientList(bannedIngredientList);
+                this.ilFacade.removeIngredientList(bannedIngredientList);
             });
     }
 }
