@@ -4,6 +4,7 @@ import { ingredientLists } from '../../data';
 import { AppState } from '../index';
 import { IngredientListsState } from './ingredient-lists.state';
 import { IngredientList } from './ingredient-lists.types';
+import xor from 'lodash-es/xor';
 
 export const selectIngredientListFeature: MemoizedSelector<AppState, IngredientListsState> =
     createFeatureSelector<IngredientListsState>('ingredient_lists');
@@ -15,5 +16,5 @@ export const selectIngredientLists: MemoizedSelector<AppState, IngredientList[]>
 
 export const selectCustomIngredientLists: MemoizedSelector<AppState, IngredientList[]> = createSelector(
     selectIngredientLists,
-    (allBil: IngredientList[]): IngredientList[] => allBil.filter(ab => !ingredientLists.some(b => b.name === ab.name)),
+    (allBil: IngredientList[]): IngredientList[] => allBil.filter(ab => !ingredientLists.some(b => b.name === ab.name && xor(b.ingredients, ab.ingredients).length === 0)),
 );
