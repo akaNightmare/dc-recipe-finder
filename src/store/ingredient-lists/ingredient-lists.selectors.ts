@@ -16,8 +16,8 @@ export const selectIngredientLists: MemoizedSelector<AppState, IngredientList[]>
 
 export const selectCustomIngredientLists: MemoizedSelector<AppState, IngredientList[]> = createSelector(
     selectIngredientLists,
-    (allBil: IngredientList[]): IngredientList[] =>
-        allBil.filter(
+    (il: IngredientList[]): IngredientList[] =>
+        il.filter(
             ab =>
                 !ingredientLists.some(
                     b => b.name === ab.name && b.type === ab.type && xor(b.ingredients, ab.ingredients).length === 0,
