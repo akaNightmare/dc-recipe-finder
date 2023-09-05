@@ -69,6 +69,21 @@
         "name": "Assault Armor lvl 3"
     },
     {
+        "name": "Axe lvl 1"
+    },
+    {
+        "name": "Axe lvl 2"
+    },
+    {
+        "name": "Axe lvl 3"
+    },
+    {
+        "name": "Axe lvl 4"
+    },
+    {
+        "name": "Axe lvl 5"
+    },
+    {
         "name": "Banner"
     },
     {
@@ -151,6 +166,24 @@
     },
     {
         "name": "Book of the Dead"
+    },
+    {
+        "name": "Bow lvl 1"
+    },
+    {
+        "name": "Bow lvl 2"
+    },
+    {
+        "name": "Bow lvl 3"
+    },
+    {
+        "name": "Bow lvl 4"
+    },
+    {
+        "name": "Bow lvl 5"
+    },
+    {
+        "name": "Bow lvl 6"
     },
     {
         "name": "Branches"
@@ -1519,5 +1552,14 @@
     },
     {
         "name": "Zucchini"
+    },
+    {
+        "name": "Сrossbow lvl 1"
+    },
+    {
+        "name": "Сrossbow lvl 3"
+    },
+    {
+        "name": "Сrossbow lvl 5"
     }
 ]
