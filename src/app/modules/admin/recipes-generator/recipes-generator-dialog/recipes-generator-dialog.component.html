@@ -91,15 +91,12 @@
                 <mat-label>Base ingredients</mat-label>
                 <mat-select multiple="true" [formControlName]="'base_ingredients'">
                     <mat-select-trigger>
-                        <div
-                            class="flex items-center overflow-x-auto"
-                            *ngIf="form.get('base_ingredients').value; let imageNames"
-                        >
+                        <div class="flex items-center overflow-x-auto">
                             <img
                                 class="w-8 h-8 rounded"
                                 [class.mr-1]="!last"
                                 [matTooltip]="imageName"
-                                *ngFor="let imageName of imageNames; let last = last"
+                                *ngFor="let imageName of form.get('base_ingredients').value; let last = last"
                                 [alt]="imageName"
                                 [src]="'assets/images/ingredients/' + imageName + '.png'"
                             />

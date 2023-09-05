@@ -7659,5 +7659,1057 @@
         ],
         "added_at": 1693260069514,
         "name": "Assault Armor lvl 3"
+    },
+    {
+        "name": "Dragon Weapon lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Anvil",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Blade",
+                "count": 25
+            },
+            {
+                "name": "Mithril Ingot",
+                "count": 25
+            },
+            {
+                "name": "Edge",
+                "count": 25
+            },
+            {
+                "name": "Spear lvl 3",
+                "count": 10
+            }
+        ],
+        "added_at": 1693874294309
+    },
+    {
+        "name": "Dragon Weapon lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Anvil",
+                "count": 25
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 25
+            },
+            {
+                "name": "Blade",
+                "count": 35
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 25
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 25
+            },
+            {
+                "name": "Dragon Weapon lvl 3",
+                "count": 10
+            }
+        ],
+        "added_at": 1693875028602
+    },
+    {
+        "name": "Dagger lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 3
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 1
+            },
+            {
+                "name": "Sloppy Spellscroll",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bronze Ingot",
+                "count": 1
+            }
+        ],
+        "added_at": 1693875306289
+    },
+    {
+        "name": "Dagger lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 5
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 2
+            },
+            {
+                "name": "Sloppy Spellscroll",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Dagger lvl 1",
+                "count": 3
+            }
+        ],
+        "added_at": 1693875354957
+    },
+    {
+        "name": "Dagger lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 10
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Dagger lvl 2",
+                "count": 5
+            }
+        ],
+        "added_at": 1693875411448
+    },
+    {
+        "name": "Dagger lvl 4",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 25
+            },
+            {
+                "name": "Mithril Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 10
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 5
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Dagger lvl 3",
+                "count": 5
+            }
+        ],
+        "added_at": 1693875462763
+    },
+    {
+        "name": "Dagger lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Dagger lvl 4",
+                "count": 5
+            }
+        ],
+        "added_at": 1693875519857
+    },
+    {
+        "name": "Dagger lvl 6",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Fire",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Dagger lvl 5",
+                "count": 5
+            }
+        ],
+        "added_at": 1693875572051
+    },
+    {
+        "name": "Spear lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 3
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 1
+            },
+            {
+                "name": "Old Trade Document",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Staff",
+                "count": 1
+            }
+        ],
+        "added_at": 1693877987340
+    },
+    {
+        "name": "Laser Pistol lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Plasma Rifle lvl 1",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Power Unit",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879186716
+    },
+    {
+        "name": "Laser Pistol lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Device",
+                "count": 3
+            },
+            {
+                "name": "Sphere of Water",
+                "count": 10
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 2
+            },
+            {
+                "name": "Anvil",
+                "count": 5
+            },
+            {
+                "name": "Radiant Sapphire",
+                "count": 10
+            }
+        ],
+        "added_at": 1693879245710
+    },
+    {
+        "name": "Laser Pistol lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Laser Pistol lvl 1",
+                "count": 10
+            },
+            {
+                "name": "Sphere of Fire",
+                "count": 20
+            },
+            {
+                "name": "Star Ruby",
+                "count": 20
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879303758
+    },
+    {
+        "name": "Laser Pistol lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Plasma Rifle lvl 2",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Power Unit",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879331978
+    },
+    {
+        "name": "Laser Pistol lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Plasma Rifle lvl 3",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Power Unit",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879361236
+    },
+    {
+        "name": "Laser Pistol lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Laser Pistol lvl 2",
+                "count": 5
+            },
+            {
+                "name": "Sphere of Earth",
+                "count": 30
+            },
+            {
+                "name": "Regular Topaz",
+                "count": 30
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879407809
+    },
+    {
+        "name": "Plasma Rifle lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Laser Pistol lvl 1",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Seal",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879498607
+    },
+    {
+        "name": "Plasma Rifle lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Power Unit",
+                "count": 3
+            },
+            {
+                "name": "Sphere of Water",
+                "count": 10
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 2
+            },
+            {
+                "name": "Anvil",
+                "count": 5
+            },
+            {
+                "name": "Radiant Sapphire",
+                "count": 10
+            }
+        ],
+        "added_at": 1693879543280
+    },
+    {
+        "name": "Plasma Rifle lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Laser Pistol lvl 2",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Seal",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879568688
+    },
+    {
+        "name": "Plasma Rifle lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Plasma Rifle lvl 1",
+                "count": 10
+            },
+            {
+                "name": "Sphere of Fire",
+                "count": 20
+            },
+            {
+                "name": "Star Ruby",
+                "count": 20
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879604656
+    },
+    {
+        "name": "Plasma Rifle lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Laser Pistol lvl 3",
+                "count": 1
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            },
+            {
+                "name": "Seal",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879630128
+    },
+    {
+        "name": "Plasma Rifle lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Plasma Rifle lvl 2",
+                "count": 5
+            },
+            {
+                "name": "Sphere of Earth",
+                "count": 30
+            },
+            {
+                "name": "Regular Topaz",
+                "count": 30
+            },
+            {
+                "name": "Hologram",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879661614
+    },
+    {
+        "name": "Sword lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 3
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 1
+            },
+            {
+                "name": "Old Trade Document",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bronze Ingot",
+                "count": 1
+            }
+        ],
+        "added_at": 1693879777332
+    },
+    {
+        "name": "Sword lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 5
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 2
+            },
+            {
+                "name": "Old Trade Document",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Sword lvl 1",
+                "count": 3
+            }
+        ],
+        "added_at": 1693879823247
+    },
+    {
+        "name": "Sword lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 10
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Sword lvl 2",
+                "count": 5
+            }
+        ],
+        "added_at": 1693879880639
+    },
+    {
+        "name": "Sword lvl 4",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 25
+            },
+            {
+                "name": "Mithril Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 10
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 5
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Sword lvl 3",
+                "count": 5
+            }
+        ],
+        "added_at": 1693879933490
+    },
+    {
+        "name": "Sword lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Sword lvl 4",
+                "count": 5
+            }
+        ],
+        "added_at": 1693879984396
+    },
+    {
+        "name": "Sword lvl 6",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Earth",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Blade",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Sword lvl 5",
+                "count": 5
+            }
+        ],
+        "added_at": 1693880036871
+    },
+    {
+        "name": "Rubinium Armor",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Armor lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 20
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880205079
+    },
+    {
+        "name": "Rubinium Shoes",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Shoes lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880248507
+    },
+    {
+        "name": "Rubinium Helm",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Helm lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880284405
+    },
+    {
+        "name": "Rubinium Necklace",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Necklace lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880314732
+    },
+    {
+        "name": "Rubinium Ring",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Ring lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880343432
+    },
+    {
+        "name": "Rubinium Weapon",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Sword lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880389311
+    },
+    {
+        "name": "Rubinium Weapon",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Bow lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880419206
+    },
+    {
+        "name": "Rubinium Weapon",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Staff lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880444731
+    },
+    {
+        "name": "Rubinium Assault Armor",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Assault Armor lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880475227
+    },
+    {
+        "name": "Rubinium Laser Pistol",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Laser pistol lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880511339
+    },
+    {
+        "name": "Rubinium Laser Pistol",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Plasma Rifle lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880541126
+    },
+    {
+        "name": "Rubinium Cartridges",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Cartridges lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880572957
+    },
+    {
+        "name": "Rubinium Gravity Grenade",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Mythical Gravity grenade lvl 4",
+                "count": 1
+            },
+            {
+                "name": "Rubinium Orb",
+                "count": 80
+            },
+            {
+                "name": "Hologram",
+                "count": 25
+            }
+        ],
+        "added_at": 1693880605186
     }
 ]

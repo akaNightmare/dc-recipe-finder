@@ -51,7 +51,7 @@ export class RecipesGeneratorDialogComponent implements OnInit {
     private readonly ingredientFacade = inject(IngredientsFacade);
     private readonly formBuilder = inject(FormBuilder);
 
-    public readonly searchIngredientsCtrl = new FormControl('');
+    public readonly searchIngredientsCtrl = new FormControl<string>('');
 
     public readonly form = this.formBuilder.group({
         name: ['', [Validators.required]],
@@ -85,8 +85,9 @@ export class RecipesGeneratorDialogComponent implements OnInit {
         this.form.get('allowed_ingredient_lists').valueChanges.pipe(startWith([])),
         this.ilFacade.ingredientList$,
         this.ingredientFacade.ingredients$,
+        this.searchIngredientsCtrl.valueChanges.pipe(startWith('')),
     ]).pipe(
-        map(([bannedIngredientListNames, allowedIngredientListNames, ingredientList, ingredients]) => {
+        map(([bannedIngredientListNames, allowedIngredientListNames, ingredientList, ingredients, search]) => {
             const bannedIngredients = new Set<string>();
             const allowedIngredients = new Set<string>();
             for (const list of ingredientList) {
@@ -101,7 +102,8 @@ export class RecipesGeneratorDialogComponent implements OnInit {
                     }
                 }
             }
-            return ingredients.filter(({ name }) => !bannedIngredients.has(name) && allowedIngredients.has(name));
+            search = search?.trim().toLowerCase();
+            return ingredients.filter(({ name }) => !bannedIngredients.has(name) && allowedIngredients.has(name) && (!search || name.toLowerCase().includes(search)));
         }),
     );
 
