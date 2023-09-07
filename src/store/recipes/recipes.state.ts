@@ -5,7 +5,7 @@ import { Recipe } from './recipes.types';
 export type RecipesState = EntityState<Recipe>;
 
 export const selectId = (recipe: Recipe): string =>
-    recipe.name + recipe.ingredients?.length
+    (recipe.name ?? '') + recipe.status + recipe.ingredients?.length
         ? recipe.ingredients
               .map(i => [i?.name, i?.count].join(','))
               .sort()
