@@ -109,9 +109,11 @@
                             <div class="flex items-center overflow-x-auto">
                                 <div class="flex flex-0 items-center -space-x-3">
                                     <img *ngFor="let ingredient of bil.ingredients"
-                                         [src]="'assets/images/ingredients/' + ingredient + '.png'"
+                                         [ngSrc]="'assets/images/ingredients/' + ingredient + '.png'"
                                          [alt]="ingredient"
                                          [matTooltip]="ingredient"
+                                         width="36"
+                                         height="36"
                                         class="flex-0 w-9 h-9 hover:z-10 rounded ring-1 ring-offset-1 ring-accent-100 ring-offset-accent-100 object-cover">
                                 </div>
                             </div>

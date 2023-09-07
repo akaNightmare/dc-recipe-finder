@@ -1,3 +1,4 @@
+import { provideImgixLoader } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, isDevMode } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideAnimations(),
         provideHttpClient(),
+        provideImgixLoader('https://dc-recipe-finder.imgix.net'),
         provideRouter(
             appRoutes,
             withPreloading(PreloadAllModules),

@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +29,7 @@ import { IngredientsFacade } from '../../../../store/ingredients';
         MatIconModule,
         MatInputModule,
         ReactiveFormsModule,
+        NgOptimizedImage,
     ],
 })
 export class IngredientsComponent {
@@ -57,4 +58,6 @@ export class IngredientsComponent {
     public trackByFn(index: number, item: { name?: string }): string | number {
         return item.name || index;
     }
+
+    protected readonly encodeURIComponent = encodeURIComponent;
 }

@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { AfterViewInit, Component, inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -72,6 +72,7 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
         NgxMatSelectSearchModule,
         MatMenuModule,
         SortByPipe,
+        NgOptimizedImage,
     ],
 })
 export class RecipesComponent implements AfterViewInit, OnDestroy {

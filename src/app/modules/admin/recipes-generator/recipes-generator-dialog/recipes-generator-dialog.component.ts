@@ -1,4 +1,4 @@
-import { AsyncPipe, DecimalPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +43,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         ReplacePipe,
         MatDialogModule,
         DecimalPipe,
+        NgOptimizedImage,
     ],
 })
 export class RecipesGeneratorDialogComponent implements OnInit {
@@ -103,7 +104,12 @@ export class RecipesGeneratorDialogComponent implements OnInit {
                 }
             }
             search = search?.trim().toLowerCase();
-            return ingredients.filter(({ name }) => !bannedIngredients.has(name) && allowedIngredients.has(name) && (!search || name.toLowerCase().includes(search)));
+            return ingredients.filter(
+                ({ name }) =>
+                    !bannedIngredients.has(name) &&
+                    allowedIngredients.has(name) &&
+                    (!search || name.toLowerCase().includes(search)),
+            );
         }),
     );
 
@@ -115,13 +121,12 @@ export class RecipesGeneratorDialogComponent implements OnInit {
             if (!baseIngredients.length || !filteredIngredients.length) {
                 return 0;
             }
-            const count = combination(filteredIngredients.length - baseIngredients.length, 6 - baseIngredients.length)
+            const count = combination(filteredIngredients.length - baseIngredients.length, 6 - baseIngredients.length);
             return isFinite(count) ? Math.floor(count) : count;
         }),
     );
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     /**
      * Track by function for ngFor loops
