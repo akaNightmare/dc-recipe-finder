@@ -8711,5 +8711,598 @@
             }
         ],
         "added_at": 1693880605186
+    },
+    {
+        "name": "Сrossbow lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Life",
+                "count": 10
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 2",
+                "count": 5
+            }
+        ],
+        "added_at": 1694068317959
+    },
+    {
+        "name": "Сrossbow lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Life",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Сrossbow lvl 3",
+                "count": 5
+            }
+        ],
+        "added_at": 1694068372664
+    },
+    {
+        "name": "Spear lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Axe lvl 2",
+                "count": 5
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Staff",
+                "count": 5
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Sphere of Lightening",
+                "count": 10
+            }
+        ],
+        "added_at": 1694068440968
+    },
+    {
+        "name": "Bow lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 3
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 1
+            },
+            {
+                "name": "Scroll of Grudges",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bronze Ingot",
+                "count": 1
+            }
+        ],
+        "added_at": 1694068955121
+    },
+    {
+        "name": "Bow lvl 2",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 1
+            },
+            {
+                "name": "Iron Ingot",
+                "count": 1
+            },
+            {
+                "name": "Edge",
+                "count": 2
+            },
+            {
+                "name": "Scroll of Grudges",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 1",
+                "count": 3
+            }
+        ],
+        "added_at": 1694069012272
+    },
+    {
+        "name": "Bow lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 10
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 2",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069089725
+    },
+    {
+        "name": "Bow lvl 4",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 25
+            },
+            {
+                "name": "Mithril Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 11
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 5
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 3",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069140864
+    },
+    {
+        "name": "Bow lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 4",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069205015
+    },
+    {
+        "name": "Bow lvl 6",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Water",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Edge",
+                "count": 1
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Bow lvl 5",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069254788
+    },
+    {
+        "name": "Morgernstern lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Life",
+                "count": 10
+            },
+            {
+                "name": "Gold Ingot",
+                "count": 5
+            },
+            {
+                "name": "Staff",
+                "count": 5
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 1
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Axe lvl 2",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069767391
+    },
+    {
+        "name": "Morgernstern lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Sphere of Life",
+                "count": 50
+            },
+            {
+                "name": "Adamantine Ingot",
+                "count": 5
+            },
+            {
+                "name": "Staff",
+                "count": 15
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            },
+            {
+                "name": "Anvil",
+                "count": 1
+            },
+            {
+                "name": "Morgernstern lvl 3",
+                "count": 5
+            }
+        ],
+        "added_at": 1694069833107
+    },
+    {
+        "name": "Staf of Light lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 2
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 2
+            },
+            {
+                "name": "The Light Stone",
+                "count": 2
+            },
+            {
+                "name": "Bronze Ingot",
+                "count": 1
+            }
+        ],
+        "added_at": 1694069977461
+    },
+    {
+        "name": "Staf of Light lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 10
+            },
+            {
+                "name": "Staf of Light lvl 1",
+                "count": 5
+            },
+            {
+                "name": "The Light Stone",
+                "count": 10
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            }
+        ],
+        "added_at": 1694070020409
+    },
+    {
+        "name": "Staf of Light lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 20
+            },
+            {
+                "name": "Staf of Light lvl 3",
+                "count": 10
+            },
+            {
+                "name": "The Light Stone",
+                "count": 20
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 20
+            }
+        ],
+        "added_at": 1694070061759
+    },
+    {
+        "name": "Staf of Light lvl 6",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 20
+            },
+            {
+                "name": "Staf of Light lvl 5",
+                "count": 10
+            },
+            {
+                "name": "The Light Stone",
+                "count": 20
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 20
+            }
+        ],
+        "added_at": 1694070102896
+    },
+    {
+        "name": "Staf of Darkness lvl 1",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 2
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 2
+            },
+            {
+                "name": "The Dark Stone",
+                "count": 2
+            },
+            {
+                "name": "Bronze Ingot",
+                "count": 1
+            }
+        ],
+        "added_at": 1694070174384
+    },
+    {
+        "name": "Staf of Darkness lvl 3",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 10
+            },
+            {
+                "name": "Staf of Darkness lvl 1",
+                "count": 5
+            },
+            {
+                "name": "The Dark Stone",
+                "count": 10
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 10
+            }
+        ],
+        "added_at": 1694070214337
+    },
+    {
+        "name": "Staf of Darkness lvl 5",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 20
+            },
+            {
+                "name": "Staf of Darkness lvl 3",
+                "count": 10
+            },
+            {
+                "name": "The Dark Stone",
+                "count": 20
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 20
+            }
+        ],
+        "added_at": 1694070254929
+    },
+    {
+        "name": "Staf of Darkness lvl 6",
+        "count_from": 1,
+        "count_to": 1,
+        "status": "SUCCESS",
+        "ingredients": [
+            {
+                "name": "Staff",
+                "count": 20
+            },
+            {
+                "name": "Staf of Darkness lvl 5",
+                "count": 10
+            },
+            {
+                "name": "The Dark Stone",
+                "count": 20
+            },
+            {
+                "name": "Scroll of Craft",
+                "count": 20
+            }
+        ],
+        "added_at": 1694070315859
+    },
+    {
+        "status": "FAILED",
+        "ingredients": [
+            {
+                "name": "Raven Tusk",
+                "count": 2
+            },
+            {
+                "name": "Mixing Potion",
+                "count": 10
+            },
+            {
+                "name": "Horn",
+                "count": 30
+            },
+            {
+                "name": "Branches",
+                "count": 30
+            },
+            {
+                "name": "Root",
+                "count": 30
+            },
+            {
+                "name": "Fife",
+                "count": 30
+            }
+        ],
+        "added_at": 1694070539190
     }
 ]
