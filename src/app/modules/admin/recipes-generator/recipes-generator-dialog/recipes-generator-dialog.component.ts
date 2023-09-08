@@ -1,5 +1,5 @@
 import { AsyncPipe, DecimalPipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -46,7 +46,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         NgOptimizedImage,
     ],
 })
-export class RecipesGeneratorDialogComponent implements OnInit {
+export class RecipesGeneratorDialogComponent {
     private readonly matDialogRef = inject(MatDialogRef<RecipesGeneratorDialogComponent>);
     private readonly ilFacade = inject(IngredientListsFacade);
     private readonly ingredientFacade = inject(IngredientsFacade);
@@ -125,8 +125,6 @@ export class RecipesGeneratorDialogComponent implements OnInit {
             return isFinite(count) ? Math.floor(count) : count;
         }),
     );
-
-    ngOnInit(): void {}
 
     /**
      * Track by function for ngFor loops

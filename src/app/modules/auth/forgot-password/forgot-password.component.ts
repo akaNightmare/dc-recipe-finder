@@ -18,6 +18,8 @@ import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 import { finalize } from 'rxjs';
 
+import { BriefDescriptionComponent } from '../brief-description/brief-description.component';
+
 @Component({
     selector: 'auth-forgot-password',
     templateUrl: './forgot-password.component.html',
@@ -34,6 +36,7 @@ import { finalize } from 'rxjs';
         MatButtonModule,
         MatProgressSpinnerModule,
         RouterLink,
+        BriefDescriptionComponent,
     ],
 })
 export class AuthForgotPasswordComponent implements OnInit {

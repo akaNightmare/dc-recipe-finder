@@ -20,6 +20,8 @@ import { FuseValidators } from '@fuse/validators';
 import { AuthService } from 'app/core/auth/auth.service';
 import { finalize } from 'rxjs';
 
+import { BriefDescriptionComponent } from '../brief-description/brief-description.component';
+
 @Component({
     selector: 'auth-reset-password',
     templateUrl: './reset-password.component.html',
@@ -37,6 +39,7 @@ import { finalize } from 'rxjs';
         MatIconModule,
         MatProgressSpinnerModule,
         RouterLink,
+        BriefDescriptionComponent,
     ],
 })
 export class AuthResetPasswordComponent implements OnInit {

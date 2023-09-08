@@ -18,9 +18,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import { filter, map, switchMap, throwError } from 'rxjs';
+import { filter, switchMap, throwError } from 'rxjs';
 
 import { UserService } from '../../../core/user/user.service';
+import { BriefDescriptionComponent } from '../brief-description/brief-description.component';
 
 @Component({
     selector: 'auth-sign-in',
@@ -40,6 +41,7 @@ import { UserService } from '../../../core/user/user.service';
         MatIconModule,
         MatCheckboxModule,
         MatProgressSpinnerModule,
+        BriefDescriptionComponent,
     ],
 })
 export class AuthSignInComponent implements OnInit {
@@ -73,9 +75,8 @@ export class AuthSignInComponent implements OnInit {
     ngOnInit(): void {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            email: ['ivanzubok@gmail.com', [Validators.required, Validators.email]],
-            password: ['admin', Validators.required],
-            rememberMe: [''],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', Validators.required],
         });
     }
 
