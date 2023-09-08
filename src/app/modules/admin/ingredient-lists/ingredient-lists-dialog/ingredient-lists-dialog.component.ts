@@ -1,4 +1,4 @@
-import { AsyncPipe, LowerCasePipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, LowerCasePipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { AfterContentInit, Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,6 +44,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         ReplacePipe,
         MatDialogModule,
         LowerCasePipe,
+        NgOptimizedImage,
     ],
 })
 export class IngredientListsDialogComponent implements AfterContentInit {

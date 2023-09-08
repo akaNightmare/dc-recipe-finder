@@ -18,7 +18,7 @@
                 <mat-select [formControlName]="'name'">
                     <mat-select-trigger>
                         <div class="flex items-center" *ngIf="recipeForm.get('name').value; let imageName">
-                            <img class="w-8 h-8 rounded" [alt]="imageName" [src]="'assets/images/ingredients/' + imageName + '.png'" />
+                            <img class="w-8 h-8 rounded" width="32" height="32" [alt]="imageName" [ngSrc]="'assets/images/ingredients/' + imageName + '.png'" />
                             <div class="flex flex-col ml-1">{{ imageName }}</div>
                         </div>
                     </mat-select-trigger>
@@ -38,7 +38,9 @@
                         <div class="flex items-center">
                             <img
                                 class="w-8 h-8 rounded"
-                                [src]="'assets/images/ingredients/' + ingredient.name + '.png'"
+                                height="32"
+                                width="32"
+                                [ngSrc]="'assets/images/ingredients/' + ingredient.name + '.png'"
                                 [alt]="ingredient.name"
                             />
                             <div class="flex flex-col ml-1">{{ingredient.name}}</div>
@@ -82,7 +84,7 @@
                                         class="flex items-center"
                                         *ngIf="ingrCtrl.get('name').value; let imageName"
                                     >
-                                        <img class="w-8 h-8 rounded" [alt]="imageName" [src]="'assets/images/ingredients/' + imageName + '.png'" />
+                                        <img width="32" height="32" class="w-8 h-8 rounded" [alt]="imageName" [ngSrc]="'assets/images/ingredients/' + imageName + '.png'" />
                                         <div class="flex flex-col ml-1">{{ imageName }}</div>
                                     </div>
                                 </mat-select-trigger>
@@ -103,7 +105,9 @@
                                     <div class="flex items-center">
                                         <img
                                             class="w-8 h-8 rounded"
-                                            [src]="'assets/images/ingredients/' + ingredient.name + '.png'"
+                                            height="32"
+                                            width="32"
+                                            [ngSrc]="'assets/images/ingredients/' + ingredient.name + '.png'"
                                             [alt]="ingredient.name"
                                         />
                                         <div class="flex flex-col ml-1">{{ingredient.name}}</div>

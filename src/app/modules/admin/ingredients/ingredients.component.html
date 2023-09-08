@@ -35,8 +35,10 @@
                     *ngFor="let ingredient of ingredients$ | async; trackBy: trackByFn"
                     [matTooltip]="ingredient.name"
                     class="w-14 h-14 rounded object-cover"
-                    [src]="'assets/images/ingredients/' + ingredient.name + '.png'"
+                    [ngSrc]="'assets/images/ingredients/' + ingredient.name + '.png'"
                     [alt]="ingredient.name"
+                    height="56"
+                    width="56"
                 />
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     FormArray,
@@ -49,6 +49,7 @@ import { ReplacePipe } from '../../../../pipes/replace.pipe';
         NgForOf,
         NgClass,
         ReplacePipe,
+        NgOptimizedImage,
     ],
 })
 export class RecipeDialogComponent implements OnInit {
