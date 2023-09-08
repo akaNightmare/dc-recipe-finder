@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from 'app/core/user/user.types';
-import { map, Observable, of, ReplaySubject, tap } from 'rxjs';
+import { Observable, of, ReplaySubject, tap } from 'rxjs';
+
 import { SupabaseService } from '../../services/supabase.service';
-import { fromPromise } from 'rxjs/internal/observable/innerFrom';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    private _user = new ReplaySubject<User>(1);
-    private supabaseClient = inject(SupabaseService).client;
+    private readonly _user = new ReplaySubject<User>(1);
+    private readonly supabaseClient = inject(SupabaseService).client;
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -27,21 +27,22 @@ export class UserService {
         return this._user.asObservable();
     }
 
+    constructor() {
+        // Initialize Supabase user
+        // Get initial user from the current session, if exists
+        this.supabaseClient.auth.getUser().then(({ data, error }) => {
+            this._user.next(data && data.user && !error ? data.user : null);
+
+            // After the initial value is set, listen for auth state changes
+            this.supabaseClient.auth.onAuthStateChange((event, session) => {
+                this._user.next(session?.user ?? null);
+            });
+        });
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get the current logged-in user data
-     */
-    get(): Observable<User> {
-        return fromPromise(this.supabaseClient.auth.getUser()).pipe(
-            map(res => res.data.user),
-            tap(user => {
-                this._user.next(user);
-            }),
-        );
-    }
 
     /**
      * Update the user

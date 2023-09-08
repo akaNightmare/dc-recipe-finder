@@ -36,7 +36,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     navigation: Navigation;
     user: User;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    private readonly unsubscribe$ = new Subject<void>();
 
     /**
      * Constructor
@@ -68,20 +68,18 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to navigation data
-        this._navigationService.navigation$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((navigation: Navigation) => {
-                this.navigation = navigation;
-            });
+        this._navigationService.navigation$.pipe(takeUntil(this.unsubscribe$)).subscribe((navigation: Navigation) => {
+            this.navigation = navigation;
+        });
 
         // Subscribe to the user service
-        this._userService.get().pipe(takeUntil(this._unsubscribeAll)).subscribe((user: User) => {
+        this._userService.user$.pipe(takeUntil(this.unsubscribe$)).subscribe((user: User) => {
             this.user = user;
         });
 
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe(({ matchingAliases }) => {
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
@@ -92,9 +90,8 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
      * On destroy
      */
     ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

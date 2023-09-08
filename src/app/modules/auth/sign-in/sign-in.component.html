@@ -10,10 +10,6 @@
 
             <!-- Title -->
             <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign in</div>
-            <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Don't have an account?</div>
-                <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/sign-up']">Sign up </a>
-            </div>
 
             <!-- Alert -->
             <fuse-alert
@@ -66,10 +62,7 @@
                 </mat-form-field>
 
                 <!-- Actions -->
-                <div class="inline-flex items-center justify-between w-full mt-1.5">
-                    <mat-checkbox class="-ml-2" [color]="'primary'" [formControlName]="'rememberMe'">
-                        Remember me
-                    </mat-checkbox>
+                <div class="inline-flex items-center justify-end w-full mt-1.5">
                     <a class="text-md font-medium text-primary-500 hover:underline" [routerLink]="['/forgot-password']"
                         >Forgot password?
                     </a>
@@ -90,26 +83,6 @@
                         [mode]="'indeterminate'"
                     ></mat-progress-spinner>
                 </button>
-
-                <!-- Separator -->
-                <div class="flex items-center mt-8">
-                    <div class="flex-auto mt-px border-t"></div>
-                    <div class="mx-2 text-secondary">Or continue with</div>
-                    <div class="flex-auto mt-px border-t"></div>
-                </div>
-
-                <!-- Single sign-on buttons -->
-                <div class="flex items-center mt-8 space-x-4">
-                    <button class="flex-auto" type="button" mat-stroked-button>
-                        <mat-icon class="icon-size-5" [svgIcon]="'feather:facebook'"></mat-icon>
-                    </button>
-                    <button class="flex-auto" type="button" mat-stroked-button>
-                        <mat-icon class="icon-size-5" [svgIcon]="'feather:twitter'"></mat-icon>
-                    </button>
-                    <button class="flex-auto" type="button" mat-stroked-button>
-                        <mat-icon class="icon-size-5" [svgIcon]="'feather:github'"></mat-icon>
-                    </button>
-                </div>
             </form>
         </div>
     </div>
@@ -195,7 +168,7 @@
                     />
                 </div>
                 <div class="ml-4 font-medium tracking-tight text-gray-400">
-                    More than 17k people joined us, it's your turn
+                    More than 420 recipes found, it's your turn
                 </div>
             </div>
         </div>

@@ -98,34 +98,34 @@ export class AuthResetPasswordComponent implements OnInit {
 
         // Send the request to the server
         // this._authService
-            // .resetPassword(this.resetPasswordForm.get('password').value)
-            // .pipe(
-            //     finalize(() => {
-            //         // Re-enable the form
-            //         this.resetPasswordForm.enable();
-            //
-            //         // Reset the form
-            //         this.resetPasswordNgForm.resetForm();
-            //
-            //         // Show the alert
-            //         this.showAlert = true;
-            //     }),
-            // )
-            // .subscribe(
-            //     response => {
-            //         // Set the alert
-            //         this.alert = {
-            //             type: 'success',
-            //             message: 'Your password has been reset.',
-            //         };
-            //     },
-            //     response => {
-            //         // Set the alert
-            //         this.alert = {
-            //             type: 'error',
-            //             message: 'Something went wrong, please try again.',
-            //         };
-            //     },
-            // );
+        // .resetPassword(this.resetPasswordForm.get('password').value)
+        // .pipe(
+        //     finalize(() => {
+        //         // Re-enable the form
+        //         this.resetPasswordForm.enable();
+        //
+        //         // Reset the form
+        //         this.resetPasswordNgForm.resetForm();
+        //
+        //         // Show the alert
+        //         this.showAlert = true;
+        //     }),
+        // )
+        // .subscribe(
+        //     response => {
+        //         // Set the alert
+        //         this.alert = {
+        //             type: 'success',
+        //             message: 'Your password has been reset.',
+        //         };
+        //     },
+        //     response => {
+        //         // Set the alert
+        //         this.alert = {
+        //             type: 'error',
+        //             message: 'Something went wrong, please try again.',
+        //         };
+        //     },
+        // );
     }
 }

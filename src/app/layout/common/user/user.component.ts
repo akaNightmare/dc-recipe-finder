@@ -35,7 +35,7 @@ export class UserComponent implements OnInit, OnDestroy {
     @Input() showAvatar = true;
     user: User;
 
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    private unsubscribe$ = new Subject<void>();
 
     /**
      * Constructor
@@ -55,7 +55,7 @@ export class UserComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to user changes
-        this._userService.get().pipe(takeUntil(this._unsubscribeAll)).subscribe((user: User) => {
+        this._userService.user$.pipe(takeUntil(this.unsubscribe$)).subscribe((user: User) => {
             this.user = user;
 
             // Mark for check
@@ -68,8 +68,8 @@ export class UserComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        this.unsubscribe$.next(null);
+        this.unsubscribe$.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -80,6 +80,6 @@ export class UserComponent implements OnInit, OnDestroy {
      * Sign out
      */
     signOut(): void {
-        this._router.navigate(['/sign-out']);
+        void this._router.navigate(['/sign-out']);
     }
 }

@@ -33,7 +33,10 @@
                             "ajv",
                             "ajv-formats",
                             "ajv-keywords",
-                            "fluent-json-schema"
+                            "fluent-json-schema",
+                            "websocket",
+                            "cross-fetch",
+                            "@supabase/node-fetch"
                         ],
                         "assets": [
                             "src/assets",
