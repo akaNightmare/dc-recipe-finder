@@ -106,14 +106,14 @@ export class AuthForgotPasswordComponent implements OnInit {
                 }),
             )
             .subscribe(
-                response => {
+                () => {
                     // Set the alert
                     this.alert = {
                         type: 'success',
                         message: "Password reset sent! You'll receive an email if you are registered on our system.",
                     };
                 },
-                response => {
+                () => {
                     // Set the alert
                     this.alert = {
                         type: 'error',

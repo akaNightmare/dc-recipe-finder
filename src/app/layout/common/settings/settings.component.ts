@@ -37,7 +37,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     scheme: 'dark' | 'light';
     theme: string;
     themes: Themes;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    private readonly unsubscribe$ = new Subject<void>();
 
     /**
      * Constructor
@@ -56,7 +56,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to config changes
-        this._fuseConfigService.config$.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: FuseConfig) => {
+        this._fuseConfigService.config$.pipe(takeUntil(this.unsubscribe$)).subscribe((config: FuseConfig) => {
             // Store the config
             this.config = config;
         });
@@ -67,8 +67,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        this.unsubscribe$.next(null);
+        this.unsubscribe$.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -77,8 +77,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     /**
      * Set the layout on the config
-     *
-     * @param layout
      */
     setLayout(layout: string): void {
         // Clear the 'layout' query param to allow layout changes
@@ -97,8 +95,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     /**
      * Set the scheme on the config
-     *
-     * @param scheme
      */
     setScheme(scheme: Scheme): void {
         this._fuseConfigService.config = { scheme };
@@ -106,8 +102,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     /**
      * Set the theme on the config
-     *
-     * @param theme
      */
     setTheme(theme: Theme): void {
         this._fuseConfigService.config = { theme };

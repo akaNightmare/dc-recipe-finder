@@ -47,7 +47,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     layout: string;
     scheme: 'dark' | 'light';
     theme: string;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    private readonly unsubscribe$ = new Subject<void>();
 
     /**
      * Constructor
@@ -79,7 +79,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
             ]),
         ])
             .pipe(
-                takeUntil(this._unsubscribeAll),
+                takeUntil(this.unsubscribe$),
                 map(([config, mql]) => {
                     const options = {
                         scheme: config.scheme,
@@ -106,7 +106,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
             });
 
         // Subscribe to config changes
-        this._fuseConfigService.config$.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: FuseConfig) => {
+        this._fuseConfigService.config$.pipe(takeUntil(this.unsubscribe$)).subscribe((config: FuseConfig) => {
             // Store the config
             this.config = config;
 
@@ -118,7 +118,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         this._router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
-                takeUntil(this._unsubscribeAll),
+                takeUntil(this.unsubscribe$),
             )
             .subscribe(() => {
                 // Update the layout
@@ -137,8 +137,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        this.unsubscribe$.next(null);
+        this.unsubscribe$.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

@@ -28,9 +28,9 @@ export class AuthService {
      *
      * @param password
      */
-    // resetPassword(password: string): Observable<any> {
-    //     return this.supabaseService.post('api/auth/reset-password', password);
-    // }
+    resetPassword(password: string): Observable<any> {
+        return fromPromise(this.supabaseClient.auth.updateUser({ password }));
+    }
 
     /**
      * Sign in

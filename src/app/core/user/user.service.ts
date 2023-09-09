@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from 'app/core/user/user.types';
-import { Observable, of, ReplaySubject, tap } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 
 import { SupabaseService } from '../../services/supabase.service';
 
