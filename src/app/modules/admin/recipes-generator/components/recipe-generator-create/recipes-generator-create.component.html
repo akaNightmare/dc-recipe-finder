@@ -52,7 +52,7 @@
             </mat-form-field>
 
             <mat-form-field class="ml-2 sm:ml-4 w-1/5">
-              <mat-label>Count</mat-label>
+              <mat-label matTooltip="Number of ingredients in the intended recipe">Count</mat-label>
               <input type="number" min="3" max="6" matInput [formControlName]="'ingredients_count'" />
               @if (form.get('ingredients_count')!.hasError('required')) {
                 <mat-error> Count is required</mat-error>
