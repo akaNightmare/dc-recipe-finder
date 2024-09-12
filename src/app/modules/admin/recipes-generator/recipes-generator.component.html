@@ -55,8 +55,13 @@
             </th>
             <td class="px-4" mat-cell *matCellDef="let rl">
               <span class="truncate">
-                {{ rl.name }}
-                <small>({{ rl.generated_recipes_count }})</small>
+                <a
+                  [routerLink]="['.', rl.id]"
+                  [matTooltip]="'Click to see generated ' + rl.name + ' recipes'"
+                  class="text-primary hover:underline">
+                    {{ rl.name }}
+                    <small>({{ rl.generated_recipes_count }})</small>
+                  </a>
               </span>
             </td>
           </ng-container>

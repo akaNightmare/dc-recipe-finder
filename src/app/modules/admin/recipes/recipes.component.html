@@ -183,7 +183,7 @@
                             Used in other recipes
                         </th>
                         <td class="px-4" mat-cell *matCellDef="let recipe">
-                            @if (recipe.status === 'SUCCESS') {
+                            @if (recipe.status === RecipeStatus.Success) {
                               @for (status of STATUSES; track status; let last = $last) {
                                 <span
                                     class="text-secondary whitespace-nowrap text-sm font-medium"
@@ -202,7 +202,7 @@
                                 </span>
                               }
                             }
-                          @if (recipe.status !== 'SUCCESS') {
+                          @if (recipe.status !== RecipeStatus.Success) {
                             <i>-no info-</i>
                           }
                         </td>
