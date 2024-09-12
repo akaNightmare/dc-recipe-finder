@@ -66,7 +66,10 @@
               Name
             </th>
             <td class="px-4" mat-cell *matCellDef="let bil">
-              <span class="truncate">{{ bil.name }}</span>
+              <span class="truncate">
+                {{ bil.name }}
+                <small>({{ bil.ingredients.length }})</small>
+              </span>
             </td>
           </ng-container>
 
