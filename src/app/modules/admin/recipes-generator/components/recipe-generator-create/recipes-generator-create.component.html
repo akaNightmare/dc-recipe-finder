@@ -16,23 +16,23 @@
           [type]="'info'"
         >
           <ul class="list-none">
-            <li class="flex justify-between">
+            <li class="flex justify-between w-full">
               <span class="mr-2">Intersected allowed and banned ingredients:</span>
               <span class="text-xl font-bold tracking-tight leading-none">
                     {{ intersectedBannedAndAllowedIngredients$ | async | number:'1.0' }}
                 </span>
             </li>
-            <li class="flex justify-between pt-2">
+            <li class="flex justify-between w-full pt-2">
               <span class="mr-2">Intersected allowed and base ingredients:</span>
               <span
                 class="text-xl font-bold tracking-tight leading-none">{{ intersectedAllowedAndBaseIngredients$ | async | number:'1.0' }}</span>
             </li>
-            <li class="flex justify-between pt-2">
+            <li class="flex justify-between w-full pt-2">
               <span class="mr-2">Intersected banned and base ingredients:</span>
               <span
                 class="text-xl font-bold tracking-tight leading-none">{{ intersectedBannedAndBaseIngredients$ | async | number:'1.0' }}</span>
             </li>
-            <li class="flex justify-between pt-2">
+            <li class="flex justify-between w-full pt-2">
               <span class="mr-2">Recipes will be generated:</span>
               <span class="text-xl font-bold tracking-tight leading-none">{{ recipesCount$ | async | number:'1.0' }}</span>
             </li>

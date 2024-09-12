@@ -339,7 +339,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
     ]).pipe(
         map(([baseIngredients, filteredIngredients, recipeSize]) => {
-            console.log(baseIngredients, filteredIngredients, recipeSize);
             if (!baseIngredients?.length || !filteredIngredients.length || !recipeSize) {
                 return 0;
             }
@@ -347,7 +346,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
                 recipeSize,
                 baseIngredients.length,
             );
-            console.log('generator', generator);
             if (!generator) {
                 return 0;
             }

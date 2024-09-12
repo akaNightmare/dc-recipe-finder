@@ -54,7 +54,10 @@
               Name
             </th>
             <td class="px-4" mat-cell *matCellDef="let rl">
-              <span class="truncate">{{ rl.name }}</span>
+              <span class="truncate">
+                {{ rl.name }}
+                <small>({{ rl.generated_recipes_count }})</small>
+              </span>
             </td>
           </ng-container>
 
