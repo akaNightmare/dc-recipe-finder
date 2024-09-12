@@ -169,7 +169,11 @@
         </form>
       </div>
       <div class="flex flex-auto flex-col">
-        <div class="flex flex-wrap gap-2">
+        <div class="text-xl">Ingredients involved in recipe generation</div>
+        <div class="text-secondary">
+          Excludes base ingredients, banned and allowed ingredient lists
+        </div>
+        <div class="flex flex-wrap gap-2 mt-8">
           @for (ingredient of filteredIngredients$ | async; track ingredient.id) {
             <a
               [routerLink]="['/recipes']"
