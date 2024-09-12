@@ -1,6 +1,6 @@
 fragment RecipeListFragment on RecipeList {
   id
   name
-  ingredients_count
+  recipe_size
   created_at
 }

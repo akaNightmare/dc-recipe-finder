@@ -53,20 +53,20 @@
 
             <mat-form-field class="ml-2 sm:ml-4 w-1/5">
               <mat-label matTooltip="Number of ingredients in the intended recipe">
-                Count
+                Recipe size
                 <mat-icon
                   class="icon-size-3.5"
                   [svgIcon]="'heroicons_outline:question-mark-circle'"
                 ></mat-icon>
               </mat-label>
-              <input type="number" min="3" max="6" matInput [formControlName]="'ingredients_count'" />
-              @if (form.get('ingredients_count')!.hasError('required')) {
-                <mat-error> Count is required</mat-error>
+              <input type="number" min="3" max="6" matInput [formControlName]="'recipe_size'" />
+              @if (form.get('recipe_size')!.hasError('required')) {
+                <mat-error> Recipe size is required</mat-error>
               }
-              @if (form.get('ingredients_count')!.hasError('min')) {
+              @if (form.get('recipe_size')!.hasError('min')) {
                 <mat-error> Min is 3 </mat-error>
               }
-              @if (form.get('ingredients_count')!.hasError('max')) {
+              @if (form.get('recipe_size')!.hasError('max')) {
                 <mat-error> Max is 6 </mat-error>
               }
             </mat-form-field>
@@ -177,7 +177,7 @@
       <div class="flex flex-auto flex-col">
         <div class="text-xl">Ingredients involved in recipe generation</div>
         <div class="text-secondary">
-          Excludes base ingredients, banned and allowed ingredient lists
+          Excludes base ingredients and banned ingredient lists
         </div>
         <div class="flex flex-wrap gap-2 mt-8">
           @for (ingredient of filteredIngredients$ | async; track ingredient.id) {

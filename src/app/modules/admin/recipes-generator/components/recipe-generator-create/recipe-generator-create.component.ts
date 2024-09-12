@@ -40,7 +40,7 @@ import {
 } from '../../../ingredient-lists/ingredient-lists.generated';
 import { RecipeListCreateGQL } from '../../recipes-list.generated';
 
-const baseIngredientsCountMap = new Map<number, number>([
+const baseRecipeSizeMap = new Map<number, number>([
     [3, 1],
     [4, 1],
     [5, 2],
@@ -140,7 +140,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     );
     public readonly form = this.#formBuilder.group({
         name: ['', [Validators.required]],
-        ingredients_count: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
+        recipe_size: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
         base_ingredient_ids: new FormControl<string[]>([], {
             validators: [Validators.required, Validators.maxLength(5)],
         }),
@@ -154,7 +154,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         .create(
             [
                 { queryKey: 'name' },
-                { queryKey: 'ingredients_count', type: 'number' },
+                { queryKey: 'recipe_size', type: 'number' },
                 { queryKey: 'base_ingredient_ids', type: 'array' },
             ],
             {
@@ -168,13 +168,13 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     }
 
     public readonly baseIngredientsErrorMessages$ = combineLatest([
-        this.form.get('ingredients_count')!.valueChanges.pipe(startWith(3)),
+        this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
         this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
     ]).pipe(
-        map(([ingredientsCount, baseIngredients]) => {
+        map(([recipeSize, baseIngredients]) => {
             const control = this.form.get('base_ingredient_ids')!;
             const errors = { ...this.#baseIngredientsErrorMessages };
-            const minLength = baseIngredientsCountMap.get(ingredientsCount!);
+            const minLength = baseRecipeSizeMap.get(recipeSize!);
             if (minLength && baseIngredients!.length > 0 && baseIngredients!.length < minLength) {
                 Object.assign(errors, {
                     minLength: `Choose at least ${minLength} ingredient(s)`,
