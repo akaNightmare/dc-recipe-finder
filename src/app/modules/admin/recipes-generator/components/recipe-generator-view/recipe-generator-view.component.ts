@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { PaginateRecipeListRecipeGQL } from '../../recipes-list.generated';
 
 @Component({
     selector: 'recipe-generator-view',
@@ -6,4 +7,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './recipe-generator-view.component.html',
     encapsulation: ViewEncapsulation.None,
 })
-export class RecipeGeneratorViewComponent {}
+export class RecipeGeneratorViewComponent {
+    #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
+}

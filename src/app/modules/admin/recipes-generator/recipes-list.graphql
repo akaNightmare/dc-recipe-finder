@@ -24,6 +24,22 @@ query PaginateRecipeList(
   }
 }
 
+query PaginateRecipeListRecipe(
+  $recipeListId: ID!,
+  $pager: PaginationInput!
+) {
+  paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager) {
+    items {
+      ingredients {
+        ...IngredientFragment
+      }
+    }
+    page_info {
+      ...PageFragment
+    }
+  }
+}
+
 mutation RemoveRecipeList($id: ID!) {
   removeRecipeList(id: $id)
 }
