@@ -1,0 +1,14 @@
+query PaginateIngredient(
+    $filter: IngredientPaginateInput
+    $pager: PaginationInput
+    $order: [IngredientPaginateOrderInput!]
+) {
+    paginateIngredient(filter: $filter, pager: $pager, order: $order) {
+        items {
+            ...IngredientFragment
+        }
+        page_info {
+          ...PageFragment
+        }
+    }
+}

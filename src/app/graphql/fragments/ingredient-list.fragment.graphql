@@ -1,0 +1,6 @@
+fragment IngredientListFragment on IngredientList {
+  id
+  name
+  type
+  created_at
+}

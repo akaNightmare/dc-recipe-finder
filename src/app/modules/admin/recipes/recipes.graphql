@@ -1,0 +1,44 @@
+query PaginateRecipe($filter: RecipePaginateInput, $pager: PaginationInput!, $order: [RecipePaginateOrderInput!]) {
+    paginateRecipe(filter: $filter, pager: $pager, order: $order) {
+        items {
+          ...RecipeFragment
+          ingredients {
+              count
+              ingredient {
+                ...IngredientFragment
+              }
+          }
+        }
+        page_info {
+          ...PageFragment
+        }
+    }
+}
+
+mutation CreateRecipe($recipe: RecipeCreateInput!) {
+    createRecipe(recipe: $recipe) {
+      ...RecipeFragment
+      ingredients {
+        count
+        ingredient {
+          ...IngredientFragment
+        }
+      }
+    }
+}
+
+mutation UpdateRecipe($id: ID!, $recipe: RecipeUpdateInput!) {
+    updateRecipe(id: $id, recipe: $recipe) {
+      ...RecipeFragment
+      ingredients {
+        count
+        ingredient {
+          ...IngredientFragment
+        }
+      }
+    }
+}
+
+mutation RemoveRecipe($id: ID!) {
+    removeRecipe(id: $id)
+}

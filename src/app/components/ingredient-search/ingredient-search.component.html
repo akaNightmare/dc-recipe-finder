@@ -1,0 +1,63 @@
+<mat-form-field [subscriptSizing]="'dynamic'" [hideRequiredMarker]="!required" [class]="controlClass">
+  @if (label) {
+    <mat-label>{{ label }}</mat-label>
+  }
+  <mat-select
+    multiple="true"
+    [formControl]="ingredientsCtrl"
+    [multiple]="multiple"
+    [required]="required"
+    placeholder="Filter by ingredients"
+  >
+    <mat-select-trigger>
+      @if (selectedIngredients.length > 0) {
+        <div class="flex items-center overflow-x-auto">
+          @for (ingredient of selectedIngredients; track ingredient.id; let last = $last) {
+            <img
+              class="w-8 h-8 rounded"
+              width="32"
+              height="32"
+              [class.mr-1]="!last"
+              [matTooltip]="ingredient.name"
+              [alt]="ingredient.name"
+              [ngSrc]="'images/ingredients/' + ingredient.image"
+            />
+          }
+        </div>
+      }
+    </mat-select-trigger>
+    <mat-option>
+      <ngx-mat-select-search
+        noEntriesFoundLabel="No matching ingredients found"
+        placeholderLabel="Search"
+        [clearSearchInput]="true"
+        [enableClearOnEscapePressed]="true"
+        [formControl]="searchIngredientsCtrl"
+        [searching]="searching"
+        [disableScrollToActiveOnOptionsChanged]="true"
+        [placeholderLabel]="'Type to search ingredients'"
+        [noEntriesFoundLabel]="'No ingredients found...'"
+      ></ngx-mat-select-search>
+    </mat-option>
+    @for (ingredient of ingredients; track ingredient.id) {
+      <mat-option
+        [value]="ingredient.id"
+        [disabled]="isOptionDisabled(ingredient.id)"
+      >
+        <div class="flex items-center">
+          <img
+            class="w-8 h-8 rounded"
+            height="32"
+            width="32"
+            [ngSrc]="'images/ingredients/' + ingredient.image"
+            [alt]="ingredient.name"
+          />
+          <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+        </div>
+      </mat-option>
+    }
+  </mat-select>
+  @for (error of ingredientsCtrl.errors ?? {} | keyvalue; track error.key) {
+    <mat-error>{{ errorMessages[error.key] || 'Ingredients are required' }}</mat-error>
+  }
+</mat-form-field>

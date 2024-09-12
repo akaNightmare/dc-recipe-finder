@@ -1,0 +1,7 @@
+fragment IngredientFragment on Ingredient {
+  id
+  name
+  image
+  rarity
+  created_at
+}

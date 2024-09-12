@@ -1,0 +1,237 @@
+<div class="-m-6 flex max-w-160 flex-col md:min-w-160">
+    <!-- Header -->
+    <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
+        <div class="text-lg font-medium">
+          @if (data.recipe) {
+            Update {{data.recipe.name}}
+          } @else {
+            Create a new recipe
+          }
+        </div>
+        <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="recipeForm.disabled">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+        </button>
+    </div>
+
+    <!-- Compose form -->
+    <form class="flex flex-auto flex-col overflow-y-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="recipeForm">
+        <div class="flex">
+            <mat-form-field class="flex-auto w-3/4">
+                <mat-label>Recipe image</mat-label>
+                <mat-select [formControlName]="'image'" (selectionChange)="onRecipeImageChange($event)">
+                    <mat-select-trigger>
+                      @if (ingredientByImage(recipeForm.get('image')!.value); as ingredient) {
+                        <div class="flex items-center">
+                            <img
+                                class="w-8 h-8 rounded"
+                                width="32"
+                                height="32"
+                                [alt]="ingredient.name"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                            />
+                            <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+                        </div>
+                      }
+                    </mat-select-trigger>
+                    <mat-option>
+                        <ngx-mat-select-search
+                            noEntriesFoundLabel="No matching ingredients found"
+                            placeholderLabel="Search"
+                            [clearSearchInput]="true"
+                            [searching]="searching"
+                            [enableClearOnEscapePressed]="true"
+                            [formControl]="searchIngredientsCtrl"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+                  @for (ingredient of recipeIngredients; track ingredient.id) {
+                    <mat-option [value]="ingredient.image">
+                        <div class="flex items-center">
+                            <img
+                                class="w-8 h-8 rounded"
+                                height="32"
+                                width="32"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                                [alt]="ingredient.name"
+                            />
+                            <div class="flex flex-col ml-1">{{ingredient.name}}</div>
+                        </div>
+                    </mat-option>
+                  }
+                </mat-select>
+              @if (recipeForm.get('image')!.hasError('required')) {
+                <mat-error> Recipe image is required </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="ml-2 flex-auto sm:ml-4">
+                <mat-label>Count from</mat-label>
+                <input matInput type="number" min="1" [formControlName]="'count_from'" />
+              @if (recipeForm.get('count_from')!.hasError('required')) {
+                <mat-error>
+                    Count from is required
+                </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="ml-2 flex-auto sm:ml-4">
+                <mat-label>Count to</mat-label>
+                <input matInput type="number" min="1" [formControlName]="'count_to'" />
+              @if (recipeForm.get('count_to')!.hasError('required')) {
+                <mat-error> Count to is required </mat-error>
+              }
+              @if (recipeForm.get('count_to')!.hasError('greaterThanEqualTo')) {
+                <mat-error>
+                    Must be greater or equal than from
+                </mat-error>
+              }
+            </mat-form-field>
+        </div>
+
+        <div class="mt-1">
+            <div class="flex">
+                <mat-form-field class="flex-auto w-3/4">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControlName]="'name'" />
+                  @if (recipeForm.get('name')!.hasError('required')) {
+                    <mat-error>
+                        Name is required
+                    </mat-error>
+                  }
+                </mat-form-field>
+                <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/3">
+                    <mat-label>Status</mat-label>
+                    <mat-select (selectionChange)="onStatusChanged($event)" [formControlName]="'status'">
+                      @for (status of STATUSES; track status) {
+                        <mat-option [value]="status"> {{ status }} </mat-option>
+                      }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="mt-1">
+            <div class="space-y-2">
+              @for (ingrCtrl of ingredientsCtrl.controls; track i; let i = $index; let first = $first) {
+                <ng-container formArrayName="ingredients">
+                    <div class="flex">
+                        <mat-form-field class="flex-auto">
+                          @if (first) {
+                            <mat-label>Ingredient</mat-label>
+                          }
+                            <mat-select [formControl]="ingrCtrl.get('ingredient_id')">
+                                <mat-select-trigger>
+                                  @if (ingredientById(ingrCtrl.get('ingredient_id')!.value!); as ingredient) {
+                                    <div class="flex items-center">
+                                        <img
+                                            width="32"
+                                            height="32"
+                                            class="w-8 h-8 rounded"
+                                            [alt]="ingredient.name"
+                                            [ngSrc]="'images/ingredients/' + ingredient.image"
+                                        />
+                                        <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+                                    </div>
+                                  }
+                                </mat-select-trigger>
+                                <mat-option>
+                                    <ngx-mat-select-search
+                                        noEntriesFoundLabel="No matching ingredients found"
+                                        placeholderLabel="Search"
+                                        [searching]="searching"
+                                        [clearSearchInput]="true"
+                                        [enableClearOnEscapePressed]="true"
+                                        [disableScrollToActiveOnOptionsChanged]="true"
+                                        [formControl]="searchIngredientsCtrl"
+                                    ></ngx-mat-select-search>
+                                </mat-option>
+                              @for (ingredient of ingredients; track ingredient.id) {
+                                <mat-option [value]="ingredient.id">
+                                    <div class="flex items-center">
+                                        <img
+                                            class="w-8 h-8 rounded"
+                                            height="32"
+                                            width="32"
+                                            [ngSrc]="'images/ingredients/' + ingredient.image"
+                                            [alt]="ingredient.name"
+                                        />
+                                        <div class="flex flex-col ml-1">{{ingredient.name}}</div>
+                                    </div>
+                                </mat-option>
+                              }
+                            </mat-select>
+                          @if (ingrCtrl.get('ingredient_id')!.hasError('required')) {
+                            <mat-error>
+                                Ingredient {{ i + 1 }} is required
+                            </mat-error>
+                          }
+                        </mat-form-field>
+
+                        <mat-form-field
+                            class="fuse-mat-no-subscript ml-2 w-full max-w-24 flex-auto sm:ml-4 sm:max-w-40"
+                        >
+                          @if (first) {
+                            <mat-label>Count</mat-label>
+                          }
+                            <input matInput type="number" min="1" max="100" [formControl]="ingrCtrl.get('count')" />
+                          @if (ingrCtrl.get('count')!.hasError('required')) {
+                            <mat-error>
+                                Count is required
+                            </mat-error>
+                          }
+                        </mat-form-field>
+                        <!-- Remove ingredient -->
+                      @if (ingredientsCtrl.length > 1) {
+                          <div class="flex w-10 items-center pl-2" [ngClass]="{'mt-6': first}">
+                              <button
+                                  type="button"
+                                  class="h-8 min-h-8 w-8"
+                                  mat-icon-button
+                                  (click)="removeIngredientField(i)"
+                                  matTooltip="Remove"
+                              >
+                                  <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+                              </button>
+                          </div>
+                      }
+                    </div>
+                </ng-container>
+              }
+            </div>
+          @if (ingredientsCtrl.length < 6) {
+            <div
+                class="group mt-2 -ml-4 inline-flex cursor-pointer items-center rounded py-2 px-4"
+                (click)="addIngredientField()"
+            >
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                <span class="text-secondary ml-2 font-medium group-hover:underline">Add ingredient</span>
+            </div>
+          }
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+            <div class="mt-4 flex items-center sm:mt-0">
+                <!-- Close -->
+                <button type="button" class="sm:mx-3" mat-button [disabled]="recipeForm.disabled" (click)="close()">
+                    <span>Close</span>
+                </button>
+                <!-- Save -->
+                <button
+                    type="submit"
+                    class="order-first sm:order-last"
+                    mat-flat-button
+                    [disabled]="recipeForm.disabled"
+                    [color]="'primary'"
+                >
+                  @if (recipeForm.disabled) {
+                    <mat-progress-spinner
+                      [diameter]="24"
+                      [mode]="'indeterminate'"
+                    ></mat-progress-spinner>
+                  } @else {
+                    <span> Save </span>
+                  }
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

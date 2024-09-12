@@ -22,12 +22,18 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@fuse/*": [
+        "./src/@fuse/*"
+      ],
+    }
   },
   "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }

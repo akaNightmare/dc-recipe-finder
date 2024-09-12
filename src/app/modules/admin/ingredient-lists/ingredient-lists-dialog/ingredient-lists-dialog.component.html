@@ -1,0 +1,77 @@
+<div class="-m-6 relative flex flex-auto max-w-160 flex-col md:min-w-160">
+  <!-- Header -->
+  <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
+    <div class="text-lg font-medium">
+      @if (data.ingredient_list) {
+        Update the {{ data.ingredient_list.name }} ingredient list
+      } @else {
+        Create a new ingredient {{ bilForm.get('type')!.value | lowercase }}
+      }
+    </div>
+    <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="bilForm.disabled">
+      <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+    </button>
+  </div>
+
+  <!-- Compose form -->
+  <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="bilForm">
+    <div class="flex">
+      <mat-form-field class="flex-auto w-2/3">
+        <mat-label>Name</mat-label>
+        <input matInput [formControlName]="'name'" />
+        @if (bilForm.get('name')!.hasError('required')) {
+          <mat-error> Name is required</mat-error>
+        }
+        @if (bilForm.get('name')!.hasError('nameAlreadyExists')) {
+          <mat-error> List with such name already exists</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="ml-2 flex-auto sm:ml-4">
+        <mat-label>Type</mat-label>
+        <mat-select [formControlName]="'type'">
+          @for (type of TYPES; track type) {
+            <mat-option [value]="type">{{ type }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex">
+      <app-ingredient-search
+        label="Ingredients"
+        class="flex-auto"
+        [required]="true"
+        [controlClass]="'flex-auto w-full'"
+        [ingredientsIds]="bilForm.get('ingredient_ids')!.value!"
+        (ingredientsIdsChange)="bilForm.get('ingredient_ids')!.patchValue($event)"
+      ></app-ingredient-search>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+      <div class="mt-4 flex items-center sm:mt-0">
+        <!-- Close -->
+        <button type="button" class="sm:mx-3" mat-button [disabled]="bilForm.disabled" (click)="close()">
+          <span>Close</span>
+        </button>
+        <!-- Save -->
+        <button
+          type="submit"
+          class="order-first sm:order-last"
+          mat-flat-button
+          [disabled]="bilForm.disabled"
+          [color]="'primary'"
+        >
+          @if (bilForm.disabled) {
+            <mat-progress-spinner
+              [diameter]="24"
+              [mode]="'indeterminate'"
+            ></mat-progress-spinner>
+          } @else {
+            <span> Save </span>
+          }
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

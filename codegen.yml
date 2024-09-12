@@ -1,0 +1,24 @@
+overwrite: true
+schema: '${API_URL}q'
+documents: 'src/**/*.graphql'
+hooks:
+    afterAllFileWrite:
+        - prettier --write
+config:
+    scalars:
+        DateTime: string
+generates:
+    ./src/app/graphql.generated.ts:
+        plugins:
+            - typescript
+        config:
+            immutableTypes: true
+            preResolveTypes: true
+    ./src/:
+        preset: near-operation-file
+        presetConfig:
+            extension: .generated.ts
+            baseTypesPath: ./app/graphql.generated.ts
+        plugins:
+            - 'typescript-operations'
+            - 'typescript-apollo-angular'

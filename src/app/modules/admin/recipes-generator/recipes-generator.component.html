@@ -1,0 +1,132 @@
+<div class="bg-card absolute inset-0 flex min-w-0 flex-col overflow-hidden dark:bg-transparent">
+  <!-- Header -->
+  <div
+    class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
+  >
+    <!-- Title -->
+    <div class="text-4xl font-extrabold tracking-tight">Recipe lists</div>
+
+    <!-- Actions -->
+    <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
+      <form class="flex items-center flex-auto" [formGroup]="filters">
+        <!-- Search -->
+        <mat-form-field
+          [subscriptSizing]="'dynamic'"
+          class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
+        >
+          <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
+          <input matInput [formControlName]="'search'" [autocomplete]="'off'" [placeholder]="'Search list'" />
+        </mat-form-field>
+
+        <!-- Create recipe list button -->
+        <a routerLink="create" class="ml-4" mat-flat-button  [color]="'primary'">
+          <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+          <span class="ml-2 mr-1">Create</span>
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex flex-auto overflow-hidden">
+    <div class="flex flex-auto flex-col overflow-hidden sm:mb-18">
+      <!-- Table wrapper -->
+      <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
+        <table
+          class="w-full min-w-320 table-fixed bg-transparent"
+          mat-table
+          matSort
+          [matSortActive]="this.filters.get('sort_by')!.value!"
+          [matSortDisableClear]="true"
+          [matSortDirection]="this.filters.get('sort_dir')!.value!"
+          [multiTemplateDataRows]="true"
+          [dataSource]="dataSource"
+          [trackBy]="trackByFn"
+        >
+          <!-- Name -->
+          <ng-container matColumnDef="name">
+            <th
+              class="w-60 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Name
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let rl">
+              <span class="truncate">{{ rl.name }}</span>
+            </td>
+          </ng-container>
+
+          <!-- Ingredients -->
+          <ng-container matColumnDef="base_ingredients">
+            <th class="bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
+              Base ingredients
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let bil">
+              <div class="flex items-center overflow-x-auto">
+                <div class="flex flex-0 items-center -space-x-3">
+                  @for (ingredient of bil.base_ingredients; track ingredient.id) {
+                    <img
+                      [ngSrc]="'images/ingredients/' + ingredient.image"
+                      [alt]="ingredient.name"
+                      [matTooltip]="ingredient.name"
+                      width="36"
+                      height="36"
+                      class="flex-0 w-9 h-9 hover:z-10 rounded ring-1 ring-offset-1 ring-accent-100 ring-offset-accent-100 object-cover"
+                    />
+                  }
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Actions -->
+          <ng-container matColumnDef="actions">
+            <th
+              class="w-24 bg-gray-50 pr-6 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Actions
+            </th>
+            <td class="pr-6" mat-cell *matCellDef="let rl">
+              <button
+                class="h-7 min-h-7 min-w-10 px-2 leading-6"
+                mat-stroked-button
+                #t="matMenuTrigger"
+                [matMenuTriggerFor]="userActionsMenu"
+              >
+                <mat-icon
+                  class="icon-size-5"
+                  [svgIcon]="'heroicons_solid:chevron-' + (t.menuOpen ? 'up' : 'down')"
+                ></mat-icon>
+                <mat-menu #userActionsMenu>
+                  <button mat-menu-item (click)="deleteRecipeList(rl)">
+                    <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
+                    Delete list
+                  </button>
+                </mat-menu>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr class="shadow" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr
+            class="h-18 hover:bg-gray-100 dark:hover:bg-hover"
+            mat-row
+            *matRowDef="let il; columns: displayedColumns;"
+          ></tr>
+        </table>
+      </div>
+
+      <mat-paginator
+        class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSize]="this.filters.get('limit')!.value!"
+        [pageIndex]="this.filters.get('page')!.value! - 1"
+        [showFirstLastButtons]="true"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

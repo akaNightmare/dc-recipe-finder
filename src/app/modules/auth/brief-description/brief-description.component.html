@@ -1,0 +1,30 @@
+<div class="text-7xl font-bold leading-none text-gray-100">
+    <div>Welcome to</div>
+    <div>our community</div>
+</div>
+<div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
+    Join our service to easily discover recipes for the
+    <a class="ml-1 text-primary-500 hover:underline" href="https://www.dungeoncrusher.win/" target="_blank"
+        >Dungeon Crusher</a
+    >
+    game, helping you navigate its depths and craft powerful items.
+</div>
+@if (randomRecipes$ | async; as randomRecipes) {
+  <div class="flex items-center mt-8">
+      <div class="flex flex-0 items-center -space-x-1.5">
+        @for (ingredient of randomRecipes.recipes; track ingredient.id) {
+          <img
+              [ngSrc]="'images/ingredients/' + ingredient.image"
+              [alt]="ingredient.name"
+              [matTooltip]="ingredient.name"
+              class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
+              width="40"
+              height="40"
+          />
+        }
+      </div>
+      <div class="ml-4 font-medium tracking-tight text-gray-400">
+          More than {{ randomRecipes.approximate_count }} recipes found, now it's your turn
+      </div>
+  </div>
+}

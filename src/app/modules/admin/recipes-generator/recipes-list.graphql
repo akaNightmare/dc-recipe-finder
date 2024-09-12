@@ -1,0 +1,35 @@
+query PaginateRecipeList(
+  $filter: RecipeListPaginateInput
+  $pager: PaginationInput!
+  $order: [RecipeListPaginateOrderInput!]
+) {
+  paginateRecipeList(filter: $filter, pager: $pager, order: $order) {
+    items {
+      ...RecipeListFragment
+      allowed_ingredient_lists {
+        id
+        name
+      }
+      banned_ingredient_lists {
+        id
+        name
+      }
+      base_ingredients {
+        ...IngredientFragment
+      }
+    }
+    page_info {
+      ...PageFragment
+    }
+  }
+}
+
+mutation RemoveRecipeList($id: ID!) {
+  removeRecipeList(id: $id)
+}
+
+mutation RecipeListCreate($recipeList: RecipeListCreateInput!) {
+  recipeListCreate(recipeList: $recipeList) {
+    ...RecipeListFragment
+  }
+}

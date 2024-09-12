@@ -1,0 +1,6 @@
+fragment PageFragment on PageInfo {
+  total_pages
+  total_items
+  per_page
+  page
+}

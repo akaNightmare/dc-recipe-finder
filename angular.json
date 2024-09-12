@@ -29,10 +29,23 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/@fuse/styles"]
+            },
             "styles": [
-              "src/styles.scss"
+              "src/@fuse/styles/tailwind.scss",
+              "src/@fuse/styles/themes.scss",
+              "src/styles/vendors.scss",
+              "src/@fuse/styles/main.scss",
+              "src/styles/styles.scss",
+              "src/styles/tailwind.scss"
             ],
             "scripts": []
           },
@@ -55,7 +68,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -90,10 +109,14 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles/styles.scss"],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

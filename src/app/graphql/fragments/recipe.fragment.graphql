@@ -1,0 +1,10 @@
+fragment RecipeFragment on Recipe {
+  id
+  name
+  status
+  image
+  created_at
+  count_from
+  count_to
+  source_url
+}

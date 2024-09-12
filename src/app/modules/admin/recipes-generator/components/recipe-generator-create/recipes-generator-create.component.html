@@ -1,0 +1,200 @@
+<div class="flex w-full flex-auto flex-col">
+  <div class="mx-auto flex w-full max-w-screen-xl flex-wrap p-6 md:p-8">
+    <div class="flex w-full items-center justify-between">
+      <div>
+        <h2 class="text-3xl font-semibold leading-8 tracking-tight"> Create recipe list </h2>
+        <div class="text-secondary font-medium tracking-tight"> Set guidelines for generating recipes</div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid w-full grid-cols-1 gap-8 xl:grid-cols-2">
+      <div class="grid gap-8 sm:grid-flow-col xl:grid-flow-row">
+        <fuse-alert
+          class="flex-auto"
+          [appearance]="'outline'"
+          [showIcon]="false"
+          [type]="'info'"
+        >
+          <ul class="list-none">
+            <li class="flex justify-between">
+              <span class="mr-2">Intersected allowed and banned ingredients:</span>
+              <span class="text-xl font-bold tracking-tight leading-none">
+                    {{ intersectedBannedAndAllowedIngredients$ | async | number:'1.0' }}
+                </span>
+            </li>
+            <li class="flex justify-between pt-2">
+              <span class="mr-2">Intersected allowed and base ingredients:</span>
+              <span
+                class="text-xl font-bold tracking-tight leading-none">{{ intersectedAllowedAndBaseIngredients$ | async | number:'1.0' }}</span>
+            </li>
+            <li class="flex justify-between pt-2">
+              <span class="mr-2">Intersected banned and base ingredients:</span>
+              <span
+                class="text-xl font-bold tracking-tight leading-none">{{ intersectedBannedAndBaseIngredients$ | async | number:'1.0' }}</span>
+            </li>
+            <li class="flex justify-between pt-2">
+              <span class="mr-2">Recipes will be generated:</span>
+              <span class="text-xl font-bold tracking-tight leading-none">{{ 2 | number:'1.0' }}</span>
+            </li>
+          </ul>
+        </fuse-alert>
+
+        <!-- Compose form -->
+        <form class="bg-card mt-4 flex flex-col overflow-hidden rounded px-8 pt-10 shadow" (ngSubmit)="save()"
+              [formGroup]="form">
+          <div class="flex">
+            <mat-form-field class="w-2/5">
+              <mat-label>Name</mat-label>
+              <input matInput [formControlName]="'name'" />
+              @if (form.get('name')!.hasError('required')) {
+                <mat-error> Name is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field class="ml-2 sm:ml-4 w-1/5">
+              <mat-label>Count</mat-label>
+              <input type="number" min="3" max="6" matInput [formControlName]="'ingredients_count'" />
+              @if (form.get('ingredients_count')!.hasError('required')) {
+                <mat-error> Count is required</mat-error>
+              }
+              @if (form.get('ingredients_count')!.hasError('min')) {
+                <mat-error> Min is 3 </mat-error>
+              }
+              @if (form.get('ingredients_count')!.hasError('max')) {
+                <mat-error> Max is 6 </mat-error>
+              }
+            </mat-form-field>
+
+            <app-ingredient-search
+              label="Base ingredients (max 5)"
+              class="ml-2 sm:ml-4 w-2/5"
+              required="true"
+              [errors]="form.get('base_ingredient_ids')!.errors"
+              [errorMessages]="baseIngredientsErrorMessages$ | async"
+              maxIngredients="5"
+              [controlClass]="'flex-auto w-full'"
+              [ingredientsIds]="form.get('base_ingredient_ids')!.value"
+              (ingredientsIdsChange)="form.get('base_ingredient_ids')!.patchValue($event)"
+              (ingredientsChange)="baseIngredients = $event"
+            ></app-ingredient-search>
+          </div>
+
+          <div class="flex">
+            <mat-form-field class="flex-auto">
+              <mat-label>Allowed ingredient lists</mat-label>
+              <mat-select multiple="true" [formControlName]="'allowed_ingredient_list_ids'">
+                <mat-select-trigger>
+                  @if (allowedIngredientListsNames$ | async; as lists) {
+                    <span>{{ lists.join(', ') }}</span>
+                  }
+                </mat-select-trigger>
+                <mat-option>
+                  <ngx-mat-select-search
+                    noEntriesFoundLabel="No matching lists found"
+                    placeholderLabel="Type to search"
+                    [clearSearchInput]="true"
+                    [enableClearOnEscapePressed]="true"
+                    [disableScrollToActiveOnOptionsChanged]="true"
+                    [formControl]="searchAllowedIngredientsCtrl"
+                  ></ngx-mat-select-search>
+                </mat-option>
+                @for (list of allowedIngredientLists$ | async; track list.id) {
+                  <mat-option [value]="list.id">
+                    {{ list.name }} <small>({{ list.ingredients.length }} ingredients)</small>
+                  </mat-option>
+                }
+              </mat-select>
+              @if (form.get('allowed_ingredient_list_ids')!.hasError('required')) {
+                <mat-error>Allowed ingredient lists are required</mat-error>
+              }
+              @if (form.get('allowed_ingredient_list_ids')!.hasError('allBanned')) {
+                <mat-error>All ingredients are banned</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="flex">
+            <mat-form-field class="flex-auto">
+              <mat-label>Banned ingredient lists</mat-label>
+              <mat-select multiple="true" [formControlName]="'banned_ingredient_list_ids'">
+                <mat-select-trigger>
+                  @if (bannedIngredientListsNames$ | async; as lists) {
+                    {{ lists.join(', ') }}
+                  }
+                </mat-select-trigger>
+                <mat-option>
+                  <ngx-mat-select-search
+                    noEntriesFoundLabel="No matching lists found"
+                    placeholderLabel="Type to search"
+                    [clearSearchInput]="true"
+                    [enableClearOnEscapePressed]="true"
+                    [disableScrollToActiveOnOptionsChanged]="true"
+                    [formControl]="searchBannedIngredientsCtrl"
+                  ></ngx-mat-select-search>
+                </mat-option>
+                @for (list of bannedIngredientLists$ | async; track list.id) {
+                  <mat-option [value]="list.id">
+                    {{ list.name }} <small>({{ list.ingredients.length }} ingredients)</small>
+                  </mat-option>
+                }
+              </mat-select>
+              @if (form.get('banned_ingredient_list_ids')!.hasError('required')) {
+                <mat-error>
+                  Banned ingredient lists are required
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div
+            class="-mx-8 mt-8 flex items-center justify-end border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
+          >
+            <a routerLink=".." mat-button>Back</a>
+            <button
+              class="ml-3 px-6"
+              mat-flat-button
+              [disabled]="form.disabled"
+              [color]="'primary'"
+            >
+              @if (form.disabled) {
+                <mat-progress-spinner
+                  [diameter]="24"
+                  [mode]="'indeterminate'"
+                ></mat-progress-spinner>
+              } @else {
+                <span> Generate </span>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="flex flex-auto flex-col">
+        <div class="flex flex-wrap gap-2">
+          @for (ingredient of filteredIngredients$ | async; track ingredient.id) {
+            <a
+              [routerLink]="['/recipes']"
+              [queryParams]="{ ingredients: ingredient.id }"
+              [matTooltip]="'Click to see all recipes with ' + ingredient.name"
+            >
+              <img
+                class="w-10 h-10 rounded ring-[2px] object-cover"
+                [ngClass]="{
+                            'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
+                            'ring-common': ingredient.rarity === IngredientRarity.Common,
+                            'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
+                            'ring-epic': ingredient.rarity === IngredientRarity.Epic,
+                            'ring-rare': ingredient.rarity === IngredientRarity.Rare,
+                            'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
+                        }"
+                [ngSrc]="'images/ingredients/' + ingredient.image"
+                [alt]="ingredient.name"
+                height="40"
+                width="40"
+              />
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+query RandomRecipes {
+    randomRecipes {
+        recipes {
+            id
+            name
+            image
+            ingredients {
+                count
+                ingredient {
+                    id
+                    name
+                    image
+                    rarity
+                }
+            }
+        }
+        approximate_count
+    }
+}

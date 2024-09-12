@@ -1,0 +1,39 @@
+query PaginateIngredientList(
+    $filter: IngredientListPaginateInput
+    $pager: PaginationInput
+    $order: [IngredientListPaginateOrderInput!]
+) {
+    paginateIngredientList(filter: $filter, pager: $pager, order: $order) {
+        items {
+            ...IngredientListFragment
+            ingredients {
+                ...IngredientFragment
+            }
+        }
+        page_info {
+          ...PageFragment
+        }
+    }
+}
+
+mutation RemoveIngredientList($id: ID!) {
+    removeIngredientList(id: $id)
+}
+
+mutation CreateIngredientList($ingredientList: IngredientListCreateInput!) {
+    createIngredientList(ingredientList: $ingredientList) {
+      ...IngredientListFragment
+      ingredients {
+        ...IngredientFragment
+      }
+    }
+}
+
+mutation UpdateIngredientList($id: ID!, $ingredientList: IngredientListUpdateInput!) {
+    updateIngredientList(id: $id, ingredientList: $ingredientList) {
+      ...IngredientListFragment
+      ingredients {
+        ...IngredientFragment
+      }
+    }
+}

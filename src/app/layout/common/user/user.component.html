@@ -1,0 +1,30 @@
+<!-- Button -->
+<button mat-icon-button [matMenuTriggerFor]="userActions">
+    <span class="relative">
+        @if (!showAvatar || !user) {
+            <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
+        }
+        <span
+            class="absolute bottom-0 right-0 h-2 w-2 rounded-full"
+            [ngClass]="{
+                'mb-px mr-px': !showAvatar || !user
+            }"
+        ></span>
+    </span>
+</button>
+
+<mat-menu [xPosition]="'before'" #userActions="matMenu">
+    <button mat-menu-item>
+        <span class="flex flex-col leading-none">
+            <span>Signed in as</span>
+            <span class="mt-1.5 text-md font-medium">{{ user?.login }}</span>
+        </span>
+    </button>
+    <mat-divider class="my-2"></mat-divider>
+    <button mat-menu-item (click)="signOut()">
+        <mat-icon
+            [svgIcon]="'heroicons_outline:arrow-right-on-rectangle'"
+        ></mat-icon>
+        <span>Sign out</span>
+    </button>
+</mat-menu>
