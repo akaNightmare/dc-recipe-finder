@@ -177,7 +177,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
             const minLength = baseIngredientsCountMap.get(ingredientsCount!);
             if (minLength && baseIngredients!.length > 0 && baseIngredients!.length < minLength) {
                 Object.assign(errors, {
-                    minLength: `Choose at least ${minLength}`,
+                    minLength: `Choose at least ${minLength} ingredient(s)`,
                 });
                 control.setErrors({ minLength: true });
             } else {
