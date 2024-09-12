@@ -1,15 +1,15 @@
 {
   "name": "dc-recipe-finder",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
+    "build": "graphql-codegen --config codegen.yml && ng build",
+    "dev:gql:codegen": "env API_URL=http://localhost:3000/ graphql-codegen --config codegen.yml",
     "ng": "ng",
     "start": "ng serve",
-    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build": "graphql-codegen --config codegen.yml && ng build",
-    "dev:gql:codegen": "env API_URL=http://localhost:3000/ graphql-codegen --config codegen.yml"
+    "watch": "ng build --watch --configuration development"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.3",
     "@angular/cdk": "^18.2.3",
