@@ -38,6 +38,7 @@ import {
     PaginateIngredientListGQL,
     PaginateIngredientListQuery,
 } from '../../../ingredient-lists/ingredient-lists.generated';
+import { RecipeGeneratorBuilder } from '../../recipe-generator.service';
 import { RecipeListCreateGQL } from '../../recipes-list.generated';
 
 const baseRecipeSizeMap = new Map<number, number>([
@@ -52,6 +53,7 @@ const baseRecipeSizeMap = new Map<number, number>([
     standalone: true,
     templateUrl: './recipes-generator-create.component.html',
     encapsulation: ViewEncapsulation.None,
+    providers: [RecipeGeneratorBuilder],
     imports: [
         AsyncPipe,
         MatTableModule,
@@ -82,6 +84,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #snackBar = inject(MatSnackBar);
     readonly #queryFactory = inject(BindQueryParamsFactory);
+    readonly #recipeGeneratorBuilder = inject(RecipeGeneratorBuilder);
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 2500,
         horizontalPosition: 'right',
@@ -330,18 +333,27 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         ),
     );
 
-    // public readonly combinationsCount$ = combineLatest([
-    //     this.form.get('base_ingredient_ids').valueChanges.pipe(startWith([])),
-    //     this.filteredIngredients$,
-    // ]).pipe(
-    //     map(([baseIngredients, filteredIngredients]) => {
-    //         if (!baseIngredients.length || !filteredIngredients.length) {
-    //             return 0;
-    //         }
-    //         const count = combination(filteredIngredients.length - baseIngredients.length, 6 - baseIngredients.length);
-    //         return isFinite(count) ? Math.floor(count) : count;
-    //     }),
-    // );
+    public readonly recipesCount$ = combineLatest([
+        this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
+        this.filteredIngredients$.pipe(startWith([])),
+        this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
+    ]).pipe(
+        map(([baseIngredients, filteredIngredients, recipeSize]) => {
+            console.log(baseIngredients, filteredIngredients, recipeSize);
+            if (!baseIngredients?.length || !filteredIngredients.length || !recipeSize) {
+                return 0;
+            }
+            const generator = this.#recipeGeneratorBuilder.buildGenerator(
+                recipeSize,
+                baseIngredients.length,
+            );
+            console.log('generator', generator);
+            if (!generator) {
+                return 0;
+            }
+            return generator.count(filteredIngredients.map(ingredient => ingredient!.id));
+        }),
+    );
 
     save(): void {
         if (this.form.invalid) {

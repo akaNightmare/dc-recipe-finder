@@ -34,7 +34,7 @@
             </li>
             <li class="flex justify-between pt-2">
               <span class="mr-2">Recipes will be generated:</span>
-              <span class="text-xl font-bold tracking-tight leading-none">{{ 2 | number:'1.0' }}</span>
+              <span class="text-xl font-bold tracking-tight leading-none">{{ recipesCount$ | async | number:'1.0' }}</span>
             </li>
           </ul>
         </fuse-alert>
@@ -175,7 +175,10 @@
         </form>
       </div>
       <div class="flex flex-auto flex-col">
-        <div class="text-xl">Ingredients involved in recipe generation</div>
+        <div class="text-xl">
+          Ingredients involved in recipe generation
+          <small>({{ (filteredIngredients$ | async)?.length | number:'1.0' }})</small>
+        </div>
         <div class="text-secondary">
           Excludes base ingredients and banned ingredient lists
         </div>
