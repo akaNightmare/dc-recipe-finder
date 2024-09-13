@@ -9,11 +9,11 @@ export default [
         component: RecipesGeneratorComponent,
     },
     {
-        path: ':id',
-        component: RecipeGeneratorViewComponent,
-    },
-    {
         path: 'create',
         component: RecipeGeneratorCreateComponent,
+    },
+    {
+        path: ':recipeListId',
+        component: RecipeGeneratorViewComponent,
     },
 ] as Routes;

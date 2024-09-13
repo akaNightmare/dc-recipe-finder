@@ -86,8 +86,8 @@
             <td class="truncate pr-6" mat-cell *matCellDef="let il">
                             <span
                               class="rounded-full py-0.5 px-3 text-sm font-semibold"
-                              [ngClass]="{'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': il.type === ingredientListType.Allowlist,
-                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': il.type === ingredientListType.Banlist}"
+                              [ngClass]="{'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': il.type === IngredientListType.Allowlist,
+                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': il.type === IngredientListType.Banlist}"
                             >
                                 {{ il.type }}
                             </span>

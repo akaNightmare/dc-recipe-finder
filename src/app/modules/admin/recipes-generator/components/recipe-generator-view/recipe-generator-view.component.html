@@ -1,1 +1,63 @@
-view
+<div class="absolute inset-0 flex min-w-0 flex-col">
+  <!-- Main -->
+  <div class="flex flex-auto p-7 sm:p-8 sm:mb-18 overflow-y-auto" cdkScrollable>
+    <div
+      class="mx-auto flex w-full flex-auto flex-col"
+    >
+      <div
+        class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-5"
+      >
+        @for (recipeList of recipeListRecipes; track recipeList.id) {
+          <div
+            class="bg-card flex flex-col overflow-hidden rounded-xl shadow"
+          >
+            <div class="flex flex-col p-3.5">
+              <div class="flex justify-start">
+                @for (ingredient of recipeList.ingredients | sortBy: 'asc' : 'name'; track ingredient.id; let columnLast = $last) {
+                  <div
+                    [class.mr-1.5]="!columnLast"
+                    class="relative"
+                  >
+                    <img
+                      [ngSrc]="'images/ingredients/' + ingredient.image"
+                      [alt]="ingredient.name"
+                      class="w-9 h-9 rounded object-cover"
+                      [ngClass]="{
+                        'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
+                        'ring-common': ingredient.rarity === IngredientRarity.Common
+                    }"
+                      width="36"
+                      height="36"
+                    />
+                  </div>
+                }
+                <span [matMenuTriggerFor]="chatsHeaderMenu" class="-mr-2.5 cursor-pointer mt-1.5">
+                  <mat-icon
+                    [svgIcon]="'heroicons_outline:ellipsis-vertical'"
+                  ></mat-icon>
+                  <mat-menu #chatsHeaderMenu>
+                    <button mat-menu-item>
+                      <mat-icon color="warn" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+                      Mark as failed
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon color="primary" [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                      Mark as successful
+                    </button>
+                  </mat-menu>
+                </span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <mat-paginator
+    class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="this.filters.get('limit')!.value!"
+    [pageIndex]="this.filters.get('page')!.value! - 1"
+    [showFirstLastButtons]="true"
+  ></mat-paginator>
+</div>

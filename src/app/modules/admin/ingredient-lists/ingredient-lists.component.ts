@@ -101,7 +101,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     public readonly displayedColumns = ['name', 'type', 'ingredients', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
     public readonly TYPES = Object.values(IngredientListType);
-    public readonly ingredientListType = IngredientListType;
+    public readonly IngredientListType = IngredientListType;
     public readonly filters = new FormGroup({
         search: new FormControl(''),
         types: new FormControl<IngredientListType[]>([]),
