@@ -18,6 +18,7 @@ import { MatInput } from '@angular/material/input';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { FuseMasonryComponent } from '@fuse/components/masonry';
@@ -78,6 +79,12 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #activatedRoute = inject(ActivatedRoute);
+    readonly #snackBar = inject(MatSnackBar);
+    readonly #defaultSnackBarConfig: MatSnackBarConfig = {
+        duration: 2500,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+    };
 
     #recipeListRecipeRef!: QueryRef<
         PaginateRecipeListRecipeQuery,
@@ -182,11 +189,11 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             .afterClosed()
             .subscribe(result => {
                 if (result) {
-                    // this.#snackBar.open(
-                    //     `Recipe has been ${recipe ? 'updated' : 'created'}`,
-                    //     undefined,
-                    //     this.#defaultSnackBarConfig,
-                    // );
+                    this.#snackBar.open(
+                        `Recipe has been moved to ${status.toLowerCase()} status`,
+                        undefined,
+                        this.#defaultSnackBarConfig,
+                    );
                 }
             });
     }

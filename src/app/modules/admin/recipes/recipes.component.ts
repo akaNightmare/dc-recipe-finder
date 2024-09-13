@@ -93,9 +93,9 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
-    readonly #snackBar = inject(MatSnackBar);
     readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
+    readonly #snackBar = inject(MatSnackBar);
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 2500,
         horizontalPosition: 'right',
