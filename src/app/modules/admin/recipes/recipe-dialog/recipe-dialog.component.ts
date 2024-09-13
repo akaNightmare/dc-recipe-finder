@@ -43,6 +43,7 @@ import {
     PaginateIngredientQuery,
     PaginateIngredientQueryVariables,
 } from '../../ingredients/ingredients.generated';
+import { MarkRecipeListRecipeGQL } from '../../recipes-generator/recipes-list.generated';
 import { CreateRecipeGQL, UpdateRecipeGQL } from '../recipes.generated';
 
 const UNKNOWN_INGREDIENT_IMAGE = '78f5cdb54af169f991d2e3978eb6b09b.png';
@@ -80,7 +81,7 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
 })
 export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public recipeForm!: FormGroup;
-    public readonly data: { recipe?: Recipe } = inject(MAT_DIALOG_DATA);
+    public readonly data: { status?: RecipeStatus; recipe?: Recipe } = inject(MAT_DIALOG_DATA);
 
     readonly #unsubscribe$ = new Subject<void>();
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
@@ -88,6 +89,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     readonly #updateRecipeGQL = inject(UpdateRecipeGQL);
     readonly #createRecipeGQL = inject(CreateRecipeGQL);
+    readonly #markRecipeListRecipeGQL = inject(MarkRecipeListRecipeGQL);
 
     readonly #matDialogRef = inject(MatDialogRef<RecipeDialogComponent>);
     readonly #formBuilder = inject(FormBuilder);
@@ -191,12 +193,36 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 name: '-',
             });
         }
+
+        if (this.data.status) {
+            if (this.data.status === RecipeStatus.Success) {
+                this.recipeForm.patchValue({
+                    image: UNKNOWN_INGREDIENT_IMAGE,
+                    name: '-',
+                });
+            }
+            this.recipeForm.get('status')!.disable();
+            for (const ctrl of this.ingredientsCtrl.controls) {
+                ctrl.get('ingredient_id')!.disable();
+            }
+        }
     }
 
     get ingredientsCtrl(): FormArray<
         FormGroup<{ ingredient_id: FormControl<string>; count: FormControl<number> }>
     > {
         return this.recipeForm.get('ingredients') as FormArray;
+    }
+
+    get canRemoveIngredientField(): boolean {
+        return (
+            this.ingredientsCtrl.length > 1 &&
+            (!this.data.status || this.data.status !== RecipeStatus.Failed)
+        );
+    }
+
+    get canAddIngredientField(): boolean {
+        return this.ingredientsCtrl.length < 6 && !this.data.status;
     }
 
     ingredientById(ingredientId?: string): Ingredient | undefined {
@@ -257,22 +283,38 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
             return;
         }
 
-        const recipe = cloneDeep(this.recipeForm.value);
+        const recipe = cloneDeep(
+            this.data.status ? this.recipeForm.getRawValue() : this.recipeForm.value,
+        );
 
         if (recipe.status === RecipeStatus.Failed) {
             recipe.image = 'craft_failed.png';
+            delete recipe.name;
+            delete recipe.count_from;
+            delete recipe.count_to;
         }
 
-        if (this.data.recipe?.id) {
-            this.#updateRecipeGQL
-                .mutate({ recipe, id: this.data.recipe.id })
+        if (this.data.status) {
+            this.#markRecipeListRecipeGQL
+                .mutate({
+                    recipeListRecipeId: this.data.recipe!.id,
+                    recipe,
+                })
                 .subscribe(({ data }) => {
                     this.#matDialogRef.close(data);
                 });
         } else {
-            this.#createRecipeGQL.mutate({ recipe }).subscribe(({ data }) => {
-                this.#matDialogRef.close(data);
-            });
+            if (this.data.recipe?.id) {
+                this.#updateRecipeGQL
+                    .mutate({ recipe, id: this.data.recipe.id })
+                    .subscribe(({ data }) => {
+                        this.#matDialogRef.close(data);
+                    });
+            } else {
+                this.#createRecipeGQL.mutate({ recipe }).subscribe(({ data }) => {
+                    this.#matDialogRef.close(data);
+                });
+            }
         }
     }
 
@@ -316,4 +358,6 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
             },
         };
     }
+
+    protected readonly RecipeStatus = RecipeStatus;
 }

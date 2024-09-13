@@ -31,12 +31,39 @@ query PaginateRecipeListRecipe(
   paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager) {
     items {
       id
+      status
       ingredients {
         ...IngredientFragment
       }
     }
     page_info {
       ...PageFragment
+    }
+  }
+}
+
+mutation AssignRecipeListRecipeToUser(
+  $recipeListRecipeId: ID!,
+  $userId: ID!
+) {
+  assignRecipeListRecipeToUser(recipeListRecipeId: $recipeListRecipeId, userId: $userId) {
+    id
+    status
+    ingredients {
+      ...IngredientFragment
+    }
+  }
+}
+
+mutation MarkRecipeListRecipe(
+  $recipeListRecipeId: ID!,
+  $recipe: RecipeCreateInput!
+) {
+  markRecipeListRecipe(recipeListRecipeId: $recipeListRecipeId, recipe: $recipe) {
+    id
+    status
+    ingredients {
+      ...IngredientFragment
     }
   }
 }

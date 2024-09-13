@@ -10,6 +10,11 @@
         @for (recipeList of recipeListRecipes; track recipeList.id) {
           <div
             class="bg-card flex flex-col overflow-hidden rounded-xl shadow"
+            [class.ring-2]="recipeList.status != null"
+            [ngClass]="{
+              'ring-pink-500 bg-pink-50': recipeList.status === RecipeStatus.Failed,
+              'ring-green-500 bg-green-50': recipeList.status === RecipeStatus.Success,
+            }"
           >
             <div class="flex flex-col p-3.5">
               <div class="flex justify-start">
@@ -31,21 +36,23 @@
                     />
                   </div>
                 }
-                <span [matMenuTriggerFor]="chatsHeaderMenu" class="-mr-2.5 cursor-pointer mt-1.5">
-                  <mat-icon
-                    [svgIcon]="'heroicons_outline:ellipsis-vertical'"
-                  ></mat-icon>
-                  <mat-menu #chatsHeaderMenu>
-                    <button mat-menu-item>
-                      <mat-icon color="warn" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
-                      Mark as failed
-                    </button>
-                    <button mat-menu-item>
-                      <mat-icon color="primary" [svgIcon]="'heroicons_outline:check'"></mat-icon>
-                      Mark as successful
-                    </button>
-                  </mat-menu>
-                </span>
+                @if (recipeList.status == null) {
+                  <span [matMenuTriggerFor]="chatsHeaderMenu" class="-mr-2.5 cursor-pointer mt-1.5">
+                    <mat-icon
+                      [svgIcon]="'heroicons_outline:ellipsis-vertical'"
+                    ></mat-icon>
+                    <mat-menu #chatsHeaderMenu>
+                      <button mat-menu-item (click)="openRecipeDialog(recipeList, RecipeStatus.Failed)">
+                        <mat-icon color="warn" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+                        Mark as failed
+                      </button>
+                      <button mat-menu-item (click)="openRecipeDialog(recipeList, RecipeStatus.Success)">
+                        <mat-icon color="primary" [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                        Mark as successful
+                      </button>
+                    </mat-menu>
+                  </span>
+                }
               </div>
             </div>
           </div>

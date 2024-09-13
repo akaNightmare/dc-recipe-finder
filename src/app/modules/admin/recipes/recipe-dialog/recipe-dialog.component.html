@@ -2,10 +2,18 @@
     <!-- Header -->
     <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
         <div class="text-lg font-medium">
-          @if (data.recipe) {
-            Update {{data.recipe.name}}
+          @if (data.status) {
+            @if (data.status === RecipeStatus.Failed) {
+              Mark recipe as failed
+            } @else {
+              Mark recipe as successful
+            }
           } @else {
-            Create a new recipe
+            @if (data.recipe) {
+              Update {{data.recipe.name}}
+            } @else {
+              Create a new recipe
+            }
           }
         </div>
         <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="recipeForm.disabled">
@@ -179,7 +187,7 @@
                           }
                         </mat-form-field>
                         <!-- Remove ingredient -->
-                      @if (ingredientsCtrl.length > 1) {
+                      @if (canRemoveIngredientField) {
                           <div class="flex w-10 items-center pl-2" [ngClass]="{'mt-6': first}">
                               <button
                                   type="button"
@@ -196,7 +204,7 @@
                 </ng-container>
               }
             </div>
-          @if (ingredientsCtrl.length < 6) {
+          @if (canAddIngredientField) {
             <div
                 class="group mt-2 -ml-4 inline-flex cursor-pointer items-center rounded py-2 px-4"
                 (click)="addIngredientField()"

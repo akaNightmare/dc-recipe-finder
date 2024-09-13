@@ -232,11 +232,12 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             .afterClosed()
             .subscribe(result => {
                 if (result) {
-                    // this.#snackBar.open(
-                    //     `Recipe has been ${recipe ? 'updated' : 'created'}`,
-                    //     undefined,
-                    //     this.#defaultSnackBarConfig,
-                    // );
+                    this.#snackBar.open(
+                        `Recipe has been ${recipe ? 'updated' : 'created'}`,
+                        undefined,
+                        this.#defaultSnackBarConfig,
+                    );
+                    void this.#recipeRef.refetch(this.#buildVariables());
                 }
             });
     }

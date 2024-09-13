@@ -11,6 +11,7 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
@@ -35,7 +36,9 @@ import {
 } from 'rxjs';
 import { IngredientRarity, RecipeStatus } from '../../../../../graphql.generated';
 import { SortByPipe } from '../../../../../pipes';
+import { RecipeDialogComponent } from '../../../recipes/recipe-dialog/recipe-dialog.component';
 import {
+    AssignRecipeListRecipeToUserGQL,
     PaginateRecipeListRecipeGQL,
     PaginateRecipeListRecipeQuery,
     PaginateRecipeListRecipeQueryVariables,
@@ -70,7 +73,9 @@ import {
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
+    readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
     readonly #unsubscribe$ = new Subject<void>();
+    readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #activatedRoute = inject(ActivatedRoute);
 
@@ -83,6 +88,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         [];
     public readonly pageSizeOptions = [50, 100, 150, 200];
     public readonly RecipeStatus = RecipeStatus;
+    public readonly IngredientRarity = IngredientRarity;
     public readonly STATUSES = Object.values(RecipeStatus);
     public readonly filters = new FormGroup({
         statuses: new FormControl<RecipeStatus[]>([]),
@@ -152,6 +158,39 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#unsubscribe$.complete();
     }
 
+    public openRecipeDialog(
+        recipeListRecipe: PaginateRecipeListRecipeQuery['paginateRecipeListRecipe']['items'][0],
+        status: RecipeStatus,
+    ): void {
+        this.#matDialog
+            .open(RecipeDialogComponent, {
+                disableClose: true,
+                maxHeight: '90vh',
+                data: {
+                    recipe: {
+                        id: recipeListRecipe.id,
+                        name: '-',
+                        status,
+                        ingredients: recipeListRecipe.ingredients.map(({ id }) => ({
+                            ingredient: { id },
+                            count: 1,
+                        })),
+                    },
+                    status,
+                },
+            })
+            .afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    // this.#snackBar.open(
+                    //     `Recipe has been ${recipe ? 'updated' : 'created'}`,
+                    //     undefined,
+                    //     this.#defaultSnackBarConfig,
+                    // );
+                }
+            });
+    }
+
     #buildVariables(values = this.filters.value): PaginateRecipeListRecipeQueryVariables {
         const pager = {
             page: values.page!,
@@ -160,6 +199,4 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
 
         return { pager, recipeListId: this.#activatedRoute.snapshot.params['recipeListId'] };
     }
-
-    protected readonly IngredientRarity = IngredientRarity;
 }
