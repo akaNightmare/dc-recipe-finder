@@ -12,6 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDivider } from '@angular/material/divider';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
@@ -35,7 +36,8 @@ import {
     switchMap,
     takeUntil,
 } from 'rxjs';
-import { IngredientRarity, RecipeStatus } from '../../../../../graphql.generated';
+import { UserService } from '../../../../../core/user/user.service';
+import { IngredientRarity, RecipeStatus, User } from '../../../../../graphql.generated';
 import { SortByPipe } from '../../../../../pipes';
 import { RecipeDialogComponent } from '../../../recipes/recipe-dialog/recipe-dialog.component';
 import {
@@ -70,11 +72,13 @@ import {
         MatIconButton,
         MatMenuTrigger,
         MatMenuItem,
+        MatDivider,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
+    readonly #userService = inject(UserService);
     readonly #unsubscribe$ = new Subject<void>();
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
@@ -102,6 +106,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[1]),
     });
+    public currentUser!: User;
     @ViewChild(MatPaginator) public readonly paginator!: MatPaginator;
 
     readonly #bindQueryParamsManager = this.#queryFactory
@@ -156,6 +161,13 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                 this.recipeListRecipes = data.paginateRecipeListRecipe.items;
             });
 
+        this.#userService
+            .get()
+            .pipe(takeUntil(this.#unsubscribe$))
+            .subscribe(user => {
+                this.currentUser = user;
+            });
+
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
     }
 
@@ -163,6 +175,24 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#bindQueryParamsManager.destroy();
         this.#unsubscribe$.next();
         this.#unsubscribe$.complete();
+    }
+
+    public assignRecipeListRecipeToUser(
+        userId: string,
+        recipeListRecipe: PaginateRecipeListRecipeQuery['paginateRecipeListRecipe']['items'][0],
+    ): void {
+        void this.#assignRecipeListRecipeToUserGQL
+            .mutate({
+                userId,
+                recipeListRecipeId: recipeListRecipe.id,
+            })
+            .subscribe(() => {
+                this.#snackBar.open(
+                    `Recipe has been assigned to ${'TODO'}`,
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+            });
     }
 
     public openRecipeDialog(

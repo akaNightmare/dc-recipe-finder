@@ -9,13 +9,21 @@
       >
         @for (recipeList of recipeListRecipes; track recipeList.id) {
           <div
-            class="bg-card flex flex-col overflow-hidden rounded-xl shadow"
-            [class.ring-2]="recipeList.recipe != null"
+            class="bg-card flex flex-col rounded-xl shadow relative"
+            [class.ring-2]="recipeList.recipe != null || currentUser?.id === recipeList.assigned?.id"
             [ngClass]="{
               'ring-pink-500 bg-pink-50': recipeList.recipe?.status === RecipeStatus.Failed,
               'ring-green-500 bg-green-50': recipeList.recipe?.status === RecipeStatus.Success,
             }"
           >
+            @if (recipeList.assigned && !recipeList.recipe?.status) {
+              <mat-icon
+                [matTooltip]="'Assigned to ' + recipeList.assigned.login"
+                class="text-hint icon-size-4.5 absolute -top-1.5 -right-1"
+                [svgIcon]="'heroicons_solid:information-circle'"
+              ></mat-icon>
+            }
+
             <div class="flex flex-col p-3.5">
               <div class="flex justify-start">
                 @for (ingredient of recipeList.ingredients | sortBy: 'asc' : 'name'; track ingredient.id; let columnLast = $last) {
@@ -50,6 +58,13 @@
                         <mat-icon color="primary" [svgIcon]="'heroicons_outline:check'"></mat-icon>
                         Mark as successful
                       </button>
+                      @if (!recipeList.assigned) {
+                        <mat-divider class="my-2"></mat-divider>
+                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(currentUser.id, recipeList)">
+                          <mat-icon [svgIcon]="'heroicons_solid:user'"></mat-icon>
+                          Assign to me
+                        </button>
+                      }
                     </mat-menu>
                   </span>
                 }

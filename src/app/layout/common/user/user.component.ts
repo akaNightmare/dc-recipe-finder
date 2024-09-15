@@ -49,12 +49,15 @@ export class UserComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to user changes
-        this.#userService.user$.pipe(takeUntil(this.#unsubscribe)).subscribe((user: User) => {
-            this.user = user;
+        this.#userService
+            .get()
+            .pipe(takeUntil(this.#unsubscribe))
+            .subscribe((user: User) => {
+                this.user = user;
 
-            // Mark for check
-            this.#changeDetectorRef.markForCheck();
-        });
+                // Mark for check
+                this.#changeDetectorRef.markForCheck();
+            });
     }
 
     /**
@@ -74,6 +77,6 @@ export class UserComponent implements OnInit, OnDestroy {
      * Sign out
      */
     signOut(): void {
-        this.#router.navigate(['/sign-out']);
+        void this.#router.navigate(['/sign-out']);
     }
 }

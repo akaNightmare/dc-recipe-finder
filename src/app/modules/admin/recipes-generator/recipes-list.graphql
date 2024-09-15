@@ -37,6 +37,9 @@ query PaginateRecipeListRecipe(
       ingredients {
         ...IngredientFragment
       }
+      assigned {
+        ...UserFragment
+      }
     }
     page_info {
       ...PageFragment
@@ -56,6 +59,9 @@ mutation AssignRecipeListRecipeToUser(
     ingredients {
       ...IngredientFragment
     }
+    assigned {
+      ...UserFragment
+    }
   }
 }
 
@@ -70,6 +76,9 @@ mutation MarkRecipeListRecipe(
     }
     ingredients {
       ...IngredientFragment
+    }
+    assigned {
+      ...UserFragment
     }
   }
 }

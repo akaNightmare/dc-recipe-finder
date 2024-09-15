@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, ReplaySubject, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { MeGQL, MeQuery } from './user.generated';
 
 export type User = MeQuery['me'];
@@ -7,14 +7,6 @@ export type User = MeQuery['me'];
 @Injectable({ providedIn: 'root' })
 export class UserService {
     readonly #meGQL = inject(MeGQL);
-    readonly #user = new ReplaySubject<User>(1);
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-    get user$(): Observable<User> {
-        return this.#user.asObservable();
-    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -24,11 +16,6 @@ export class UserService {
      * Get the current signed-in user data
      */
     get(): Observable<User> {
-        return this.#meGQL.fetch().pipe(
-            map(({ data }) => data.me),
-            tap(user => {
-                this.#user.next(user);
-            }),
-        );
+        return this.#meGQL.fetch().pipe(map(({ data }) => data.me));
     }
 }
