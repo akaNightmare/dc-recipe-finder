@@ -31,7 +31,9 @@ query PaginateRecipeListRecipe(
   paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager) {
     items {
       id
-      status
+      recipe {
+        ...RecipeFragment
+      }
       ingredients {
         ...IngredientFragment
       }
@@ -48,7 +50,9 @@ mutation AssignRecipeListRecipeToUser(
 ) {
   assignRecipeListRecipeToUser(recipeListRecipeId: $recipeListRecipeId, userId: $userId) {
     id
-    status
+    recipe {
+      ...RecipeFragment
+    }
     ingredients {
       ...IngredientFragment
     }
@@ -61,7 +65,9 @@ mutation MarkRecipeListRecipe(
 ) {
   markRecipeListRecipe(recipeListRecipeId: $recipeListRecipeId, recipe: $recipe) {
     id
-    status
+    recipe {
+      ...RecipeFragment
+    }
     ingredients {
       ...IngredientFragment
     }

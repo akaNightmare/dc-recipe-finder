@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
-import { MeGQL, MeQuery } from './me.generated';
+import { MeGQL, MeQuery } from './user.generated';
 
 export type User = MeQuery['me'];
 

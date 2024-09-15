@@ -2,6 +2,10 @@ fragment RecipeListFragment on RecipeList {
   id
   name
   recipe_size
-  generated_recipes_count
   created_at
+  count_meta {
+    total
+    failed
+    success
+  }
 }

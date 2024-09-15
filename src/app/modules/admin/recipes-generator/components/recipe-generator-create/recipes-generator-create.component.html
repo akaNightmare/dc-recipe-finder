@@ -52,12 +52,13 @@
             </mat-form-field>
 
             <mat-form-field class="ml-2 sm:ml-4 w-1/5">
-              <mat-label matTooltip="Number of ingredients in the intended recipe">
-                Recipe size
-                <mat-icon
-                  class="icon-size-3.5"
-                  [svgIcon]="'heroicons_outline:question-mark-circle'"
-                ></mat-icon>
+              <mat-label>
+                  Recipe size
+                  <mat-icon
+                    class="text-hint icon-size-3.5"
+                    [svgIcon]="'heroicons_mini:information-circle'"
+                    matTooltip="Number of ingredients in the intended recipe"
+                  ></mat-icon>
               </mat-label>
               <input type="number" min="3" max="6" matInput [formControlName]="'recipe_size'" />
               @if (form.get('recipe_size')!.hasError('required')) {

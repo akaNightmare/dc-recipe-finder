@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { AsyncPipe, DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass, NgOptimizedImage, PercentPipe } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
@@ -72,6 +73,8 @@ import {
         NgOptimizedImage,
         MatSnackBarModule,
         RouterLink,
+        MatProgressBar,
+        PercentPipe,
     ],
 })
 export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
@@ -93,7 +96,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     public readonly dataSource = new MatTableDataSource<
         PaginateRecipeListQuery['paginateRecipeList']['items'][0]
     >();
-    public readonly displayedColumns = ['name', 'base_ingredients', 'actions'];
+    public readonly displayedColumns = ['name', 'base_ingredients', 'recipes_count', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
     public readonly filters = new FormGroup({
         search: new FormControl(''),

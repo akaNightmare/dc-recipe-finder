@@ -186,6 +186,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 })),
             });
             this.onStatusChanged({ value: this.data.recipe.status });
+            this.recipeForm.get('status')!.disable();
         } else {
             this.addIngredientField();
             this.recipeForm.patchValue({
