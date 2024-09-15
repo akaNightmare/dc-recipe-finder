@@ -60,7 +60,7 @@
                       </button>
                       @if (!recipeList.assigned) {
                         <mat-divider class="my-2"></mat-divider>
-                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(currentUser.id, recipeList)">
+                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(currentUser.id, recipeList.id)">
                           <mat-icon [svgIcon]="'heroicons_solid:user'"></mat-icon>
                           Assign to me
                         </button>

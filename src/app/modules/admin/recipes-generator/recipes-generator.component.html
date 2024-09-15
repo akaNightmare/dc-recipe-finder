@@ -152,6 +152,10 @@
                     <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
                     Delete list
                   </button>
+                  <a [routerLink]="['.', rl.id, 'activity']" mat-menu-item>
+                    <mat-icon  svgIcon="heroicons_outline:bars-3-bottom-left"></mat-icon>
+                    Activity log
+                  </a>
                 </mat-menu>
               </button>
             </td>

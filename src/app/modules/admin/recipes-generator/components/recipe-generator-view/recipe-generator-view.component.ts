@@ -52,7 +52,6 @@ import {
     standalone: true,
     templateUrl: './recipe-generator-view.component.html',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./recipe-generator-view.component.scss'],
     imports: [
         FuseMasonryComponent,
         MatAnchor,
@@ -177,18 +176,15 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#unsubscribe$.complete();
     }
 
-    public assignRecipeListRecipeToUser(
-        userId: string,
-        recipeListRecipe: PaginateRecipeListRecipeQuery['paginateRecipeListRecipe']['items'][0],
-    ): void {
+    public assignRecipeListRecipeToUser(userId: string, recipeListRecipeId: string): void {
         void this.#assignRecipeListRecipeToUserGQL
             .mutate({
                 userId,
-                recipeListRecipeId: recipeListRecipe.id,
+                recipeListRecipeId,
             })
             .subscribe(() => {
                 this.#snackBar.open(
-                    `Recipe has been assigned to ${'TODO'}`,
+                    `Recipe has been assigned to ${this.currentUser.login}`,
                     undefined,
                     this.#defaultSnackBarConfig,
                 );
