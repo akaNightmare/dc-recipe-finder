@@ -58,10 +58,17 @@
                         <mat-icon color="primary" [svgIcon]="'heroicons_outline:check'"></mat-icon>
                         Mark as successful
                       </button>
-                      @if (!recipeList.assigned) {
-                        <mat-divider class="my-2"></mat-divider>
-                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(currentUser.id, recipeList.id)">
-                          <mat-icon [svgIcon]="'heroicons_solid:user'"></mat-icon>
+
+                      <mat-divider class="my-2"></mat-divider>
+
+                      @if (recipeList.assigned) {
+                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(recipeList.id, null)">
+                          <mat-icon [svgIcon]="'heroicons_outline:user-minus'"></mat-icon>
+                          Unassign from {{ recipeList.assigned.login }}
+                        </button>
+                      } @else {
+                        <button mat-menu-item (click)="assignRecipeListRecipeToUser(recipeList.id, currentUser.id)">
+                          <mat-icon [svgIcon]="'heroicons_outline:user-plus'"></mat-icon>
                           Assign to me
                         </button>
                       }

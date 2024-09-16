@@ -52,6 +52,7 @@
     "@types/chroma-js": "^2.4.4",
     "@types/jasmine": "~5.1.0",
     "@types/lodash-es": "^4.17.12",
+    "@types/luxon": "^3.4.2",
     "chroma-js": "^3.1.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

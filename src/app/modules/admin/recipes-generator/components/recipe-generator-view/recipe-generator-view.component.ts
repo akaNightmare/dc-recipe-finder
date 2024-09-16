@@ -176,7 +176,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#unsubscribe$.complete();
     }
 
-    public assignRecipeListRecipeToUser(userId: string, recipeListRecipeId: string): void {
+    public assignRecipeListRecipeToUser(recipeListRecipeId: string, userId: string | null): void {
         void this.#assignRecipeListRecipeToUserGQL
             .mutate({
                 userId,
@@ -184,7 +184,8 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             })
             .subscribe(() => {
                 this.#snackBar.open(
-                    `Recipe has been assigned to ${this.currentUser.login}`,
+                    'Recipe has been ' +
+                        (userId ? `assigned to ${this.currentUser.login}` : 'unassigned'),
                     undefined,
                     this.#defaultSnackBarConfig,
                 );

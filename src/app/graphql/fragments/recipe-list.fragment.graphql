@@ -9,3 +9,12 @@ fragment RecipeListFragment on RecipeList {
     success
   }
 }
+
+fragment RecipeListActivityFragment on RecipeListActivity {
+  id
+  created_at
+  log
+  owner {
+    ...UserFragment
+  }
+}

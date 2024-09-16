@@ -49,7 +49,7 @@ query PaginateRecipeListRecipe(
 
 mutation AssignRecipeListRecipeToUser(
   $recipeListRecipeId: ID!,
-  $userId: ID!
+  $userId: ID
 ) {
   assignRecipeListRecipeToUser(recipeListRecipeId: $recipeListRecipeId, userId: $userId) {
     id
@@ -90,5 +90,11 @@ mutation RemoveRecipeList($id: ID!) {
 mutation RecipeListCreate($recipeList: RecipeListCreateInput!) {
   recipeListCreate(recipeList: $recipeList) {
     ...RecipeListFragment
+  }
+}
+
+query RecipeListActivity($recipeListId: ID!) {
+  recipeListActivity(recipeListId: $recipeListId) {
+    ...RecipeListActivityFragment
   }
 }
