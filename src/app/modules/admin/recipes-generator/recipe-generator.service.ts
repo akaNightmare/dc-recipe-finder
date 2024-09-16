@@ -3,7 +3,11 @@ import { combination, combinationN, estimateZippedCountWithMerging } from './hel
 
 @Injectable()
 export class RecipeGeneratorBuilder {
-    buildGenerator(recipeSize: number, baseIngredientCount: number): RecipeGenerator | undefined {
+    buildGenerator(
+        recipeSize: number,
+        baseIngredientCount: number,
+        usePartitioning?: boolean,
+    ): RecipeGenerator | undefined {
         if (
             recipeSize < 3 ||
             recipeSize > 6 ||
@@ -16,6 +20,9 @@ export class RecipeGeneratorBuilder {
         if (recipeSize >= 4) {
             return new RecipeGeneratorEnumeration(recipeSize, freeSlots);
         } else {
+            if (usePartitioning) {
+                return new RecipeGeneratorEnumeration(recipeSize, freeSlots);
+            }
             if (baseIngredientCount <= 3) {
                 return new RecipeGeneratorPacker(recipeSize, freeSlots);
             } else if (baseIngredientCount === 4) {
@@ -33,14 +40,11 @@ abstract class RecipeGenerator {
         protected readonly freeSlots: number,
     ) {}
 
-    abstract count<O extends Record<string, unknown>>(ingredientIds: string[], options?: O): number;
+    abstract count(ingredientIds: string[]): number;
 }
 
 class RecipeGeneratorPacker extends RecipeGenerator {
-    count(ingredientIds: string[], options?: { usePartitioning?: boolean }): number {
-        if (options?.usePartitioning) {
-            return Math.ceil(ingredientIds.length / this.freeSlots);
-        }
+    count(ingredientIds: string[]): number {
         return estimateZippedCountWithMerging(combinationN(ingredientIds, 2), this.freeSlots);
     }
 }

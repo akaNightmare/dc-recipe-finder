@@ -351,14 +351,12 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
             const generator = this.#recipeGeneratorBuilder.buildGenerator(
                 recipeSize,
                 baseIngredients.length,
+                usePartitioning!,
             );
             if (!generator) {
                 return 0;
             }
-            return generator.count(
-                filteredIngredients.map(ingredient => ingredient!.id),
-                { usePartitioning },
-            );
+            return generator.count(filteredIngredients.map(ingredient => ingredient!.id));
         }),
     );
 
