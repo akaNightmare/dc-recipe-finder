@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "graphql-codegen --config codegen.yml && ng build",
-    "dev:gql:codegen": "env API_URL=http://localhost:3000/ graphql-codegen --config codegen.yml",
+    "dev:gql:codegen": "env API_URL=http://0.0.0.0:3000/ graphql-codegen --config codegen.yml",
     "ng": "ng",
     "start": "ng serve",
     "test": "ng test",

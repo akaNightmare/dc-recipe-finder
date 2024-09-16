@@ -24,6 +24,8 @@ import union from 'lodash-es/union';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { combineLatest, filter, map, share, startWith, tap } from 'rxjs';
 
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FuseAlertComponent } from '@fuse/components/alert';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
@@ -74,6 +76,8 @@ const baseRecipeSizeMap = new Map<number, number>([
         FuseAlertComponent,
         NgOptimizedImage,
         NgClass,
+        MatCheckbox,
+        MatSlideToggle,
     ],
 })
 export class RecipeGeneratorCreateComponent implements OnDestroy {
@@ -143,6 +147,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     );
     public readonly form = this.#formBuilder.group({
         name: ['', [Validators.required]],
+        use_partitioning: [false, [Validators.required]],
         recipe_size: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
         base_ingredient_ids: new FormControl<string[]>([], {
             validators: [Validators.required, Validators.maxLength(5)],
@@ -337,8 +342,9 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
         this.filteredIngredients$.pipe(startWith([])),
         this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
+        this.form.get('use_partitioning')!.valueChanges.pipe(startWith(false)),
     ]).pipe(
-        map(([baseIngredients, filteredIngredients, recipeSize]) => {
+        map(([baseIngredients, filteredIngredients, recipeSize, usePartitioning]) => {
             if (!baseIngredients?.length || !filteredIngredients.length || !recipeSize) {
                 return 0;
             }
@@ -349,7 +355,10 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
             if (!generator) {
                 return 0;
             }
-            return generator.count(filteredIngredients.map(ingredient => ingredient!.id));
+            return generator.count(
+                filteredIngredients.map(ingredient => ingredient!.id),
+                { usePartitioning },
+            );
         }),
     );
 

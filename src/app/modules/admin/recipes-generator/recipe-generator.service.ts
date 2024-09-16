@@ -33,11 +33,14 @@ abstract class RecipeGenerator {
         protected readonly freeSlots: number,
     ) {}
 
-    abstract count(ingredientIds: string[]): number;
+    abstract count<O extends Record<string, unknown>>(ingredientIds: string[], options?: O): number;
 }
 
 class RecipeGeneratorPacker extends RecipeGenerator {
-    count(ingredientIds: string[]): number {
+    count(ingredientIds: string[], options?: { usePartitioning?: boolean }): number {
+        if (options?.usePartitioning) {
+            return Math.ceil(ingredientIds.length / this.freeSlots);
+        }
         return estimateZippedCountWithMerging(combinationN(ingredientIds, 2), this.freeSlots);
     }
 }

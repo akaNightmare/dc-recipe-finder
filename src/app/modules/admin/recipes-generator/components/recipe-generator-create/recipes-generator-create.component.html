@@ -154,24 +154,38 @@
           </div>
 
           <div
-            class="-mx-8 mt-8 flex items-center justify-end border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
+            class="-mx-8 mt-8 flex items-center justify-between border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
           >
-            <a routerLink=".." mat-button>Back</a>
-            <button
-              class="ml-3 px-6"
-              mat-flat-button
-              [disabled]="form.disabled"
-              [color]="'primary'"
-            >
-              @if (form.disabled) {
-                <mat-progress-spinner
-                  [diameter]="24"
-                  [mode]="'indeterminate'"
-                ></mat-progress-spinner>
-              } @else {
-                <span> Generate </span>
+            <div class="mt-0">
+              @if (form.get('recipe_size')?.value === 3) {
+                <mat-slide-toggle
+                  class="mt-8 sm:ml-auto sm:mt-0"
+                  [color]="'primary'"
+                  [formControlName]="'use_partitioning'"
+                >
+                  Use partitioning algo
+                </mat-slide-toggle>
               }
-            </button>
+            </div>
+
+            <div class="mt-0">
+              <a routerLink=".." mat-button>Back</a>
+              <button
+                class="ml-3 px-6"
+                mat-flat-button
+                [disabled]="form.disabled"
+                [color]="'primary'"
+              >
+                @if (form.disabled) {
+                  <mat-progress-spinner
+                    [diameter]="24"
+                    [mode]="'indeterminate'"
+                  ></mat-progress-spinner>
+                } @else {
+                  <span> Generate </span>
+                }
+              </button>
+            </div>
           </div>
         </form>
       </div>
