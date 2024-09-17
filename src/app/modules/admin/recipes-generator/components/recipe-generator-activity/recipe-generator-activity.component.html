@@ -57,7 +57,7 @@
                         }
                         @case ('assigned') {
                           recipe to check to
-                          @if (activity.log['assigned_to']['id'] === currentUser?.id) {
+                          @if (activity.log['assigned_to']['id'] === activity.owner.id) {
                             himself
                           } @else {
                             <strong>{{ activity.log['assigned_to']['login'] }}</strong>
@@ -65,7 +65,7 @@
                         }
                         @case ('unassigned') {
                           recipe to check from
-                          @if (activity.log['unassigned_from']['id'] === currentUser?.id) {
+                          @if (activity.log['unassigned_from']['id'] === activity.owner.id) {
                             himself
                           } @else {
                             <strong>{{ activity.log['unassigned_from']['login'] }}</strong>

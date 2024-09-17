@@ -6,14 +6,13 @@ import {
     NgTemplateOutlet,
     TitleCasePipe,
 } from '@angular/common';
-import { AfterViewInit, Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
-import { filter, map, Subject, takeUntil } from 'rxjs';
-import { UserService } from '../../../../../core/user/user.service';
-import { IngredientRarity, RecipeStatus, User } from '../../../../../graphql.generated';
+import { filter, map } from 'rxjs';
+import { IngredientRarity, RecipeStatus } from '../../../../../graphql.generated';
 import { SortByPipe } from '../../../../../pipes';
 import { RecipeListActivityGQL } from '../../recipes-list.generated';
 
@@ -34,14 +33,12 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
         NgClass,
     ],
 })
-export class RecipeGeneratorActivityComponent implements AfterViewInit, OnDestroy {
+export class RecipeGeneratorActivityComponent {
     readonly #recipeListActivityGQL = inject(RecipeListActivityGQL);
     readonly #activatedRoute = inject(ActivatedRoute);
-    readonly #userService = inject(UserService);
-    readonly #unsubscribe$ = new Subject<void>();
 
-    public currentUser!: User;
     public readonly RecipeStatus = RecipeStatus;
+    public readonly IngredientRarity = IngredientRarity;
     public readonly recipeListActivities$ = this.#recipeListActivityGQL
         .watch({
             recipeListId: this.#activatedRoute.snapshot.params['recipeListId'],
@@ -75,20 +72,4 @@ export class RecipeGeneratorActivityComponent implements AfterViewInit, OnDestro
     getRelativeFormat(date: string): string {
         return DateTime.fromISO(date).toRelativeCalendar() as string;
     }
-
-    ngAfterViewInit() {
-        this.#userService
-            .get()
-            .pipe(takeUntil(this.#unsubscribe$))
-            .subscribe(user => {
-                this.currentUser = user;
-            });
-    }
-
-    ngOnDestroy() {
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
-    }
-
-    protected readonly IngredientRarity = IngredientRarity;
 }
