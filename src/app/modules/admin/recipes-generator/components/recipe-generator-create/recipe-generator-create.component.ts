@@ -40,7 +40,6 @@ import {
     PaginateIngredientListGQL,
     PaginateIngredientListQuery,
 } from '../../../ingredient-lists/ingredient-lists.generated';
-import { RecipeGeneratorBuilder } from '../../recipe-generator.service';
 import { RecipeListCreateGQL } from '../../recipes-list.generated';
 
 const baseRecipeSizeMap = new Map<number, number>([
@@ -55,7 +54,6 @@ const baseRecipeSizeMap = new Map<number, number>([
     standalone: true,
     templateUrl: './recipes-generator-create.component.html',
     encapsulation: ViewEncapsulation.None,
-    providers: [RecipeGeneratorBuilder],
     imports: [
         AsyncPipe,
         MatTableModule,
@@ -88,7 +86,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #snackBar = inject(MatSnackBar);
     readonly #queryFactory = inject(BindQueryParamsFactory);
-    readonly #recipeGeneratorBuilder = inject(RecipeGeneratorBuilder);
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 2500,
         horizontalPosition: 'right',
@@ -147,7 +144,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     );
     public readonly form = this.#formBuilder.group({
         name: ['', [Validators.required]],
-        use_partitioning: [false, [Validators.required]],
         recipe_size: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
         base_ingredient_ids: new FormControl<string[]>([], {
             validators: [Validators.required, Validators.maxLength(5)],
@@ -342,21 +338,12 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
         this.filteredIngredients$.pipe(startWith([])),
         this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
-        this.form.get('use_partitioning')!.valueChanges.pipe(startWith(false)),
     ]).pipe(
-        map(([baseIngredients, filteredIngredients, recipeSize, usePartitioning]) => {
+        map(([baseIngredients, filteredIngredients, recipeSize]) => {
             if (!baseIngredients?.length || !filteredIngredients.length || !recipeSize) {
                 return 0;
             }
-            const generator = this.#recipeGeneratorBuilder.buildGenerator(
-                recipeSize,
-                baseIngredients.length,
-                usePartitioning!,
-            );
-            if (!generator) {
-                return 0;
-            }
-            return generator.count(filteredIngredients.map(ingredient => ingredient!.id));
+            return Math.ceil(filteredIngredients.length / (6 - baseIngredients.length));
         }),
     );
 

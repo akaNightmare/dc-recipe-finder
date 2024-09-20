@@ -24,20 +24,25 @@
               ></mat-icon>
             }
 
-            <div class="flex flex-col p-3.5">
+            <div class="flex flex-col p-3">
               <div class="flex justify-start">
                 @for (ingredient of recipeList.ingredients | sortBy: 'asc' : 'name'; track ingredient.id; let columnLast = $last) {
                   <div
-                    [class.mr-1.5]="!columnLast"
+                    [class.mr-2]="!columnLast"
                     class="relative"
                   >
                     <img
                       [ngSrc]="'images/ingredients/' + ingredient.image"
                       [alt]="ingredient.name"
-                      class="w-9 h-9 rounded object-cover"
+                      [matTooltip]="ingredient.name"
+                      class="w-9 h-9 ring-[2px] rounded object-cover"
                       [ngClass]="{
-                        'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
-                        'ring-common': ingredient.rarity === IngredientRarity.Common
+                            'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
+                            'ring-common': ingredient.rarity === IngredientRarity.Common,
+                            'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
+                            'ring-epic': ingredient.rarity === IngredientRarity.Epic,
+                            'ring-rare': ingredient.rarity === IngredientRarity.Rare,
+                            'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
                     }"
                       width="36"
                       height="36"
@@ -66,7 +71,9 @@
                           <mat-icon [svgIcon]="'heroicons_outline:user-minus'"></mat-icon>
                           Unassign from {{ recipeList.assigned.login }}
                         </button>
-                      } @else {
+                      }
+
+                      @if (recipeList.assigned?.id !== currentUser.id) {
                         <button mat-menu-item (click)="assignRecipeListRecipeToUser(recipeList.id, currentUser.id)">
                           <mat-icon [svgIcon]="'heroicons_outline:user-plus'"></mat-icon>
                           Assign to me

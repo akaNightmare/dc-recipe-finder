@@ -34,7 +34,8 @@
             </li>
             <li class="flex justify-between w-full pt-2">
               <span class="mr-2">Recipes will be generated:</span>
-              <span class="text-xl font-bold tracking-tight leading-none">{{ recipesCount$ | async | number:'1.0' }}</span>
+              <span
+                class="text-xl font-bold tracking-tight leading-none">{{ recipesCount$ | async | number:'1.0' }}</span>
             </li>
           </ul>
         </fuse-alert>
@@ -53,22 +54,22 @@
 
             <mat-form-field class="ml-2 sm:ml-4 w-1/5">
               <mat-label>
-                  Recipe size
-                  <mat-icon
-                    class="text-hint icon-size-3.5"
-                    [svgIcon]="'heroicons_mini:information-circle'"
-                    matTooltip="Number of ingredients in the intended recipe"
-                  ></mat-icon>
+                Recipe size
+                <mat-icon
+                  class="text-hint icon-size-3.5"
+                  [svgIcon]="'heroicons_mini:information-circle'"
+                  matTooltip="Number of ingredients in the intended recipe"
+                ></mat-icon>
               </mat-label>
               <input type="number" min="3" max="6" matInput [formControlName]="'recipe_size'" />
               @if (form.get('recipe_size')!.hasError('required')) {
                 <mat-error> Recipe size is required</mat-error>
               }
               @if (form.get('recipe_size')!.hasError('min')) {
-                <mat-error> Min is 3 </mat-error>
+                <mat-error> Min is 3</mat-error>
               }
               @if (form.get('recipe_size')!.hasError('max')) {
-                <mat-error> Max is 6 </mat-error>
+                <mat-error> Max is 6</mat-error>
               }
             </mat-form-field>
 
@@ -154,38 +155,24 @@
           </div>
 
           <div
-            class="-mx-8 mt-8 flex items-center justify-between border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
+            class="-mx-8 mt-8 flex items-center justify-end border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
           >
-            <div class="mt-0">
-              @if (form.get('recipe_size')?.value === 3) {
-                <mat-slide-toggle
-                  class="mt-8 sm:ml-auto sm:mt-0"
-                  [color]="'primary'"
-                  [formControlName]="'use_partitioning'"
-                >
-                  Use partitioning algo
-                </mat-slide-toggle>
+            <a routerLink=".." mat-button>Back</a>
+            <button
+              class="ml-3 px-6"
+              mat-flat-button
+              [disabled]="form.disabled"
+              [color]="'primary'"
+            >
+              @if (form.disabled) {
+                <mat-progress-spinner
+                  [diameter]="24"
+                  [mode]="'indeterminate'"
+                ></mat-progress-spinner>
+              } @else {
+                <span> Generate </span>
               }
-            </div>
-
-            <div class="mt-0">
-              <a routerLink=".." mat-button>Back</a>
-              <button
-                class="ml-3 px-6"
-                mat-flat-button
-                [disabled]="form.disabled"
-                [color]="'primary'"
-              >
-                @if (form.disabled) {
-                  <mat-progress-spinner
-                    [diameter]="24"
-                    [mode]="'indeterminate'"
-                  ></mat-progress-spinner>
-                } @else {
-                  <span> Generate </span>
-                }
-              </button>
-            </div>
+            </button>
           </div>
         </form>
       </div>
