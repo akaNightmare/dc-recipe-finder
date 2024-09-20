@@ -38,7 +38,7 @@
 
                 <div class="relative flex flex-auto">
                   <!-- Icon -->
-                  @if (iconByAction(activity.log['action']); as icon) {
+                  @if (iconByLog(activity.log); as icon) {
                     <div
                       class="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-400"
                       [class.bg-red-400]="activity.log['action'] === 'marked' && activity.log['recipe']['status'] === RecipeStatus.Failed"
@@ -50,29 +50,42 @@
                   <div class="flex flex-auto flex-col items-start">
                     <div>
                       <strong>{{ activity.owner.login }}</strong>
-                      {{ activity.log['action'] }}
                       @switch (activity.log['action']) {
                         @case ('created') {
-                          <strong>{{ activity.log['name'] }}</strong> recipe list
+                          {{ activity.log['action'] }} <strong>{{ activity.log['name'] }}</strong> recipe list
                         }
                         @case ('assigned') {
-                          recipe to check to
-                          @if (activity.log['assigned_to']['id'] === activity.owner.id) {
-                            himself
-                          } @else {
-                            <strong>{{ activity.log['assigned_to']['login'] }}</strong>
-                          }
-                        }
-                        @case ('unassigned') {
-                          recipe to check from
-                          @if (activity.log['unassigned_from']['id'] === activity.owner.id) {
-                            himself
-                          } @else {
-                            <strong>{{ activity.log['unassigned_from']['login'] }}</strong>
+                          @if (activity.log['assigned_to']?.['id'] && activity.log['unassigned_from']?.['id']) {
+                            reassigned recipe to check from
+                            @if (activity.log['unassigned_from']['id'] === activity.owner.id) {
+                              himself
+                            } @else {
+                              <strong>{{ activity.log['unassigned_from']['login'] }}</strong>
+                            }
+                            to
+                            @if (activity.log['assigned_to']['id'] === activity.owner.id) {
+                              himself
+                            } @else {
+                              <strong>{{ activity.log['assigned_to']['login'] }}</strong>
+                            }
+                          } @else if (!activity.log['assigned_to']?.['id']) {
+                            unassigned recipe to check from
+                            @if (activity.log['unassigned_from']['id'] === activity.owner.id) {
+                              himself
+                            } @else {
+                              <strong>{{ activity.log['unassigned_from']['login'] }}</strong>
+                            }
+                          } @else if (activity.log['assigned_to']?.['id']) {
+                            assigned recipe to check to
+                            @if (activity.log['assigned_to']['id'] === activity.owner.id) {
+                              himself
+                            } @else {
+                              <strong>{{ activity.log['assigned_to']['login'] }}</strong>
+                            }
                           }
                         }
                         @case ('marked') {
-                          recipe to check as <strong>{{ activity.log['recipe']['status'] }}</strong>
+                          {{ activity.log['action'] }} recipe to check as <strong>{{ activity.log['recipe']['status'] }}</strong>
                         }
                       }
                     </div>

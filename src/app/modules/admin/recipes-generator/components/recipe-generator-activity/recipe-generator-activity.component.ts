@@ -48,16 +48,20 @@ export class RecipeGeneratorActivityComponent {
             map(({ data }) => data.recipeListActivity),
         );
 
-    iconByAction(action: string): string | undefined {
-        switch (action) {
+    iconByLog(log: Record<string, unknown>): string | undefined {
+        switch (log['action']) {
             case 'created':
                 return 'heroicons_outline:calculator';
-            case 'assigned':
-                return 'heroicons_outline:user-plus';
-            case 'unassigned':
-                return 'heroicons_outline:user-minus';
-            case 'reassigned':
-                return 'heroicons_outline:users';
+            case 'assigned': {
+                if (log['assigned_to'] && log['unassigned_from']) {
+                    return 'heroicons_outline:users';
+                } else if (!log['assigned_to']) {
+                    return 'heroicons_outline:user-minus';
+                } else if (log['assigned_to']) {
+                    return 'heroicons_outline:user-plus';
+                }
+                return undefined;
+            }
             case 'marked':
                 return 'heroicons_outline:beaker';
             default:
