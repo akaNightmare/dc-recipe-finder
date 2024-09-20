@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -74,7 +74,6 @@ import {
         MatMenuTrigger,
         MatMenuItem,
         MatDivider,
-        AsyncPipe,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
@@ -103,17 +102,13 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     public readonly pageSizeOptions = [50, 100, 150, 200];
     public readonly RecipeStatus = RecipeStatus;
     public readonly IngredientRarity = IngredientRarity;
-    public readonly STATUSES = Object.values(RecipeStatus);
     public readonly filters = new FormGroup({
         statuses: new FormControl<RecipeStatus[]>([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[1]),
     });
     public currentUser!: User;
-    public readonly users$ = this.#usersGQL.watch().valueChanges.pipe(
-        filter(({ data }) => Array.isArray(data?.users)),
-        map(({ data }) => data.users),
-    );
+    public users: User[] = [];
     @ViewChild(MatPaginator) public readonly paginator!: MatPaginator;
 
     readonly #bindQueryParamsManager = this.#queryFactory
@@ -175,6 +170,17 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                 this.currentUser = user;
             });
 
+        this.#usersGQL
+            .watch()
+            .valueChanges.pipe(
+                takeUntil(this.#unsubscribe$),
+                filter(({ data }) => Array.isArray(data?.users)),
+                map(({ data }) => data.users),
+            )
+            .subscribe(users => {
+                this.users = users;
+            });
+
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
     }
 
@@ -193,7 +199,9 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             .subscribe(() => {
                 this.#snackBar.open(
                     'Recipe has been ' +
-                        (userId ? `assigned to ${this.currentUser.login}` : 'unassigned'),
+                        (userId
+                            ? `assigned to ${this.users.find(({ id }) => id === userId)?.login}`
+                            : 'unassigned'),
                     undefined,
                     this.#defaultSnackBarConfig,
                 );

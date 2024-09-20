@@ -90,7 +90,7 @@
                             placeholder="Assign to user"
                             (selectionChange)="assignRecipeListRecipeToUser(recipeList.id, $event.value); menuRecipes.closeMenu()"
                             (click)="$event.stopPropagation(); $event.preventDefault()">
-                            @for (user of users$ | async; track user.id) {
+                            @for (user of users; track user.id) {
                               <mat-option [value]="user.id">
                                 @if (user.id === currentUser.id) {
                                   <strong>{{ user.login }}</strong>
