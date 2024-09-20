@@ -33,7 +33,7 @@
       </form>
 
       <div
-        class="grid grid-cols-1 gap-2 mt-8 sm:grid-cols-2 lg:grid-cols-5"
+        class="grid grid-cols-1 gap-2.5 gap-y-3 mt-8 sm:grid-cols-2 lg:grid-cols-5"
       >
         @for (recipeList of recipeListRecipes; track recipeList.id) {
           <div
@@ -48,7 +48,7 @@
             @if (recipeList.assigned || (recipeList.recipe?.status && recipeList.recipe?.owner)) {
               <mat-icon
                 [matTooltip]="recipeList.recipe?.status ? 'Marked by ' + recipeList.recipe.owner.login : 'Assigned to ' + recipeList.assigned.login"
-                class="icon-size-4.5 rounded-full absolute -top-1.5 -right-1"
+                class="icon-size-4.5 rounded-full absolute -top-2 -right-1"
                 [ngClass]="{
                   'bg-blue-400 text-white': recipeList.assigned && !recipeList.recipe?.status,
                   'bg-pink-500 text-pink-50': recipeList.recipe?.status === RecipeStatus.Failed,
@@ -57,6 +57,10 @@
                 [svgIcon]="'heroicons_solid:information-circle'"
               ></mat-icon>
             }
+
+            <code [class]="counterClasses(recipeList)">
+              {{ recipeList.index }}
+            </code>
 
             <div class="flex flex-col p-3">
               <div class="flex justify-start">

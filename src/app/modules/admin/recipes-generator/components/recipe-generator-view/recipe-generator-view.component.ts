@@ -196,6 +196,25 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#unsubscribe$.complete();
     }
 
+    public counterClasses(
+        recipeList: PaginateRecipeListRecipeQuery['paginateRecipeListRecipe']['items'][0],
+    ): string {
+        let classes: string;
+        if (recipeList.recipe?.status === RecipeStatus.Success) {
+            classes = 'bg-green-50 text-green-500 ring-2 ring-green-500';
+        } else if (recipeList.recipe?.status === RecipeStatus.Failed) {
+            classes = 'bg-pink-50 text-pink-500 ring-2 ring-pink-500';
+        } else if (recipeList.assigned?.id === this.currentUser?.id) {
+            classes = 'bg-white text-blue-400 ring-2 ring-blue-400';
+        } else {
+            classes = 'text-blue-400';
+        }
+        return (
+            `absolute bg-card -top-2 -left-1 rounded shadow text-xs truncate w-4 h-4 text-center ` +
+            classes
+        );
+    }
+
     public assignRecipeListRecipeToUser(recipeListRecipeId: string, userId: string | null): void {
         void this.#assignRecipeListRecipeToUserGQL
             .mutate({
