@@ -41,7 +41,7 @@
                   @if (iconByLog(activity.log); as icon) {
                     <div
                       class="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-400"
-                      [class.bg-red-400]="activity.log['action'] === 'marked' && activity.log['recipe']['status'] === RecipeStatus.Failed"
+                      [class.bg-red-400]="activity.log['action'] === 'deleted-recipe' || (activity.log['action'] === 'marked' && activity.log['recipe']['status'] === RecipeStatus.Failed)"
                       [class.bg-green-400]="activity.log['action'] === 'marked' && activity.log['recipe']['status'] === RecipeStatus.Success"
                     >
                       <mat-icon class="text-white icon-size-5" [svgIcon]="icon"></mat-icon>
@@ -53,6 +53,17 @@
                       @switch (activity.log['action']) {
                         @case ('created') {
                           {{ activity.log['action'] }} <strong>{{ activity.log['name'] }}</strong> recipe list
+                        }
+                        @case ('deleted-recipe') {
+                          has deleted the
+                          <strong>
+                            @if (activity.log['recipe']['name']) {
+                              "{{ activity.log['recipe']['name'] }}"
+                            } @else {
+                              {{ activity.log['recipe']['status'] }}
+                            }
+                          </strong>
+                          recipe
                         }
                         @case ('assigned') {
                           @if (activity.log['assigned_to']?.['id'] && activity.log['unassigned_from']?.['id']) {
@@ -129,7 +140,7 @@
                         <ng-container
                           *ngTemplateOutlet="ingredientList; context: { $implicit: activity.log['ingredients'] }"
                         ></ng-container>
-                      } @else if (activity.log['action'] === 'marked') {
+                      } @else if (activity.log['action'] === 'marked' || activity.log['action'] === 'deleted-recipe') {
                         <div>
                           <span class="font-semibold">Checked recipe:</span>
                           <ng-container
@@ -138,7 +149,11 @@
                         </div>
                         <div class="mt-4">
                           <span class="font-semibold">
-                            Created
+                            @if (activity.log['action'] === 'deleted-recipe') {
+                              Deleted
+                            } @else {
+                              Created
+                            }
                             @if (activity.log['recipe']['name']) {
                               "{{ activity.log['recipe']['name'] }}"
                             }

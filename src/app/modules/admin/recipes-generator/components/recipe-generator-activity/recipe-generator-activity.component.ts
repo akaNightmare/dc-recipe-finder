@@ -52,6 +52,8 @@ export class RecipeGeneratorActivityComponent {
         switch (log['action']) {
             case 'created':
                 return 'heroicons_outline:calculator';
+            case 'deleted-recipe':
+                return 'heroicons_outline:trash';
             case 'assigned': {
                 if (log['assigned_to'] && log['unassigned_from']) {
                     return 'heroicons_outline:users';
