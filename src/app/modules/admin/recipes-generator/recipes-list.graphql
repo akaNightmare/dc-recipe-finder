@@ -29,9 +29,10 @@ query PaginateRecipeList(
 
 query PaginateRecipeListRecipe(
   $recipeListId: ID!,
-  $pager: PaginationInput!
+  $pager: PaginationInput!,
+  $filter: RecipeListRecipePaginateInput
 ) {
-  paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager) {
+  paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager, filter: $filter) {
     items {
       id
       index

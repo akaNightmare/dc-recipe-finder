@@ -102,8 +102,10 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     public readonly pageSizeOptions = [50, 100, 150, 200];
     public readonly RecipeStatus = RecipeStatus;
     public readonly IngredientRarity = IngredientRarity;
+    public readonly STATUSES = Object.values(RecipeStatus);
     public readonly filters = new FormGroup({
         statuses: new FormControl<RecipeStatus[]>([]),
+        users: new FormControl<string[]>([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[1]),
     });
@@ -115,6 +117,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         .create(
             [
                 { queryKey: 'statuses', type: 'array' },
+                { queryKey: 'users', type: 'array' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
             ],
@@ -137,7 +140,10 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                 distinctUntilChanged(),
                 switchMap(([prev, curr]) => {
                     if (prev) {
-                        if (xor(prev.statuses, curr?.statuses).length > 0) {
+                        if (
+                            xor(prev.statuses, curr?.statuses).length > 0 ||
+                            xor(prev.users, curr?.users).length > 0
+                        ) {
                             if (curr && curr.page !== 1) {
                                 curr.page = 1;
                                 this.paginator.pageIndex = 0;
@@ -247,6 +253,18 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             limit: values.limit!,
         };
 
-        return { pager, recipeListId: this.#activatedRoute.snapshot.params['recipeListId'] };
+        const filter = {};
+        if (values.statuses?.length) {
+            Object.assign(filter, { status: { in: values.statuses } });
+        }
+        if (values.users?.length) {
+            Object.assign(filter, { assigned_to: { in: values.users } });
+        }
+
+        return {
+            pager,
+            filter,
+            recipeListId: this.#activatedRoute.snapshot.params['recipeListId'],
+        };
     }
 }
