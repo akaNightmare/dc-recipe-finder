@@ -33,11 +33,11 @@
       </form>
 
       <div
-        class="grid grid-cols-1 gap-2.5 gap-y-3 mt-8 sm:grid-cols-2 lg:grid-cols-5"
+        class="mt-8 flex justify-start flex-wrap gap-3.5"
       >
         @for (recipeList of recipeListRecipes; track recipeList.id) {
           <div
-            class="bg-card flex flex-col rounded-xl shadow relative"
+            class="bg-card flex flex-col rounded-xl shadow relative w-72"
             [class.ring-2]="recipeList.recipe != null || currentUser?.id === recipeList.assigned?.id"
             [class.ring-blue-400]="currentUser?.id === recipeList.assigned?.id"
             [ngClass]="{
@@ -90,7 +90,7 @@
                 @if (recipeList.recipe == null) {
                   <span [matMenuTriggerFor]="recipeMenu"
                         #menuRecipes="matMenuTrigger"
-                        class="-mr-2.5 cursor-pointer mt-1.5">
+                        class="-mr-3 cursor-pointer mt-1.5">
                     <mat-icon
                       [svgIcon]="'heroicons_outline:ellipsis-vertical'"
                     ></mat-icon>
