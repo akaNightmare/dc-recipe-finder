@@ -34,6 +34,7 @@ query PaginateRecipeListRecipe(
   paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager) {
     items {
       id
+      index
       recipe {
         ...RecipeFragment
         owner {
