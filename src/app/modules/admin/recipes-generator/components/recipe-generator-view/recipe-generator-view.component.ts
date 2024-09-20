@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -29,6 +29,7 @@ import xor from 'lodash-es/xor';
 import {
     distinctUntilChanged,
     filter,
+    map,
     of,
     pairwise,
     startWith,
@@ -36,6 +37,7 @@ import {
     switchMap,
     takeUntil,
 } from 'rxjs';
+import { UsersGQL } from '../../../../../core/user/user.generated';
 import { UserService } from '../../../../../core/user/user.service';
 import { IngredientRarity, RecipeStatus, User } from '../../../../../graphql.generated';
 import { SortByPipe } from '../../../../../pipes';
@@ -72,11 +74,13 @@ import {
         MatMenuTrigger,
         MatMenuItem,
         MatDivider,
+        AsyncPipe,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
+    readonly #usersGQL = inject(UsersGQL);
     readonly #userService = inject(UserService);
     readonly #unsubscribe$ = new Subject<void>();
     readonly #matDialog = inject(MatDialog);
@@ -106,6 +110,10 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         limit: new FormControl(this.pageSizeOptions[1]),
     });
     public currentUser!: User;
+    public readonly users$ = this.#usersGQL.watch().valueChanges.pipe(
+        filter(({ data }) => Array.isArray(data?.users)),
+        map(({ data }) => data.users),
+    );
     @ViewChild(MatPaginator) public readonly paginator!: MatPaginator;
 
     readonly #bindQueryParamsManager = this.#queryFactory

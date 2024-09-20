@@ -33,6 +33,9 @@ query PaginateRecipeListRecipe(
       id
       recipe {
         ...RecipeFragment
+        owner {
+          ...UserFragment
+        }
       }
       ingredients {
         ...IngredientFragment
