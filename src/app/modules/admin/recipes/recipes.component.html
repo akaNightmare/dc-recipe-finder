@@ -150,7 +150,7 @@
                                   @for (ri of recipe.ingredients | sortBy: 'asc' : 'name'; track ri.ingredient.id; let columnLast = $last) {
                                     <div
                                         [matTooltip]="'Click to filter by ' + ri.ingredient.name + ' ingredient'"
-                                        [class.mr-1.5]="!columnLast"
+                                        [class.mr-2]="!columnLast"
                                         (click)="updateFilters({ ingredients: [ri.ingredient.id] })"
                                         class="relative cursor-pointer"
                                     >
@@ -162,10 +162,14 @@
                                         <img
                                             [ngSrc]="'images/ingredients/' + ri.ingredient.image"
                                             [alt]="ri.ingredient.name"
-                                            class="w-9 h-9 rounded object-cover"
+                                            class="w-9 h-9 rounded ring-[2px] object-cover"
                                             [ngClass]="{
                                                 'ring-legendary': ri.ingredient.rarity === IngredientRarity.Legendary,
-                                                'ring-common': ri.ingredient.rarity === IngredientRarity.Common
+                                                'ring-common': ri.ingredient.rarity === IngredientRarity.Common,
+                                                'ring-uncommon': ri.ingredient.rarity === IngredientRarity.Uncommon,
+                                                'ring-epic': ri.ingredient.rarity === IngredientRarity.Epic,
+                                                'ring-rare': ri.ingredient.rarity === IngredientRarity.Rare,
+                                                'ring-ultra-rare': ri.ingredient.rarity === IngredientRarity.UltraRare
                                             }"
                                             width="36"
                                             height="36"
