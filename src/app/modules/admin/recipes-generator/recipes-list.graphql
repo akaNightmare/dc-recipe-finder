@@ -17,6 +17,9 @@ query PaginateRecipeList(
       base_ingredients {
         ...IngredientFragment
       }
+      owner {
+        ...UserFragment
+      }
     }
     page_info {
       ...PageFragment

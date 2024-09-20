@@ -65,6 +65,20 @@
             </td>
           </ng-container>
 
+          <!-- Owner -->
+          <ng-container matColumnDef="owner">
+            <th
+              class="w-60 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Created by
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let rl">
+              <span class="truncate">{{rl.owner.login}}</span>
+            </td>
+          </ng-container>
+
           <!-- Ingredients -->
           <ng-container matColumnDef="base_ingredients">
             <th class="bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>

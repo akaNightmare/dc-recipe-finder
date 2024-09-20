@@ -96,7 +96,13 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     public readonly dataSource = new MatTableDataSource<
         PaginateRecipeListQuery['paginateRecipeList']['items'][0]
     >();
-    public readonly displayedColumns = ['name', 'base_ingredients', 'recipes_count', 'actions'];
+    public readonly displayedColumns = [
+        'name',
+        'base_ingredients',
+        'owner',
+        'recipes_count',
+        'actions',
+    ];
     public readonly pageSizeOptions = [5, 10, 25, 100];
     public readonly filters = new FormGroup({
         search: new FormControl(''),
