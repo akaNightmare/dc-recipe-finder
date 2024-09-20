@@ -55,7 +55,7 @@
                           {{ activity.log['action'] }} <strong>{{ activity.log['name'] }}</strong> recipe list
                         }
                         @case ('deleted-recipe') {
-                          has deleted the
+                          deleted the
                           <strong>
                             @if (activity.log['recipe']['name']) {
                               "{{ activity.log['recipe']['name'] }}"
