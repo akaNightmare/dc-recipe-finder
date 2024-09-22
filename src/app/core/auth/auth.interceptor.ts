@@ -1,35 +1,25 @@
-import {
-    HttpErrorResponse,
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest,
-} from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { GraphQLError } from 'graphql/error';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-    readonly #authService = inject(AuthService);
+export const authInterceptor = (
+    req: HttpRequest<unknown>,
+    next: HttpHandlerFn,
+): Observable<HttpEvent<unknown>> => {
+    const authService = inject(AuthService);
 
-    intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        return next.handle(req).pipe(
-            catchError(error => {
-                if (
-                    (error instanceof HttpErrorResponse && error.status === 401) ||
-                    error.error?.errors?.some(
-                        (err: GraphQLError) => err.extensions?.['code'] === 'UNAUTHENTICATED',
-                    )
-                ) {
-                    this.#authService.clearState();
-                    location.reload();
-                }
+    return next(req).pipe(
+        catchError(error => {
+            if (
+                (error instanceof HttpErrorResponse && error.status === 401) ||
+                error.error?.data?.statusCode === 401
+            ) {
+                authService.clearState();
+                location.reload();
+            }
 
-                return throwError(error);
-            }),
-        );
-    }
-}
+            return throwError(() => error);
+        }),
+    );
+};

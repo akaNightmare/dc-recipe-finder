@@ -4,33 +4,44 @@
     <div
       class="mx-auto flex w-full flex-auto flex-col"
     >
-      <!-- Filters -->
-      <form
-        class="flex w-full max-w-xs flex-col items-center justify-end sm:max-w-none sm:flex-row"
-        [formGroup]="filters"
-      >
-        <mat-form-field class="w-full sm:w-56" [subscriptSizing]="'dynamic'">
-          <mat-select [formControlName]="'users'" multiple="true" placeholder="Filter by assigned users">
-            @for (user of users; track user.id) {
-              <mat-option [value]="user.id">
-                @if (user.id === currentUser.id) {
-                  <strong>{{ user.login }}</strong>
-                } @else {
-                  {{ user.login }}
-                }
-              </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <!-- Status -->
-        <mat-form-field [subscriptSizing]="'dynamic'" class="w-full ml-4 sm:w-44">
-          <mat-select multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
-            @for (status of STATUSES; track status) {
-              <mat-option [value]="status">{{ status }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </form>
+      <div class="flex w-full items-center justify-between">
+<!--        <button class="hidden sm:inline-flex rounded-md" (click)="regenerateRecipeList()" mat-stroked-button>-->
+<!--          <mat-icon-->
+<!--            class="icon-size-5"-->
+<!--            [svgIcon]="'heroicons_outline:arrow-path'"-->
+<!--          ></mat-icon>-->
+<!--          <span class="ml-2">Regenerate</span>-->
+<!--        </button>-->
+
+        <!-- Filters -->
+        <form
+          class="flex w-full max-w-xs flex-col items-center justify-end sm:max-w-none sm:flex-row"
+          [formGroup]="filters"
+        >
+          <mat-form-field class="w-full sm:w-56" [subscriptSizing]="'dynamic'">
+            <mat-select [formControlName]="'users'" multiple="true" placeholder="Filter by assigned users">
+              @for (user of users; track user.id) {
+                <mat-option [value]="user.id">
+                  @if (user.id === currentUser.id) {
+                    <strong>{{ user.login }}</strong>
+                  } @else {
+                    {{ user.login }}
+                  }
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <!-- Status -->
+          <mat-form-field [subscriptSizing]="'dynamic'" class="w-full ml-4 sm:w-44">
+            <mat-select multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
+              @for (status of STATUSES; track status) {
+                <mat-option [value]="status">{{ status }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
 
       <div
         class="mt-8 flex justify-start flex-wrap gap-3.5"

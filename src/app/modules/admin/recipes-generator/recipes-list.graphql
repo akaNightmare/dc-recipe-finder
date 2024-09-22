@@ -95,6 +95,12 @@ mutation RemoveRecipeList($id: ID!) {
   removeRecipeList(id: $id)
 }
 
+mutation RecipeListRegenerate($recipeListId: ID!) {
+  recipeListRegenerate(recipeListId: $recipeListId) {
+    ...RecipeListFragment
+  }
+}
+
 mutation RecipeListCreate($recipeList: RecipeListCreateInput!) {
   recipeListCreate(recipeList: $recipeList) {
     ...RecipeListFragment

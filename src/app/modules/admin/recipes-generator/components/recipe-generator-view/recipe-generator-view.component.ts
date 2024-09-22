@@ -9,7 +9,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAnchor, MatIconButton } from '@angular/material/button';
+import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDivider } from '@angular/material/divider';
@@ -47,6 +47,7 @@ import {
     PaginateRecipeListRecipeGQL,
     PaginateRecipeListRecipeQuery,
     PaginateRecipeListRecipeQueryVariables,
+    RecipeListRegenerateGQL,
 } from '../../recipes-list.generated';
 
 @Component({
@@ -74,11 +75,13 @@ import {
         MatMenuTrigger,
         MatMenuItem,
         MatDivider,
+        MatButton,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
+    readonly #recipeListRegenerateGQL = inject(RecipeListRegenerateGQL);
     readonly #usersGQL = inject(UsersGQL);
     readonly #userService = inject(UserService);
     readonly #unsubscribe$ = new Subject<void>();
@@ -264,6 +267,16 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                     );
                 }
             });
+    }
+
+    public regenerateRecipeList(recipeListId: string): void {
+        this.#recipeListRegenerateGQL.mutate({ recipeListId }).subscribe(() => {
+            this.#snackBar.open(
+                'Recipe list has been regenerated',
+                undefined,
+                this.#defaultSnackBarConfig,
+            );
+        });
     }
 
     #buildVariables(values = this.filters.value): PaginateRecipeListRecipeQueryVariables {

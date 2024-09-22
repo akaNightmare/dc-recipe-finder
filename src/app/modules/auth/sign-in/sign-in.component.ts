@@ -86,7 +86,7 @@ export class AuthSignInComponent {
                 // Navigate to the redirect url
                 void this.#router.navigateByUrl(redirectURL);
             },
-            error: err => {
+            error: () => {
                 // Re-enable the form
                 this.signInForm.enable();
 
@@ -96,7 +96,7 @@ export class AuthSignInComponent {
                 // Set the alert
                 this.alert = {
                     type: 'error',
-                    message: err?.message ?? 'Wrong login or password',
+                    message: 'Wrong login or password',
                 };
 
                 // Show the alert
