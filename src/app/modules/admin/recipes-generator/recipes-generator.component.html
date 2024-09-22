@@ -79,6 +79,19 @@
             </td>
           </ng-container>
 
+          <!-- Created At -->
+          <ng-container matColumnDef="created_at">
+            <th
+              class="w-36 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Created at
+            </th>
+            <td class="truncate pr-6" mat-cell *matCellDef="let rl">{{ rl.created_at | date }}</td>
+          </ng-container>
+
           <!-- Ingredients -->
           <ng-container matColumnDef="base_ingredients">
             <th class="bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>

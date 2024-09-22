@@ -39,7 +39,7 @@ import {
 } from 'rxjs';
 import { UsersGQL } from '../../../../../core/user/user.generated';
 import { UserService } from '../../../../../core/user/user.service';
-import { IngredientRarity, RecipeStatus, User } from '../../../../../graphql.generated';
+import { IngredientRarity, RecipeList, RecipeStatus, User } from '../../../../../graphql.generated';
 import { SortByPipe } from '../../../../../pipes';
 import { RecipeDialogComponent } from '../../../recipes/recipe-dialog/recipe-dialog.component';
 import {
@@ -114,6 +114,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     });
     public currentUser!: User;
     public users: User[] = [];
+    public recipeList!: RecipeList;
     @ViewChild(MatPaginator) public readonly paginator!: MatPaginator;
 
     readonly #bindQueryParamsManager = this.#queryFactory
@@ -188,6 +189,12 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             )
             .subscribe(users => {
                 this.users = users;
+            });
+
+        this.#activatedRoute.data
+            .pipe(takeUntil(this.#unsubscribe$))
+            .subscribe(({ recipeList }) => {
+                this.recipeList = recipeList;
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
@@ -269,13 +276,17 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             });
     }
 
-    public regenerateRecipeList(recipeListId: string): void {
-        this.#recipeListRegenerateGQL.mutate({ recipeListId }).subscribe(() => {
+    public regenerateRecipeList(): void {
+        this.#recipeListRegenerateGQL.mutate({ recipeListId: this.recipeList.id }).subscribe(() => {
             this.#snackBar.open(
                 'Recipe list has been regenerated',
                 undefined,
                 this.#defaultSnackBarConfig,
             );
+
+            this.paginator.pageIndex = 0;
+            this.filters.patchValue({ page: 1 });
+            void this.#recipeListRecipeRef.refetch(this.#buildVariables());
         });
     }
 

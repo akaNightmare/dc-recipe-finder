@@ -100,6 +100,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         'name',
         'base_ingredients',
         'owner',
+        'created_at',
         'recipes_count',
         'actions',
     ];

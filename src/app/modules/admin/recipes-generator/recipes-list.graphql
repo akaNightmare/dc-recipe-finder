@@ -112,3 +112,9 @@ query RecipeListActivity($recipeListId: ID!) {
     ...RecipeListActivityFragment
   }
 }
+
+query RecipeList($id: ID!) {
+  recipeList(id: $id) {
+    ...RecipeListFragment
+  }
+}
