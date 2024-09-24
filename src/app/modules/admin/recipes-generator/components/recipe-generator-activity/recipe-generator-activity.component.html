@@ -193,7 +193,7 @@
 </div>
 
 <ng-template #ingredientList let-ingredients>
-  <div class="flex justify-start">
+  <div class="flex justify-start mt-1">
     @for (ingredient of ingredients | sortBy: 'asc' : 'name'; track ingredient.id; let columnLast = $last) {
       <div [class.mr-2]="!columnLast" class="relative">
         @if (ingredient['count']) {
