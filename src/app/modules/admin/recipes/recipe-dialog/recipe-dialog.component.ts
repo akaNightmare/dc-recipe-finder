@@ -30,6 +30,7 @@ import { cloneDeep } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
 
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import {
     Ingredient,
     IngredientPaginateOrderField,
@@ -85,6 +86,12 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     readonly #unsubscribe$ = new Subject<void>();
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
+    readonly #snackBar = inject(MatSnackBar);
+    readonly #defaultSnackBarConfig: MatSnackBarConfig = {
+        duration: 3500,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+    };
     #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
 
     readonly #updateRecipeGQL = inject(UpdateRecipeGQL);
@@ -307,19 +314,44 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                     recipeListRecipeId: this.data.recipe!.id,
                     recipe,
                 })
-                .subscribe(({ data }) => {
-                    this.#matDialogRef.close(data);
+                .subscribe({
+                    next: ({ data }) => {
+                        this.#matDialogRef.close(data);
+                    },
+                    error: error => {
+                        this.#snackBar.open(
+                            error.networkError?.error?.data?.message ?? 'Failed to create recipe',
+                            undefined,
+                            this.#defaultSnackBarConfig,
+                        );
+                    },
                 });
         } else {
             if (this.data.recipe?.id) {
-                this.#updateRecipeGQL
-                    .mutate({ recipe, id: this.data.recipe.id })
-                    .subscribe(({ data }) => {
+                this.#updateRecipeGQL.mutate({ recipe, id: this.data.recipe.id }).subscribe({
+                    next: ({ data }) => {
                         this.#matDialogRef.close(data);
-                    });
+                    },
+                    error: error => {
+                        this.#snackBar.open(
+                            error.networkError?.error?.data?.message ?? 'Failed to create recipe',
+                            undefined,
+                            this.#defaultSnackBarConfig,
+                        );
+                    },
+                });
             } else {
-                this.#createRecipeGQL.mutate({ recipe }).subscribe(({ data }) => {
-                    this.#matDialogRef.close(data);
+                this.#createRecipeGQL.mutate({ recipe }).subscribe({
+                    next: ({ data }) => {
+                        this.#matDialogRef.close(data);
+                    },
+                    error: error => {
+                        this.#snackBar.open(
+                            error.networkError?.error?.data?.message ?? 'Failed to create recipe',
+                            undefined,
+                            this.#defaultSnackBarConfig,
+                        );
+                    },
                 });
             }
         }
