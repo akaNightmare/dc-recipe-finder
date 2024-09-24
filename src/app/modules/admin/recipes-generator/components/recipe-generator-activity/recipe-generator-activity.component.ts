@@ -20,6 +20,7 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
     selector: 'recipe-generator-activity',
     standalone: true,
     templateUrl: './recipe-generator-activity.component.html',
+    styleUrls: ['./recipe-generator-activity.component.scss'],
     encapsulation: ViewEncapsulation.None,
     imports: [
         AsyncPipe,
