@@ -127,12 +127,28 @@
                         </div>
                         @if (activity.log['banned_ingredient_lists'].length) {
                           <div class="mt-4">
-                            Banned ingredient lists:
+                            <span class="font-semibold">Banned ingredient lists:</span>
                             <div>
                               @for (allowedIngredientList of activity.log['banned_ingredient_lists']; track allowedIngredientList.id; let last = $last) {
                                 {{ allowedIngredientList.name }}{{ !last ? ', ' : '' }}
                               }
                             </div>
+                          </div>
+                        }
+                        @if (activity.log['skipped_ingredients']?.length) {
+                          <div class="mt-4">
+                            <span class="font-semibold">Skipped ingredients:</span>
+                            @for (si of activity.log['skipped_ingredients']; track $index) {
+                              <div class="flex justify-start">
+                                <ng-container
+                                  *ngTemplateOutlet="ingredientList; context: { $implicit: si['ingredients'] }"
+                                ></ng-container>
+                                <div class="mx-5"></div>
+                                <ng-container
+                                  *ngTemplateOutlet="ingredientList; context: { $implicit: si['recipe'] }"
+                                ></ng-container>
+                              </div>
+                            }
                           </div>
                         }
                       } @else if (activity.log['action'] === 'assigned' || activity.log['action'] === 'unassigned') {
@@ -179,7 +195,7 @@
 <ng-template #ingredientList let-ingredients>
   <div class="flex justify-start">
     @for (ingredient of ingredients | sortBy: 'asc' : 'name'; track ingredient.id; let columnLast = $last) {
-      <div [class.mr-1.5]="!columnLast" class="relative">
+      <div [class.mr-2]="!columnLast" class="relative">
         @if (ingredient['count']) {
           <div
             class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
@@ -191,10 +207,14 @@
           [ngSrc]="'images/ingredients/' + ingredient.image"
           [alt]="ingredient.name"
           [matTooltip]="ingredient.name"
-          class="w-9 h-9 rounded object-cover"
+          class="w-9 h-9 rounded object-cover ring-[2px]"
           [ngClass]="{
               'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
-              'ring-common': ingredient.rarity === IngredientRarity.Common
+              'ring-common': ingredient.rarity === IngredientRarity.Common,
+              'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
+              'ring-epic': ingredient.rarity === IngredientRarity.Epic,
+              'ring-rare': ingredient.rarity === IngredientRarity.Rare,
+              'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
           }"
           width="36"
           height="36"
