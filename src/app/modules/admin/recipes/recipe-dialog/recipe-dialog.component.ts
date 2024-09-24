@@ -164,7 +164,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 ],
                 nonNullable: true,
             }),
-            status: new FormControl(RecipeStatus.Success, {
+            status: new FormControl(RecipeStatus.Failed, {
                 validators: [Validators.required],
                 nonNullable: true,
             }),
@@ -193,6 +193,9 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 image: UNKNOWN_INGREDIENT_IMAGE,
                 name: '-',
             });
+            if (!this.data.status) {
+                this.onStatusChanged({ value: RecipeStatus.Failed });
+            }
         }
 
         if (this.data.status) {
