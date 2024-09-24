@@ -139,7 +139,7 @@
                           <div class="mt-4">
                             <span class="font-semibold">Skipped ingredients:</span>
                             @for (si of activity.log['skipped_ingredients']; track $index) {
-                              <div class="flex justify-start mt-2">
+                              <div class="flex justify-start mt-1">
                                 <ng-container
                                   *ngTemplateOutlet="ingredientList; context: { $implicit: si['ingredients'] }"
                                 ></ng-container>
