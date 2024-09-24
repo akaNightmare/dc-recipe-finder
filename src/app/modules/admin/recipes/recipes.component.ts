@@ -50,6 +50,7 @@ import {
 import { SortByPipe } from '../../../pipes';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 // import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
+import { UsersGQL } from '../../../core/user/user.generated';
 import {
     PaginateRecipeGQL,
     PaginateRecipeQuery,
@@ -96,6 +97,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #snackBar = inject(MatSnackBar);
+    readonly #usersGQL = inject(UsersGQL);
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 2500,
         horizontalPosition: 'right',
@@ -117,12 +119,17 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     public readonly STATUSES = Object.values(RecipeStatus);
     public readonly RecipeStatus = RecipeStatus;
     public readonly IngredientRarity = IngredientRarity;
+    public readonly users$ = this.#usersGQL.watch().valueChanges.pipe(
+        filter(({ data }) => Array.isArray(data?.users)),
+        map(({ data }) => data.users),
+    );
 
     public readonly filters = new FormGroup({
         search: new FormControl(''),
         statuses: new FormControl<RecipeStatus[]>([]),
         rarities: new FormControl<IngredientRarity[]>([]),
         ingredients: new FormControl([]),
+        created_by: new FormControl([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[3]),
         sort_dir: new FormControl<SortDirection>('desc'),
@@ -135,6 +142,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
                 { queryKey: 'search' },
                 { queryKey: 'statuses', type: 'array' },
                 { queryKey: 'rarities', type: 'array' },
+                { queryKey: 'created_by', type: 'array' },
                 { queryKey: 'ingredients', type: 'array' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
@@ -173,6 +181,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
                             prev.search !== curr?.search ||
                             xor(prev.statuses, curr?.statuses).length > 0 ||
                             xor(prev.rarities, curr?.rarities).length > 0 ||
+                            xor(prev.created_by, curr?.created_by).length > 0 ||
                             xor(prev.ingredients, curr?.ingredients).length > 0
                         ) {
                             if (curr?.page !== 1) {
@@ -282,6 +291,9 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         }
         if (values.rarities?.length) {
             Object.assign(filter, { rarity: { in: values.rarities } });
+        }
+        if (values.created_by?.length) {
+            Object.assign(filter, { created_by: { in: values.created_by } });
         }
         if (values.ingredients?.length) {
             Object.assign(filter, { ingredients_ids: values.ingredients });

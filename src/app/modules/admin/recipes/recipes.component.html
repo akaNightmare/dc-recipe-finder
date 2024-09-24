@@ -8,6 +8,17 @@
     <!-- Actions -->
     <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
       <form class="flex items-center flex-auto" [formGroup]="filters">
+        <!-- Created by-->
+        <mat-form-field class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript sm:ml-4 sm:w-44" [subscriptSizing]="'dynamic'">
+          <mat-select [formControlName]="'created_by'" multiple="true" placeholder="Filter by owner">
+            @for (user of users$ | async; track user.id) {
+              <mat-option [value]="user.id">
+                {{ user.login }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
         <!-- Status -->
         <mat-form-field
           [subscriptSizing]="'dynamic'"

@@ -334,7 +334,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                     },
                     error: error => {
                         this.#snackBar.open(
-                            error.networkError?.error?.data?.message ?? 'Failed to create recipe',
+                            error.networkError?.error?.data?.message ?? 'Failed to update recipe',
                             undefined,
                             this.#defaultSnackBarConfig,
                         );
