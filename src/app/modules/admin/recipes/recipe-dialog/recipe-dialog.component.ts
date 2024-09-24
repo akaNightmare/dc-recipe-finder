@@ -195,6 +195,9 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
             });
             if (!this.data.status) {
                 this.onStatusChanged({ value: RecipeStatus.Failed });
+                for (let i = 0; i < 5; i++) {
+                    this.addIngredientField();
+                }
             }
         }
 
