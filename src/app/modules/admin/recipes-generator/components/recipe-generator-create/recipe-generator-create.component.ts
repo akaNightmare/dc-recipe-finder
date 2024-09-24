@@ -43,7 +43,7 @@ import {
 import { RecipeListCreateGQL } from '../../recipes-list.generated';
 
 const baseRecipeSizeMap = new Map<number, number>([
-    [3, 1],
+    [3, 2],
     [4, 1],
     [5, 2],
     [6, 3],
