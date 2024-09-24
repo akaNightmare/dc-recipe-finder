@@ -1,104 +1,104 @@
 <div class="bg-card absolute inset-0 flex min-w-0 flex-col overflow-hidden dark:bg-transparent">
-    <!-- Header -->
-    <div
-        class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
-    >
-        <!-- Title -->
-        <div class="text-4xl font-extrabold tracking-tight">Recipes</div>
-        <!-- Actions -->
-        <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
-            <form class="flex items-center flex-auto" [formGroup]="filters">
-                <!-- Status -->
-                <mat-form-field
-                    [subscriptSizing]="'dynamic'"
-                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-44 sm:ml-4"
-                >
-                    <mat-select multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
-                      @for (status of STATUSES; track status) {
-                        <mat-option [value]="status">{{ status }}</mat-option>
-                      }
-                    </mat-select>
-                </mat-form-field>
+  <!-- Header -->
+  <div
+    class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
+  >
+    <!-- Title -->
+    <div class="text-4xl font-extrabold tracking-tight">Recipes</div>
+    <!-- Actions -->
+    <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
+      <form class="flex items-center flex-auto" [formGroup]="filters">
+        <!-- Status -->
+        <mat-form-field
+          [subscriptSizing]="'dynamic'"
+          class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-44 sm:ml-4"
+        >
+          <mat-select multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
+            @for (status of STATUSES; track status) {
+              <mat-option [value]="status">{{ status }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-                <app-ingredient-search
-                    [maxIngredients]="6"
-                    [ingredientsIds]="filters.get('ingredients')!.value!"
-                    (ingredientsIdsChange)="updateFilters({ ingredients: $event })"
-                ></app-ingredient-search>
+        <app-ingredient-search
+          [maxIngredients]="6"
+          [ingredientsIds]="filters.get('ingredients')!.value!"
+          (ingredientsIdsChange)="updateFilters({ ingredients: $event })"
+        ></app-ingredient-search>
 
-                <!-- Search -->
-                <mat-form-field
-                    [subscriptSizing]="'dynamic'"
-                    class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
-                >
-                    <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
-                    <input
-                        matInput
-                        [formControlName]="'search'"
-                        [autocomplete]="'off'"
-                        [placeholder]="'Search recipes'"
-                    />
-                </mat-form-field>
+        <!-- Search -->
+        <mat-form-field
+          [subscriptSizing]="'dynamic'"
+          class="fuse-mat-rounded fuse-mat-dense fuse-mat-no-subscript w-60 sm:ml-4"
+        >
+          <mat-icon matPrefix [svgIcon]="'heroicons_outline:magnifying-glass'"></mat-icon>
+          <input
+            matInput
+            [formControlName]="'search'"
+            [autocomplete]="'off'"
+            [placeholder]="'Search recipes'"
+          />
+        </mat-form-field>
 
-                <!-- Add recipe button -->
-                <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openRecipeDialog()">
-                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
-                    <span class="ml-2 mr-1">Add</span>
-                </button>
-            </form>
-        </div>
+        <!-- Add recipe button -->
+        <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openRecipeDialog()">
+          <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+          <span class="ml-2 mr-1">Add</span>
+        </button>
+      </form>
     </div>
+  </div>
 
-    <!-- Main -->
-    <div class="flex flex-auto overflow-hidden">
-        <div class="flex flex-auto flex-col overflow-hidden sm:mb-18">
-            <!-- Table wrapper -->
-            <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
-                <table
-                    class="w-full min-w-320 table-fixed bg-transparent"
-                    mat-table
-                    matSort
-                    [matSortActive]="this.filters.get('sort_by')!.value!"
-                    [matSortDisableClear]="true"
-                    [matSortDirection]="this.filters.get('sort_dir')!.value!"
-                    [multiTemplateDataRows]="true"
-                    [dataSource]="dataSource"
-                    [trackBy]="trackByFn"
-                >
-                    <!-- Name -->
-                    <ng-container matColumnDef="name">
-                        <th
-                            class="bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                            mat-header-cell
-                            *matHeaderCellDef
-                            mat-sort-header
-                        >
-                            Name
-                        </th>
-                        <td class="px-4" mat-cell *matCellDef="let recipe">
-                            <div class="flex items-center">
+  <!-- Main -->
+  <div class="flex flex-auto overflow-hidden">
+    <div class="flex flex-auto flex-col overflow-hidden sm:mb-18">
+      <!-- Table wrapper -->
+      <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
+        <table
+          class="w-full min-w-320 table-fixed bg-transparent"
+          mat-table
+          matSort
+          [matSortActive]="this.filters.get('sort_by')!.value!"
+          [matSortDisableClear]="true"
+          [matSortDirection]="this.filters.get('sort_dir')!.value!"
+          [multiTemplateDataRows]="true"
+          [dataSource]="dataSource"
+          [trackBy]="trackByFn"
+        >
+          <!-- Name -->
+          <ng-container matColumnDef="name">
+            <th
+              class="bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Name
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let recipe">
+              <div class="flex items-center">
                                 <span
-                                    class="relative mr-4 flex h-12 w-12 flex-0 items-center justify-center overflow-hidden rounded border"
+                                  class="relative mr-4 flex h-12 w-12 flex-0 items-center justify-center overflow-hidden rounded border"
                                 >
                                   @if (recipe.name) {
                                     <img
-                                        class="w-12"
-                                        width="48"
-                                        height="48"
-                                        [ngSrc]="'images/ingredients/' + recipe.image"
-                                        [alt]="recipe.name"
+                                      class="w-12"
+                                      width="48"
+                                      height="48"
+                                      [ngSrc]="'images/ingredients/' + recipe.image"
+                                      [alt]="recipe.name"
                                     />
                                   } @else {
                                     <span
-                                        class="flex h-full w-full items-center justify-center text-center text-xs font-semibold uppercase leading-none"
+                                      class="flex h-full w-full items-center justify-center text-center text-xs font-semibold uppercase leading-none"
                                     >
                                       @if (recipe.status === RecipeStatus.Failed) {
                                         <img
-                                            class="h-12 w-auto"
-                                            width="48"
-                                            height="58"
-                                            [ngSrc]="'images/ingredients/craft_failed.png'"
-                                            [alt]="'Failed craft'"
+                                          class="h-12 w-auto"
+                                          width="48"
+                                          height="58"
+                                          [ngSrc]="'images/ingredients/craft_failed.png'"
+                                          [alt]="'Failed craft'"
                                         />
                                       } @else {
                                         No image
@@ -110,14 +110,14 @@
                                       class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
                                     >
                                         @if (recipe.count_from === recipe.count_to) {
-                                            {{ recipe.count_from }}
+                                          {{ recipe.count_from }}
                                         } @else {
-                                            {{ recipe.count_from }}-{{ recipe.count_to }}
+                                          {{ recipe.count_from }}-{{ recipe.count_to }}
                                         }
                                     </span>
                                   }
                                 </span>
-                                <span class="truncate">
+                <span class="truncate">
                                     @if (recipe.name) {
                                       @if (recipe.source_url) {
                                         <a
@@ -135,35 +135,35 @@
                                       <i>-no name-</i>
                                     }
                                 </span>
-                            </div>
-                        </td>
-                    </ng-container>
+              </div>
+            </td>
+          </ng-container>
 
-                    <!-- Ingredients -->
-                    <ng-container matColumnDef="ingredients">
-                        <th class="w-72 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
-                            Ingredients
-                        </th>
-                        <td class="px-4" mat-cell *matCellDef="let recipe">
-                            <div class="flex flex-col pl-1">
-                                <div class="flex justify-start">
-                                  @for (ri of recipe.ingredients | sortBy: 'asc' : 'name'; track ri.ingredient.id; let columnLast = $last) {
-                                    <div
-                                        [matTooltip]="'Click to filter by ' + ri.ingredient.name + ' ingredient'"
-                                        [class.mr-2]="!columnLast"
-                                        (click)="updateFilters({ ingredients: [ri.ingredient.id] })"
-                                        class="relative cursor-pointer"
-                                    >
-                                        <div
-                                            class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
-                                        >
-                                            {{ ri.count }}
-                                        </div>
-                                        <img
-                                            [ngSrc]="'images/ingredients/' + ri.ingredient.image"
-                                            [alt]="ri.ingredient.name"
-                                            class="w-9 h-9 rounded ring-[2px] object-cover"
-                                            [ngClass]="{
+          <!-- Ingredients -->
+          <ng-container matColumnDef="ingredients">
+            <th class="w-72 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
+              Ingredients
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let recipe">
+              <div class="flex flex-col pl-1">
+                <div class="flex justify-start">
+                  @for (ri of recipe.ingredients | sortBy: 'asc' : 'name'; track ri.ingredient.id; let columnLast = $last) {
+                    <div
+                      [matTooltip]="'Click to filter by ' + ri.ingredient.name + ' ingredient'"
+                      [class.mr-2]="!columnLast"
+                      (click)="updateFilters({ ingredients: [ri.ingredient.id] })"
+                      class="relative cursor-pointer"
+                    >
+                      <div
+                        class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
+                      >
+                        {{ ri.count }}
+                      </div>
+                      <img
+                        [ngSrc]="'images/ingredients/' + ri.ingredient.image"
+                        [alt]="ri.ingredient.name"
+                        class="w-9 h-9 rounded ring-[2px] object-cover"
+                        [ngClass]="{
                                                 'ring-legendary': ri.ingredient.rarity === IngredientRarity.Legendary,
                                                 'ring-common': ri.ingredient.rarity === IngredientRarity.Common,
                                                 'ring-uncommon': ri.ingredient.rarity === IngredientRarity.Uncommon,
@@ -171,143 +171,157 @@
                                                 'ring-rare': ri.ingredient.rarity === IngredientRarity.Rare,
                                                 'ring-ultra-rare': ri.ingredient.rarity === IngredientRarity.UltraRare
                                             }"
-                                            width="36"
-                                            height="36"
-                                        />
-                                    </div>
-                                  }
-                                </div>
-                            </div>
-                        </td>
-                    </ng-container>
+                        width="36"
+                        height="36"
+                      />
+                    </div>
+                  }
+                </div>
+              </div>
+            </td>
+          </ng-container>
 
-                    <!-- Used in other recipes -->
-                    <ng-container matColumnDef="used_in">
-                        <th class="w-80 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
-                            Used in other recipes
-                        </th>
-                        <td class="px-4" mat-cell *matCellDef="let recipe">
-                            @if (recipe.status === RecipeStatus.Success) {
-                              @for (status of STATUSES; track status; let last = $last) {
-                                <span
-                                    class="text-secondary whitespace-nowrap text-sm font-medium"
-                                >
+          <!-- Used in other recipes -->
+          <ng-container matColumnDef="used_in">
+            <th class="w-80 bg-gray-50 dark:bg-black dark:bg-opacity-5" mat-header-cell *matHeaderCellDef>
+              Used in other recipes
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let recipe">
+              @if (recipe.status === RecipeStatus.Success) {
+                @for (status of STATUSES; track status; let last = $last) {
+                  <span
+                    class="text-secondary whitespace-nowrap text-sm font-medium"
+                  >
                                     {{ status }} -
                                     <span
-                                        [matTooltip]="'Click to filter receipts by ' + recipe.name + ' ingredient with ' + status + ' status'"
-                                        class="text-primary cursor-pointer hover:underline"
-                                        (click)="updateFilters({ ingredients: [recipe.name], statuses: [status] })"
+                                      [matTooltip]="'Click to filter receipts by ' + recipe.name + ' ingredient with ' + status + ' status'"
+                                      class="text-primary cursor-pointer hover:underline"
+                                      (click)="updateFilters({ ingredients: [recipe.name], statuses: [status] })"
                                     >
                                         <!--                                        {{ countReceiptsByStatus(recipe.name, status) }}-->
                                     </span>
-                                  @if (!last) {
-                                    ,
-                                  }
+                    @if (!last) {
+                      ,
+                    }
                                 </span>
-                              }
-                            }
-                          @if (recipe.status !== RecipeStatus.Success) {
-                            <i>-no info-</i>
-                          }
-                        </td>
-                    </ng-container>
+                }
+              }
+              @if (recipe.status !== RecipeStatus.Success) {
+                <i>-no info-</i>
+              }
+            </td>
+          </ng-container>
 
-                    <!-- Status -->
-                    <ng-container matColumnDef="status">
-                        <th
-                            class="w-40 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                            mat-header-cell
-                            *matHeaderCellDef
-                            mat-sort-header
-                        >
-                            Status
-                        </th>
-                        <td class="truncate pr-6" mat-cell *matCellDef="let recipe">
+          <!-- Status -->
+          <ng-container matColumnDef="status">
+            <th
+              class="w-40 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Status
+            </th>
+            <td class="truncate pr-6" mat-cell *matCellDef="let recipe">
                             <span
-                                class="rounded-full py-0.5 px-3 text-sm font-semibold"
-                                [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === RecipeStatus.Unfulfilled,
+                              class="rounded-full py-0.5 px-3 text-sm font-semibold"
+                              [ngClass]="{'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500': recipe.status === RecipeStatus.Unfulfilled,
                                                 'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500': recipe.status === RecipeStatus.Success,
                                                 'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500': recipe.status === RecipeStatus.Failed}"
                             >
-                                {{recipe.status}}
+                                {{ recipe.status }}
                             </span>
-                        </td>
-                    </ng-container>
+            </td>
+          </ng-container>
 
-                    <!-- Created At -->
-                    <ng-container matColumnDef="created_at">
-                        <th
-                            class="w-36 bg-gray-50 dark:bg-black dark:bg-opacity-5"
-                            mat-header-cell
-                            *matHeaderCellDef
-                            mat-sort-header
-                        >
-                            Created at
-                        </th>
-                        <td class="truncate pr-6" mat-cell *matCellDef="let recipe">{{ recipe.created_at | date }}</td>
-                    </ng-container>
+          <!-- Owner -->
+          <ng-container matColumnDef="owner">
+            <th
+              class="w-60 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Created by
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let recipe">
+              <span class="truncate">{{ recipe.owner.login }}</span>
+            </td>
+          </ng-container>
 
-                    <!-- Actions -->
-                    <ng-container matColumnDef="actions">
-                        <th
-                            class="w-24 bg-gray-50 pr-6 dark:bg-black dark:bg-opacity-5"
-                            mat-header-cell
-                            *matHeaderCellDef
-                        >
-                            Actions
-                        </th>
-                        <td class="pr-6" mat-cell *matCellDef="let recipe">
-                            <button
-                                class="h-7 min-h-7 min-w-10 px-2 leading-6"
-                                mat-stroked-button
-                                #t="matMenuTrigger"
-                                [matMenuTriggerFor]="userActionsMenu"
-                            >
-                                <mat-icon
-                                    class="icon-size-5"
-                                    [svgIcon]="t.menuOpen ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"
-                                ></mat-icon>
-                                <mat-menu #userActionsMenu>
-                                    <button mat-menu-item (click)="openRecipeDialog(recipe)">
-                                        <mat-icon color="primary" svgIcon="heroicons_outline:pencil"></mat-icon>
-                                        Edit recipe
-                                    </button>
-                                    <button mat-menu-item (click)="deleteRecipe(recipe)">
-                                        <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
-                                        Delete recipe
-                                    </button>
-                                  @if (collectIngredientIds(recipe); as ingredientIds) {
-                                    @if (ingredientIds.length > 0 && ingredientIds.length < 6) {
-                                      <a mat-menu-item
-                                         [routerLink]="['/recipes-generator/create']"
-                                         [queryParams]="{ base_ingredient_ids: ingredientIds.join(',') }"
-                                      >
-                                          <mat-icon svgIcon="heroicons_outline:calculator"></mat-icon>
-                                          Generate recipes
-                                      </a>
-                                    }
-                                  }
-                                </mat-menu>
-                            </button>
-                        </td>
-                    </ng-container>
+          <!-- Created At -->
+          <ng-container matColumnDef="created_at">
+            <th
+              class="w-36 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Created at
+            </th>
+            <td class="truncate pr-6" mat-cell *matCellDef="let recipe">{{ recipe.created_at | date }}</td>
+          </ng-container>
 
-                    <tr class="shadow" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr
-                        class="h-18 hover:bg-gray-100 dark:hover:bg-hover"
-                        mat-row
-                        *matRowDef="let recipe; columns: displayedColumns;"
-                    ></tr>
-                </table>
-            </div>
+          <!-- Actions -->
+          <ng-container matColumnDef="actions">
+            <th
+              class="w-24 bg-gray-50 pr-6 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Actions
+            </th>
+            <td class="pr-6" mat-cell *matCellDef="let recipe">
+              <button
+                class="h-7 min-h-7 min-w-10 px-2 leading-6"
+                mat-stroked-button
+                #t="matMenuTrigger"
+                [matMenuTriggerFor]="userActionsMenu"
+              >
+                <mat-icon
+                  class="icon-size-5"
+                  [svgIcon]="t.menuOpen ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"
+                ></mat-icon>
+                <mat-menu #userActionsMenu>
+                  <button mat-menu-item (click)="openRecipeDialog(recipe)">
+                    <mat-icon color="primary" svgIcon="heroicons_outline:pencil"></mat-icon>
+                    Edit recipe
+                  </button>
+                  <button mat-menu-item (click)="deleteRecipe(recipe)">
+                    <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
+                    Delete recipe
+                  </button>
+                  @if (collectIngredientIds(recipe); as ingredientIds) {
+                    @if (ingredientIds.length > 0 && ingredientIds.length < 6) {
+                      <a mat-menu-item
+                         [routerLink]="['/recipes-generator/create']"
+                         [queryParams]="{ base_ingredient_ids: ingredientIds.join(',') }"
+                      >
+                        <mat-icon svgIcon="heroicons_outline:calculator"></mat-icon>
+                        Generate recipes
+                      </a>
+                    }
+                  }
+                </mat-menu>
+              </button>
+            </td>
+          </ng-container>
 
-            <mat-paginator
-                class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
-                [pageSizeOptions]="pageSizeOptions"
-                [pageSize]="this.filters.get('limit')!.value!"
-                [pageIndex]="this.filters.get('page')!.value! - 1"
-                [showFirstLastButtons]="true"
-            ></mat-paginator>
-        </div>
+          <tr class="shadow" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr
+            class="h-18 hover:bg-gray-100 dark:hover:bg-hover"
+            mat-row
+            *matRowDef="let recipe; columns: displayedColumns;"
+          ></tr>
+        </table>
+      </div>
+
+      <mat-paginator
+        class="z-10 border-b bg-gray-50 dark:bg-transparent sm:absolute sm:inset-x-0 sm:bottom-0 sm:border-t sm:border-b-0"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSize]="this.filters.get('limit')!.value!"
+        [pageIndex]="this.filters.get('page')!.value! - 1"
+        [showFirstLastButtons]="true"
+      ></mat-paginator>
     </div>
+  </div>
 </div>

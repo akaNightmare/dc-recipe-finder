@@ -109,6 +109,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         'name' /*, 'used_in'*/,
         'ingredients',
         'status',
+        'owner',
         'created_at',
         'actions',
     ];
