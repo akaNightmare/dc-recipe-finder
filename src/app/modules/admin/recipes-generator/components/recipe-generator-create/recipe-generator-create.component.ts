@@ -1,10 +1,12 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
 import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     AbstractControl,
+    FormArray,
     FormBuilder,
     FormControl,
+    FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
@@ -22,27 +24,47 @@ import difference from 'lodash-es/difference';
 import intersection from 'lodash-es/intersection';
 import union from 'lodash-es/union';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { combineLatest, filter, map, share, startWith, tap } from 'rxjs';
+import {
+    combineLatest,
+    debounceTime,
+    filter,
+    map,
+    share,
+    startWith,
+    Subject,
+    takeUntil,
+    tap,
+} from 'rxjs';
 
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FuseAlertComponent } from '@fuse/components/alert';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
-import { IngredientSearchComponent } from '../../../../../components/ingredient-search/ingredient-search.component';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { QueryRef } from 'apollo-angular';
 import {
     Ingredient,
     IngredientListType,
+    IngredientPaginateOrderField,
     IngredientRarity,
+    OrderDir,
     RecipeListCreateInput,
 } from '../../../../../graphql.generated';
 import {
     PaginateIngredientListGQL,
     PaginateIngredientListQuery,
 } from '../../../ingredient-lists/ingredient-lists.generated';
+import {
+    PaginateIngredientGQL,
+    PaginateIngredientQuery,
+    PaginateIngredientQueryVariables,
+} from '../../../ingredients/ingredients.generated';
 import { RecipeListCreateGQL } from '../../recipes-list.generated';
 
 const baseRecipeSizeMap = new Map<number, number>([
+    [1, 1],
+    [2, 1],
     [3, 2],
     [4, 1],
     [5, 2],
@@ -64,7 +86,6 @@ const baseRecipeSizeMap = new Map<number, number>([
         MatIconModule,
         MatInputModule,
         ReactiveFormsModule,
-        IngredientSearchComponent,
         MatOptionModule,
         MatProgressSpinnerModule,
         MatSelectModule,
@@ -78,14 +99,17 @@ const baseRecipeSizeMap = new Map<number, number>([
         MatSlideToggle,
     ],
 })
-export class RecipeGeneratorCreateComponent implements OnDestroy {
+export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     readonly #recipeListCreateGQL = inject(RecipeListCreateGQL);
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
     readonly #formBuilder = inject(FormBuilder);
+    readonly #unsubscribe$ = new Subject<void>();
     readonly #router = inject(Router);
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #snackBar = inject(MatSnackBar);
     readonly #queryFactory = inject(BindQueryParamsFactory);
+    readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
+    #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
         duration: 2500,
         horizontalPosition: 'right',
@@ -94,14 +118,68 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
 
     public readonly searchBannedIngredientsCtrl = new FormControl<string>('');
     public readonly searchAllowedIngredientsCtrl = new FormControl<string>('');
+    public readonly searchIngredientsCtrl = new FormControl('');
     public readonly IngredientRarity = IngredientRarity;
-    readonly #baseIngredientsErrorMessages = Object.freeze({
-        required: 'Base ingredients are required',
-        allAllowed: 'Base ingredients are the same as allowed',
-        allBanned: 'Base ingredients are all banned',
-    });
 
     public baseIngredients: Ingredient[] = [];
+    public searching = false;
+    public ingredients: Ingredient[] = [];
+    public canRemoveBaseIngredientCtrl = false;
+
+    ngOnInit() {
+        this.#ingredientRef = this.#paginateIngredientGQL.watch(this.#buildVariables());
+
+        this.#ingredientRef.valueChanges
+            .pipe(
+                takeUntil(this.#unsubscribe$),
+                filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
+            )
+            .subscribe(({ data }) => {
+                this.ingredients = [
+                    ...(data.paginateIngredient.items ?? []),
+                    ...(this.baseIngredientsCtrl.value || [])
+                        .map(({ ingredient_id }) =>
+                            this.ingredients.find(i => i.id === ingredient_id),
+                        )
+                        .filter(i => i != null),
+                ];
+            });
+
+        this.searchIngredientsCtrl.valueChanges
+            .pipe(
+                takeUntil(this.#unsubscribe$),
+                filter(search => !!search?.trim().length),
+                tap(() => (this.searching = true)),
+                debounceTime(200),
+            )
+            .subscribe({
+                next: () => {
+                    this.searching = false;
+                    void this.#ingredientRef.refetch(this.#buildVariables());
+                },
+                error: () => (this.searching = false),
+            });
+
+        combineLatest([
+            this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
+            this.baseIngredientsCtrl.valueChanges,
+        ])
+            .pipe(takeUntil(this.#unsubscribe$))
+            .subscribe(([recipeSize, baseIngredients]) => {
+                recipeSize = +recipeSize!;
+                const baseIngredientsCount = baseIngredients.length;
+                if (baseIngredientsCount < 1) {
+                    this.canRemoveBaseIngredientCtrl = false;
+                } else {
+                    const minLength = +baseRecipeSizeMap.get(recipeSize)!;
+                    this.addIngredientField(minLength - baseIngredientsCount);
+                    this.canRemoveBaseIngredientCtrl = baseIngredientsCount > minLength;
+                }
+            });
+
+        this.addIngredientField();
+        setTimeout(() => this.form.patchValue(this.form.value), 0);
+    }
 
     readonly #ingredientLists$ = this.#paginateIngredientListGQL
         .watch({
@@ -145,9 +223,10 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     public readonly form = this.#formBuilder.group({
         name: ['', [Validators.required]],
         recipe_size: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
-        base_ingredient_ids: new FormControl<string[]>([], {
-            validators: [Validators.required, Validators.maxLength(5)],
-        }),
+        base_ingredients: this.#formBuilder.array(
+            [],
+            [Validators.required, Validators.maxLength(5), RxwebValidators.unique()],
+        ),
         banned_ingredient_list_ids: new FormControl<string[]>([]),
         allowed_ingredient_list_ids: new FormControl<string[]>([], {
             validators: [Validators.required],
@@ -158,8 +237,8 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
         .create(
             [
                 { queryKey: 'name' },
-                { queryKey: 'recipe_size', type: 'number' },
-                { queryKey: 'base_ingredient_ids', type: 'array' },
+                { queryKey: 'recipe_size' },
+                // { queryKey: 'base_ingredient_ids', type: 'array' },
             ],
             {
                 syncInitialControlValue: true,
@@ -170,26 +249,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     ngOnDestroy(): void {
         this.#bindQueryParamsManager.destroy();
     }
-
-    public readonly baseIngredientsErrorMessages$ = combineLatest([
-        this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
-        this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
-    ]).pipe(
-        map(([recipeSize, baseIngredients]) => {
-            const control = this.form.get('base_ingredient_ids')!;
-            const errors = { ...this.#baseIngredientsErrorMessages };
-            const minLength = baseRecipeSizeMap.get(recipeSize!);
-            if (minLength && baseIngredients!.length > 0 && baseIngredients!.length < minLength) {
-                Object.assign(errors, {
-                    minLength: `Choose at least ${minLength} ingredient(s)`,
-                });
-                control.setErrors({ minLength: true });
-            } else {
-                this.#removeErrors(['minLength'], control);
-            }
-            return errors;
-        }),
-    );
 
     public readonly intersectedBannedAndAllowedIngredients$ = combineLatest([
         this.#ingredientLists$,
@@ -228,15 +287,15 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     public readonly intersectedBannedAndBaseIngredients$ = combineLatest([
         this.#ingredientLists$,
         this.form.get('banned_ingredient_list_ids')!.valueChanges,
-        this.form.get('base_ingredient_ids')!.valueChanges,
+        this.baseIngredientsCtrl.valueChanges,
     ]).pipe(
         startWith([[], [], []]),
-        map(([ingredientLists, bannedIngredientListsIds, baseIngredientsIds]) => [
+        map(([ingredientLists, bannedIngredientListsIds, baseIngredients]) => [
             this.#extractIngredientIds(ingredientLists, bannedIngredientListsIds!),
-            baseIngredientsIds,
+            baseIngredients.map(({ ingredient_id }) => ingredient_id),
         ]),
         tap(([bannedListsIds, baseIngredientsIds]) => {
-            const control = this.form.get('base_ingredient_ids')!;
+            const control = this.baseIngredientsCtrl;
             if (
                 baseIngredientsIds!.length > 0 &&
                 difference(baseIngredientsIds, bannedListsIds!).length === 0
@@ -255,15 +314,15 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     public readonly intersectedAllowedAndBaseIngredients$ = combineLatest([
         this.#ingredientLists$,
         this.form.get('allowed_ingredient_list_ids')!.valueChanges,
-        this.form.get('base_ingredient_ids')!.valueChanges,
+        this.baseIngredientsCtrl.valueChanges,
     ]).pipe(
         startWith([[], [], []]),
-        map(([ingredientLists, allowedIngredientLists, baseIngredientsIds]) => [
+        map(([ingredientLists, allowedIngredientLists, baseIngredients]) => [
             this.#extractIngredientIds(ingredientLists, allowedIngredientLists!),
-            baseIngredientsIds,
+            baseIngredients.map(({ ingredient_id }) => ingredient_id),
         ]),
         tap(([allowedListsIds, baseIngredientsIds]) => {
-            const control = this.form.get('base_ingredient_ids')!;
+            const control = this.baseIngredientsCtrl;
             if (
                 baseIngredientsIds!.length > 0 &&
                 baseIngredientsIds!.length === allowedListsIds!.length &&
@@ -300,7 +359,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
 
     public readonly filteredIngredients$ = combineLatest([
         this.#ingredientLists$.pipe(startWith([])),
-        this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
+        this.baseIngredientsCtrl.valueChanges.pipe(startWith([])),
         this.form.get('allowed_ingredient_list_ids')!.valueChanges.pipe(startWith([])),
         this.form.get('banned_ingredient_list_ids')!.valueChanges.pipe(startWith([])),
     ]).pipe(
@@ -321,7 +380,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
                 );
                 const filteredIds = difference(
                     allowedIngredientIds,
-                    baseIngredientIds!,
+                    baseIngredientIds!.map(({ ingredient_id }) => ingredient_id),
                     bannedIngredientIds,
                 );
                 const ingredients = ingredientLists
@@ -335,15 +394,18 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
     );
 
     public readonly recipesCount$ = combineLatest([
-        this.form.get('base_ingredient_ids')!.valueChanges.pipe(startWith([])),
+        this.baseIngredientsCtrl.valueChanges.pipe(startWith([])),
         this.filteredIngredients$.pipe(startWith([])),
         this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
     ]).pipe(
         map(([baseIngredients, filteredIngredients, recipeSize]) => {
-            if (!baseIngredients?.length || !filteredIngredients.length || !recipeSize) {
+            const baseIngredientsCount = baseIngredients.filter(
+                ({ ingredient_id }) => !!ingredient_id,
+            ).length;
+            if (!baseIngredientsCount || !filteredIngredients.length || !recipeSize) {
                 return 0;
             }
-            return Math.ceil(filteredIngredients.length / (6 - baseIngredients.length));
+            return Math.ceil(filteredIngredients.length / (6 - baseIngredientsCount));
         }),
     );
 
@@ -361,6 +423,67 @@ export class RecipeGeneratorCreateComponent implements OnDestroy {
             );
             void this.#router.navigate(['..'], { relativeTo: this.#activatedRoute });
         });
+    }
+
+    get baseIngredientsCtrl(): FormArray<
+        FormGroup<{ ingredient_id: FormControl<string>; count: FormControl<number> }>
+    > {
+        return this.form.get('base_ingredients') as FormArray;
+    }
+
+    removeIngredientField(index: number): void {
+        this.baseIngredientsCtrl.removeAt(index);
+    }
+
+    addIngredientField(count = 1): void {
+        if (count <= 0) {
+            return;
+        }
+        for (let i = 0; i < count; i++) {
+            this.baseIngredientsCtrl.push(
+                this.#formBuilder.group<{
+                    ingredient_id: FormControl<string>;
+                    count: FormControl<number>;
+                }>({
+                    ingredient_id: new FormControl('', {
+                        validators: [Validators.required],
+                        nonNullable: true,
+                    }),
+                    count: new FormControl(1, {
+                        validators: [Validators.required, Validators.min(1), Validators.max(100)],
+                        nonNullable: true,
+                    }),
+                }),
+            );
+        }
+    }
+
+    ingredientById(ingredientId?: string): Ingredient | undefined {
+        if (!ingredientId) {
+            return;
+        }
+        return this.ingredients.find(i => i.id === ingredientId);
+    }
+
+    get canAddIngredientField(): boolean {
+        return this.baseIngredientsCtrl.length < 5;
+    }
+
+    #buildVariables(): PaginateIngredientQueryVariables {
+        const filter = {};
+        const search = this.searchIngredientsCtrl.value?.trim();
+        if (search?.trim().length) {
+            Object.assign(filter, { name: { contains: search } });
+        }
+
+        return {
+            filter,
+            order: [{ field: IngredientPaginateOrderField.Name, dir: OrderDir.Asc }],
+            pager: {
+                page: 1,
+                limit: 20,
+            },
+        };
     }
 
     #extractIngredientIds(

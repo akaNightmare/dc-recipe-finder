@@ -100,11 +100,11 @@
             <td class="px-4" mat-cell *matCellDef="let bil">
               <div class="flex items-center overflow-x-auto">
                 <div class="flex flex-0 items-center -space-x-3">
-                  @for (ingredient of bil.base_ingredients; track ingredient.id) {
+                  @for (bi of bil.base_ingredients; track bi.ingredient.id) {
                     <img
-                      [ngSrc]="'images/ingredients/' + ingredient.image"
-                      [alt]="ingredient.name"
-                      [matTooltip]="ingredient.name"
+                      [ngSrc]="'images/ingredients/' + bi.ingredient.image"
+                      [alt]="bi.ingredient.name"
+                      [matTooltip]="bi.ingredient.name"
                       width="36"
                       height="36"
                       class="flex-0 w-9 h-9 hover:z-10 rounded ring-1 ring-offset-1 ring-accent-100 ring-offset-accent-100 object-cover"

@@ -7,8 +7,8 @@
       </div>
     </div>
 
-    <div class="mt-8 grid w-full grid-cols-1 gap-8 xl:grid-cols-2">
-      <div class="grid gap-8 sm:grid-flow-col xl:grid-flow-row">
+    <div class="mt-8 flex w-full">
+      <div class="flex flex-auto flex-col w-2/5">
         <fuse-alert
           class="flex-auto"
           [appearance]="'outline'"
@@ -35,7 +35,7 @@
             <li class="flex justify-between w-full pt-2">
               <span class="mr-2">Recipes will be generated:</span>
               <span
-                class="text-xl font-bold tracking-tight leading-none">{{ recipesCount$ | async | number:'1.0' }}</span>
+                class="text-xl font-bold tracking-tight leading-none">~{{ recipesCount$ | async | number:'1.0' }}</span>
             </li>
           </ul>
         </fuse-alert>
@@ -43,8 +43,8 @@
         <!-- Compose form -->
         <form class="bg-card mt-4 flex flex-col overflow-hidden rounded px-8 pt-10 shadow" (ngSubmit)="save()"
               [formGroup]="form">
-          <div class="flex">
-            <mat-form-field class="w-2/5">
+          <div class="flex flex-auto">
+            <mat-form-field class="w-3/5">
               <mat-label>Name</mat-label>
               <input matInput [formControlName]="'name'" />
               @if (form.get('name')!.hasError('required')) {
@@ -52,7 +52,7 @@
               }
             </mat-form-field>
 
-            <mat-form-field class="ml-2 sm:ml-4 w-1/5">
+            <mat-form-field class="ml-2 sm:ml-4 w-2/5">
               <mat-label>
                 Recipe size
                 <mat-icon
@@ -72,19 +72,6 @@
                 <mat-error> Max is 6</mat-error>
               }
             </mat-form-field>
-
-            <app-ingredient-search
-              label="Base ingredients (max 5)"
-              class="ml-2 sm:ml-4 w-2/5"
-              required="true"
-              [errors]="form.get('base_ingredient_ids')!.errors"
-              [errorMessages]="baseIngredientsErrorMessages$ | async"
-              maxIngredients="5"
-              [controlClass]="'flex-auto w-full'"
-              [ingredientsIds]="form.get('base_ingredient_ids')!.value"
-              (ingredientsIdsChange)="form.get('base_ingredient_ids')!.patchValue($event)"
-              (ingredientsChange)="baseIngredients = $event"
-            ></app-ingredient-search>
           </div>
 
           <div class="flex">
@@ -154,6 +141,106 @@
             </mat-form-field>
           </div>
 
+          <!-- Base ingredients -->
+          <div>
+            <div class="space-y-2">
+              @for (ingrCtrl of baseIngredientsCtrl.controls; track i; let i = $index; let first = $first) {
+                <ng-container formArrayName="base_ingredients">
+                  <div class="flex">
+                    <mat-form-field class="flex-auto">
+                      @if (first) {
+                        <mat-label>Ingredient</mat-label>
+                      }
+                      <mat-select [formControl]="ingrCtrl.get('ingredient_id')">
+                        <mat-select-trigger>
+                          @if (ingredientById(ingrCtrl.get('ingredient_id')!.value!); as ingredient) {
+                            <div class="flex items-center">
+                              <img
+                                width="32"
+                                height="32"
+                                class="w-8 h-8 rounded"
+                                [alt]="ingredient.name"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                              />
+                              <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+                            </div>
+                          }
+                        </mat-select-trigger>
+                        <mat-option>
+                          <ngx-mat-select-search
+                            noEntriesFoundLabel="No matching ingredients found"
+                            placeholderLabel="Search"
+                            [searching]="searching"
+                            [clearSearchInput]="true"
+                            [enableClearOnEscapePressed]="true"
+                            [disableScrollToActiveOnOptionsChanged]="true"
+                            [formControl]="searchIngredientsCtrl"
+                          ></ngx-mat-select-search>
+                        </mat-option>
+                        @for (ingredient of ingredients; track ingredient.id) {
+                          <mat-option [value]="ingredient.id">
+                            <div class="flex items-center">
+                              <img
+                                class="w-8 h-8 rounded"
+                                height="32"
+                                width="32"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                                [alt]="ingredient.name"
+                              />
+                              <div class="flex flex-col ml-1">{{ingredient.name}}</div>
+                            </div>
+                          </mat-option>
+                        }
+                      </mat-select>
+                      @if (ingrCtrl.get('ingredient_id')!.hasError('required')) {
+                        <mat-error>
+                          Ingredient {{ i + 1 }} is required
+                        </mat-error>
+                      }
+                    </mat-form-field>
+
+                    <mat-form-field
+                      class="fuse-mat-no-subscript ml-2 w-full max-w-24 flex-auto sm:ml-4 sm:max-w-40"
+                    >
+                      @if (first) {
+                        <mat-label>Min count</mat-label>
+                      }
+                      <input matInput type="number" min="1" max="100" [formControl]="ingrCtrl.get('count')" />
+                      @if (ingrCtrl.get('count')!.hasError('required')) {
+                        <mat-error>
+                          Min count is required
+                        </mat-error>
+                      }
+                    </mat-form-field>
+                    <!-- Remove ingredient -->
+                    @if (canRemoveBaseIngredientCtrl) {
+                      <div class="flex w-10 items-center pl-2" [ngClass]="{'mt-6': first}">
+                        <button
+                          type="button"
+                          class="h-8 min-h-8 w-8"
+                          mat-icon-button
+                          (click)="removeIngredientField(i)"
+                          matTooltip="Remove"
+                        >
+                          <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+                        </button>
+                      </div>
+                    }
+                  </div>
+                </ng-container>
+              }
+            </div>
+            @if (canAddIngredientField) {
+              <div
+                class="group mt-2 -ml-4 inline-flex cursor-pointer items-center rounded px-4"
+                (click)="addIngredientField()"
+              >
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                <span class="text-secondary ml-2 font-medium group-hover:underline">Add ingredient</span>
+              </div>
+            }
+          </div>
+
           <div
             class="-mx-8 mt-8 flex items-center justify-end border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
           >
@@ -176,7 +263,7 @@
           </div>
         </form>
       </div>
-      <div class="flex flex-auto flex-col">
+      <div class="flex flex-auto flex-col w-3/5 ml-8">
         <div class="text-xl">
           Ingredients involved in recipe generation
           <small>({{ (filteredIngredients$ | async)?.length | number:'1.0' }})</small>

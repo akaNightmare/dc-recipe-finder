@@ -182,9 +182,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         });
 
         if (this.data.recipe) {
-            this.data.recipe.ingredients.forEach(() => {
-                this.addIngredientField();
-            });
+            this.addIngredientField(this.data.recipe.ingredients.length);
             this.recipeForm.patchValue({
                 ...this.data.recipe,
                 ingredients: this.data.recipe.ingredients.map(ingredient => ({
@@ -202,9 +200,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
             });
             if (!this.data.status) {
                 this.onStatusChanged({ value: RecipeStatus.Failed });
-                for (let i = 0; i < 5; i++) {
-                    this.addIngredientField();
-                }
+                this.addIngredientField(5);
             }
         }
 
@@ -264,22 +260,24 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         this.ingredientsCtrl.removeAt(index);
     }
 
-    addIngredientField(): void {
-        this.ingredientsCtrl.push(
-            this.#formBuilder.group<{
-                ingredient_id: FormControl<string>;
-                count: FormControl<number>;
-            }>({
-                ingredient_id: new FormControl('', {
-                    validators: [Validators.required],
-                    nonNullable: true,
+    addIngredientField(count = 1): void {
+        for (let i = 0; i < count; i++) {
+            this.ingredientsCtrl.push(
+                this.#formBuilder.group<{
+                    ingredient_id: FormControl<string>;
+                    count: FormControl<number>;
+                }>({
+                    ingredient_id: new FormControl('', {
+                        validators: [Validators.required],
+                        nonNullable: true,
+                    }),
+                    count: new FormControl(1, {
+                        validators: [Validators.required, Validators.min(1), Validators.max(100)],
+                        nonNullable: true,
+                    }),
                 }),
-                count: new FormControl(1, {
-                    validators: [Validators.required, Validators.min(1), Validators.max(100)],
-                    nonNullable: true,
-                }),
-            }),
-        );
+            );
+        }
     }
 
     /**

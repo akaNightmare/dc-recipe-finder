@@ -80,6 +80,13 @@
                     [class.mr-2]="!columnLast"
                     class="relative"
                   >
+                    @if (getIngrecientCount(ingredient.id); as count) {
+                      <div
+                        class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
+                      >
+                        {{ count }}
+                      </div>
+                    }
                     <img
                       [ngSrc]="'images/ingredients/' + ingredient.image"
                       [alt]="ingredient.name"

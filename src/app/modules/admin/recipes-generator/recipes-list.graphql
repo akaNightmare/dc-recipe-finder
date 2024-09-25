@@ -15,7 +15,10 @@ query PaginateRecipeList(
         name
       }
       base_ingredients {
-        ...IngredientFragment
+        count
+        ingredient {
+          ...IngredientFragment
+        }
       }
       owner {
         ...UserFragment
@@ -95,12 +98,6 @@ mutation RemoveRecipeList($id: ID!) {
   removeRecipeList(id: $id)
 }
 
-mutation RecipeListRegenerate($recipeListId: ID!) {
-  recipeListRegenerate(recipeListId: $recipeListId) {
-    ...RecipeListFragment
-  }
-}
-
 mutation RecipeListCreate($recipeList: RecipeListCreateInput!) {
   recipeListCreate(recipeList: $recipeList) {
     ...RecipeListFragment
@@ -116,5 +113,11 @@ query RecipeListActivity($recipeListId: ID!) {
 query RecipeList($id: ID!) {
   recipeList(id: $id) {
     ...RecipeListFragment
+    base_ingredients {
+      count
+      ingredient {
+        ...IngredientFragment
+      }
+    }
   }
 }

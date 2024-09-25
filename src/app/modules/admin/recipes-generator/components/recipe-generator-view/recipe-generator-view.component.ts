@@ -47,13 +47,13 @@ import {
     PaginateRecipeListRecipeGQL,
     PaginateRecipeListRecipeQuery,
     PaginateRecipeListRecipeQueryVariables,
-    RecipeListRegenerateGQL,
 } from '../../recipes-list.generated';
 
 @Component({
     selector: 'recipe-generator-view',
     standalone: true,
     templateUrl: './recipe-generator-view.component.html',
+    styleUrls: ['./recipe-generator-view.component.scss'],
     encapsulation: ViewEncapsulation.None,
     imports: [
         FuseMasonryComponent,
@@ -81,7 +81,6 @@ import {
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
-    readonly #recipeListRegenerateGQL = inject(RecipeListRegenerateGQL);
     readonly #usersGQL = inject(UsersGQL);
     readonly #userService = inject(UserService);
     readonly #unsubscribe$ = new Subject<void>();
@@ -200,6 +199,12 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
     }
 
+    getIngrecientCount(ingredientId: string): number | undefined {
+        return this.recipeList.base_ingredients.find(
+            ({ ingredient }) => ingredient.id === ingredientId,
+        )?.count;
+    }
+
     ngOnDestroy() {
         this.#bindQueryParamsManager.destroy();
         this.#unsubscribe$.next();
@@ -276,19 +281,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             });
     }
 
-    public regenerateRecipeList(): void {
-        this.#recipeListRegenerateGQL.mutate({ recipeListId: this.recipeList.id }).subscribe(() => {
-            this.#snackBar.open(
-                'Recipe list has been regenerated',
-                undefined,
-                this.#defaultSnackBarConfig,
-            );
-
-            this.paginator.pageIndex = 0;
-            this.filters.patchValue({ page: 1 });
-            void this.#recipeListRecipeRef.refetch(this.#buildVariables());
-        });
-    }
+    public regenerateRecipeList(): void {}
 
     #buildVariables(values = this.filters.value): PaginateRecipeListRecipeQueryVariables {
         const pager = {
