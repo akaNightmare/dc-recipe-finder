@@ -263,7 +263,10 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                         status,
                         ingredients: recipeListRecipe.ingredients.map(({ id }) => ({
                             ingredient: { id },
-                            count: 1,
+                            count:
+                                this.recipeList?.base_ingredients.find(
+                                    ({ ingredient }) => ingredient.id === id,
+                                )?.count ?? 1,
                         })),
                     },
                     status,
