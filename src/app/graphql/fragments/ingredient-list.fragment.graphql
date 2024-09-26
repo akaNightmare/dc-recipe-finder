@@ -2,5 +2,6 @@ fragment IngredientListFragment on IngredientList {
   id
   name
   type
+  count
   created_at
 }

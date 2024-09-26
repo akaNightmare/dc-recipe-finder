@@ -16,7 +16,7 @@
   <!-- Compose form -->
   <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="bilForm">
     <div class="flex">
-      <mat-form-field class="flex-auto w-2/3">
+      <mat-form-field class="flex-auto w-2/5">
         <mat-label>Name</mat-label>
         <input matInput [formControlName]="'name'" />
         @if (bilForm.get('name')!.hasError('required')) {
@@ -24,6 +24,20 @@
         }
         @if (bilForm.get('name')!.hasError('nameAlreadyExists')) {
           <mat-error> List with such name already exists</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/5">
+        <mat-label>
+          Min count
+          <mat-icon
+            class="text-hint icon-size-3.5"
+            [svgIcon]="'heroicons_mini:information-circle'"
+            matTooltip="Minimum number of ingredients per generated recipe"
+          ></mat-icon>
+        </mat-label>
+        <input type="number" min="1" max="100" matInput [formControlName]="'count'" />
+        @if (bilForm.get('count')!.hasError('min')) {
+          <mat-error> Min count is 1</mat-error>
         }
       </mat-form-field>
       <mat-form-field class="ml-2 flex-auto sm:ml-4">

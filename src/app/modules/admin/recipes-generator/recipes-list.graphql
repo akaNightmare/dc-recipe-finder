@@ -37,20 +37,7 @@ query PaginateRecipeListRecipe(
 ) {
   paginateRecipeListRecipe(recipeListId: $recipeListId, pager: $pager, filter: $filter) {
     items {
-      id
-      index
-      recipe {
-        ...RecipeFragment
-        owner {
-          ...UserFragment
-        }
-      }
-      ingredients {
-        ...IngredientFragment
-      }
-      assigned {
-        ...UserFragment
-      }
+      ...RecipeListRecipeFragment
     }
     page_info {
       ...PageFragment
@@ -63,16 +50,7 @@ mutation AssignRecipeListRecipeToUser(
   $userId: ID
 ) {
   assignRecipeListRecipeToUser(recipeListRecipeId: $recipeListRecipeId, userId: $userId) {
-    id
-    recipe {
-      ...RecipeFragment
-    }
-    ingredients {
-      ...IngredientFragment
-    }
-    assigned {
-      ...UserFragment
-    }
+    ...RecipeListRecipeFragment
   }
 }
 
@@ -81,16 +59,7 @@ mutation MarkRecipeListRecipe(
   $recipe: RecipeCreateInput!
 ) {
   markRecipeListRecipe(recipeListRecipeId: $recipeListRecipeId, recipe: $recipe) {
-    id
-    recipe {
-      ...RecipeFragment
-    }
-    ingredients {
-      ...IngredientFragment
-    }
-    assigned {
-      ...UserFragment
-    }
+    ...RecipeListRecipeFragment
   }
 }
 

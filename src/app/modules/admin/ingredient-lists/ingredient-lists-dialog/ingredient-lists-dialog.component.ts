@@ -57,6 +57,7 @@ export class IngredientListsDialogComponent implements AfterContentInit {
     public readonly TYPES = Object.values(IngredientListType);
     public readonly bilForm = new FormGroup({
         name: new FormControl('', [Validators.required]),
+        count: new FormControl<number | null>(null, [Validators.min(1)]),
         type: new FormControl(IngredientListType.Allowlist, { validators: [Validators.required] }),
         ingredient_ids: new FormControl<string[]>([], { validators: [Validators.required] }),
     });
@@ -73,6 +74,7 @@ export class IngredientListsDialogComponent implements AfterContentInit {
                     this.bilForm.patchValue({
                         name: ingredient_list.name,
                         type: ingredient_list.type,
+                        count: ingredient_list.count,
                         ingredient_ids: ingredient_list.ingredients.map(i => i.id),
                     }),
                 0,
@@ -113,6 +115,10 @@ export class IngredientListsDialogComponent implements AfterContentInit {
 
         if (ingredient_list?.type !== formValues.type) {
             Object.assign(ingredientList, { type: formValues.type });
+        }
+
+        if (ingredient_list?.count !== formValues.count) {
+            Object.assign(ingredientList, { count: formValues.count });
         }
 
         if (ingredient_list?.id) {

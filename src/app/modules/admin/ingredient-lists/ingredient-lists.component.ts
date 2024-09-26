@@ -98,7 +98,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     public readonly dataSource = new MatTableDataSource<
         PaginateIngredientListQuery['paginateIngredientList']['items'][0]
     >();
-    public readonly displayedColumns = ['name', 'type', 'ingredients', 'actions'];
+    public readonly displayedColumns = ['name', 'count', 'type', 'ingredients', 'actions'];
     public readonly pageSizeOptions = [5, 10, 25, 100];
     public readonly TYPES = Object.values(IngredientListType);
     public readonly IngredientListType = IngredientListType;

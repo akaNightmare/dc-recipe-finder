@@ -199,12 +199,6 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
     }
 
-    getIngrecientCount(ingredientId: string): number | undefined {
-        return this.recipeList.base_ingredients.find(
-            ({ ingredient }) => ingredient.id === ingredientId,
-        )?.count;
-    }
-
     ngOnDestroy() {
         this.#bindQueryParamsManager.destroy();
         this.#unsubscribe$.next();
@@ -261,13 +255,12 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                         id: recipeListRecipe.id,
                         name: '-',
                         status,
-                        ingredients: recipeListRecipe.ingredients.map(({ id }) => ({
-                            ingredient: { id },
-                            count:
-                                this.recipeList?.base_ingredients.find(
-                                    ({ ingredient }) => ingredient.id === id,
-                                )?.count ?? 1,
-                        })),
+                        ingredients: recipeListRecipe.ingredients.map(
+                            ({ count, ingredient: { id } }) => ({
+                                ingredient: { id },
+                                count: count ?? 1,
+                            }),
+                        ),
                     },
                     status,
                 },

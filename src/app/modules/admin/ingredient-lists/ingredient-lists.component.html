@@ -73,6 +73,33 @@
             </td>
           </ng-container>
 
+          <!-- Count -->
+          <ng-container matColumnDef="count">
+            <th
+              class="w-28 bg-gray-50 dark:bg-black dark:bg-opacity-5"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              <span class="items-center flex">
+                Count
+                <mat-icon
+                  class="text-hint icon-size-4 ml-1.5"
+                  [svgIcon]="'heroicons_mini:information-circle'"
+                  matTooltip="Minimum number of ingredients per generated recipe"
+                ></mat-icon>
+              </span>
+            </th>
+            <td class="px-4" mat-cell *matCellDef="let bil">
+              <span class="truncate">
+                @if (bil.count != null) {
+                  {{ bil.count }}
+                } @else {
+                  <span class="text-gray-500 dark:text-gray-400">-</span>
+                }
+              </span>
+            </td>
+          </ng-container>
+
           <!-- Type -->
           <ng-container matColumnDef="type">
             <th

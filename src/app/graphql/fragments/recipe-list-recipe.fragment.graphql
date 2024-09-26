@@ -1,0 +1,19 @@
+fragment RecipeListRecipeFragment on RecipeListRecipe {
+  id
+  index
+  recipe {
+    ...RecipeFragment
+    owner {
+      ...UserFragment
+    }
+  }
+  ingredients {
+    count
+    ingredient {
+      ...IngredientFragment
+    }
+  }
+  assigned {
+    ...UserFragment
+  }
+}

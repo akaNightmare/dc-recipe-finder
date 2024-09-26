@@ -75,12 +75,12 @@
 
             <div class="flex flex-col p-3">
               <div class="flex justify-start">
-                @for (ingredient of recipeList.ingredients; track ingredient.id; let columnLast = $last) {
+                @for (rli of recipeList.ingredients; track rli.ingredient.id; let columnLast = $last) {
                   <div
                     [class.mr-2]="!columnLast"
                     class="relative"
                   >
-                    @if (getIngrecientCount(ingredient.id); as count) {
+                    @if (rli.count; as count) {
                       <div
                         class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
                       >
@@ -88,17 +88,17 @@
                       </div>
                     }
                     <img
-                      [ngSrc]="'images/ingredients/' + ingredient.image"
-                      [alt]="ingredient.name"
-                      [matTooltip]="ingredient.name"
+                      [ngSrc]="'images/ingredients/' + rli.ingredient.image"
+                      [alt]="rli.ingredient.name"
+                      [matTooltip]="rli.ingredient.name"
                       class="w-9 h-9 ring-[2px] rounded object-cover"
                       [ngClass]="{
-                            'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
-                            'ring-common': ingredient.rarity === IngredientRarity.Common,
-                            'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
-                            'ring-epic': ingredient.rarity === IngredientRarity.Epic,
-                            'ring-rare': ingredient.rarity === IngredientRarity.Rare,
-                            'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
+                            'ring-legendary': rli.ingredient.rarity === IngredientRarity.Legendary,
+                            'ring-common': rli.ingredient.rarity === IngredientRarity.Common,
+                            'ring-uncommon': rli.ingredient.rarity === IngredientRarity.Uncommon,
+                            'ring-epic': rli.ingredient.rarity === IngredientRarity.Epic,
+                            'ring-rare': rli.ingredient.rarity === IngredientRarity.Rare,
+                            'ring-ultra-rare': rli.ingredient.rarity === IngredientRarity.UltraRare
                       }"
                       width="36"
                       height="36"
