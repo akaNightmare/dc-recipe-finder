@@ -22,7 +22,7 @@
             <mat-select [formControlName]="'users'" multiple="true" placeholder="Filter by assigned users">
               @for (user of users; track user.id) {
                 <mat-option [value]="user.id">
-                  @if (user.id === currentUser.id) {
+                  @if (user.id === currentUser?.id) {
                     <strong>{{ user.login }}</strong>
                   } @else {
                     {{ user.login }}
@@ -142,7 +142,7 @@
                             (click)="$event.stopPropagation(); $event.preventDefault()">
                             @for (user of users; track user.id) {
                               <mat-option [value]="user.id">
-                                @if (user.id === currentUser.id) {
+                                @if (user.id === currentUser?.id) {
                                   <strong>{{ user.login }}</strong>
                                 } @else {
                                   {{ user.login }}
