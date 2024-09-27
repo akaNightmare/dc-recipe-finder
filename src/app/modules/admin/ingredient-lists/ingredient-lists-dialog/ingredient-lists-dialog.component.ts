@@ -79,6 +79,15 @@ export class IngredientListsDialogComponent implements AfterContentInit {
                     }),
                 0,
             );
+            this.onTypeChanged({ value: ingredient_list.type });
+        }
+    }
+
+    onTypeChanged({ value }: { value: IngredientListType }): void {
+        if (value === IngredientListType.Banlist) {
+            this.bilForm.get('count')?.disable();
+        } else {
+            this.bilForm.get('count')?.enable();
         }
     }
 
@@ -117,8 +126,10 @@ export class IngredientListsDialogComponent implements AfterContentInit {
             Object.assign(ingredientList, { type: formValues.type });
         }
 
-        if (ingredient_list?.count !== formValues.count) {
-            Object.assign(ingredientList, { count: formValues.count });
+        Object.assign(ingredientList, { count: formValues.count });
+
+        if (ingredient_list?.type === IngredientListType.Banlist) {
+            Object.assign(ingredientList, { count: null });
         }
 
         if (ingredient_list?.id) {
