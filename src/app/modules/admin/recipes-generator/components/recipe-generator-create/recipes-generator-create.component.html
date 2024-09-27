@@ -95,7 +95,15 @@
                 </mat-option>
                 @for (list of allowedIngredientLists$ | async; track list.id) {
                   <mat-option [value]="list.id">
-                    {{ list.name }} <small>({{ list.ingredients.length }} ingredients)</small>
+                    {{ list.name }}
+                    <small>
+                      (
+                        {{ list.ingredients.length }} ingredients
+                        @if (list.count; as count) {
+                          , {{ count }} min count
+                        }
+                      )
+                    </small>
                   </mat-option>
                 }
               </mat-select>
