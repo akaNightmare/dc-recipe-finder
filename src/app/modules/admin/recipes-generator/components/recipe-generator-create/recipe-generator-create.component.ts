@@ -237,7 +237,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         .create(
             [
                 { queryKey: 'name' },
-                { queryKey: 'recipe_size' },
+                { queryKey: 'recipe_size', type: 'number' },
                 // { queryKey: 'base_ingredient_ids', type: 'array' },
             ],
             {
