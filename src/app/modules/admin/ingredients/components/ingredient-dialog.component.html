@@ -1,0 +1,72 @@
+<div class="-m-6 relative flex flex-auto max-w-160 flex-col md:min-w-160">
+  <!-- Header -->
+  <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
+    <div class="text-lg font-medium">
+      @if (data.ingredient) {
+        Update the {{ data.ingredient.name }} ingredient
+      } @else {
+        Create a new ingredient
+      }
+    </div>
+    <button mat-icon-button matTooltip="Close" (click)="close()" [tabIndex]="-1" [disabled]="form.disabled">
+      <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+    </button>
+  </div>
+
+  <!-- Compose form -->
+  <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="form">
+    <div class="flex">
+      <mat-form-field class="flex-auto w-2/5">
+        <mat-label>Name</mat-label>
+        <input matInput [formControlName]="'name'" />
+        @if (form.get('name')!.hasError('required')) {
+          <mat-error> Name is required</mat-error>
+        }
+        @if (form.get('name')!.hasError('nameAlreadyExists')) {
+          <mat-error> List with such name already exists</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/5">
+        <mat-label>
+          Initial count
+          <mat-icon
+            class="text-hint icon-size-3.5"
+            [svgIcon]="'heroicons_mini:information-circle'"
+            matTooltip="Minimum number of ingredients per generated recipe"
+          ></mat-icon>
+        </mat-label>
+        <input type="number" min="1" max="100" matInput [formControlName]="'initial_count'" />
+        @if (form.get('initial_count')!.hasError('min')) {
+          <mat-error> Min initial count is 1</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+      <div class="mt-4 flex items-center sm:mt-0">
+        <!-- Close -->
+        <button type="button" class="sm:mx-3" mat-button [disabled]="form.disabled" (click)="close()">
+          <span>Close</span>
+        </button>
+        <!-- Save -->
+        <button
+          type="submit"
+          class="order-first sm:order-last"
+          mat-flat-button
+          [disabled]="form.disabled"
+          [color]="'primary'"
+        >
+          @if (form.disabled) {
+            <mat-progress-spinner
+              [diameter]="24"
+              [mode]="'indeterminate'"
+            ></mat-progress-spinner>
+          } @else {
+            <span> Save </span>
+          }
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

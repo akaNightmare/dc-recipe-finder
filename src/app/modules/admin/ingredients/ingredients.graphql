@@ -12,3 +12,9 @@ query PaginateIngredient(
         }
     }
 }
+
+mutation UpdateIngredient($id: ID!, $ingredient: IngredientUpdateInput!) {
+    updateIngredient(id: $id, ingredient: $ingredient) {
+        ...IngredientFragment
+    }
+}

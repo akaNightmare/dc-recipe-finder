@@ -3,5 +3,6 @@ fragment IngredientFragment on Ingredient {
   name
   image
   rarity
+  initial_count
   created_at
 }

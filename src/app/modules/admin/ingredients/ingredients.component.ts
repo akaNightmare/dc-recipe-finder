@@ -26,7 +26,10 @@ import {
     timer,
 } from 'rxjs';
 
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ingredient, IngredientRarity } from '../../../graphql.generated';
+import { IngredientDialogComponent } from './components/ingredient-dialog.component';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -59,6 +62,13 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
+    readonly #matDialog = inject(MatDialog);
+    readonly #snackBar = inject(MatSnackBar);
+    readonly #defaultSnackBarConfig: MatSnackBarConfig = {
+        duration: 2500,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+    };
     #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
 
     public ingredients: Ingredient[] = [];
@@ -80,6 +90,25 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
         this.#bindQueryParamsManager.destroy();
         this.#unsubscribe$.next();
         this.#unsubscribe$.complete();
+    }
+
+    public openIngredientDialog(ingredient?: Ingredient): void {
+        this.#matDialog
+            .open(IngredientDialogComponent, {
+                disableClose: true,
+                maxHeight: '80vh',
+                data: { ingredient },
+            })
+            .afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    this.#snackBar.open(
+                        `Ingredient has been ${ingredient ? 'updated' : 'created'}`,
+                        undefined,
+                        this.#defaultSnackBarConfig,
+                    );
+                }
+            });
     }
 
     ngAfterViewInit(): void {
