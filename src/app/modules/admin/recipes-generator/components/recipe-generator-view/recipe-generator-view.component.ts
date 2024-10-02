@@ -19,6 +19,7 @@ import { MatInput } from '@angular/material/input';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
@@ -76,6 +77,7 @@ import {
         MatMenuItem,
         MatDivider,
         MatButton,
+        MatSlideToggle,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
@@ -107,6 +109,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     public readonly STATUSES = Object.values(RecipeStatus);
     public readonly filters = new FormGroup({
         statuses: new FormControl<RecipeStatus[]>([]),
+        hide_marked: new FormControl(false),
         users: new FormControl<string[]>([]),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[1]),
@@ -123,6 +126,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                 { queryKey: 'users', type: 'array' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
+                { queryKey: 'hide_marked', type: 'boolean' },
             ],
             { syncInitialControlValue: true },
         )
@@ -145,7 +149,8 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                     if (prev) {
                         if (
                             xor(prev.statuses, curr?.statuses).length > 0 ||
-                            xor(prev.users, curr?.users).length > 0
+                            xor(prev.users, curr?.users).length > 0 ||
+                            prev.hide_marked !== curr?.hide_marked
                         ) {
                             if (curr && curr.page !== 1) {
                                 curr.page = 1;
@@ -286,7 +291,9 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         };
 
         const filter = {};
-        if (values.statuses?.length) {
+        if (values.hide_marked) {
+            Object.assign(filter, { status: { eq: null } });
+        } else if (values.statuses?.length) {
             Object.assign(filter, { status: { in: values.statuses } });
         }
         if (values.users?.length) {

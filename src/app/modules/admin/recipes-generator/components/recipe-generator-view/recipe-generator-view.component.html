@@ -18,6 +18,13 @@
           class="flex w-full max-w-xs flex-col items-center justify-end sm:max-w-none sm:flex-row"
           [formGroup]="filters"
         >
+          <mat-slide-toggle
+            class="mt-8 sm:ml-auto sm:mt-0 mr-4"
+            [color]="'primary'"
+            [formControlName]="'hide_marked'"
+          >
+            Hide marked
+          </mat-slide-toggle>
           <mat-form-field class="w-full sm:w-56" [subscriptSizing]="'dynamic'">
             <mat-select [formControlName]="'users'" multiple="true" placeholder="Filter by assigned users">
               @for (user of users; track user.id) {
@@ -32,8 +39,11 @@
             </mat-select>
           </mat-form-field>
           <!-- Status -->
-          <mat-form-field [subscriptSizing]="'dynamic'" class="w-full ml-4 sm:w-44">
-            <mat-select multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
+          <mat-form-field
+            [subscriptSizing]="'dynamic'" class="w-full ml-4 sm:w-44">
+            <mat-select
+              [disabled]="filters.get('hide_marked')!.value"
+              multiple="true" placeholder="Filter by statuses" [formControlName]="'statuses'">
               @for (status of STATUSES; track status) {
                 <mat-option [value]="status">{{ status }}</mat-option>
               }
