@@ -14,6 +14,9 @@ query PaginateRecipeList(
         id
         name
       }
+      banned_ingredients {
+        ...IngredientFragment
+      }
       base_ingredients {
         count
         ingredient {
@@ -82,6 +85,9 @@ query RecipeListActivity($recipeListId: ID!) {
 query RecipeList($id: ID!) {
   recipeList(id: $id) {
     ...RecipeListFragment
+    banned_ingredients {
+      ...IngredientFragment
+    }
     base_ingredients {
       count
       ingredient {

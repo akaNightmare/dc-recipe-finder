@@ -23,6 +23,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import difference from 'lodash-es/difference';
 import intersection from 'lodash-es/intersection';
 import union from 'lodash-es/union';
+import uniq from 'lodash-es/uniq';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {
     combineLatest,
@@ -43,6 +44,7 @@ import { FuseAlertComponent } from '@fuse/components/alert';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { QueryRef } from 'apollo-angular';
+import { IngredientSearchComponent } from '../../../../../components/ingredient-search/ingredient-search.component';
 import {
     Ingredient,
     IngredientListType,
@@ -97,6 +99,7 @@ const baseRecipeSizeMap = new Map<number, number>([
         NgClass,
         MatCheckbox,
         MatSlideToggle,
+        IngredientSearchComponent,
     ],
 })
 export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
@@ -228,6 +231,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             [Validators.required, Validators.maxLength(5), RxwebValidators.unique()],
         ),
         banned_ingredient_list_ids: new FormControl<string[]>([]),
+        banned_ingredient_ids: new FormControl<string[]>([]),
         allowed_ingredient_list_ids: new FormControl<string[]>([], {
             validators: [Validators.required],
         }),
@@ -253,25 +257,33 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     public readonly intersectedBannedAndAllowedIngredients$ = combineLatest([
         this.#ingredientLists$,
         this.form.get('banned_ingredient_list_ids')!.valueChanges,
+        this.form.get('banned_ingredient_ids')!.valueChanges,
         this.form.get('allowed_ingredient_list_ids')!.valueChanges,
     ]).pipe(
-        startWith([[], [], []]),
-        map(([ingredientLists, bannedIngredientListsIds, allowedIngredientLists]) => {
-            const bannedListsIds = this.#extractIngredientIds(
+        startWith([[], [], [], []]),
+        map(
+            ([
                 ingredientLists,
-                bannedIngredientListsIds ?? [],
-            );
-            const allowedListsIds = this.#extractIngredientIds(
-                ingredientLists,
-                allowedIngredientLists ?? [],
-            );
-            return [bannedListsIds, allowedListsIds];
-        }),
-        tap(([bannedListsIds, allowedListsIds]) => {
+                bannedIngredientListsIds,
+                banned_ingredient_ids,
+                allowedIngredientLists,
+            ]) => {
+                const bannedIngredientIds = uniq([
+                    ...this.#extractIngredientIds(ingredientLists, bannedIngredientListsIds ?? []),
+                    ...(banned_ingredient_ids ?? []),
+                ]);
+                const allowedIngredientIds = this.#extractIngredientIds(
+                    ingredientLists,
+                    allowedIngredientLists ?? [],
+                );
+                return [bannedIngredientIds, allowedIngredientIds];
+            },
+        ),
+        tap(([bannedIngredientIds, allowedIngredientIds]) => {
             const control = this.form.get('allowed_ingredient_list_ids')!;
             if (
-                allowedListsIds.length > 0 &&
-                difference(allowedListsIds, bannedListsIds).length === 0
+                allowedIngredientIds.length > 0 &&
+                difference(allowedIngredientIds, bannedIngredientIds).length === 0
             ) {
                 control.setErrors({ allBanned: true });
             } else {
@@ -287,18 +299,29 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     public readonly intersectedBannedAndBaseIngredients$ = combineLatest([
         this.#ingredientLists$,
         this.form.get('banned_ingredient_list_ids')!.valueChanges,
+        this.form.get('banned_ingredient_ids')!.valueChanges,
         this.baseIngredientsCtrl.valueChanges,
     ]).pipe(
-        startWith([[], [], []]),
-        map(([ingredientLists, bannedIngredientListsIds, baseIngredients]) => [
-            this.#extractIngredientIds(ingredientLists, bannedIngredientListsIds!),
-            baseIngredients.map(({ ingredient_id }) => ingredient_id),
-        ]),
-        tap(([bannedListsIds, baseIngredientsIds]) => {
+        startWith([[], [], [], []]),
+        map(
+            ([
+                ingredientLists,
+                bannedIngredientListsIds,
+                banned_ingredient_ids,
+                baseIngredients,
+            ]) => [
+                uniq([
+                    ...this.#extractIngredientIds(ingredientLists, bannedIngredientListsIds!),
+                    ...(banned_ingredient_ids ?? []),
+                ]),
+                baseIngredients.map(({ ingredient_id }) => ingredient_id),
+            ],
+        ),
+        tap(([bannedIngredientIds, baseIngredientsIds]) => {
             const control = this.baseIngredientsCtrl;
             if (
                 baseIngredientsIds!.length > 0 &&
-                difference(baseIngredientsIds, bannedListsIds!).length === 0
+                difference(baseIngredientsIds, bannedIngredientIds!).length === 0
             ) {
                 control.setErrors({ allBanned: true });
             } else {
@@ -306,8 +329,8 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             }
         }),
         map(
-            ([bannedListsIds, baseIngredientsIds]) =>
-                intersection(bannedListsIds, baseIngredientsIds).length,
+            ([bannedIngredientIds, baseIngredientsIds]) =>
+                intersection(bannedIngredientIds, baseIngredientsIds).length,
         ),
     );
 
@@ -362,6 +385,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         this.baseIngredientsCtrl.valueChanges.pipe(startWith([])),
         this.form.get('allowed_ingredient_list_ids')!.valueChanges.pipe(startWith([])),
         this.form.get('banned_ingredient_list_ids')!.valueChanges.pipe(startWith([])),
+        this.form.get('banned_ingredient_ids')!.valueChanges.pipe(startWith([])),
     ]).pipe(
         map(
             ([
@@ -369,15 +393,16 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                 baseIngredientIds,
                 allowedIngredientLists,
                 bannedIngredientLists,
+                banned_ingredient_ids,
             ]) => {
                 const allowedIngredientIds = this.#extractIngredientIds(
                     ingredientLists,
                     allowedIngredientLists!,
                 );
-                const bannedIngredientIds = this.#extractIngredientIds(
-                    ingredientLists,
-                    bannedIngredientLists!,
-                );
+                const bannedIngredientIds = uniq([
+                    ...this.#extractIngredientIds(ingredientLists, bannedIngredientLists!),
+                    ...(banned_ingredient_ids ?? []),
+                ]);
                 const filteredIds = difference(
                     allowedIngredientIds,
                     baseIngredientIds!.map(({ ingredient_id }) => ingredient_id),
@@ -463,6 +488,11 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             return;
         }
         return this.ingredients.find(i => i.id === ingredientId);
+    }
+
+    moveIngredientToBanned(ingredientId: string): void {
+        const bannedIngredients = this.form.get('banned_ingredient_ids') as FormControl<string[]>;
+        bannedIngredients.setValue([...bannedIngredients.value, ingredientId]);
     }
 
     get canAddIngredientField(): boolean {

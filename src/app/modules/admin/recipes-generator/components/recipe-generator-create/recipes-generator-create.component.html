@@ -149,6 +149,17 @@
             </mat-form-field>
           </div>
 
+          <div class="flex mb-4">
+            <app-ingredient-search
+              label="Banned ingredients"
+              class="flex-auto"
+              [required]="false"
+              [controlClass]="'flex-auto w-full'"
+              [ingredientsIds]="form.get('banned_ingredient_ids')!.value!"
+              (ingredientsIdsChange)="form.get('banned_ingredient_ids')!.patchValue($event)"
+            ></app-ingredient-search>
+          </div>
+
           <!-- Base ingredients -->
           <div>
             <div class="space-y-2">
@@ -281,27 +292,23 @@
         </div>
         <div class="flex flex-wrap gap-2 mt-8">
           @for (ingredient of filteredIngredients$ | async; track ingredient.id) {
-            <a
-              [routerLink]="['/recipes']"
-              [queryParams]="{ ingredients: ingredient.id }"
-              [matTooltip]="'Click to see all recipes with ' + ingredient.name"
-            >
-              <img
-                class="w-10 h-10 rounded ring-[2px] object-cover"
-                [ngClass]="{
-                            'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
-                            'ring-common': ingredient.rarity === IngredientRarity.Common,
-                            'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
-                            'ring-epic': ingredient.rarity === IngredientRarity.Epic,
-                            'ring-rare': ingredient.rarity === IngredientRarity.Rare,
-                            'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
-                        }"
-                [ngSrc]="'images/ingredients/' + ingredient.image"
-                [alt]="ingredient.name"
-                height="40"
-                width="40"
-              />
-            </a>
+            <img
+              class="w-10 h-10 rounded ring-[2px] object-cover cursor-pointer"
+              [matTooltip]="'Click to move ' + ingredient.name + ' to banned ingredients'"
+              (click)="moveIngredientToBanned(ingredient.id)"
+              [ngClass]="{
+                          'ring-legendary': ingredient.rarity === IngredientRarity.Legendary,
+                          'ring-common': ingredient.rarity === IngredientRarity.Common,
+                          'ring-uncommon': ingredient.rarity === IngredientRarity.Uncommon,
+                          'ring-epic': ingredient.rarity === IngredientRarity.Epic,
+                          'ring-rare': ingredient.rarity === IngredientRarity.Rare,
+                          'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
+                      }"
+              [ngSrc]="'images/ingredients/' + ingredient.image"
+              [alt]="ingredient.name"
+              height="40"
+              width="40"
+            />
           }
         </div>
       </div>

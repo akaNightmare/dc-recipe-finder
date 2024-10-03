@@ -301,7 +301,7 @@
                     <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
                     Delete recipe
                   </button>
-                  @if (collectIngredientIds(recipe); as ingredientIds) {
+                  @if (recipe.status === RecipeStatus.Success && collectIngredientIds(recipe); as ingredientIds) {
                     @if (ingredientIds.length > 0 && ingredientIds.length < 6) {
                       <a mat-menu-item
                          [routerLink]="['/recipes-generator/create']"

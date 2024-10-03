@@ -135,6 +135,14 @@
                             </div>
                           </div>
                         }
+                        @if (activity.log['banned_ingredients']?.length) {
+                          <div class="mt-4">
+                            <span class="font-semibold">Banned ingredients:</span>
+                            <ng-container
+                              *ngTemplateOutlet="ingredientList; context: { $implicit: activity.log['banned_ingredients'] }"
+                            ></ng-container>
+                          </div>
+                        }
                         @if (activity.log['skipped_ingredients']?.length) {
                           <div class="mt-4">
                             <span class="font-semibold">Skipped ingredients:</span>
