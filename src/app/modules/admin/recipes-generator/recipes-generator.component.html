@@ -175,10 +175,12 @@
                   [svgIcon]="'heroicons_solid:chevron-' + (t.menuOpen ? 'up' : 'down')"
                 ></mat-icon>
                 <mat-menu #userActionsMenu>
-                  <button mat-menu-item (click)="deleteRecipeList(rl)">
-                    <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
-                    Delete list
-                  </button>
+                  @if (rl.count_meta.success + rl.count_meta.failed < rl.count_meta.total) {
+                    <button mat-menu-item (click)="deleteRecipeList(rl)">
+                      <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
+                      Delete list
+                    </button>
+                  }
                   <a [routerLink]="['.', rl.id, 'activity']" mat-menu-item>
                     <mat-icon  svgIcon="heroicons_outline:bars-3-bottom-left"></mat-icon>
                     Activity log
