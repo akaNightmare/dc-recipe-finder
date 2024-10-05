@@ -273,8 +273,19 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             });
     }
 
-    public collectIngredientIds(recipe: Recipe): string[] {
-        return recipe.ingredients.map(i => i.ingredient.id);
+    public createRecipeListQueryParams(recipe: Recipe): undefined | Record<string, unknown> {
+        if (
+            recipe.ingredients.length > 0 &&
+            recipe.ingredients.length < 6 &&
+            recipe.status === RecipeStatus.Success
+        ) {
+            return {
+                base_ingredients: recipe.ingredients
+                    .map(({ ingredient: { id }, count }) => `${id}:${count}`)
+                    .join(','),
+            };
+        }
+        return undefined;
     }
 
     public trackByFn(index: number, item: { id: string }): string | number {

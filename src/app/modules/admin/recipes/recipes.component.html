@@ -301,16 +301,14 @@
                     <mat-icon color="warn" svgIcon="heroicons_outline:trash"></mat-icon>
                     Delete recipe
                   </button>
-                  @if (recipe.status === RecipeStatus.Success && collectIngredientIds(recipe); as ingredientIds) {
-                    @if (ingredientIds.length > 0 && ingredientIds.length < 6) {
+                  @if (createRecipeListQueryParams(recipe); as queryParams) {
                       <a mat-menu-item
                          [routerLink]="['/recipes-generator/create']"
-                         [queryParams]="{ base_ingredient_ids: ingredientIds.join(',') }"
+                         [queryParams]="queryParams"
                       >
                         <mat-icon svgIcon="heroicons_outline:calculator"></mat-icon>
                         Generate recipes
                       </a>
-                    }
                   }
                 </mat-menu>
               </button>

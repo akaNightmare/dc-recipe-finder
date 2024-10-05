@@ -209,7 +209,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
 
     public duplicateQueryParams(recipeList: RecipeList): Record<string, unknown> {
         return {
-            name: recipeList.name,
+            name: `${recipeList.name} (copy ${(Math.random() + 1).toString(36).substring(3)})`,
             recipe_size: recipeList.recipe_size,
             banned_ingredient_list_ids: recipeList.banned_ingredient_lists
                 .map(il => il.id)
@@ -218,6 +218,9 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
                 .map(il => il.id)
                 .join(','),
             banned_ingredient_ids: recipeList.banned_ingredients.map(i => i.id).join(','),
+            base_ingredients: recipeList.base_ingredients
+                .map(({ ingredient: { id }, count }) => `${id}:${count}`)
+                .join(','),
         };
     }
 

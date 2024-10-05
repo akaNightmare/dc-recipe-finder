@@ -177,11 +177,13 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                     const minLength = +baseRecipeSizeMap.get(recipeSize)!;
                     this.addIngredientField(minLength - baseIngredientsCount);
                     this.canRemoveBaseIngredientCtrl = baseIngredientsCount > minLength;
+                    this.#bindQueryParamsManager.syncDefs('base_ingredients');
                 }
             });
 
         this.addIngredientField();
         setTimeout(() => this.form.patchValue(this.form.value), 0);
+        this.#bindQueryParamsManager.syncDefs('base_ingredients');
     }
 
     readonly #ingredientLists$ = this.#paginateIngredientListGQL
@@ -245,6 +247,18 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                 { queryKey: 'allowed_ingredient_list_ids', type: 'array' },
                 { queryKey: 'banned_ingredient_list_ids', type: 'array' },
                 { queryKey: 'banned_ingredient_ids', type: 'array' },
+                {
+                    queryKey: 'base_ingredients',
+                    serializer: (value: { ingredient_id: string; count: number }[]) =>
+                        value
+                            .map(({ ingredient_id, count }) => `${ingredient_id}:${count}`)
+                            .join(','),
+                    parser: (value: string) =>
+                        value.split(',').map(part => {
+                            const [ingredient_id, count] = part.split(':');
+                            return { ingredient_id, count: Number.parseInt(count, 10) };
+                        }),
+                },
             ],
             {
                 syncInitialControlValue: true,
@@ -442,6 +456,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         }
 
         const recipeList = this.form.value as RecipeListCreateInput;
+        console.log(recipeList);
         this.#recipeListCreateGQL.mutate({ recipeList }).subscribe({
             next: () => {
                 this.#snackBar.open(
