@@ -440,13 +440,23 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         }
 
         const recipeList = this.form.value as RecipeListCreateInput;
-        this.#recipeListCreateGQL.mutate({ recipeList }).subscribe(() => {
-            this.#snackBar.open(
-                `Recipe list "${recipeList.name}" has been created`,
-                undefined,
-                this.#defaultSnackBarConfig,
-            );
-            void this.#router.navigate(['..'], { relativeTo: this.#activatedRoute });
+        this.#recipeListCreateGQL.mutate({ recipeList }).subscribe({
+            next: () => {
+                this.#snackBar.open(
+                    `Recipe list "${recipeList.name}" has been created`,
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+                void this.#router.navigate(['..'], { relativeTo: this.#activatedRoute });
+            },
+            error: error => {
+                this.#snackBar.open(
+                    error.networkError?.error?.data?.message ??
+                        `Failed to create recipe list "${recipeList.name}"`,
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+            },
         });
     }
 
