@@ -175,9 +175,21 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                     this.canRemoveBaseIngredientCtrl = false;
                 } else {
                     const minLength = +baseRecipeSizeMap.get(recipeSize)!;
-                    this.addIngredientField(minLength - baseIngredientsCount);
+                    const queryLength = /*
+                        this.#bindQueryParamsManager.search.get('base_ingredients')?.split(',')
+                            .length ?? */ 0;
+                    this.addIngredientField(
+                        Math.max(minLength - baseIngredientsCount, queryLength),
+                    );
                     this.canRemoveBaseIngredientCtrl = baseIngredientsCount > minLength;
                     this.#bindQueryParamsManager.syncDefs('base_ingredients');
+                    void this.#ingredientRef.refetch(
+                        this.#buildVariables(
+                            baseIngredients
+                                .map(({ ingredient_id }) => ingredient_id)
+                                .filter(Boolean) as string[],
+                        ),
+                    );
                 }
             });
 
@@ -526,11 +538,13 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         return this.baseIngredientsCtrl.length < 5;
     }
 
-    #buildVariables(): PaginateIngredientQueryVariables {
+    #buildVariables(idsToFetch: string[] = []): PaginateIngredientQueryVariables {
         const filter = {};
         const search = this.searchIngredientsCtrl.value?.trim();
         if (search?.trim().length) {
             Object.assign(filter, { name: { contains: search } });
+        } else if (idsToFetch.length > 0) {
+            Object.assign(filter, { id: { in: idsToFetch } });
         }
 
         return {
