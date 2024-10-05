@@ -185,6 +185,12 @@
                     <mat-icon  svgIcon="heroicons_outline:bars-3-bottom-left"></mat-icon>
                     Activity log
                   </a>
+                  <a [routerLink]="['.', 'create']"
+                     [queryParams]="duplicateQueryParams(rl)"
+                     mat-menu-item>
+                    <mat-icon  svgIcon="heroicons_outline:clipboard-document-list"></mat-icon>
+                    Duplicate
+                  </a>
                 </mat-menu>
               </button>
             </td>

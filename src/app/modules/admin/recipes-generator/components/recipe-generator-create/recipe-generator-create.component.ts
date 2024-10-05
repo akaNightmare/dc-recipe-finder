@@ -242,7 +242,9 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             [
                 { queryKey: 'name' },
                 { queryKey: 'recipe_size', type: 'number' },
-                // { queryKey: 'base_ingredient_ids', type: 'array' },
+                { queryKey: 'allowed_ingredient_list_ids', type: 'array' },
+                { queryKey: 'banned_ingredient_list_ids', type: 'array' },
+                { queryKey: 'banned_ingredient_ids', type: 'array' },
             ],
             {
                 syncInitialControlValue: true,

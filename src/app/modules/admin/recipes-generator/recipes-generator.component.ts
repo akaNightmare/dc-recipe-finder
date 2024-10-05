@@ -207,6 +207,20 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
             });
     }
 
+    public duplicateQueryParams(recipeList: RecipeList): Record<string, unknown> {
+        return {
+            name: recipeList.name,
+            recipe_size: recipeList.recipe_size,
+            banned_ingredient_list_ids: recipeList.banned_ingredient_lists
+                .map(il => il.id)
+                .join(','),
+            allowed_ingredient_list_ids: recipeList.allowed_ingredient_lists
+                .map(il => il.id)
+                .join(','),
+            banned_ingredient_ids: recipeList.banned_ingredients.map(i => i.id).join(','),
+        };
+    }
+
     public trackByFn(index: number, item: { id?: string }): string | number {
         return item.id || index;
     }
