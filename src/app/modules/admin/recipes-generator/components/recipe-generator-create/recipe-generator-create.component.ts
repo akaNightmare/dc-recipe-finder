@@ -24,6 +24,7 @@ import difference from 'lodash-es/difference';
 import intersection from 'lodash-es/intersection';
 import union from 'lodash-es/union';
 import uniq from 'lodash-es/uniq';
+import uniqBy from 'lodash-es/uniqBy';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {
     combineLatest,
@@ -138,14 +139,17 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
-                this.ingredients = [
-                    ...(data.paginateIngredient.items ?? []),
-                    ...(this.baseIngredientsCtrl.value || [])
-                        .map(({ ingredient_id }) =>
-                            this.ingredients.find(i => i.id === ingredient_id),
-                        )
-                        .filter(i => i != null),
-                ];
+                this.ingredients = uniqBy(
+                    [
+                        ...(data.paginateIngredient.items ?? []),
+                        ...(this.baseIngredientsCtrl.value || [])
+                            .map(({ ingredient_id }) =>
+                                this.ingredients.find(i => i.id === ingredient_id),
+                            )
+                            .filter(i => i != null),
+                    ],
+                    'id',
+                );
             });
 
         this.searchIngredientsCtrl.valueChanges
