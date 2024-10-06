@@ -472,7 +472,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         }
 
         const recipeList = this.form.value as RecipeListCreateInput;
-        console.log(recipeList);
         this.#recipeListCreateGQL.mutate({ recipeList }).subscribe({
             next: () => {
                 this.#snackBar.open(
@@ -485,6 +484,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             error: error => {
                 this.#snackBar.open(
                     error.networkError?.error?.data?.message ??
+                        error.networkError?.error?.errors?.[0]?.message ??
                         `Failed to create recipe list "${recipeList.name}"`,
                     undefined,
                     this.#defaultSnackBarConfig,
