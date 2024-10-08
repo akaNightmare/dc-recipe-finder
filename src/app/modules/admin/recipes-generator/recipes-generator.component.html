@@ -18,6 +18,19 @@
           <input matInput [formControlName]="'search'" [autocomplete]="'off'" [placeholder]="'Search list'" />
         </mat-form-field>
 
+        <a
+          routerLink="check"
+          class="bg-accent ml-4"
+          mat-flat-button
+          [color]="'accent'"
+        >
+          <mat-icon
+            class="icon-size-5"
+            [svgIcon]="'heroicons_solid:check'"
+          ></mat-icon>
+          <span class="ml-2 mr-1">Recipes checker</span>
+        </a>
+
         <!-- Create recipe list button -->
         <a routerLink="create" class="ml-4" mat-flat-button [color]="'primary'">
           <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>

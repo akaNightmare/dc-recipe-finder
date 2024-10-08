@@ -1,0 +1,194 @@
+<div class="flex w-full flex-auto flex-col">
+  <div class="mx-auto flex w-full max-w-screen-xl flex-wrap p-6 md:p-8">
+    <div class="flex w-full items-center justify-between">
+      <div>
+        <h2 class="text-3xl font-semibold leading-8 tracking-tight"> Recipe checker </h2>
+        <div class="text-secondary font-medium tracking-tight"> Set guidelines for checking recipe</div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex w-full">
+      <div class="flex flex-auto flex-col w-1/3">
+        <!-- Compose form -->
+        <form class="bg-card mt-4 flex flex-col overflow-hidden rounded px-8 pt-10 shadow" (ngSubmit)="checkRecipe()"
+              [formGroup]="form">
+          <div class="flex flex-auto">
+            <mat-form-field>
+              <mat-label>
+                Recipe size
+                <mat-icon
+                  class="text-hint icon-size-3.5"
+                  [svgIcon]="'heroicons_mini:information-circle'"
+                  matTooltip="Number of ingredients in the recipe"
+                ></mat-icon>
+              </mat-label>
+              <input type="number" min="3" max="6" matInput [formControlName]="'recipe_size'" />
+              @if (form.get('recipe_size')!.hasError('required')) {
+                <mat-error> Recipe size is required</mat-error>
+              }
+              @if (form.get('recipe_size')!.hasError('min')) {
+                <mat-error> Min is 3</mat-error>
+              }
+              @if (form.get('recipe_size')!.hasError('max')) {
+                <mat-error> Max is 6</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- Ingredients -->
+          <div>
+            <div class="space-y-2">
+              @for (ingrCtrl of ingredientsCtrl.controls; track i; let i = $index; let first = $first) {
+                <ng-container formArrayName="ingredients">
+                  <div class="flex">
+                    <mat-form-field class="flex-auto">
+                      @if (first) {
+                        <mat-label>Ingredients</mat-label>
+                      }
+                      <mat-select [formControl]="ingrCtrl.get('ingredient_id')">
+                        <mat-select-trigger>
+                          @if (ingredientById(ingrCtrl.get('ingredient_id')!.value!); as ingredient) {
+                            <div class="flex items-center">
+                              <img
+                                width="32"
+                                height="32"
+                                class="w-8 h-8 rounded"
+                                [alt]="ingredient.name"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                              />
+                              <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
+                            </div>
+                          }
+                        </mat-select-trigger>
+                        <mat-option>
+                          <ngx-mat-select-search
+                            noEntriesFoundLabel="No matching ingredients found"
+                            placeholderLabel="Search"
+                            [searching]="searching"
+                            [clearSearchInput]="true"
+                            [enableClearOnEscapePressed]="true"
+                            [disableScrollToActiveOnOptionsChanged]="true"
+                            [formControl]="searchIngredientsCtrl"
+                          ></ngx-mat-select-search>
+                        </mat-option>
+                        @for (ingredient of ingredients; track ingredient.id) {
+                          <mat-option [value]="ingredient.id">
+                            <div class="flex items-center">
+                              <img
+                                class="w-8 h-8 rounded"
+                                height="32"
+                                width="32"
+                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                                [alt]="ingredient.name"
+                              />
+                              <div class="flex flex-col ml-1">{{ingredient.name}}</div>
+                            </div>
+                          </mat-option>
+                        }
+                      </mat-select>
+                      @if (ingrCtrl.get('ingredient_id')!.hasError('required')) {
+                        <mat-error>
+                          Ingredient {{ i + 1 }} is required
+                        </mat-error>
+                      }
+                    </mat-form-field>
+
+                    <mat-form-field
+                      class="fuse-mat-no-subscript ml-2 w-full max-w-24 flex-auto sm:ml-4 sm:max-w-24"
+                    >
+                      @if (first) {
+                        <mat-label>Count</mat-label>
+                      }
+                      <input matInput type="number" min="1" max="100" [formControl]="ingrCtrl.get('count')" />
+                      @if (ingrCtrl.get('count')!.hasError('required')) {
+                        <mat-error>
+                          Count is required
+                        </mat-error>
+                      }
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+              }
+            </div>
+          </div>
+
+          <div
+            class="-mx-8 mt-8 flex items-center justify-end border-t bg-gray-50 px-8 py-5 dark:bg-gray-700"
+          >
+            <a routerLink=".." mat-button>Back</a>
+            <button
+              class="ml-3 px-6"
+              mat-flat-button
+              [disabled]="form.disabled"
+              [color]="'primary'"
+            >
+              @if (form.disabled) {
+                <mat-progress-spinner
+                  [diameter]="24"
+                  [mode]="'indeterminate'"
+                ></mat-progress-spinner>
+              } @else {
+                <span> Check </span>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="flex flex-auto flex-col w-2/3 ml-8">
+        <div class="text-xl">
+          Recipes where the selected ingredients intersect
+          <small>({{ recipes.length | number:'1.0' }})</small>
+        </div>
+        <div class="text-secondary">
+          Considering the number of ingredients in the recipe
+        </div>
+        <div class="mt-8 flex justify-start flex-wrap gap-3.5">
+          @for (recipe of recipes; track recipe.id) {
+            <div
+              class="bg-card flex flex-col rounded-xl shadow relative ring-2"
+              [ngClass]="{
+                'ring-pink-500 bg-pink-50': recipe.status === RecipeStatus.Failed,
+                'ring-green-500 bg-green-50': recipe?.status === RecipeStatus.Success,
+              }"
+            >
+              <div class="flex flex-col p-3">
+                <div class="flex justify-start">
+                  @for (ri of recipe.ingredients; track ri.ingredient.id; let columnLast = $last) {
+                    <div
+                      [class.mr-2]="!columnLast"
+                      class="relative"
+                    >
+                      @if (ri.count; as count) {
+                        <div
+                          class="absolute bottom-0 right-1 flex-0 -ml-0.5 outline-title text-md text-white"
+                        >
+                          {{ count }}
+                        </div>
+                      }
+                      <img
+                        [ngSrc]="'images/ingredients/' + ri.ingredient.image"
+                        [alt]="ri.ingredient.name"
+                        [matTooltip]="ri.ingredient.name"
+                        class="w-9 h-9 ring-[2px] rounded object-cover"
+                        [ngClass]="{
+                            'ring-legendary': ri.ingredient.rarity === IngredientRarity.Legendary,
+                            'ring-common': ri.ingredient.rarity === IngredientRarity.Common,
+                            'ring-uncommon': ri.ingredient.rarity === IngredientRarity.Uncommon,
+                            'ring-epic': ri.ingredient.rarity === IngredientRarity.Epic,
+                            'ring-rare': ri.ingredient.rarity === IngredientRarity.Rare,
+                            'ring-ultra-rare': ri.ingredient.rarity === IngredientRarity.UltraRare
+                      }"
+                        width="36"
+                        height="36"
+                      />
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -96,3 +96,18 @@ query RecipeList($id: ID!) {
     }
   }
 }
+
+query RecipeCheck($recipe: RecipeCheckInput!) {
+  checkRecipe(recipe: $recipe) {
+    ...RecipeFragment
+    owner {
+      ...UserFragment
+    }
+    ingredients {
+      count
+      ingredient {
+        ...IngredientFragment
+      }
+    }
+  }
+}
