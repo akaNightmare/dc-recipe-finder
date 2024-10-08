@@ -109,8 +109,8 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         search: new FormControl(''),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[3]),
-        sort_dir: new FormControl<SortDirection>('asc'),
-        sort_by: new FormControl('name'),
+        sort_dir: new FormControl<SortDirection>('desc'),
+        sort_by: new FormControl('created_at'),
     });
 
     readonly #bindQueryParamsManager = this.#queryFactory
