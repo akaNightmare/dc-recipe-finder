@@ -143,7 +143,7 @@
           Considering the number of ingredients in the recipe
         </div>
         <div class="mt-8 flex justify-start flex-wrap gap-3.5">
-          @for (recipe of recipes; track recipe.id) {
+          @for (recipe of recipes | sortBy: 'desc' : 'status'; track recipe.id) {
             <div
               class="bg-card flex flex-col rounded-xl shadow relative ring-2"
               [ngClass]="{
@@ -169,15 +169,7 @@
                         [ngSrc]="'images/ingredients/' + ri.ingredient.image"
                         [alt]="ri.ingredient.name"
                         [matTooltip]="ri.ingredient.name"
-                        class="w-9 h-9 ring-[2px] rounded object-cover"
-                        [ngClass]="{
-                            'ring-legendary': ri.ingredient.rarity === IngredientRarity.Legendary,
-                            'ring-common': ri.ingredient.rarity === IngredientRarity.Common,
-                            'ring-uncommon': ri.ingredient.rarity === IngredientRarity.Uncommon,
-                            'ring-epic': ri.ingredient.rarity === IngredientRarity.Epic,
-                            'ring-rare': ri.ingredient.rarity === IngredientRarity.Rare,
-                            'ring-ultra-rare': ri.ingredient.rarity === IngredientRarity.UltraRare
-                      }"
+                        [class]="ingredientClass(ri.ingredient, recipe.status, ri.count)"
                         width="36"
                         height="36"
                       />

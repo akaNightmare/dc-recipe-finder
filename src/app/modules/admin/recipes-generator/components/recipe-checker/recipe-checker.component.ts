@@ -36,6 +36,7 @@ import {
     RecipeCheckInput,
     RecipeStatus,
 } from '../../../../../graphql.generated';
+import { SortByPipe } from '../../../../../pipes';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -68,6 +69,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         IngredientSearchComponent,
         MatDivider,
         MatMenu,
+        SortByPipe,
     ],
 })
 export class RecipeCheckerComponent implements OnDestroy, OnInit {
@@ -207,10 +209,56 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
         }
     }
 
-    public checkRecipe() {
-        if (this.form.invalid) {
-            return;
+    public ingredientClass(
+        ingredient: Ingredient,
+        recipeStatus: RecipeStatus,
+        ingredientsCount: number,
+    ): string {
+        let classes = '';
+        const ingredients = this.ingredientsCtrl.value!;
+        switch (true) {
+            case ingredients.some(
+                ({ ingredient_id, count }) =>
+                    ingredient_id === ingredient.id && ingredientsCount >= count!,
+            ): {
+                classes =
+                    'ring-[3px] ' +
+                    (RecipeStatus.Success === recipeStatus ? 'ring-green-500' : 'ring-pink-500');
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.Common: {
+                classes = 'ring-[2px] ring-common';
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.Uncommon: {
+                classes = 'ring-[2px] ring-uncommon';
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.Rare: {
+                classes = 'ring-[2px] ring-rare';
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.Epic: {
+                classes = 'ring-[2px] ring-epic';
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.Legendary: {
+                classes = 'ring-[2px] ring-legendary';
+                break;
+            }
+            case ingredient.rarity === IngredientRarity.UltraRare: {
+                classes = 'ring-[2px] ring-ultra-rare';
+                break;
+            }
+            default: {
+                break;
+            }
         }
+
+        return ['w-9 h-9 rounded object-cover', classes].join(' ');
+    }
+
+    public checkRecipe() {
         const recipe = this.form.value;
         this.#recipeCheckGQL
             .fetch({ recipe } as Exact<{ recipe: RecipeCheckInput }>)
