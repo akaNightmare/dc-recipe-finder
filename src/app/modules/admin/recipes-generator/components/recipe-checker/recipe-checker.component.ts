@@ -217,10 +217,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
         let classes = '';
         const ingredients = this.ingredientsCtrl.value!;
         switch (true) {
-            case ingredients.some(
-                ({ ingredient_id, count }) =>
-                    ingredient_id === ingredient.id && ingredientsCount >= count!,
-            ): {
+            case this.#checkIfIngredientExists(ingredients, ingredient.id, ingredientsCount): {
                 classes =
                     'ring-[3px] ' +
                     (RecipeStatus.Success === recipeStatus ? 'ring-green-500' : 'ring-pink-500');
@@ -268,9 +265,44 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
             )
             .subscribe({
                 next: result => {
-                    this.recipes = result.data.checkRecipe;
+                    const ingredientsCtrl = this.ingredientsCtrl.value!;
+                    this.recipes = result.data.checkRecipe.map(recipe => {
+                        const ingredients = [...recipe.ingredients].sort(
+                            (ingredient1, ingredient2) => {
+                                const [ingredient1Exists, ingredient2Exists] = [
+                                    this.#checkIfIngredientExists(
+                                        ingredientsCtrl,
+                                        ingredient1.ingredient.id,
+                                        ingredient1.count,
+                                    ),
+                                    this.#checkIfIngredientExists(
+                                        ingredientsCtrl,
+                                        ingredient2.ingredient.id,
+                                        ingredient2.count,
+                                    ),
+                                ];
+                                return ingredient1Exists === ingredient2Exists
+                                    ? 0
+                                    : ingredient1Exists
+                                      ? -1
+                                      : 1;
+                            },
+                        );
+                        return { ...recipe, ingredients };
+                    });
                 },
             });
+    }
+
+    #checkIfIngredientExists(
+        ingredients: Partial<{ ingredient_id: string; count: number }>[],
+        ingredientId: string,
+        ingredientsCount: number,
+    ): boolean {
+        return ingredients.some(
+            ({ ingredient_id, count }) =>
+                ingredient_id === ingredientId && ingredientsCount >= count!,
+        );
     }
 
     #buildVariables(idsToFetch: string[] = []): PaginateIngredientQueryVariables {
