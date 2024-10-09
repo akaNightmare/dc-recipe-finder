@@ -208,6 +208,9 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
     }
 
     public checkRecipe() {
+        if (this.form.invalid) {
+            return;
+        }
         const recipe = this.form.value;
         this.#recipeCheckGQL
             .fetch({ recipe } as Exact<{ recipe: RecipeCheckInput }>)
