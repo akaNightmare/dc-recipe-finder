@@ -1,5 +1,11 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import {
+    AsyncPipe,
+    DecimalPipe,
+    NgClass,
+    NgOptimizedImage,
+    NgTemplateOutlet,
+} from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     FormArray,
@@ -42,6 +48,7 @@ import {
     PaginateIngredientQuery,
     PaginateIngredientQueryVariables,
 } from '../../../ingredients/ingredients.generated';
+import { combinationN } from '../../helpers';
 import { RecipeCheckGQL } from '../../recipes-list.generated';
 
 @Component({
@@ -70,6 +77,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         MatDivider,
         MatMenu,
         SortByPipe,
+        NgTemplateOutlet,
     ],
 })
 export class RecipeCheckerComponent implements OnDestroy, OnInit {
@@ -84,6 +92,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
     public readonly IngredientRarity = IngredientRarity;
     public readonly searchIngredientsCtrl = new FormControl('');
     public ingredients: Ingredient[] = [];
+    public recipesCombination: Recipe[] = [];
     public searching = false;
     public recipes: Recipe[] = [];
 
@@ -211,13 +220,14 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
 
     public ingredientClass(
         ingredient: Ingredient,
-        recipeStatus: RecipeStatus,
         ingredientsCount: number,
+        recipeStatus?: RecipeStatus,
     ): string {
         let classes = '';
         const ingredients = this.ingredientsCtrl.value!;
         switch (true) {
-            case this.#checkIfIngredientExists(ingredients, ingredient.id, ingredientsCount): {
+            case recipeStatus &&
+                this.#checkIfIngredientExists(ingredients, ingredient.id, ingredientsCount): {
                 classes =
                     'ring-[3px] ' +
                     (RecipeStatus.Success === recipeStatus ? 'ring-green-500' : 'ring-pink-500');
@@ -256,6 +266,9 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
     }
 
     public checkRecipe() {
+        // if (this.form.invalid) {
+        //     return;
+        // }
         const recipe = this.form.value;
         this.#recipeCheckGQL
             .fetch({ recipe } as Exact<{ recipe: RecipeCheckInput }>)
@@ -266,6 +279,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
             .subscribe({
                 next: result => {
                     const ingredientsCtrl = this.ingredientsCtrl.value!;
+                    const recipeSize = this.form.get('recipe_size')!.value!;
                     this.recipes = result.data.checkRecipe.map(recipe => {
                         const ingredients = [...recipe.ingredients].sort(
                             (ingredient1, ingredient2) => {
@@ -290,6 +304,33 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
                         );
                         return { ...recipe, ingredients };
                     });
+                    this.recipesCombination = combinationN(
+                        ingredientsCtrl.map(({ ingredient_id }) => ingredient_id).filter(Boolean),
+                        recipeSize,
+                    )
+                        .map((ingredients, idx) => ({
+                            id: String(idx),
+                            ingredients: ingredients.map(ingredientId => ({
+                                ingredient: this.ingredients.find(i => i.id === ingredientId),
+                                count: ingredientsCtrl.find(i => i.ingredient_id === ingredientId)
+                                    ?.count,
+                            })),
+                        }))
+                        .filter(
+                            ({ ingredients }) =>
+                                !this.recipes.some(recipe =>
+                                    ingredients.every(({ ingredient, count }) =>
+                                        recipe.ingredients.some(
+                                            ({
+                                                ingredient: recipeIngredient,
+                                                count: recipeCount,
+                                            }) =>
+                                                recipeIngredient.id === ingredient!.id &&
+                                                recipeCount >= count!,
+                                        ),
+                                    ),
+                                ),
+                        ) as unknown as Recipe[];
                 },
             });
     }
