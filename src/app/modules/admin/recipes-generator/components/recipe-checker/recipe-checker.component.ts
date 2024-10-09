@@ -86,7 +86,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
     public recipes: Recipe[] = [];
 
     public readonly form = this.#formBuilder.group({
-        recipe_size: [3, [Validators.required, Validators.min(3), Validators.max(6)]],
+        recipe_size: [3, [Validators.required, Validators.min(2), Validators.max(6)]],
         ingredients: this.#formBuilder.array(
             [],
             [Validators.required, Validators.maxLength(5), RxwebValidators.unique()],
