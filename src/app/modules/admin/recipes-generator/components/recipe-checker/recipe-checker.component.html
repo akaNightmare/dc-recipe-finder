@@ -22,7 +22,7 @@
                   matTooltip="Number of ingredients in the recipe"
                 ></mat-icon>
               </mat-label>
-              <input type="number" min="3" max="6" matInput [formControlName]="'recipe_size'" />
+              <input type="number" min="2" max="6" matInput [formControlName]="'recipe_size'" />
               @if (form.get('recipe_size')!.hasError('required')) {
                 <mat-error> Recipe size is required</mat-error>
               }
