@@ -143,7 +143,7 @@
           Considering the number of ingredients in the recipe
         </div>
         <ng-container
-          *ngTemplateOutlet="recipestList; context: { $implicit: recipes }"
+          *ngTemplateOutlet="recipesList; context: { $implicit: recipes }"
         ></ng-container>
 
         @if (recipesCombination.length > 0) {
@@ -152,7 +152,7 @@
             <small>({{ recipesCombination.length | number:'1.0' }})</small>
           </div>
           <ng-container
-            *ngTemplateOutlet="recipestList; context: { $implicit: recipesCombination }"
+            *ngTemplateOutlet="recipesList; context: { $implicit: recipesCombination }"
           ></ng-container>
         }
       </div>
@@ -160,7 +160,7 @@
   </div>
 </div>
 
-<ng-template #recipestList let-recipes>
+<ng-template #recipesList let-recipes>
   <div class="mt-4 flex justify-start flex-wrap gap-3.5">
     @for (recipe of recipes | sortBy: 'desc' : 'status'; track recipe.id) {
       <div
@@ -171,6 +171,18 @@
           'ring-green-500 bg-green-50': recipe.status === RecipeStatus.Success,
         }"
       >
+        @if (recipe.status) {
+          <mat-icon
+            [matTooltip]="'Created by ' + recipe.owner.login"
+            class="icon-size-4.5 rounded-full absolute -top-2 -right-1"
+            [ngClass]="{
+              'bg-pink-500 text-pink-50': recipe.status === RecipeStatus.Failed,
+              'bg-green-500 text-green-50': recipe.status === RecipeStatus.Success
+            }"
+            [svgIcon]="'heroicons_solid:information-circle'"
+          ></mat-icon>
+        }
+
         <div class="flex flex-col p-3">
           <div class="flex justify-start">
             @for (ri of recipe.ingredients; track ri.ingredient.id; let columnLast = $last) {
