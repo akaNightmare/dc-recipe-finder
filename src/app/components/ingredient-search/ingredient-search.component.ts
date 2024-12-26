@@ -1,4 +1,4 @@
-import { AsyncPipe, KeyValuePipe, NgOptimizedImage } from '@angular/common';
+import { KeyValuePipe, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -36,7 +36,6 @@ import {
         MatOptionModule,
         NgxMatSelectSearchModule,
         ReactiveFormsModule,
-        AsyncPipe,
         MatFormFieldModule,
         MatSelectModule,
         NgOptimizedImage,

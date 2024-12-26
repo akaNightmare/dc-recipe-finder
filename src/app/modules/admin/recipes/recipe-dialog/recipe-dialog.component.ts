@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -38,7 +38,6 @@ import {
     Recipe,
     RecipeStatus,
 } from '../../../../graphql.generated';
-import { ReplacePipe } from '../../../../pipes';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -65,7 +64,6 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         MatIconModule,
         MatButtonModule,
         MatTooltipModule,
-        AsyncPipe,
         FormsModule,
         MatInputModule,
         ReactiveFormsModule,
@@ -75,7 +73,6 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         MatSelectModule,
         NgxMatSelectSearchModule,
         NgClass,
-        ReplacePipe,
         NgOptimizedImage,
     ]
 })

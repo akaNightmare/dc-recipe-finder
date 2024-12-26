@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -58,16 +58,13 @@ import {
     templateUrl: './ingredient-lists.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe,
         CdkScrollable,
-        DatePipe,
         MatButtonModule,
         MatIconModule,
         MatMenuModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        SortByPipe,
         MatTooltipModule,
         MatFormFieldModule,
         MatInputModule,

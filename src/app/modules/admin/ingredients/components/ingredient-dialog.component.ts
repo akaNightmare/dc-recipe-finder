@@ -1,4 +1,3 @@
-import { AsyncPipe, LowerCasePipe, NgClass, NgOptimizedImage } from '@angular/common';
 import { AfterContentInit, Component, inject, ViewEncapsulation } from '@angular/core';
 import {
     FormControl,
@@ -17,7 +16,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
-import { IngredientSearchComponent } from '../../../../components/ingredient-search/ingredient-search.component';
 import { Ingredient, IngredientUpdateInput } from '../../../../graphql.generated';
 import { ReplacePipe } from '../../../../pipes';
 import { UpdateIngredientGQL } from '../ingredients.generated';
@@ -30,7 +28,6 @@ import { UpdateIngredientGQL } from '../ingredients.generated';
         MatIconModule,
         MatButtonModule,
         MatTooltipModule,
-        AsyncPipe,
         FormsModule,
         MatInputModule,
         ReactiveFormsModule,
@@ -38,12 +35,7 @@ import { UpdateIngredientGQL } from '../ingredients.generated';
         MatProgressSpinnerModule,
         MatRippleModule,
         MatSelectModule,
-        NgClass,
-        ReplacePipe,
         MatDialogModule,
-        LowerCasePipe,
-        NgOptimizedImage,
-        IngredientSearchComponent,
     ]
 })
 export class IngredientDialogComponent implements AfterContentInit {

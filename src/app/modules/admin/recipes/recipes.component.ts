@@ -73,7 +73,6 @@ import {
         // RecipeDialogComponent,
         MatButtonModule,
         MatIconModule,
-        FuseCardComponent,
         NgClass,
         RouterLink,
         MatInputModule,

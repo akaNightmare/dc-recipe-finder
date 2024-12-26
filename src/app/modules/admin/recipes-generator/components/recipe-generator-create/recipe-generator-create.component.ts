@@ -82,7 +82,6 @@ const baseRecipeSizeMap = new Map<number, number>([
         AsyncPipe,
         MatTableModule,
         MatSortModule,
-        CdkScrollable,
         MatTooltipModule,
         MatButtonModule,
         MatIconModule,
@@ -97,8 +96,6 @@ const baseRecipeSizeMap = new Map<number, number>([
         FuseAlertComponent,
         NgOptimizedImage,
         NgClass,
-        MatCheckbox,
-        MatSlideToggle,
         IngredientSearchComponent,
     ]
 })

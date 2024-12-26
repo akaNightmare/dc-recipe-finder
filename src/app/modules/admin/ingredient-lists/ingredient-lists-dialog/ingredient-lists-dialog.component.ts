@@ -1,4 +1,4 @@
-import { AsyncPipe, LowerCasePipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { LowerCasePipe } from '@angular/common';
 import { AfterContentInit, Component, inject, ViewEncapsulation } from '@angular/core';
 import {
     FormControl,
@@ -35,7 +35,6 @@ import { CreateIngredientListGQL, UpdateIngredientListGQL } from '../ingredient-
         MatIconModule,
         MatButtonModule,
         MatTooltipModule,
-        AsyncPipe,
         FormsModule,
         MatInputModule,
         ReactiveFormsModule,
@@ -43,11 +42,8 @@ import { CreateIngredientListGQL, UpdateIngredientListGQL } from '../ingredient-
         MatProgressSpinnerModule,
         MatRippleModule,
         MatSelectModule,
-        NgClass,
-        ReplacePipe,
         MatDialogModule,
         LowerCasePipe,
-        NgOptimizedImage,
         IngredientSearchComponent,
     ]
 })

@@ -57,8 +57,6 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
     styleUrls: ['./recipe-checker.component.scss'],
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe,
-        CdkScrollable,
         MatTooltipModule,
         MatButtonModule,
         MatIconModule,
@@ -72,9 +70,6 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         DecimalPipe,
         NgOptimizedImage,
         NgClass,
-        IngredientSearchComponent,
-        MatDivider,
-        MatMenu,
         SortByPipe,
         NgTemplateOutlet,
     ]

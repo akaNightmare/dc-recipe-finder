@@ -1,5 +1,5 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { AsyncPipe, DatePipe, NgClass, NgOptimizedImage, PercentPipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage, PercentPipe } from '@angular/common';
 import {
     AfterViewInit,
     Component,
@@ -39,7 +39,6 @@ import {
     timer,
 } from 'rxjs';
 import { RecipeList, RecipeListPaginateOrderInput } from '../../../graphql.generated';
-import { SortByPipe } from '../../../pipes';
 import {
     PaginateRecipeListGQL,
     PaginateRecipeListQuery,
@@ -52,7 +51,6 @@ import {
     templateUrl: './recipes-generator.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe,
         CdkScrollable,
         DatePipe,
         MatButtonModule,
@@ -61,14 +59,12 @@ import {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        SortByPipe,
         MatTooltipModule,
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
         MatOptionModule,
         MatSelectModule,
-        NgClass,
         NgOptimizedImage,
         MatSnackBarModule,
         RouterLink,
