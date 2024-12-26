@@ -17,7 +17,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 import { Ingredient, IngredientUpdateInput } from '../../../../graphql.generated';
-import { ReplacePipe } from '../../../../pipes';
 import { UpdateIngredientGQL } from '../ingredients.generated';
 
 @Component({

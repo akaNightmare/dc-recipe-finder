@@ -24,7 +24,6 @@ import {
     IngredientListCreateInput,
     IngredientListType,
 } from '../../../../graphql.generated';
-import { ReplacePipe } from '../../../../pipes';
 import { CreateIngredientListGQL, UpdateIngredientListGQL } from '../ingredient-lists.generated';
 
 @Component({

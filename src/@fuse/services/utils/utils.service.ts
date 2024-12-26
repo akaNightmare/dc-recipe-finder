@@ -40,7 +40,7 @@ export class FuseUtilsService {
      *
      * @param length
      */
-    randomId(length: number = 10): string {
+    randomId(length = 10): string {
         const chars =
             'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let name = '';

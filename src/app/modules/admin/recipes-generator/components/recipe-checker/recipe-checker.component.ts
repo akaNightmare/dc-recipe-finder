@@ -1,6 +1,4 @@
-import { CdkScrollable } from '@angular/cdk/overlay';
 import {
-    AsyncPipe,
     DecimalPipe,
     NgClass,
     NgOptimizedImage,
@@ -17,10 +15,8 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
-import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatMenu } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -31,7 +27,6 @@ import { QueryRef } from 'apollo-angular';
 import uniqBy from 'lodash-es/uniqBy';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
-import { IngredientSearchComponent } from '../../../../../components/ingredient-search/ingredient-search.component';
 import {
     Exact,
     Ingredient,

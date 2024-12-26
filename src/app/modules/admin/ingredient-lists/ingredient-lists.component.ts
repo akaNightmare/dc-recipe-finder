@@ -44,7 +44,6 @@ import {
     IngredientListPaginateOrderInput,
     IngredientListType,
 } from '../../../graphql.generated';
-import { SortByPipe } from '../../../pipes';
 import { IngredientListsDialogComponent } from './ingredient-lists-dialog/ingredient-lists-dialog.component';
 import {
     PaginateIngredientListGQL,

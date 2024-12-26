@@ -9,13 +9,11 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
-import { MatInput } from '@angular/material/input';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
@@ -23,7 +21,6 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
-import { FuseMasonryComponent } from '@fuse/components/masonry';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
@@ -41,7 +38,6 @@ import {
 import { UsersGQL } from '../../../../../core/user/user.generated';
 import { UserService } from '../../../../../core/user/user.service';
 import { IngredientRarity, RecipeList, RecipeStatus, User } from '../../../../../graphql.generated';
-import { SortByPipe } from '../../../../../pipes';
 import { RecipeDialogComponent } from '../../../recipes/recipe-dialog/recipe-dialog.component';
 import {
     AssignRecipeListRecipeToUserGQL,

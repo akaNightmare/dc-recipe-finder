@@ -1,4 +1,3 @@
-import { CdkScrollable } from '@angular/cdk/overlay';
 import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
@@ -38,8 +37,6 @@ import {
     tap,
 } from 'rxjs';
 
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FuseAlertComponent } from '@fuse/components/alert';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';

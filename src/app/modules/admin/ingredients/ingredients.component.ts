@@ -1,5 +1,4 @@
-import { CdkScrollable } from '@angular/cdk/overlay';
-import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { AfterViewInit, Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +9,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import {

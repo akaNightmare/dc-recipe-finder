@@ -21,7 +21,6 @@ import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
-import { FuseCardComponent } from '@fuse/components/card';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
