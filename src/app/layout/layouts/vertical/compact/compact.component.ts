@@ -18,7 +18,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'compact-layout',
     templateUrl: './compact.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         MatButtonModule,
@@ -27,7 +26,7 @@ import { UserComponent } from '../../../common/user/user.component';
         UserComponent,
         RouterOutlet,
         FuseVerticalNavigationComponent,
-    ],
+    ]
 })
 export class CompactLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall?: boolean;

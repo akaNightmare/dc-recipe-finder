@@ -51,7 +51,6 @@ import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil }
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'fuseVerticalNavigation',
-    standalone: true,
     imports: [
         FuseScrollbarDirective,
         FuseVerticalNavigationAsideItemComponent,
@@ -60,7 +59,7 @@ import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil }
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ],
+    ]
 })
 export class FuseVerticalNavigationComponent
     implements OnChanges, OnInit, AfterViewInit, OnDestroy

@@ -28,7 +28,6 @@ import { Subject, filter, takeUntil } from 'rxjs';
     selector: 'fuse-vertical-navigation-aside-item',
     templateUrl: './aside.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         NgClass,
         MatTooltipModule,
@@ -38,7 +37,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ],
+    ]
 })
 export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnInit, OnDestroy {
     /* eslint-disable @typescript-eslint/naming-convention */

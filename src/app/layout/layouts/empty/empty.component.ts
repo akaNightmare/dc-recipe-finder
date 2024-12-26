@@ -7,8 +7,7 @@ import { Subject } from 'rxjs';
     selector: 'empty-layout',
     templateUrl: './empty.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
-    imports: [FuseLoadingBarComponent, RouterOutlet],
+    imports: [FuseLoadingBarComponent, RouterOutlet]
 })
 export class EmptyLayoutComponent implements OnDestroy {
     readonly #unsubscribe = new Subject<void>();

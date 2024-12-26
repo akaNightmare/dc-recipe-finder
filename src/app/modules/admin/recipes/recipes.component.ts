@@ -60,7 +60,6 @@ import {
 
 @Component({
     selector: 'recipes',
-    standalone: true,
     templateUrl: './recipes.component.html',
     styleUrls: ['./recipes.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -87,7 +86,7 @@ import {
         NgOptimizedImage,
         IngredientSearchComponent,
         MatSnackBarModule,
-    ],
+    ]
 })
 export class RecipesComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);

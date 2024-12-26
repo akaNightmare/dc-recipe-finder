@@ -18,8 +18,7 @@ import { FuseCardFace } from '@fuse/components/card/card.types';
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     exportAs: 'fuseCard',
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class FuseCardComponent implements OnChanges {
     /* eslint-disable @typescript-eslint/naming-convention */

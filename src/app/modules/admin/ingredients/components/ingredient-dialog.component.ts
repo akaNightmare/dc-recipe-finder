@@ -25,7 +25,6 @@ import { UpdateIngredientGQL } from '../ingredients.generated';
 @Component({
     selector: 'ingredient-dialog',
     templateUrl: './ingredient-dialog.component.html',
-    standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIconModule,
@@ -45,7 +44,7 @@ import { UpdateIngredientGQL } from '../ingredients.generated';
         LowerCasePipe,
         NgOptimizedImage,
         IngredientSearchComponent,
-    ],
+    ]
 })
 export class IngredientDialogComponent implements AfterContentInit {
     public readonly data: { ingredient: Ingredient } = inject(MAT_DIALOG_DATA);

@@ -17,7 +17,6 @@ import { BriefDescriptionComponent } from '../brief-description/brief-descriptio
     templateUrl: './sign-in.component.html',
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
-    standalone: true,
     imports: [
         RouterLink,
         FuseAlertComponent,
@@ -30,7 +29,7 @@ import { BriefDescriptionComponent } from '../brief-description/brief-descriptio
         MatCheckboxModule,
         MatProgressSpinnerModule,
         BriefDescriptionComponent,
-    ],
+    ]
 })
 export class AuthSignInComponent {
     readonly #formBuilder = inject(FormBuilder);

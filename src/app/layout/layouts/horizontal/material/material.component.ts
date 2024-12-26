@@ -19,7 +19,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'material-layout',
     templateUrl: './material.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
@@ -29,7 +28,7 @@ import { UserComponent } from '../../../common/user/user.component';
         UserComponent,
         FuseHorizontalNavigationComponent,
         RouterOutlet,
-    ],
+    ]
 })
 export class MaterialLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall?: boolean;

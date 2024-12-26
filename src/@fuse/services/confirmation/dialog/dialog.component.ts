@@ -24,8 +24,7 @@ import { FuseConfirmationConfig } from '@fuse/services/confirmation/confirmation
         `,
     ],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
-    imports: [MatButtonModule, MatDialogModule, MatIconModule, NgClass],
+    imports: [MatButtonModule, MatDialogModule, MatIconModule, NgClass]
 })
 export class FuseConfirmationDialogComponent {
     data: FuseConfirmationConfig = inject(MAT_DIALOG_DATA);

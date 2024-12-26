@@ -76,7 +76,6 @@ const baseRecipeSizeMap = new Map<number, number>([
 
 @Component({
     selector: 'recipes-generator-create',
-    standalone: true,
     templateUrl: './recipes-generator-create.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -101,7 +100,7 @@ const baseRecipeSizeMap = new Map<number, number>([
         MatCheckbox,
         MatSlideToggle,
         IngredientSearchComponent,
-    ],
+    ]
 })
 export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     readonly #recipeListCreateGQL = inject(RecipeListCreateGQL);

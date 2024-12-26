@@ -22,7 +22,6 @@ import { Subject, takeUntil } from 'rxjs';
     selector: 'fuse-horizontal-navigation-basic-item',
     templateUrl: './basic.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         NgClass,
         RouterLink,
@@ -31,7 +30,7 @@ import { Subject, takeUntil } from 'rxjs';
         NgTemplateOutlet,
         MatMenuModule,
         MatIconModule,
-    ],
+    ]
 })
 export class FuseHorizontalNavigationBasicItemComponent implements OnInit, OnDestroy {
     private _changeDetectorRef = inject(ChangeDetectorRef);

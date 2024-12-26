@@ -29,8 +29,7 @@ import { Subject, takeUntil } from 'rxjs';
         `,
     ],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
-    imports: [MatIconModule, FuseDrawerComponent, MatButtonModule, NgClass, MatTooltipModule],
+    imports: [MatIconModule, FuseDrawerComponent, MatButtonModule, NgClass, MatTooltipModule]
 })
 export class SettingsComponent implements OnInit, OnDestroy {
     config?: FuseConfig;

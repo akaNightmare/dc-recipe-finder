@@ -53,7 +53,6 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
 
 @Component({
     selector: 'recipe-checker',
-    standalone: true,
     templateUrl: './recipe-checker.component.html',
     styleUrls: ['./recipe-checker.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -78,7 +77,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         MatMenu,
         SortByPipe,
         NgTemplateOutlet,
-    ],
+    ]
 })
 export class RecipeCheckerComponent implements OnDestroy, OnInit {
     readonly #formBuilder = inject(FormBuilder);

@@ -29,7 +29,6 @@ import { Subject, filter, takeUntil } from 'rxjs';
     templateUrl: './collapsable.component.html',
     animations: fuseAnimations,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         NgClass,
         MatTooltipModule,
@@ -39,7 +38,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ],
+    ]
 })
 export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
     /* eslint-disable @typescript-eslint/naming-convention */

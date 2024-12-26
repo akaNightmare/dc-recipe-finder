@@ -11,8 +11,7 @@ import { RandomRecipesGQL } from './random-recipes.generated';
     templateUrl: './brief-description.component.html',
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
-    standalone: true,
-    imports: [NgOptimizedImage, AsyncPipe, MatTooltipModule],
+    imports: [NgOptimizedImage, AsyncPipe, MatTooltipModule]
 })
 export class BriefDescriptionComponent {
     readonly #randomRecipesGQL = inject(RandomRecipesGQL);

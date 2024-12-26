@@ -18,7 +18,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'dense-layout',
     templateUrl: './dense.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
@@ -27,7 +26,7 @@ import { UserComponent } from '../../../common/user/user.component';
         FuseFullscreenComponent,
         UserComponent,
         RouterOutlet,
-    ],
+    ]
 })
 export class DenseLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall?: boolean;

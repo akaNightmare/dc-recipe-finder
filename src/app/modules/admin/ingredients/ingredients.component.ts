@@ -38,7 +38,6 @@ import {
 
 @Component({
     selector: 'ingredients',
-    standalone: true,
     templateUrl: './ingredients.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -56,7 +55,7 @@ import {
         MatOptionModule,
         MatSelectModule,
         NgClass,
-    ],
+    ]
 })
 export class IngredientsComponent implements OnDestroy, AfterViewInit {
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);

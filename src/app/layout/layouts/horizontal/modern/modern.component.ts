@@ -19,7 +19,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'modern-layout',
     templateUrl: './modern.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
@@ -29,7 +28,7 @@ import { UserComponent } from '../../../common/user/user.component';
         FuseFullscreenComponent,
         UserComponent,
         RouterOutlet,
-    ],
+    ]
 })
 export class ModernLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall?: boolean;

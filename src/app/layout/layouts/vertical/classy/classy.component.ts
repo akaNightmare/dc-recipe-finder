@@ -19,7 +19,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'classy-layout',
     templateUrl: './classy.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
@@ -28,7 +27,7 @@ import { UserComponent } from '../../../common/user/user.component';
         MatButtonModule,
         FuseFullscreenComponent,
         RouterOutlet,
-    ],
+    ]
 })
 export class ClassyLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall?: boolean;

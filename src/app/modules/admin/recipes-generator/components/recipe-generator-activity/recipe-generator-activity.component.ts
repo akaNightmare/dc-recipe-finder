@@ -18,7 +18,6 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
 
 @Component({
     selector: 'recipe-generator-activity',
-    standalone: true,
     templateUrl: './recipe-generator-activity.component.html',
     styleUrls: ['./recipe-generator-activity.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -32,7 +31,7 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
         NgTemplateOutlet,
         SortByPipe,
         NgClass,
-    ],
+    ]
 })
 export class RecipeGeneratorActivityComponent {
     readonly #recipeListActivityGQL = inject(RecipeListActivityGQL);

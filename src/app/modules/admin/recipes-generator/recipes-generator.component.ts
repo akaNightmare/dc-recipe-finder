@@ -49,7 +49,6 @@ import {
 
 @Component({
     selector: 'example',
-    standalone: true,
     templateUrl: './recipes-generator.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -75,7 +74,7 @@ import {
         RouterLink,
         MatProgressBar,
         PercentPipe,
-    ],
+    ]
 })
 export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     readonly #paginateRecipeListGQL = inject(PaginateRecipeListGQL);

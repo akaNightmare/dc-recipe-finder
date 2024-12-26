@@ -19,7 +19,6 @@ import { UserComponent } from '../../../common/user/user.component';
     selector: 'centered-layout',
     templateUrl: './centered.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
@@ -29,7 +28,7 @@ import { UserComponent } from '../../../common/user/user.component';
         FuseFullscreenComponent,
         UserComponent,
         RouterOutlet,
-    ],
+    ]
 })
 export class CenteredLayoutComponent implements OnInit, OnDestroy {
     navigation?: Navigation;

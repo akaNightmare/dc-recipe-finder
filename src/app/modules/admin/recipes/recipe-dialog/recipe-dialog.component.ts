@@ -60,7 +60,6 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
 @Component({
     selector: 'recipe-dialog',
     templateUrl: './recipe-dialog.component.html',
-    standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIconModule,
@@ -78,7 +77,7 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         NgClass,
         ReplacePipe,
         NgOptimizedImage,
-    ],
+    ]
 })
 export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public recipeForm!: FormGroup;

@@ -17,8 +17,7 @@ import { Subject, takeUntil } from 'rxjs';
     selector: 'fuse-vertical-navigation-divider-item',
     templateUrl: './divider.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass],
+    imports: [NgClass]
 })
 export class FuseVerticalNavigationDividerItemComponent implements OnInit, OnDestroy {
     private _changeDetectorRef = inject(ChangeDetectorRef);

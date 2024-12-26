@@ -55,7 +55,6 @@ import {
 
 @Component({
     selector: 'ingredient-lists',
-    standalone: true,
     templateUrl: './ingredient-lists.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -78,7 +77,7 @@ import {
         NgClass,
         NgOptimizedImage,
         MatSnackBarModule,
-    ],
+    ]
 })
 export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);

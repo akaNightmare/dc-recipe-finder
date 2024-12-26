@@ -52,7 +52,6 @@ import {
 
 @Component({
     selector: 'recipe-generator-view',
-    standalone: true,
     templateUrl: './recipe-generator-view.component.html',
     styleUrls: ['./recipe-generator-view.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -78,7 +77,7 @@ import {
         MatDivider,
         MatButton,
         MatSlideToggle,
-    ],
+    ]
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);

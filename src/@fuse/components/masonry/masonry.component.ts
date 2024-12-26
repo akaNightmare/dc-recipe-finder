@@ -16,8 +16,7 @@ import { fuseAnimations } from '@fuse/animations';
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     exportAs: 'fuseMasonry',
-    standalone: true,
-    imports: [NgTemplateOutlet],
+    imports: [NgTemplateOutlet]
 })
 export class FuseMasonryComponent implements OnChanges, AfterViewInit {
     @Input() columnsTemplate!: TemplateRef<any>;

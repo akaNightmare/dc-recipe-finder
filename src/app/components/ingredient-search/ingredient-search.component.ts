@@ -30,7 +30,6 @@ import {
 @Component({
     selector: 'app-ingredient-search',
     templateUrl: './ingredient-search.component.html',
-    standalone: true,
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     imports: [
@@ -43,7 +42,7 @@ import {
         NgOptimizedImage,
         MatTooltipModule,
         KeyValuePipe,
-    ],
+    ]
 })
 export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
     readonly #unsubscribe$ = new Subject<void>();
