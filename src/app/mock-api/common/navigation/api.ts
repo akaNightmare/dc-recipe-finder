@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { FuseNavigationItem } from '@fuse/components/navigation';
 import { FuseMockApiService } from '@fuse/lib/mock-api';
 import { cloneDeep } from 'lodash-es';
@@ -11,6 +11,8 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class NavigationMockApi {
+    private readonly _fuseMockApiService = inject(FuseMockApiService);
+
     private readonly _compactNavigation: FuseNavigationItem[] = compactNavigation;
     private readonly _defaultNavigation: FuseNavigationItem[] = defaultNavigation;
     private readonly _futuristicNavigation: FuseNavigationItem[] = futuristicNavigation;
@@ -19,7 +21,7 @@ export class NavigationMockApi {
     /**
      * Constructor
      */
-    constructor(private _fuseMockApiService: FuseMockApiService) {
+    constructor() {
         // Register Mock API handlers
         this.registerHandlers();
     }

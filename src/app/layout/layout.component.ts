@@ -1,13 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import {
-    Component,
-    inject,
-    Inject,
-    OnDestroy,
-    OnInit,
-    Renderer2,
-    ViewEncapsulation,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FuseConfig, FuseConfigService } from '@fuse/services/config';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -48,6 +40,11 @@ import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
     ]
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+    private readonly _document = inject<Document>(DOCUMENT);
+    private readonly _fuseConfigService = inject(FuseConfigService);
+    private readonly _fuseMediaWatcherService = inject(FuseMediaWatcherService);
+    private readonly _fusePlatformService = inject(FusePlatformService);
+
     config?: FuseConfig;
     layout?: string;
     scheme?: 'dark' | 'light';
@@ -56,16 +53,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #renderer2 = inject(Renderer2);
     readonly #router = inject(Router);
-
-    /**
-     * Constructor
-     */
-    constructor(
-        @Inject(DOCUMENT) private _document: Document,
-        private _fuseConfigService: FuseConfigService,
-        private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _fusePlatformService: FusePlatformService,
-    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
