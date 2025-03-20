@@ -70,6 +70,10 @@ mutation RemoveRecipeList($id: ID!) {
   removeRecipeList(id: $id)
 }
 
+mutation ArchiveRecipeList($id: ID!) {
+  archiveRecipeList(id: $id)
+}
+
 mutation RecipeListCreate($recipeList: RecipeListCreateInput!) {
   recipeListCreate(recipeList: $recipeList) {
     ...RecipeListFragment

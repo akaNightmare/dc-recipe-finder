@@ -40,41 +40,45 @@ import {
 } from 'rxjs';
 import { RecipeList, RecipeListPaginateOrderInput } from '../../../graphql.generated';
 import {
-    PaginateRecipeListGQL,
-    PaginateRecipeListQuery,
-    PaginateRecipeListQueryVariables,
-    RemoveRecipeListGQL,
+  ArchiveRecipeListGQL,
+  PaginateRecipeListGQL,
+  PaginateRecipeListQuery,
+  PaginateRecipeListQueryVariables,
+  RemoveRecipeListGQL,
 } from './recipes-list.generated';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'example',
     templateUrl: './recipes-generator.component.html',
     encapsulation: ViewEncapsulation.None,
-    imports: [
-        CdkScrollable,
-        DatePipe,
-        MatButtonModule,
-        MatIconModule,
-        MatMenuModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatTableModule,
-        MatTooltipModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatOptionModule,
-        MatSelectModule,
-        NgOptimizedImage,
-        MatSnackBarModule,
-        RouterLink,
-        MatProgressBar,
-        PercentPipe,
-    ]
+  imports: [
+    CdkScrollable,
+    DatePipe,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule,
+    NgOptimizedImage,
+    MatSnackBarModule,
+    RouterLink,
+    MatProgressBar,
+    PercentPipe,
+    MatSlideToggle,
+  ],
 })
 export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     readonly #paginateRecipeListGQL = inject(PaginateRecipeListGQL);
     readonly #removeRecipeListGQL = inject(RemoveRecipeListGQL);
+    readonly #archiveRecipeListGQL = inject(ArchiveRecipeListGQL);
     readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
@@ -102,6 +106,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     public readonly pageSizeOptions = [5, 10, 25, 100];
     public readonly filters = new FormGroup({
         search: new FormControl(''),
+        archived: new FormControl(false),
         page: new FormControl(1),
         limit: new FormControl(this.pageSizeOptions[3]),
         sort_dir: new FormControl<SortDirection>('desc'),
@@ -112,6 +117,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         .create(
             [
                 { queryKey: 'search' },
+                { queryKey: 'archived' },
                 { queryKey: 'page', type: 'number' },
                 { queryKey: 'limit', type: 'number' },
                 { queryKey: 'sort_dir' },
@@ -148,7 +154,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
                 distinctUntilChanged(),
                 switchMap(([prev, curr]) => {
                     if (prev) {
-                        if (prev.search !== curr?.search) {
+                        if (prev.search !== curr?.search || prev.archived !== curr?.archived) {
                             if (curr && curr.page !== 1) {
                                 curr.page = 1;
                                 this.paginator.pageIndex = 0;
@@ -202,6 +208,27 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
             });
     }
 
+    public archiveRecipeList(recipeList: RecipeList) {
+        this.#fuseConfirmationService
+            .open({
+                title: 'Recipe list archivation confirmation',
+                message: `Are you sure you want to archive&nbsp;<strong>${recipeList.name}</strong>?`,
+            })
+            .afterClosed()
+            .pipe(
+                filter(result => result === 'confirmed'),
+                switchMap(() => this.#archiveRecipeListGQL.mutate({ id: recipeList.id })),
+            )
+            .subscribe(() => {
+                this.#snackBar.open(
+                    'Recipe list has been archived',
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+                void this.#recipeListRef.refetch(this.#buildVariables());
+            });
+    }
+
     public duplicateQueryParams(recipeList: RecipeList): Record<string, unknown> {
         return {
             name: `${recipeList.name} (copy ${(Math.random() + 1).toString(36).substring(3)})`,
@@ -227,6 +254,11 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         const filter = {};
         if (values.search?.trim().length) {
             Object.assign(filter, { name: { contains: values.search } });
+        }
+        if (values.archived) {
+            Object.assign(filter, { archived_at: { ne: null } });
+        } else {
+          Object.assign(filter, { archived_at: { eq: null } });
         }
         let order = null;
         if (values.sort_by && values.sort_dir) {

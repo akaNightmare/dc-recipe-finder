@@ -3,6 +3,7 @@ fragment RecipeFragment on Recipe {
   name
   status
   image
+  limited
   created_at
   count_from
   count_to

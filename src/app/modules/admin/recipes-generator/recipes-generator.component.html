@@ -9,6 +9,14 @@
     <!-- Actions -->
     <div class="mt-6 flex flex-shrink-0 items-center sm:mt-0 sm:ml-4">
       <form class="flex items-center flex-auto" [formGroup]="filters">
+        <mat-slide-toggle
+          class="mt-8 sm:ml-auto sm:mt-0 mr-4"
+          [color]="'primary'"
+          [formControlName]="'archived'"
+        >
+          Archived
+        </mat-slide-toggle>
+
         <!-- Search -->
         <mat-form-field
           [subscriptSizing]="'dynamic'"
@@ -194,14 +202,20 @@
                       Delete list
                     </button>
                   }
+                  @if (!rl.archived_at) {
+                    <button mat-menu-item (click)="archiveRecipeList(rl)">
+                      <mat-icon svgIcon="heroicons_outline:archive-box"></mat-icon>
+                      Archive list
+                    </button>
+                  }
                   <a [routerLink]="['.', rl.id, 'activity']" mat-menu-item>
-                    <mat-icon  svgIcon="heroicons_outline:bars-3-bottom-left"></mat-icon>
+                    <mat-icon svgIcon="heroicons_outline:bars-3-bottom-left"></mat-icon>
                     Activity log
                   </a>
                   <a [routerLink]="['.', 'create']"
                      [queryParams]="duplicateQueryParams(rl)"
                      mat-menu-item>
-                    <mat-icon  svgIcon="heroicons_outline:clipboard-document-list"></mat-icon>
+                    <mat-icon svgIcon="heroicons_outline:clipboard-document-list"></mat-icon>
                     Duplicate
                   </a>
                 </mat-menu>

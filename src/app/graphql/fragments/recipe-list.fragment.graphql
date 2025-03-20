@@ -3,6 +3,7 @@ fragment RecipeListFragment on RecipeList {
   name
   recipe_size
   created_at
+  archived_at
   count_meta {
     total
     failed
