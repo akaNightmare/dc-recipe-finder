@@ -3,10 +3,11 @@
     <div class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8">
         <div class="text-lg font-medium">
           @if (data.status) {
+            Mark recipe as
             @if (data.status === RecipeStatus.Failed) {
-              Mark recipe as failed
+              failed
             } @else {
-              Mark recipe as successful
+              successful
             }
           } @else {
             @if (data.recipe) {
