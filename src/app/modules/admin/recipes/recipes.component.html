@@ -1,4 +1,22 @@
-<div class="bg-card absolute inset-0 flex min-w-0 flex-col overflow-hidden dark:bg-transparent">
+<div
+  class="bg-card absolute inset-0 flex min-w-0 flex-col overflow-hidden dark:bg-transparent"
+  (dragenter)="onDragOver($event)"
+  (dragover)="onDragOver($event)"
+>
+  @if (isDragging) {
+    <div
+      class="absolute inset-0 z-99999 flex items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <div class="pointer-events-none flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary p-12 shadow-2xl bg-card dark:bg-gray-800">
+        <mat-icon class="icon-size-16 text-primary" [svgIcon]="'heroicons_outline:beaker'"></mat-icon>
+        <div class="mt-4 text-2xl font-semibold text-default">Drop failed recipe image here</div>
+        <div class="mt-2 text-secondary text-center">Upload an image from the game</div>
+      </div>
+    </div>
+  }
+
   <!-- Header -->
   <div
     class="relative flex flex-0 flex-col border-b py-8 px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"

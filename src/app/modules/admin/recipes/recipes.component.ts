@@ -121,6 +121,8 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         map(({ data }) => data.users),
     );
 
+    public isDragging = false;
+
     public readonly filters = new FormGroup({
         search: new FormControl(''),
         statuses: new FormControl<RecipeStatus[]>([]),
@@ -227,6 +229,46 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
     public updateFilters(changes: Record<string, unknown>): void {
         this.filters.patchValue(changes);
+    }
+
+    public onDragOver(event: DragEvent): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = true;
+    }
+
+    public onDragLeave(event: DragEvent): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = false;
+    }
+
+    public onDrop(event: DragEvent): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = false;
+
+        const files = event.dataTransfer?.files;
+        if (files && files.length > 0) {
+            const file = files[0];
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            
+            if (allowedTypes.includes(file.type)) {
+                console.log('Dropped image:', file);
+                this.#snackBar.open(
+                    `File ${file.name} received for processing`,
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+                // TODO: Handle the image (e.g. upload or OCR)
+            } else {
+                this.#snackBar.open(
+                    'Please drop a valid image file (jpeg, jpg, png)',
+                    undefined,
+                    this.#defaultSnackBarConfig,
+                );
+            }
+        }
     }
 
     public openRecipeDialog(recipe?: Recipe) {
