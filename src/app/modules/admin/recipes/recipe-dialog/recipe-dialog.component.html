@@ -10,8 +10,8 @@
               successful
             }
           } @else {
-            @if (data.recipe) {
-              Update {{data.recipe.name}}
+            @if (data.recipe?.id) {
+              Update {{data.recipe!.name}}
             } @else {
               Create a new recipe
             }

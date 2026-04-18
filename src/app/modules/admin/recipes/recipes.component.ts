@@ -251,47 +251,57 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         this.isDragging = false;
 
         const files = event.dataTransfer?.files;
-        if (files && files.length > 0) {
-            const file = files[0];
-            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-
-            if (allowedTypes.includes(file.type)) {
-                console.log('Dropped image:', file);
-                this.#snackBar.open(
-                    `File ${file.name} received for processing`,
-                    undefined,
-                    this.#defaultSnackBarConfig,
-                );
-                this.#recipeGuessGQL.mutate({
-                  input: {
-                    image: file,
-                  }
-                })
-                  .pipe(
-                    takeUntil(this.#unsubscribe$),
-                    map(({ data }) => data?.recipeGuess)
-                  )
-                  .subscribe(recipeGuess => {
-                    if (recipeGuess) {
-                      console.log(recipeGuess);
-                    }
-                  });
-            } else {
-                this.#snackBar.open(
-                    'Please drop a valid image file (jpeg, jpg, png)',
-                    undefined,
-                    this.#defaultSnackBarConfig,
-                );
-            }
+        if (!files?.length) {
+          return;
         }
+
+        const file = files[0];
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+        if (!allowedTypes.includes(file.type)) {
+          this.#snackBar.open(
+            'Please drop a valid image file (jpeg, jpg, png)',
+            undefined,
+            this.#defaultSnackBarConfig,
+          );
+          return;
+        }
+
+        this.#snackBar.open(
+          `File ${file.name} received for processing`,
+          undefined,
+          this.#defaultSnackBarConfig,
+        );
+
+        this.#recipeGuessGQL.mutate({ input: { image: file } })
+          .pipe(
+            takeUntil(this.#unsubscribe$),
+            map(({ data }) => data?.recipeGuess)
+          )
+          .subscribe(recipeGuess => {
+            if (recipeGuess) {
+              this.openRecipeDialog(
+                {
+                  name: '-',
+                  status: RecipeStatus.Failed,
+                  ingredients: recipeGuess.ingredients.map(
+                    ({ count, ingredient: { id } }) => ({
+                      ingredient: { id },
+                      count: count ?? 1,
+                    }),
+                  ),
+                } as unknown as Recipe,
+              );
+            }
+          });
     }
 
-    public openRecipeDialog(recipe?: Recipe) {
+    public openRecipeDialog(recipe?: Recipe, status?: RecipeStatus) {
         this.#matDialog
             .open(RecipeDialogComponent, {
                 disableClose: true,
                 maxHeight: '90vh',
-                data: { recipe },
+                data: { recipe, status },
             })
             .afterClosed()
             .subscribe(result => {
