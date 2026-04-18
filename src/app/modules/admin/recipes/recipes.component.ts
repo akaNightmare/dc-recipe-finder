@@ -51,10 +51,11 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 // import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { UsersGQL } from '../../../core/user/user.generated';
 import {
-    PaginateRecipeGQL,
-    PaginateRecipeQuery,
-    PaginateRecipeQueryVariables,
-    RemoveRecipeGQL,
+  PaginateRecipeGQL,
+  PaginateRecipeQuery,
+  PaginateRecipeQueryVariables,
+  RecipeGuessGQL,
+  RemoveRecipeGQL,
 } from './recipes.generated';
 
 @Component({
@@ -89,6 +90,7 @@ import {
 export class RecipesComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
+    readonly #recipeGuessGQL = inject(RecipeGuessGQL);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
     readonly #unsubscribe$ = new Subject<void>();
@@ -252,7 +254,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         if (files && files.length > 0) {
             const file = files[0];
             const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-            
+
             if (allowedTypes.includes(file.type)) {
                 console.log('Dropped image:', file);
                 this.#snackBar.open(
@@ -260,7 +262,20 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
                     undefined,
                     this.#defaultSnackBarConfig,
                 );
-                // TODO: Handle the image (e.g. upload or OCR)
+                this.#recipeGuessGQL.mutate({
+                  input: {
+                    image: file,
+                  }
+                })
+                  .pipe(
+                    takeUntil(this.#unsubscribe$),
+                    map(({ data }) => data?.recipeGuess)
+                  )
+                  .subscribe(recipeGuess => {
+                    if (recipeGuess) {
+                      console.log(recipeGuess);
+                    }
+                  });
             } else {
                 this.#snackBar.open(
                     'Please drop a valid image file (jpeg, jpg, png)',

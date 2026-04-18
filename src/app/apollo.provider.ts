@@ -3,6 +3,10 @@ import { from, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
+// @ts-ignore  TS7016:
+import extractFiles from 'extract-files/extractFiles.mjs';
+// @ts-ignore  TS7016:
+import isExtractableFile from 'extract-files/isExtractableFile.mjs';
 
 import { environment } from '../environments/environment';
 import possibleTypes from './possible-types.json';
@@ -40,6 +44,8 @@ export const provideApollo = (): Provider => [
                     authLink,
                     httpLink.create({
                         uri: `${environment.API_URL}q`,
+                        extractFiles: (body) => extractFiles(body, isExtractableFile),
+                        useMultipart: true,
                     }),
                 ]),
                 defaultOptions: {
