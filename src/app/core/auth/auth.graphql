@@ -7,3 +7,10 @@ mutation SignIn($auth: AuthInput!) {
     }
   }
 }
+
+mutation CreateUser($auth: AuthInput!) {
+  createUser(auth: $auth) {
+    id
+    login
+  }
+}

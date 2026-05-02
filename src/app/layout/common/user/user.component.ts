@@ -13,11 +13,16 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../../core/auth/auth.service';
+import { AuthUtils } from '../../../core/auth/auth.utils';
 import { User, UserService } from '../../../core/user/user.service';
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import { UserRole } from '../../../graphql.generated';
 
 @Component({
     selector: 'user',
@@ -35,7 +40,10 @@ export class UserComponent implements OnInit {
 
     @Input() showAvatar: boolean = true;
     user?: User;
+    isAdmin = false;
+    readonly #authService = inject(AuthService);
     readonly #changeDetectorRef = inject(ChangeDetectorRef);
+    readonly #matDialog = inject(MatDialog);
     readonly #router = inject(Router);
     readonly #userService = inject(UserService);
 
@@ -47,6 +55,8 @@ export class UserComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
+        this.isAdmin = this.#hasAdminRole();
+
         // Subscribe to user changes
         this.#userService
             .get()
@@ -68,5 +78,29 @@ export class UserComponent implements OnInit {
      */
     signOut(): void {
         void this.#router.navigate(['/sign-out']);
+    }
+
+    /**
+     * Create user
+     */
+    createUser(): void {
+        this.#matDialog.open(CreateUserDialogComponent, {
+            autoFocus: false,
+        });
+    }
+
+    #hasAdminRole(): boolean {
+        const accessToken = this.#authService.getAccessToken();
+
+        if (!accessToken) {
+            return false;
+        }
+
+        try {
+            const payload = AuthUtils.getTokenPayload<{ role?: unknown }>(accessToken);
+            return payload?.role === UserRole.Admin;
+        } catch {
+            return false;
+        }
     }
 }

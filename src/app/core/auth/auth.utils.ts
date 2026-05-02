@@ -172,4 +172,13 @@ export class AuthUtils {
 
         return date;
     }
+
+    /**
+     * Get token payload
+     */
+    public static getTokenPayload<T extends Record<string, unknown> = Record<string, unknown>>(
+        token: string,
+    ): T | null {
+        return this._decodeToken(token) as T | null;
+    }
 }

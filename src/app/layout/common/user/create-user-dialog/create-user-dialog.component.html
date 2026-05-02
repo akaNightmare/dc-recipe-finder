@@ -1,0 +1,79 @@
+<div class="-m-6 relative flex flex-auto max-w-120 flex-col md:min-w-120">
+    <div
+        class="flex h-16 flex-0 items-center justify-between bg-primary pr-3 pl-6 text-on-primary sm:pr-5 sm:pl-8"
+    >
+        <div class="text-lg font-medium">Create user</div>
+        <button
+            mat-icon-button
+            type="button"
+            (click)="close()"
+            [disabled]="form.disabled"
+            [tabIndex]="-1"
+        >
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+        </button>
+    </div>
+
+    <form class="flex-auto p-6 sm:p-8" [formGroup]="form" (ngSubmit)="save()">
+        <mat-form-field class="w-full">
+            <mat-label>Login</mat-label>
+            <input matInput [formControlName]="'login'" />
+            @if (form.get('login')!.hasError('required')) {
+                <mat-error> Login is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="mt-2 w-full">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [formControlName]="'password'" />
+            @if (form.get('password')!.hasError('required')) {
+                <mat-error> Password is required</mat-error>
+            }
+            @if (form.get('password')!.hasError('minlength')) {
+                <mat-error> Password must be at least 8 characters</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="mt-2 w-full">
+            <mat-label>Repeat password</mat-label>
+            <input matInput type="password" [formControlName]="'repeatPassword'" />
+            @if (form.get('repeatPassword')!.hasError('required')) {
+                <mat-error> Repeat password is required</mat-error>
+            }
+            @if (form.get('repeatPassword')!.hasError('compare')) {
+                <mat-error> Passwords do not match</mat-error>
+            }
+        </mat-form-field>
+
+        <div class="mt-4 flex flex-col justify-end sm:mt-6 sm:flex-row items-center">
+            <div class="mt-4 flex items-center sm:mt-0">
+                <button
+                    class="sm:mx-3"
+                    mat-button
+                    type="button"
+                    [disabled]="form.disabled"
+                    (click)="close()"
+                >
+                    <span>Close</span>
+                </button>
+
+                <button
+                    class="order-first sm:order-last"
+                    mat-flat-button
+                    type="submit"
+                    [color]="'primary'"
+                    [disabled]="form.disabled"
+                >
+                    @if (form.disabled) {
+                        <mat-progress-spinner
+                            [diameter]="24"
+                            [mode]="'indeterminate'"
+                        ></mat-progress-spinner>
+                    } @else {
+                        <span>Create</span>
+                    }
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
