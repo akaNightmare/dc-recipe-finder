@@ -3,11 +3,12 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     Input,
-    OnDestroy,
     OnInit,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,7 +17,6 @@ import { FuseHorizontalNavigationComponent } from '@fuse/components/navigation/h
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'fuse-horizontal-navigation-basic-item',
@@ -30,9 +30,10 @@ import { Subject, takeUntil } from 'rxjs';
         NgTemplateOutlet,
         MatMenuModule,
         MatIconModule,
-    ]
+    ],
 })
-export class FuseHorizontalNavigationBasicItemComponent implements OnInit, OnDestroy {
+export class FuseHorizontalNavigationBasicItemComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _fuseNavigationService = inject(FuseNavigationService);
     private _fuseUtilsService = inject(FuseUtilsService);
@@ -47,7 +48,6 @@ export class FuseHorizontalNavigationBasicItemComponent implements OnInit, OnDes
     isActiveMatchOptions: IsActiveMatchOptions = this._fuseUtilsService.subsetMatchOptions;
 
     private _fuseHorizontalNavigationComponent: FuseHorizontalNavigationComponent | null = null;
-    private _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -75,19 +75,10 @@ export class FuseHorizontalNavigationBasicItemComponent implements OnInit, OnDes
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseHorizontalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 }

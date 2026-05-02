@@ -4,24 +4,25 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     EventEmitter,
     HostBinding,
     Input,
     OnChanges,
-    OnDestroy,
     OnInit,
     Output,
     SimpleChanges,
     ViewEncapsulation,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertService } from '@fuse/components/alert/alert.service';
 import { FuseAlertAppearance, FuseAlertType } from '@fuse/components/alert/alert.types';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'fuse-alert',
@@ -31,9 +32,10 @@ import { Subject, filter, takeUntil } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: fuseAnimations,
     exportAs: 'fuseAlert',
-    imports: [MatIconModule, MatButtonModule]
+    imports: [MatIconModule, MatButtonModule],
 })
-export class FuseAlertComponent implements OnChanges, OnInit, OnDestroy {
+export class FuseAlertComponent implements OnChanges, OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_dismissible: BooleanInput;
     static ngAcceptInputType_dismissed: BooleanInput;
@@ -51,8 +53,6 @@ export class FuseAlertComponent implements OnChanges, OnInit, OnDestroy {
     @Input() showIcon: boolean = true;
     @Input() type: FuseAlertType = 'primary';
     @Output() readonly dismissedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-    private _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -123,7 +123,7 @@ export class FuseAlertComponent implements OnChanges, OnInit, OnDestroy {
         this._fuseAlertService.onDismiss
             .pipe(
                 filter(name => this.name === name),
-                takeUntil(this._unsubscribeAll),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe(() => {
                 // Dismiss the alert
@@ -134,21 +134,12 @@ export class FuseAlertComponent implements OnChanges, OnInit, OnDestroy {
         this._fuseAlertService.onShow
             .pipe(
                 filter(name => this.name === name),
-                takeUntil(this._unsubscribeAll),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe(() => {
                 // Show the alert
                 this.show();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

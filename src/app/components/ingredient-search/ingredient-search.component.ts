@@ -2,13 +2,14 @@ import { KeyValuePipe, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     EventEmitter,
     inject,
     Input,
-    OnDestroy,
     Output,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { debounceTime, distinctUntilChanged, filter, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
 
 import { fuseAnimations } from '@fuse/animations';
 import { Ingredient, IngredientPaginateOrderField, OrderDir } from '../../graphql.generated';
@@ -43,8 +44,8 @@ import {
         KeyValuePipe,
     ],
 })
-export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
-    readonly #unsubscribe$ = new Subject<void>();
+export class IngredientSearchComponent implements AfterViewInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
     #ingredientsIds: string[] = [];
@@ -85,11 +86,6 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
     public readonly ingredientsCtrl = new FormControl<string[]>([]);
     public readonly searchIngredientsCtrl = new FormControl('');
 
-    ngOnDestroy() {
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
-    }
-
     ngAfterViewInit() {
         this.#ingredientRef = this.#paginateIngredientGQL.watch({
             variables: this.#buildVariables(this.#ingredientsIds),
@@ -97,7 +93,7 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
 
         this.#ingredientRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
@@ -121,7 +117,7 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
 
         this.searchIngredientsCtrl.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(search => !!search?.trim().length),
                 tap(() => (this.searching = true)),
                 debounceTime(200),
@@ -135,7 +131,7 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
             });
 
         this.ingredientsCtrl.valueChanges
-            .pipe(takeUntil(this.#unsubscribe$), distinctUntilChanged())
+            .pipe(takeUntilDestroyed(this.#destroyRef), distinctUntilChanged())
             .subscribe((ingredientIds = []) => {
                 this.selectedIngredients = this.ingredients.filter(i =>
                     ingredientIds?.includes(i.id),

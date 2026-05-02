@@ -3,11 +3,12 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     Input,
-    OnDestroy,
     OnInit,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
@@ -15,7 +16,6 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation-basic-item',
@@ -28,9 +28,10 @@ import { Subject, takeUntil } from 'rxjs';
         MatTooltipModule,
         NgTemplateOutlet,
         MatIconModule,
-    ]
+    ],
 })
-export class FuseVerticalNavigationBasicItemComponent implements OnInit, OnDestroy {
+export class FuseVerticalNavigationBasicItemComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _fuseNavigationService = inject(FuseNavigationService);
     private _fuseUtilsService = inject(FuseUtilsService);
@@ -45,7 +46,6 @@ export class FuseVerticalNavigationBasicItemComponent implements OnInit, OnDestr
     isActiveMatchOptions: IsActiveMatchOptions = this._fuseUtilsService.subsetMatchOptions;
 
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent | null = null;
-    private _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -71,19 +71,10 @@ export class FuseVerticalNavigationBasicItemComponent implements OnInit, OnDestr
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseVerticalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 }

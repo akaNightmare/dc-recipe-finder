@@ -7,6 +7,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     ElementRef,
     EventEmitter,
     HostBinding,
@@ -24,6 +25,7 @@ import {
     ViewChildren,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
@@ -41,7 +43,7 @@ import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navig
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseScrollbarDirective } from '@fuse/directives/scrollbar/scrollbar.directive';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
-import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil } from 'rxjs';
+import { delay, filter, merge, ReplaySubject, Subscription } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation',
@@ -59,11 +61,12 @@ import { delay, filter, merge, ReplaySubject, Subject, Subscription, takeUntil }
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ]
+    ],
 })
 export class FuseVerticalNavigationComponent
     implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_inner: BooleanInput;
     static ngAcceptInputType_opened: BooleanInput;
@@ -117,7 +120,6 @@ export class FuseVerticalNavigationComponent
     private _scrollStrategy: ScrollStrategy = this._scrollStrategyOptions.block();
     private _fuseScrollbarDirectives!: QueryList<FuseScrollbarDirective>;
     private _fuseScrollbarDirectivesSubscription: Subscription | null = null;
-    private _unsubscribeAll = new Subject<any>();
 
     /**
      * Constructor
@@ -186,10 +188,10 @@ export class FuseVerticalNavigationComponent
             this.onCollapsableItemCollapsed,
             this.onCollapsableItemExpanded,
         )
-            .pipe(takeUntil(this._unsubscribeAll), delay(250))
+            .pipe(takeUntilDestroyed(this.#destroyRef), delay(250))
             .subscribe(() => {
                 // Loop through the scrollbars and update them
-                fuseScrollbarDirectives.forEach((fuseScrollbarDirective) => {
+                fuseScrollbarDirectives.forEach(fuseScrollbarDirective => {
                     fuseScrollbarDirective.update();
                 });
             });
@@ -332,8 +334,8 @@ export class FuseVerticalNavigationComponent
         // Subscribe to the 'NavigationEnd' event
         this._router.events
             .pipe(
-                filter((event) => event instanceof NavigationEnd),
-                takeUntil(this._unsubscribeAll),
+                filter(event => event instanceof NavigationEnd),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe(() => {
                 // If the mode is 'over' and the navigation is opened...
@@ -360,8 +362,8 @@ export class FuseVerticalNavigationComponent
         // adding the '.cdk-global-scrollblock' to the html element breaks the navigation's position.
         // This fixes the problem by reading the 'top' value from the html element and adding it as a
         // 'marginTop' to the navigation itself.
-        this._mutationObserver = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
+        this._mutationObserver = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
                 const mutationTarget = mutation.target as HTMLElement;
                 if (mutation.attributeName === 'class') {
                     if (mutationTarget.classList.contains('cdk-global-scrollblock')) {
@@ -408,7 +410,7 @@ export class FuseVerticalNavigationComponent
             // Otherwise
             else {
                 // Go through all the scrollbar directives
-                this._fuseScrollbarDirectives.forEach((fuseScrollbarDirective) => {
+                this._fuseScrollbarDirectives.forEach(fuseScrollbarDirective => {
                     // Skip if not enabled
                     if (!fuseScrollbarDirective.isEnabled()) {
                         return;
@@ -438,10 +440,6 @@ export class FuseVerticalNavigationComponent
 
         // Deregister the navigation component from the registry
         this._fuseNavigationService.deregisterComponent(this.name);
-
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

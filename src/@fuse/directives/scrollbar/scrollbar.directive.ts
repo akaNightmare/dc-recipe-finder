@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
 import {
+    DestroyRef,
     Directive,
     ElementRef,
     Input,
@@ -10,10 +11,11 @@ import {
     SimpleChanges,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollbarGeometry, ScrollbarPosition } from '@fuse/directives/scrollbar/scrollbar.types';
 import merge from 'lodash-es/merge';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 
 /**
  * Wrapper directive for the Perfect Scrollbar: https://github.com/mdbootstrap/perfect-scrollbar
@@ -23,6 +25,7 @@ import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
     exportAs: 'fuseScrollbar',
 })
 export class FuseScrollbarDirective implements OnChanges, OnInit, OnDestroy {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_fuseScrollbar: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
@@ -36,7 +39,6 @@ export class FuseScrollbarDirective implements OnChanges, OnInit, OnDestroy {
     private _animation: number | null = null;
     private _options: PerfectScrollbar.Options = {};
     private _ps: PerfectScrollbar | null = null;
-    private _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -108,7 +110,7 @@ export class FuseScrollbarDirective implements OnChanges, OnInit, OnDestroy {
     ngOnInit(): void {
         // Subscribe to window resize event
         fromEvent(window, 'resize')
-            .pipe(takeUntil(this._unsubscribeAll), debounceTime(150))
+            .pipe(takeUntilDestroyed(this.#destroyRef), debounceTime(150))
             .subscribe(() => {
                 // Update the PerfectScrollbar
                 this.update();
@@ -120,10 +122,6 @@ export class FuseScrollbarDirective implements OnChanges, OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         this._destroy();
-
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

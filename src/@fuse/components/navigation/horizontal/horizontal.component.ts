@@ -14,7 +14,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { FuseHorizontalNavigationBasicItemComponent } from './components/basic/basic.component';
 import { FuseHorizontalNavigationBranchItemComponent } from './components/branch/branch.component';
 import { FuseHorizontalNavigationSpacerItemComponent } from './components/spacer/spacer.component';
@@ -31,7 +31,7 @@ import { FuseHorizontalNavigationSpacerItemComponent } from './components/spacer
         FuseHorizontalNavigationBasicItemComponent,
         FuseHorizontalNavigationBranchItemComponent,
         FuseHorizontalNavigationSpacerItemComponent,
-    ]
+    ],
 })
 export class FuseHorizontalNavigationComponent implements OnChanges, OnInit, OnDestroy {
     private _changeDetectorRef = inject(ChangeDetectorRef);
@@ -42,7 +42,6 @@ export class FuseHorizontalNavigationComponent implements OnChanges, OnInit, OnD
     @Input() navigation: FuseNavigationItem[] = [];
 
     onRefreshed = new ReplaySubject<boolean>(1);
-    private readonly _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -80,10 +79,6 @@ export class FuseHorizontalNavigationComponent implements OnChanges, OnInit, OnD
     ngOnDestroy(): void {
         // Deregister the navigation component from the registry
         this._fuseNavigationService.deregisterComponent(this.name);
-
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

@@ -3,11 +3,13 @@ import { DatePipe, NgOptimizedImage, PercentPipe } from '@angular/common';
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     inject,
     OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
@@ -27,18 +29,7 @@ import { RouterLink } from '@angular/router';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    of,
-    pairwise,
-    startWith,
-    Subject,
-    switchMap,
-    takeUntil,
-    timer,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 import { RecipeList, RecipeListPaginateOrderInput } from '../../../graphql.generated';
 import {
     ArchiveRecipeListGQL,
@@ -76,10 +67,10 @@ import {
     ],
 })
 export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeListGQL = inject(PaginateRecipeListGQL);
     readonly #removeRecipeListGQL = inject(RemoveRecipeListGQL);
     readonly #archiveRecipeListGQL = inject(ArchiveRecipeListGQL);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #snackBar = inject(MatSnackBar);
@@ -131,8 +122,6 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     ngAfterViewInit(): void {
@@ -140,17 +129,17 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
             variables: this.#buildVariables(),
         });
 
-        this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
+        this.paginator.page.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
         });
 
-        this.sort.sortChange.pipe(takeUntil(this.#unsubscribe$)).subscribe(sort => {
+        this.sort.sortChange.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(sort => {
             this.filters.patchValue({ sort_dir: sort.direction, sort_by: sort.active });
         });
 
         this.filters.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
@@ -178,7 +167,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
 
         this.#recipeListRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateRecipeList?.items)),
             )
             .subscribe(({ data }) => {

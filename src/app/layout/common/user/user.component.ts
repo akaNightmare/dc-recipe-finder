@@ -4,18 +4,19 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     inject,
     Input,
-    OnDestroy,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+
 import { User, UserService } from '../../../core/user/user.service';
 
 @Component({
@@ -24,17 +25,16 @@ import { User, UserService } from '../../../core/user/user.service';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'user',
-    imports: [MatButtonModule, MatMenuModule, MatIconModule, NgClass, MatDividerModule]
+    imports: [MatButtonModule, MatMenuModule, MatIconModule, NgClass, MatDividerModule],
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_showAvatar: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
 
     @Input() showAvatar: boolean = true;
     user?: User;
-
-    readonly #unsubscribe = new Subject<void>();
     readonly #changeDetectorRef = inject(ChangeDetectorRef);
     readonly #router = inject(Router);
     readonly #userService = inject(UserService);
@@ -50,22 +50,13 @@ export class UserComponent implements OnInit, OnDestroy {
         // Subscribe to user changes
         this.#userService
             .get()
-            .pipe(takeUntil(this.#unsubscribe))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe((user: User) => {
                 this.user = user;
 
                 // Mark for check
                 this.#changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this.#unsubscribe.next();
-        this.#unsubscribe.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

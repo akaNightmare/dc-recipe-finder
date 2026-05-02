@@ -3,11 +3,13 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     inject,
     OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
@@ -25,18 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    of,
-    pairwise,
-    startWith,
-    Subject,
-    switchMap,
-    takeUntil,
-    timer,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import {
@@ -76,6 +67,7 @@ import {
     ],
 })
 export class IngredientListsComponent implements OnDestroy, AfterViewInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
     readonly #removeIngredientList = inject(RemoveIngredientListGQL);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
@@ -87,7 +79,6 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     };
 
     readonly #matDialog = inject(MatDialog);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
 
     public readonly dataSource = new MatTableDataSource<
@@ -130,8 +121,6 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     ngAfterViewInit(): void {
@@ -139,17 +128,17 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
             variables: this.#buildVariables(),
         });
 
-        this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
+        this.paginator.page.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
         });
 
-        this.sort.sortChange.pipe(takeUntil(this.#unsubscribe$)).subscribe(sort => {
+        this.sort.sortChange.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(sort => {
             this.filters.patchValue({ sort_dir: sort.direction, sort_by: sort.active });
         });
 
         this.filters.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
@@ -180,7 +169,7 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
 
         this.#ingredientListRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredientList?.items)),
             )
             .subscribe(({ data }) => {

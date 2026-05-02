@@ -3,11 +3,13 @@ import { AsyncPipe, DatePipe, NgClass, NgOptimizedImage } from '@angular/common'
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     inject,
     OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,18 +27,7 @@ import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    of,
-    pairwise,
-    startWith,
-    Subject,
-    switchMap,
-    takeUntil,
-    timer,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { IngredientSearchComponent } from '../../../components/ingredient-search/ingredient-search.component';
@@ -88,12 +79,12 @@ import {
     ],
 })
 export class RecipesComponent implements AfterViewInit, OnDestroy {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
     readonly #recipeGuessGQL = inject(RecipeGuessGQL);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #snackBar = inject(MatSnackBar);
     readonly #usersGQL = inject(UsersGQL);
@@ -162,17 +153,17 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     ngAfterViewInit(): void {
         this.#recipeRef = this.#paginateRecipeGQL.watch({ variables: this.#buildVariables() });
 
-        this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
+        this.paginator.page.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
         });
 
-        this.sort.sortChange.pipe(takeUntil(this.#unsubscribe$)).subscribe(sort => {
+        this.sort.sortChange.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(sort => {
             this.filters.patchValue({ sort_dir: sort.direction, sort_by: sort.active });
         });
 
         this.filters.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
@@ -206,7 +197,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
         this.#recipeRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateRecipe?.items)),
             )
             .subscribe(({ data }) => {
@@ -219,8 +210,6 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     // public countReceiptsByStatus(ingredientName: string, status: string): number {
@@ -276,7 +265,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
         this.#recipeGuessGQL
             .mutate({ variables: { input: { image: file } } })
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 map(({ data }) => data?.recipeGuess),
             )
             .subscribe(recipeGuess => {

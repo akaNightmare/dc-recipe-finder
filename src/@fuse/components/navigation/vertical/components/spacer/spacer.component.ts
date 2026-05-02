@@ -3,23 +3,24 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     inject,
     Input,
-    OnDestroy,
     OnInit,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation-spacer-item',
     templateUrl: './spacer.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass]
+    imports: [NgClass],
 })
-export class FuseVerticalNavigationSpacerItemComponent implements OnInit, OnDestroy {
+export class FuseVerticalNavigationSpacerItemComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _fuseNavigationService = inject(FuseNavigationService);
 
@@ -27,7 +28,6 @@ export class FuseVerticalNavigationSpacerItemComponent implements OnInit, OnDest
     @Input() name!: string;
 
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent | null = null;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -42,19 +42,10 @@ export class FuseVerticalNavigationSpacerItemComponent implements OnInit, OnDest
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseVerticalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 }

@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FuseConfig, FuseConfigService } from '@fuse/services/config';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FusePlatformService } from '@fuse/services/platform';
 import { FUSE_VERSION } from '@fuse/version';
-import { combineLatest, filter, map, Subject, takeUntil } from 'rxjs';
+import { combineLatest, filter, map } from 'rxjs';
 import { SettingsComponent } from './common/settings/settings.component';
 import { EmptyLayoutComponent } from './layouts/empty/empty.component';
 import { CenteredLayoutComponent } from './layouts/horizontal/centered/centered.component';
@@ -37,9 +38,10 @@ import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
         FuturisticLayoutComponent,
         ThinLayoutComponent,
         SettingsComponent,
-    ]
+    ],
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     private readonly _document = inject<Document>(DOCUMENT);
     private readonly _fuseConfigService = inject(FuseConfigService);
     private readonly _fuseMediaWatcherService = inject(FuseMediaWatcherService);
@@ -49,7 +51,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     layout?: string;
     scheme?: 'dark' | 'light';
     theme?: string;
-    readonly #unsubscribe = new Subject<void>();
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #renderer2 = inject(Renderer2);
     readonly #router = inject(Router);
@@ -71,7 +72,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
             ]),
         ])
             .pipe(
-                takeUntil(this.#unsubscribe),
+                takeUntilDestroyed(this.#destroyRef),
                 map(([config, mql]) => {
                     const options = {
                         scheme: config.scheme,
@@ -89,7 +90,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
                     return options;
                 }),
             )
-            .subscribe((options) => {
+            .subscribe(options => {
                 // Store the options
                 this.scheme = options.scheme;
                 this.theme = options.theme;
@@ -101,7 +102,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
         // Subscribe to config changes
         this._fuseConfigService.config$
-            .pipe(takeUntil(this.#unsubscribe))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe((config: FuseConfig) => {
                 // Store the config
                 this.config = config;
@@ -113,8 +114,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
         // Subscribe to NavigationEnd event
         this.#router.events
             .pipe(
-                filter((event) => event instanceof NavigationEnd),
-                takeUntil(this.#unsubscribe),
+                filter(event => event instanceof NavigationEnd),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe(() => {
                 // Update the layout
@@ -130,15 +131,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
         // Set the OS name
         this.#renderer2.addClass(this._document.body, this._fusePlatformService.osName);
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this.#unsubscribe.next();
-        this.#unsubscribe.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -185,7 +177,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         // Also, this will allow overriding the layout in any time so we
         // can have different layouts for different routes.
         const paths = route.pathFromRoot;
-        paths.forEach((path) => {
+        paths.forEach(path => {
             // Check if there is 'layout' data
             const layout = path.routeConfig?.data?.['layout'];
             if (layout) {

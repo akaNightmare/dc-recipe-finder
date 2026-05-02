@@ -1,4 +1,5 @@
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
@@ -10,7 +11,7 @@ import {
     FuseVerticalNavigationComponent,
 } from '@fuse/components/navigation';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Subject, takeUntil } from 'rxjs';
+
 import { NavigationService } from '../../../../core/navigation/navigation.service';
 import { Navigation } from '../../../../core/navigation/navigation.types';
 import { UserComponent } from '../../../common/user/user.component';
@@ -28,12 +29,12 @@ import { UserComponent } from '../../../common/user/user.component';
         UserComponent,
         FuseHorizontalNavigationComponent,
         RouterOutlet,
-    ]
+    ],
 })
-export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
+export class EnterpriseLayoutComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     isScreenSmall?: boolean;
     navigation?: Navigation;
-    readonly #unsubscribe = new Subject<void>();
     readonly #navigationService = inject(NavigationService);
     readonly #fuseMediaWatcherService = inject(FuseMediaWatcherService);
     readonly #fuseNavigationService = inject(FuseNavigationService);
@@ -59,27 +60,18 @@ export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         // Subscribe to navigation data
         this.#navigationService.navigation$
-            .pipe(takeUntil(this.#unsubscribe))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe((navigation: Navigation) => {
                 this.navigation = navigation;
             });
 
         // Subscribe to media changes
         this.#fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this.#unsubscribe))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(({ matchingAliases }) => {
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this.#unsubscribe.next();
-        this.#unsubscribe.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

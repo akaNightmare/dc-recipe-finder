@@ -4,12 +4,13 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     Input,
-    OnDestroy,
     OnInit,
     forwardRef,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
@@ -18,7 +19,6 @@ import { FuseVerticalNavigationCollapsableItemComponent } from '@fuse/components
 import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/navigation/vertical/components/divider/divider.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation-group-item',
@@ -32,9 +32,10 @@ import { Subject, takeUntil } from 'rxjs';
         FuseVerticalNavigationDividerItemComponent,
         forwardRef(() => FuseVerticalNavigationGroupItemComponent),
         FuseVerticalNavigationSpacerItemComponent,
-    ]
+    ],
 })
-export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestroy {
+export class FuseVerticalNavigationGroupItemComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_autoCollapse: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
@@ -47,7 +48,6 @@ export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestr
     @Input() name!: string;
 
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent | null = null;
-    private _unsubscribeAll = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -62,20 +62,11 @@ export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestr
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseVerticalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

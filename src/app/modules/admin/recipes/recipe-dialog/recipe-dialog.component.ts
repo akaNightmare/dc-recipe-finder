@@ -2,11 +2,12 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     inject,
-    OnDestroy,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     FormArray,
     FormBuilder,
@@ -28,7 +29,7 @@ import { RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-val
 import { QueryRef } from 'apollo-angular';
 import { cloneDeep } from 'lodash-es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs';
 
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import {
@@ -76,11 +77,10 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         NgOptimizedImage,
     ],
 })
-export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RecipeDialogComponent implements OnInit, AfterViewInit {
+    readonly #destroyRef = inject(DestroyRef);
     public recipeForm!: FormGroup;
     public readonly data: { status?: RecipeStatus; recipe?: Recipe } = inject(MAT_DIALOG_DATA);
-
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     readonly #snackBar = inject(MatSnackBar);
     readonly #defaultSnackBarConfig: MatSnackBarConfig = {
@@ -115,7 +115,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.#ingredientRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
@@ -132,7 +132,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.searchIngredientsCtrl.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(search => !!search?.trim().length),
                 tap(() => (this.searching = true)),
                 debounceTime(200),
@@ -144,11 +144,6 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 },
                 error: () => (this.searching = false),
             });
-    }
-
-    ngOnDestroy() {
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     ngOnInit(): void {

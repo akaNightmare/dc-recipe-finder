@@ -1,5 +1,6 @@
 import { DecimalPipe, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     FormArray,
     FormBuilder,
@@ -21,7 +22,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { QueryRef } from 'apollo-angular';
 import uniqBy from 'lodash-es/uniqBy';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs';
 import {
     Ingredient,
     IngredientPaginateOrderField,
@@ -64,9 +65,9 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
     ],
 })
 export class RecipeCheckerComponent implements OnDestroy, OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #formBuilder = inject(FormBuilder);
     readonly #recipeCheckGQL = inject(RecipeCheckGQL);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     readonly #queryFactory = inject(BindQueryParamsFactory);
     #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
@@ -126,7 +127,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
 
         this.#ingredientRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
@@ -145,7 +146,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
 
         this.searchIngredientsCtrl.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(search => !!search?.trim().length),
                 tap(() => (this.searching = true)),
                 debounceTime(200),
@@ -161,8 +162,6 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
 
     ngOnDestroy() {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     get ingredientsCtrl(): FormArray<
@@ -256,7 +255,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
         this.#recipeCheckGQL
             .fetch({ variables: { recipe } as { recipe: RecipeCheckInput } })
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(result => Array.isArray(result.data?.checkRecipe)),
             )
             .subscribe({

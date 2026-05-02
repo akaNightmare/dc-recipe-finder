@@ -1,5 +1,13 @@
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    DestroyRef,
+    inject,
+    OnDestroy,
+    ViewEncapsulation,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
@@ -11,18 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    of,
-    pairwise,
-    startWith,
-    Subject,
-    switchMap,
-    takeUntil,
-    timer,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -53,8 +50,8 @@ import {
     ],
 })
 export class IngredientsComponent implements OnDestroy, AfterViewInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #matDialog = inject(MatDialog);
     readonly #snackBar = inject(MatSnackBar);
@@ -82,8 +79,6 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     public openIngredientDialog(ingredient?: Ingredient): void {
@@ -112,7 +107,7 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
 
         this.filters.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
@@ -132,7 +127,7 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
 
         this.#ingredientRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {

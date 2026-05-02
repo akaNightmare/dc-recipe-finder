@@ -3,11 +3,13 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
     AfterViewInit,
     Component,
+    DestroyRef,
     inject,
     OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,17 +26,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import xor from 'lodash-es/xor';
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    of,
-    pairwise,
-    startWith,
-    Subject,
-    switchMap,
-    takeUntil,
-} from 'rxjs';
+import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap } from 'rxjs';
 import { UsersGQL } from '../../../../../core/user/user.generated';
 import { UserService } from '../../../../../core/user/user.service';
 import { IngredientRarity, RecipeList, RecipeStatus, User } from '../../../../../graphql.generated';
@@ -70,11 +62,11 @@ import {
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
     readonly #usersGQL = inject(UsersGQL);
     readonly #userService = inject(UserService);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #activatedRoute = inject(ActivatedRoute);
@@ -126,13 +118,13 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             variables: this.#buildVariables(),
         });
 
-        this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
+        this.paginator.page.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
         });
 
         this.filters.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 startWith(undefined),
                 pairwise(),
                 distinctUntilChanged(),
@@ -160,7 +152,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
 
         this.#recipeListRecipeRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateRecipeListRecipe?.items)),
             )
             .subscribe(({ data }) => {
@@ -170,7 +162,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
 
         this.#userService
             .get()
-            .pipe(takeUntil(this.#unsubscribe$))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(user => {
                 this.currentUser = user;
             });
@@ -178,7 +170,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         this.#usersGQL
             .watch()
             .valueChanges.pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.users)),
                 map(({ data }) => data!.users),
             )
@@ -187,7 +179,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             });
 
         this.#activatedRoute.data
-            .pipe(takeUntil(this.#unsubscribe$))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(({ recipeList }) => {
                 this.recipeList = recipeList;
             });
@@ -197,8 +189,6 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
 
     ngOnDestroy() {
         this.#bindQueryParamsManager.destroy();
-        this.#unsubscribe$.next();
-        this.#unsubscribe$.complete();
     }
 
     public counterClasses(

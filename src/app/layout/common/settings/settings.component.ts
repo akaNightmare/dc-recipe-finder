@@ -1,13 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
 import { FuseConfig, FuseConfigService, Scheme, Theme, Themes } from '@fuse/services/config';
-
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'settings',
@@ -29,15 +28,15 @@ import { Subject, takeUntil } from 'rxjs';
         `,
     ],
     encapsulation: ViewEncapsulation.None,
-    imports: [MatIconModule, FuseDrawerComponent, MatButtonModule, NgClass, MatTooltipModule]
+    imports: [MatIconModule, FuseDrawerComponent, MatButtonModule, NgClass, MatTooltipModule],
 })
-export class SettingsComponent implements OnInit, OnDestroy {
+export class SettingsComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     config?: FuseConfig;
     layout?: string;
     scheme?: 'dark' | 'light';
     theme?: string;
     themes?: Themes;
-    readonly #unsubscribe = new Subject<void>();
     readonly #router = inject(Router);
     readonly #fuseConfigService = inject(FuseConfigService);
 
@@ -51,20 +50,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         // Subscribe to config changes
         this.#fuseConfigService.config$
-            .pipe(takeUntil(this.#unsubscribe))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe((config: FuseConfig) => {
                 // Store the config
                 this.config = config;
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this.#unsubscribe.next();
-        this.#unsubscribe.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

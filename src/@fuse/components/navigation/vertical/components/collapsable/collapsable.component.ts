@@ -4,13 +4,14 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     HostBinding,
     Input,
-    OnDestroy,
     OnInit,
     forwardRef,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
@@ -22,7 +23,7 @@ import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/nav
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation-collapsable-item',
@@ -38,9 +39,10 @@ import { Subject, filter, takeUntil } from 'rxjs';
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ]
+    ],
 })
-export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {
+export class FuseVerticalNavigationCollapsableItemComponent implements OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_autoCollapse: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
@@ -56,7 +58,6 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
     isCollapsed: boolean = true;
     isExpanded: boolean = false;
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent | null = null;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -99,8 +100,8 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
 
         // Listen for the onCollapsableItemCollapsed from the service
         this._fuseVerticalNavigationComponent?.onCollapsableItemCollapsed
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((collapsedItem) => {
+            .pipe(takeUntilDestroyed(this.#destroyRef))
+            .subscribe(collapsedItem => {
                 // Check if the collapsed item is null
                 if (collapsedItem === null) {
                     return;
@@ -115,8 +116,8 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
         // Listen for the onCollapsableItemExpanded from the service if the autoCollapse is on
         if (this.autoCollapse) {
             this._fuseVerticalNavigationComponent?.onCollapsableItemExpanded
-                .pipe(takeUntil(this._unsubscribeAll))
-                .subscribe((expandedItem) => {
+                .pipe(takeUntilDestroyed(this.#destroyRef))
+                .subscribe(expandedItem => {
                     // Check if the expanded item is null
                     if (expandedItem === null) {
                         return;
@@ -146,7 +147,7 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
         this._router.events
             .pipe(
                 filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-                takeUntil(this._unsubscribeAll),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe((event: NavigationEnd) => {
                 // If the item has a children that has a matching url with the current url, expand...
@@ -164,20 +165,11 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseVerticalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

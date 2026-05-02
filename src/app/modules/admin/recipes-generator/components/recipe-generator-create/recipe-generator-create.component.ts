@@ -1,5 +1,6 @@
 import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     AbstractControl,
     FormArray,
@@ -25,17 +26,7 @@ import union from 'lodash-es/union';
 import uniq from 'lodash-es/uniq';
 import uniqBy from 'lodash-es/uniqBy';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {
-    combineLatest,
-    debounceTime,
-    filter,
-    map,
-    share,
-    startWith,
-    Subject,
-    takeUntil,
-    tap,
-} from 'rxjs';
+import { combineLatest, debounceTime, filter, map, share, startWith, tap } from 'rxjs';
 
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FuseAlertComponent } from '@fuse/components/alert';
@@ -97,10 +88,10 @@ const baseRecipeSizeMap = new Map<number, number>([
     ],
 })
 export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     readonly #recipeListCreateGQL = inject(RecipeListCreateGQL);
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
     readonly #formBuilder = inject(FormBuilder);
-    readonly #unsubscribe$ = new Subject<void>();
     readonly #router = inject(Router);
     readonly #activatedRoute = inject(ActivatedRoute);
     readonly #snackBar = inject(MatSnackBar);
@@ -130,7 +121,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
 
         this.#ingredientRef.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
@@ -149,7 +140,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
 
         this.searchIngredientsCtrl.valueChanges
             .pipe(
-                takeUntil(this.#unsubscribe$),
+                takeUntilDestroyed(this.#destroyRef),
                 filter(search => !!search?.trim().length),
                 tap(() => (this.searching = true)),
                 debounceTime(200),
@@ -166,7 +157,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             this.form.get('recipe_size')!.valueChanges.pipe(startWith(3)),
             this.baseIngredientsCtrl.valueChanges,
         ])
-            .pipe(takeUntil(this.#unsubscribe$))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(([recipeSize, baseIngredients]) => {
                 recipeSize = +recipeSize!;
                 const baseIngredientsCount = baseIngredients.length;

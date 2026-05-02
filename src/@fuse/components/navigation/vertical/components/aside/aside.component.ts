@@ -4,13 +4,14 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     Input,
     OnChanges,
-    OnDestroy,
     OnInit,
     SimpleChanges,
     inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
@@ -22,7 +23,7 @@ import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/nav
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'fuse-vertical-navigation-aside-item',
@@ -37,9 +38,10 @@ import { Subject, filter, takeUntil } from 'rxjs';
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-    ]
+    ],
 })
-export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnInit, OnDestroy {
+export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnInit {
+    readonly #destroyRef = inject(DestroyRef);
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_autoCollapse: BooleanInput;
     static ngAcceptInputType_skipChildren: BooleanInput;
@@ -57,7 +59,6 @@ export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnIn
 
     active: boolean = false;
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent | null = null;
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -87,7 +88,7 @@ export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnIn
         this._router.events
             .pipe(
                 filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-                takeUntil(this._unsubscribeAll),
+                takeUntilDestroyed(this.#destroyRef),
             )
             .subscribe((event: NavigationEnd) => {
                 // Mark if active
@@ -99,20 +100,11 @@ export class FuseVerticalNavigationAsideItemComponent implements OnChanges, OnIn
 
         // Subscribe to onRefreshed on the navigation component
         this._fuseVerticalNavigationComponent?.onRefreshed
-            .pipe(takeUntil(this._unsubscribeAll))
+            .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
