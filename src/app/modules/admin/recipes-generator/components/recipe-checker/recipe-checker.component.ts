@@ -1,5 +1,5 @@
 import { DecimalPipe, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { Component, DestroyRef, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     FormArray,
@@ -64,7 +64,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         NgTemplateOutlet,
     ],
 })
-export class RecipeCheckerComponent implements OnDestroy, OnInit {
+export class RecipeCheckerComponent implements OnInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #formBuilder = inject(FormBuilder);
     readonly #recipeCheckGQL = inject(RecipeCheckGQL);
@@ -158,10 +158,6 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
                 },
                 error: () => (this.searching = false),
             });
-    }
-
-    ngOnDestroy() {
-        this.#bindQueryParamsManager.destroy();
     }
 
     get ingredientsCtrl(): FormArray<

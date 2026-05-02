@@ -5,7 +5,6 @@ import {
     Component,
     DestroyRef,
     inject,
-    OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -66,7 +65,7 @@ import {
         MatSnackBarModule,
     ],
 })
-export class IngredientListsComponent implements OnDestroy, AfterViewInit {
+export class IngredientListsComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
     readonly #removeIngredientList = inject(RemoveIngredientListGQL);
@@ -118,10 +117,6 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
         PaginateIngredientListQuery,
         PaginateIngredientListQueryVariables
     >;
-
-    ngOnDestroy(): void {
-        this.#bindQueryParamsManager.destroy();
-    }
 
     ngAfterViewInit(): void {
         this.#ingredientListRef = this.#paginateIngredientListGQL.watch({

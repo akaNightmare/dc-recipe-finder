@@ -5,7 +5,6 @@ import {
     Component,
     DestroyRef,
     inject,
-    OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -66,7 +65,7 @@ import {
         MatSlideToggle,
     ],
 })
-export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
+export class RecipesGeneratorComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeListGQL = inject(PaginateRecipeListGQL);
     readonly #removeRecipeListGQL = inject(RemoveRecipeListGQL);
@@ -119,10 +118,6 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         .connect(this.filters);
 
     #recipeListRef!: QueryRef<PaginateRecipeListQuery, PaginateRecipeListQueryVariables>;
-
-    ngOnDestroy(): void {
-        this.#bindQueryParamsManager.destroy();
-    }
 
     ngAfterViewInit(): void {
         this.#recipeListRef = this.#paginateRecipeListGQL.watch({

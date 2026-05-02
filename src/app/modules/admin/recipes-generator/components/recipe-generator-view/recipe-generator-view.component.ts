@@ -5,7 +5,6 @@ import {
     Component,
     DestroyRef,
     inject,
-    OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -61,7 +60,7 @@ import {
         MatSlideToggle,
     ],
 })
-export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
+export class RecipeGeneratorViewComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
     readonly #assignRecipeListRecipeToUserGQL = inject(AssignRecipeListRecipeToUserGQL);
@@ -185,10 +184,6 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
-    }
-
-    ngOnDestroy() {
-        this.#bindQueryParamsManager.destroy();
     }
 
     public counterClasses(

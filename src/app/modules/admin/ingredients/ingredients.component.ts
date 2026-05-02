@@ -1,12 +1,5 @@
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import {
-    AfterViewInit,
-    Component,
-    DestroyRef,
-    inject,
-    OnDestroy,
-    ViewEncapsulation,
-} from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -49,7 +42,7 @@ import {
         NgClass,
     ],
 })
-export class IngredientsComponent implements OnDestroy, AfterViewInit {
+export class IngredientsComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     readonly #queryFactory = inject(BindQueryParamsFactory);
@@ -76,10 +69,6 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
             syncInitialControlValue: true,
         })
         .connect(this.filters);
-
-    ngOnDestroy(): void {
-        this.#bindQueryParamsManager.destroy();
-    }
 
     public openIngredientDialog(ingredient?: Ingredient): void {
         this.#matDialog

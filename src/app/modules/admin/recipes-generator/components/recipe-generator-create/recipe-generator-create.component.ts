@@ -1,5 +1,5 @@
 import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage } from '@angular/common';
-import { Component, DestroyRef, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     AbstractControl,
@@ -87,7 +87,7 @@ const baseRecipeSizeMap = new Map<number, number>([
         IngredientSearchComponent,
     ],
 })
-export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
+export class RecipeGeneratorCreateComponent implements OnInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #recipeListCreateGQL = inject(RecipeListCreateGQL);
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
@@ -269,10 +269,6 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             },
         )
         .connect(this.form);
-
-    ngOnDestroy(): void {
-        this.#bindQueryParamsManager.destroy();
-    }
 
     public readonly intersectedBannedAndAllowedIngredients$ = combineLatest([
         this.#ingredientLists$,

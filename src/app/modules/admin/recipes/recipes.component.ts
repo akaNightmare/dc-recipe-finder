@@ -5,7 +5,6 @@ import {
     Component,
     DestroyRef,
     inject,
-    OnDestroy,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -78,7 +77,7 @@ import {
         MatSnackBarModule,
     ],
 })
-export class RecipesComponent implements AfterViewInit, OnDestroy {
+export class RecipesComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
@@ -206,10 +205,6 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
-    }
-
-    ngOnDestroy(): void {
-        this.#bindQueryParamsManager.destroy();
     }
 
     // public countReceiptsByStatus(ingredientName: string, status: string): number {
