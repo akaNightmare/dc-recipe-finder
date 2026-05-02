@@ -51,11 +51,11 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 // import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { UsersGQL } from '../../../core/user/user.generated';
 import {
-  PaginateRecipeGQL,
-  PaginateRecipeQuery,
-  PaginateRecipeQueryVariables,
-  RecipeGuessGQL,
-  RemoveRecipeGQL,
+    PaginateRecipeGQL,
+    PaginateRecipeQuery,
+    PaginateRecipeQueryVariables,
+    RecipeGuessGQL,
+    RemoveRecipeGQL,
 } from './recipes.generated';
 
 @Component({
@@ -85,7 +85,7 @@ import {
         NgOptimizedImage,
         IngredientSearchComponent,
         MatSnackBarModule,
-    ]
+    ],
 })
 export class RecipesComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
@@ -120,7 +120,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     public readonly IngredientRarity = IngredientRarity;
     public readonly users$ = this.#usersGQL.watch().valueChanges.pipe(
         filter(({ data }) => Array.isArray(data?.users)),
-        map(({ data }) => data.users),
+        map(({ data }) => data!.users),
     );
 
     public isDragging = false;
@@ -160,7 +160,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
     #recipeRef!: QueryRef<PaginateRecipeQuery, PaginateRecipeQueryVariables>;
 
     ngAfterViewInit(): void {
-        this.#recipeRef = this.#paginateRecipeGQL.watch(this.#buildVariables());
+        this.#recipeRef = this.#paginateRecipeGQL.watch({ variables: this.#buildVariables() });
 
         this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
@@ -210,8 +210,8 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
                 filter(({ data }) => Array.isArray(data?.paginateRecipe?.items)),
             )
             .subscribe(({ data }) => {
-                this.paginator.length = data.paginateRecipe.page_info.total_items;
-                this.dataSource.data = data.paginateRecipe.items;
+                this.paginator.length = data!.paginateRecipe.page_info.total_items;
+                this.dataSource.data = data!.paginateRecipe.items;
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
@@ -252,48 +252,47 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
 
         const files = event.dataTransfer?.files;
         if (!files?.length) {
-          return;
+            return;
         }
 
         const file = files[0];
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 
         if (!allowedTypes.includes(file.type)) {
-          this.#snackBar.open(
-            'Please drop a valid image file (jpeg, jpg, png)',
-            undefined,
-            this.#defaultSnackBarConfig,
-          );
-          return;
+            this.#snackBar.open(
+                'Please drop a valid image file (jpeg, jpg, png)',
+                undefined,
+                this.#defaultSnackBarConfig,
+            );
+            return;
         }
 
         this.#snackBar.open(
-          `File ${file.name} received for processing`,
-          undefined,
-          this.#defaultSnackBarConfig,
+            `File ${file.name} received for processing`,
+            undefined,
+            this.#defaultSnackBarConfig,
         );
 
-        this.#recipeGuessGQL.mutate({ input: { image: file } })
-          .pipe(
-            takeUntil(this.#unsubscribe$),
-            map(({ data }) => data?.recipeGuess)
-          )
-          .subscribe(recipeGuess => {
-            if (recipeGuess) {
-              this.openRecipeDialog(
-                {
-                  name: '-',
-                  status: RecipeStatus.Failed,
-                  ingredients: recipeGuess.ingredients.map(
-                    ({ count, ingredient: { id } }) => ({
-                      ingredient: { id },
-                      count: count ?? 1,
-                    }),
-                  ),
-                } as unknown as Recipe,
-              );
-            }
-          });
+        this.#recipeGuessGQL
+            .mutate({ variables: { input: { image: file } } })
+            .pipe(
+                takeUntil(this.#unsubscribe$),
+                map(({ data }) => data?.recipeGuess),
+            )
+            .subscribe(recipeGuess => {
+                if (recipeGuess) {
+                    this.openRecipeDialog({
+                        name: '-',
+                        status: RecipeStatus.Failed,
+                        ingredients: recipeGuess.ingredients.map(
+                            ({ count, ingredient: { id } }) => ({
+                                ingredient: { id },
+                                count: count ?? 1,
+                            }),
+                        ),
+                    } as unknown as Recipe);
+                }
+            });
     }
 
     public openRecipeDialog(recipe?: Recipe, status?: RecipeStatus) {
@@ -325,7 +324,7 @@ export class RecipesComponent implements AfterViewInit, OnDestroy {
             .afterClosed()
             .pipe(
                 filter(result => result === 'confirmed'),
-                switchMap(() => this.#removeRecipeGQL.mutate({ id: recipe.id })),
+                switchMap(() => this.#removeRecipeGQL.mutate({ variables: { id: recipe.id } })),
             )
             .subscribe(() => {
                 this.#snackBar.open(

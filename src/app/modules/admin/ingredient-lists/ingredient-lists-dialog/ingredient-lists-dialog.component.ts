@@ -44,7 +44,7 @@ import { CreateIngredientListGQL, UpdateIngredientListGQL } from '../ingredient-
         MatDialogModule,
         LowerCasePipe,
         IngredientSearchComponent,
-    ]
+    ],
 })
 export class IngredientListsDialogComponent implements AfterContentInit {
     public readonly data: { ingredient_list?: IngredientList } = inject(MAT_DIALOG_DATA);
@@ -129,8 +129,10 @@ export class IngredientListsDialogComponent implements AfterContentInit {
         if (ingredient_list?.id) {
             this.#updateIngredientListGQL
                 .mutate({
-                    ingredientList,
-                    id: ingredient_list.id,
+                    variables: {
+                        ingredientList,
+                        id: ingredient_list.id,
+                    },
                 })
                 .subscribe({
                     next: il => {
@@ -138,7 +140,7 @@ export class IngredientListsDialogComponent implements AfterContentInit {
                     },
                 });
         } else {
-            this.#createIngredientListGQL.mutate({ ingredientList }).subscribe({
+            this.#createIngredientListGQL.mutate({ variables: { ingredientList } }).subscribe({
                 next: il => {
                     this.#matDialogRef.close(il);
                 },

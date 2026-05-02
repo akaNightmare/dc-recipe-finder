@@ -16,6 +16,6 @@ export class UserService {
      * Get the current signed-in user data
      */
     get(): Observable<User> {
-        return this.#meGQL.fetch().pipe(map(({ data }) => data.me));
+        return this.#meGQL.fetch().pipe(map(({ data }) => data!.me));
     }
 }

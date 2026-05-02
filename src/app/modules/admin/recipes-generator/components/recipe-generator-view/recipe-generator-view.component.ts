@@ -67,7 +67,7 @@ import {
         MatMenuItem,
         MatDivider,
         MatSlideToggle,
-    ]
+    ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     readonly #paginateRecipeListRecipeGQL = inject(PaginateRecipeListRecipeGQL);
@@ -122,7 +122,9 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
         .connect(this.filters);
 
     ngAfterViewInit(): void {
-        this.#recipeListRecipeRef = this.#paginateRecipeListRecipeGQL.watch(this.#buildVariables());
+        this.#recipeListRecipeRef = this.#paginateRecipeListRecipeGQL.watch({
+            variables: this.#buildVariables(),
+        });
 
         this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
@@ -162,8 +164,8 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
                 filter(({ data }) => Array.isArray(data?.paginateRecipeListRecipe?.items)),
             )
             .subscribe(({ data }) => {
-                this.paginator.length = data.paginateRecipeListRecipe.page_info.total_items;
-                this.recipeListRecipes = data.paginateRecipeListRecipe.items;
+                this.paginator.length = data!.paginateRecipeListRecipe.page_info.total_items;
+                this.recipeListRecipes = data!.paginateRecipeListRecipe.items;
             });
 
         this.#userService
@@ -178,7 +180,7 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
             .valueChanges.pipe(
                 takeUntil(this.#unsubscribe$),
                 filter(({ data }) => Array.isArray(data?.users)),
-                map(({ data }) => data.users),
+                map(({ data }) => data!.users),
             )
             .subscribe(users => {
                 this.users = users;
@@ -221,8 +223,10 @@ export class RecipeGeneratorViewComponent implements AfterViewInit, OnDestroy {
     public assignRecipeListRecipeToUser(recipeListRecipeId: string, userId: string | null): void {
         void this.#assignRecipeListRecipeToUserGQL
             .mutate({
-                userId,
-                recipeListRecipeId,
+                variables: {
+                    userId,
+                    recipeListRecipeId,
+                },
             })
             .subscribe(() => {
                 this.#snackBar.open(

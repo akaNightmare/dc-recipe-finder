@@ -50,7 +50,7 @@ import {
         MatOptionModule,
         MatSelectModule,
         NgClass,
-    ]
+    ],
 })
 export class IngredientsComponent implements OnDestroy, AfterViewInit {
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
@@ -106,7 +106,9 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.#ingredientRef = this.#paginateIngredientGQL.watch(this.#buildVariables());
+        this.#ingredientRef = this.#paginateIngredientGQL.watch({
+            variables: this.#buildVariables(),
+        });
 
         this.filters.valueChanges
             .pipe(
@@ -134,7 +136,7 @@ export class IngredientsComponent implements OnDestroy, AfterViewInit {
                 filter(({ data }) => Array.isArray(data?.paginateIngredient?.items)),
             )
             .subscribe(({ data }) => {
-                this.ingredients = data.paginateIngredient.items;
+                this.ingredients = data!.paginateIngredient.items;
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);

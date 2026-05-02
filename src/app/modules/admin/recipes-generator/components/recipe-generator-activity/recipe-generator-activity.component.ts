@@ -29,7 +29,7 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
         MatTooltip,
         NgTemplateOutlet,
         NgClass,
-    ]
+    ],
 })
 export class RecipeGeneratorActivityComponent {
     readonly #recipeListActivityGQL = inject(RecipeListActivityGQL);
@@ -39,11 +39,13 @@ export class RecipeGeneratorActivityComponent {
     public readonly IngredientRarity = IngredientRarity;
     public readonly recipeListActivities$ = this.#recipeListActivityGQL
         .watch({
-            recipeListId: this.#activatedRoute.snapshot.params['recipeListId'],
+            variables: {
+                recipeListId: this.#activatedRoute.snapshot.params['recipeListId'],
+            },
         })
         .valueChanges.pipe(
             filter(({ data }) => Array.isArray(data?.recipeListActivity)),
-            map(({ data }) => data.recipeListActivity),
+            map(({ data }) => data!.recipeListActivity),
         );
 
     iconByLog(log: Record<string, unknown>): string | undefined {

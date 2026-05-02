@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -40,40 +41,39 @@ import {
 } from 'rxjs';
 import { RecipeList, RecipeListPaginateOrderInput } from '../../../graphql.generated';
 import {
-  ArchiveRecipeListGQL,
-  PaginateRecipeListGQL,
-  PaginateRecipeListQuery,
-  PaginateRecipeListQueryVariables,
-  RemoveRecipeListGQL,
+    ArchiveRecipeListGQL,
+    PaginateRecipeListGQL,
+    PaginateRecipeListQuery,
+    PaginateRecipeListQueryVariables,
+    RemoveRecipeListGQL,
 } from './recipes-list.generated';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'example',
     templateUrl: './recipes-generator.component.html',
     encapsulation: ViewEncapsulation.None,
-  imports: [
-    CdkScrollable,
-    DatePipe,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatSelectModule,
-    NgOptimizedImage,
-    MatSnackBarModule,
-    RouterLink,
-    MatProgressBar,
-    PercentPipe,
-    MatSlideToggle,
-  ],
+    imports: [
+        CdkScrollable,
+        DatePipe,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatSelectModule,
+        NgOptimizedImage,
+        MatSnackBarModule,
+        RouterLink,
+        MatProgressBar,
+        PercentPipe,
+        MatSlideToggle,
+    ],
 })
 export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     readonly #paginateRecipeListGQL = inject(PaginateRecipeListGQL);
@@ -136,7 +136,9 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.#recipeListRef = this.#paginateRecipeListGQL.watch(this.#buildVariables());
+        this.#recipeListRef = this.#paginateRecipeListGQL.watch({
+            variables: this.#buildVariables(),
+        });
 
         this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
@@ -180,8 +182,8 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
                 filter(({ data }) => Array.isArray(data?.paginateRecipeList?.items)),
             )
             .subscribe(({ data }) => {
-                this.paginator.length = data.paginateRecipeList.page_info.total_items;
-                this.dataSource.data = data.paginateRecipeList.items;
+                this.paginator.length = data!.paginateRecipeList.page_info.total_items;
+                this.dataSource.data = data!.paginateRecipeList.items;
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
@@ -196,7 +198,11 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
             .afterClosed()
             .pipe(
                 filter(result => result === 'confirmed'),
-                switchMap(() => this.#removeRecipeListGQL.mutate({ id: recipeList.id })),
+                switchMap(() =>
+                    this.#removeRecipeListGQL.mutate({
+                        variables: { id: recipeList.id },
+                    }),
+                ),
             )
             .subscribe(() => {
                 this.#snackBar.open(
@@ -217,7 +223,11 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
             .afterClosed()
             .pipe(
                 filter(result => result === 'confirmed'),
-                switchMap(() => this.#archiveRecipeListGQL.mutate({ id: recipeList.id })),
+                switchMap(() =>
+                    this.#archiveRecipeListGQL.mutate({
+                        variables: { id: recipeList.id },
+                    }),
+                ),
             )
             .subscribe(() => {
                 this.#snackBar.open(
@@ -258,7 +268,7 @@ export class RecipesGeneratorComponent implements OnDestroy, AfterViewInit {
         if (values.archived) {
             Object.assign(filter, { archived_at: { ne: null } });
         } else {
-          Object.assign(filter, { archived_at: { eq: null } });
+            Object.assign(filter, { archived_at: { eq: null } });
         }
         let order = null;
         if (values.sort_by && values.sort_dir) {

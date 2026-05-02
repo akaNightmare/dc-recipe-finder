@@ -12,8 +12,10 @@ export class RecipeListResolver implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
         return this.#recipeListGQL
             .fetch({
-                id: route.paramMap.get('recipeListId')!,
+                variables: {
+                    id: route.paramMap.get('recipeListId')!,
+                },
             })
-            .pipe(map(response => response.data.recipeList));
+            .pipe(map(response => response.data!.recipeList));
     }
 }

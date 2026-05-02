@@ -73,7 +73,7 @@ import {
         NgClass,
         NgOptimizedImage,
         MatSnackBarModule,
-    ]
+    ],
 })
 export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     readonly #paginateIngredientListGQL = inject(PaginateIngredientListGQL);
@@ -135,7 +135,9 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.#ingredientListRef = this.#paginateIngredientListGQL.watch(this.#buildVariables());
+        this.#ingredientListRef = this.#paginateIngredientListGQL.watch({
+            variables: this.#buildVariables(),
+        });
 
         this.paginator.page.pipe(takeUntil(this.#unsubscribe$)).subscribe(pageEvent => {
             this.filters.patchValue({ page: pageEvent.pageIndex + 1, limit: pageEvent.pageSize });
@@ -182,8 +184,8 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
                 filter(({ data }) => Array.isArray(data?.paginateIngredientList?.items)),
             )
             .subscribe(({ data }) => {
-                this.paginator.length = data.paginateIngredientList.page_info.total_items;
-                this.dataSource.data = data.paginateIngredientList.items;
+                this.paginator.length = data!.paginateIngredientList.page_info.total_items;
+                this.dataSource.data = data!.paginateIngredientList.items;
             });
 
         setTimeout(() => this.filters.patchValue(this.filters.value), 0);
@@ -218,7 +220,11 @@ export class IngredientListsComponent implements OnDestroy, AfterViewInit {
             .afterClosed()
             .pipe(
                 filter(result => result === 'confirmed'),
-                switchMap(() => this.#removeIngredientList.mutate({ id: ingredientList.id })),
+                switchMap(() =>
+                    this.#removeIngredientList.mutate({
+                        variables: { id: ingredientList.id },
+                    }),
+                ),
             )
             .subscribe(() => {
                 this.#snackBar.open(

@@ -94,7 +94,7 @@ const baseRecipeSizeMap = new Map<number, number>([
         NgOptimizedImage,
         NgClass,
         IngredientSearchComponent,
-    ]
+    ],
 })
 export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     readonly #recipeListCreateGQL = inject(RecipeListCreateGQL);
@@ -124,7 +124,9 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
     public canRemoveBaseIngredientCtrl = false;
 
     ngOnInit() {
-        this.#ingredientRef = this.#paginateIngredientGQL.watch(this.#buildVariables());
+        this.#ingredientRef = this.#paginateIngredientGQL.watch({
+            variables: this.#buildVariables(),
+        });
 
         this.#ingredientRef.valueChanges
             .pipe(
@@ -134,7 +136,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
             .subscribe(({ data }) => {
                 this.ingredients = uniqBy(
                     [
-                        ...(data.paginateIngredient.items ?? []),
+                        ...(data!.paginateIngredient.items ?? []),
                         ...(this.baseIngredientsCtrl.value || [])
                             .map(({ ingredient_id }) =>
                                 this.ingredients.find(i => i.id === ingredient_id),
@@ -197,13 +199,15 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
 
     readonly #ingredientLists$ = this.#paginateIngredientListGQL
         .watch({
-            pager: undefined,
-            order: undefined,
-            filter: {},
+            variables: {
+                pager: undefined,
+                order: undefined,
+                filter: {},
+            },
         })
         .valueChanges.pipe(
             filter(result => Array.isArray(result.data?.paginateIngredientList?.items)),
-            map(result => result.data.paginateIngredientList.items),
+            map(result => result.data!.paginateIngredientList.items),
             share(),
         );
 
@@ -434,7 +438,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
                     bannedIngredientIds,
                 );
                 const ingredients = ingredientLists
-                    .flatMap(list => list.ingredients)
+                    .flatMap(list => list.ingredients as Ingredient[])
                     .concat(this.baseIngredients);
                 return filteredIds
                     .map(id => ingredients.find(ingredient => ingredient.id === id))
@@ -465,7 +469,7 @@ export class RecipeGeneratorCreateComponent implements OnDestroy, OnInit {
         }
 
         const recipeList = this.form.value as RecipeListCreateInput;
-        this.#recipeListCreateGQL.mutate({ recipeList }).subscribe({
+        this.#recipeListCreateGQL.mutate({ variables: { recipeList } }).subscribe({
             next: () => {
                 this.#snackBar.open(
                     `Recipe list "${recipeList.name}" has been created`,

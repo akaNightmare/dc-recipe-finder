@@ -9,7 +9,7 @@ import {
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideFuse } from '@fuse/fuse.provider';
-import { provideApollo } from './apollo.provider';
+import { provideApolloClient } from './apollo.provider';
 import { routes } from './app.routes';
 import { provideAuth } from './core/auth/auth.provider';
 import { provideIcons } from './core/icons/icons.provider';
@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideHttpClient(),
-    provideApollo(),
+    provideApolloClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,

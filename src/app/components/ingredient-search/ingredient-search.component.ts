@@ -41,7 +41,7 @@ import {
         NgOptimizedImage,
         MatTooltipModule,
         KeyValuePipe,
-    ]
+    ],
 })
 export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
     readonly #unsubscribe$ = new Subject<void>();
@@ -91,9 +91,9 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.#ingredientRef = this.#paginateIngredientGQL.watch(
-            this.#buildVariables(this.#ingredientsIds),
-        );
+        this.#ingredientRef = this.#paginateIngredientGQL.watch({
+            variables: this.#buildVariables(this.#ingredientsIds),
+        });
 
         this.#ingredientRef.valueChanges
             .pipe(
@@ -104,11 +104,11 @@ export class IngredientSearchComponent implements OnDestroy, AfterViewInit {
                 const ingredientIds = this.ingredientsCtrl.value || [];
                 const ingredientNotEqual = xor(this.#ingredientsIds, ingredientIds).length > 0;
                 if (ingredientNotEqual) {
-                    this.ingredients = data.paginateIngredient.items ?? [];
+                    this.ingredients = data!.paginateIngredient.items ?? [];
                 } else {
                     this.ingredients = [
                         ...this.ingredients.filter(i => ingredientIds.includes(i.id)),
-                        ...(data.paginateIngredient.items ?? []).filter(
+                        ...(data!.paginateIngredient.items ?? []).filter(
                             i => !ingredientIds.includes(i.id),
                         ),
                     ];

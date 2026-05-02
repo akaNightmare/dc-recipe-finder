@@ -35,7 +35,7 @@ import { UpdateIngredientGQL } from '../ingredients.generated';
         MatRippleModule,
         MatSelectModule,
         MatDialogModule,
-    ]
+    ],
 })
 export class IngredientDialogComponent implements AfterContentInit {
     public readonly data: { ingredient: Ingredient } = inject(MAT_DIALOG_DATA);
@@ -87,8 +87,10 @@ export class IngredientDialogComponent implements AfterContentInit {
 
         this.#updateIngredientGQL
             .mutate({
-                ingredient,
-                id: this.data.ingredient.id,
+                variables: {
+                    ingredient,
+                    id: this.data.ingredient.id,
+                },
             })
             .subscribe({
                 next: il => {

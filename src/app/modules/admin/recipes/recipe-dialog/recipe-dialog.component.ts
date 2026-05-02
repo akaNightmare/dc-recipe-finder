@@ -74,7 +74,7 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         NgxMatSelectSearchModule,
         NgClass,
         NgOptimizedImage,
-    ]
+    ],
 })
 export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public recipeForm!: FormGroup;
@@ -106,12 +106,12 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public readonly STATUSES = Object.values(RecipeStatus);
 
     ngAfterViewInit() {
-        this.#ingredientRef = this.#paginateIngredientGQL.watch(
-            this.#buildVariables(
+        this.#ingredientRef = this.#paginateIngredientGQL.watch({
+            variables: this.#buildVariables(
                 this.data.recipe?.ingredients.map(ingredient => ingredient.ingredient.id),
                 this.data.recipe?.name,
             ),
-        );
+        });
 
         this.#ingredientRef.valueChanges
             .pipe(
@@ -120,7 +120,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
             )
             .subscribe(({ data }) => {
                 this.ingredients = [
-                    ...(data.paginateIngredient.items ?? []),
+                    ...(data!.paginateIngredient.items ?? []),
                     ...(this.ingredientsCtrl.value || [])
                         .map(({ ingredient_id }) =>
                             this.ingredients.find(i => i.id === ingredient_id),
@@ -305,8 +305,10 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.data.status) {
             this.#markRecipeListRecipeGQL
                 .mutate({
-                    recipeListRecipeId: this.data.recipe!.id,
-                    recipe,
+                    variables: {
+                        recipeListRecipeId: this.data.recipe!.id,
+                        recipe,
+                    },
                 })
                 .subscribe({
                     next: ({ data }) => {
@@ -322,20 +324,23 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit, OnDestroy {
                 });
         } else {
             if (this.data.recipe?.id) {
-                this.#updateRecipeGQL.mutate({ recipe, id: this.data.recipe.id }).subscribe({
-                    next: ({ data }) => {
-                        this.#matDialogRef.close(data);
-                    },
-                    error: error => {
-                        this.#snackBar.open(
-                            error.networkError?.error?.data?.message ?? 'Failed to update recipe',
-                            undefined,
-                            this.#defaultSnackBarConfig,
-                        );
-                    },
-                });
+                this.#updateRecipeGQL
+                    .mutate({ variables: { recipe, id: this.data.recipe.id } })
+                    .subscribe({
+                        next: ({ data }) => {
+                            this.#matDialogRef.close(data);
+                        },
+                        error: error => {
+                            this.#snackBar.open(
+                                error.networkError?.error?.data?.message ??
+                                    'Failed to update recipe',
+                                undefined,
+                                this.#defaultSnackBarConfig,
+                            );
+                        },
+                    });
             } else {
-                this.#createRecipeGQL.mutate({ recipe }).subscribe({
+                this.#createRecipeGQL.mutate({ variables: { recipe } }).subscribe({
                     next: ({ data }) => {
                         this.#matDialogRef.close(data);
                     },

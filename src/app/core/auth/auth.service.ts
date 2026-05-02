@@ -31,9 +31,11 @@ export class AuthService {
 
         return this.signInGQL
             .mutate({
-                auth: {
-                    login: credentials.login,
-                    password: credentials.password,
+                variables: {
+                    auth: {
+                        login: credentials.login,
+                        password: credentials.password,
+                    },
                 },
             })
             .pipe(

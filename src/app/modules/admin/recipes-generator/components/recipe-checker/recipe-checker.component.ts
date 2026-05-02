@@ -1,9 +1,4 @@
-import {
-    DecimalPipe,
-    NgClass,
-    NgOptimizedImage,
-    NgTemplateOutlet,
-} from '@angular/common';
+import { DecimalPipe, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     FormArray,
@@ -28,7 +23,6 @@ import uniqBy from 'lodash-es/uniqBy';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { debounceTime, filter, Subject, takeUntil, tap } from 'rxjs';
 import {
-    Exact,
     Ingredient,
     IngredientPaginateOrderField,
     IngredientRarity,
@@ -67,7 +61,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         NgClass,
         SortByPipe,
         NgTemplateOutlet,
-    ]
+    ],
 })
 export class RecipeCheckerComponent implements OnDestroy, OnInit {
     readonly #formBuilder = inject(FormBuilder);
@@ -122,13 +116,13 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
         this.addIngredientField(6);
         this.#bindQueryParamsManager.syncDefs('ingredients');
 
-        this.#ingredientRef = this.#paginateIngredientGQL.watch(
-            this.#buildVariables(
+        this.#ingredientRef = this.#paginateIngredientGQL.watch({
+            variables: this.#buildVariables(
                 this.ingredientsCtrl.value
                     .map(({ ingredient_id }) => ingredient_id)
                     .filter(Boolean) as string[],
             ),
-        );
+        });
 
         this.#ingredientRef.valueChanges
             .pipe(
@@ -138,7 +132,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
             .subscribe(({ data }) => {
                 this.ingredients = uniqBy(
                     [
-                        ...(data.paginateIngredient.items ?? []),
+                        ...(data!.paginateIngredient.items ?? []),
                         ...(this.ingredientsCtrl.value || [])
                             .map(({ ingredient_id }) =>
                                 this.ingredients.find(i => i.id === ingredient_id),
@@ -260,7 +254,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
         // }
         const recipe = this.form.value;
         this.#recipeCheckGQL
-            .fetch({ recipe } as Exact<{ recipe: RecipeCheckInput }>)
+            .fetch({ variables: { recipe } as { recipe: RecipeCheckInput } })
             .pipe(
                 takeUntil(this.#unsubscribe$),
                 filter(result => Array.isArray(result.data?.checkRecipe)),
@@ -269,7 +263,7 @@ export class RecipeCheckerComponent implements OnDestroy, OnInit {
                 next: result => {
                     const ingredientsCtrl = this.ingredientsCtrl.value!;
                     const recipeSize = this.form.get('recipe_size')!.value!;
-                    this.recipes = result.data.checkRecipe.map(recipe => {
+                    this.recipes = result.data!.checkRecipe.map(recipe => {
                         const ingredients = [...recipe.ingredients].sort(
                             (ingredient1, ingredient2) => {
                                 const [ingredient1Exists, ingredient2Exists] = [
