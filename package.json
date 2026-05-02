@@ -24,7 +24,6 @@
     "@angular/router": "^19.2.21",
     "@apollo/client": "^4.1.9",
     "@ngneat/bind-query-params": "^6.0.0",
-    "@ngneat/transloco": "^6.0.4",
     "@rxweb/reactive-form-validators": "^13.0.1",
     "apollo-angular": "^13.0.0",
     "extract-files": "^13.0.0",
