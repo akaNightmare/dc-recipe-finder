@@ -38,13 +38,11 @@ import {
 } from '../../../graphql.generated';
 import { SortByPipe } from '../../../pipes';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
-// import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { UsersGQL } from '../../../core/user/user.generated';
 import {
     PaginateRecipeGQL,
     PaginateRecipeQuery,
     PaginateRecipeQueryVariables,
-    RecipeGuessGQL,
     RemoveRecipeGQL,
 } from './recipes.generated';
 
@@ -81,7 +79,7 @@ export class RecipesComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
-    readonly #recipeGuessGQL = inject(RecipeGuessGQL);
+    // readonly #recipeGuessGQL = inject(RecipeGuessGQL);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
@@ -257,26 +255,27 @@ export class RecipesComponent implements AfterViewInit {
             this.#defaultSnackBarConfig,
         );
 
-        this.#recipeGuessGQL
-            .mutate({ variables: { input: { image: file } } })
-            .pipe(
-                takeUntilDestroyed(this.#destroyRef),
-                map(({ data }) => data?.recipeGuess),
-            )
-            .subscribe(recipeGuess => {
-                if (recipeGuess) {
-                    this.openRecipeDialog({
-                        name: '-',
-                        status: RecipeStatus.Failed,
-                        ingredients: recipeGuess.ingredients.map(
-                            ({ count, ingredient: { id } }) => ({
-                                ingredient: { id },
-                                count: count ?? 1,
-                            }),
-                        ),
-                    } as unknown as Recipe);
-                }
-            });
+        // TODO: uncomment when it will be workable
+        // this.#recipeGuessGQL
+        //     .mutate({ variables: { input: { image: file } } })
+        //     .pipe(
+        //         takeUntilDestroyed(this.#destroyRef),
+        //         map(({ data }) => data?.recipeGuess),
+        //     )
+        //     .subscribe(recipeGuess => {
+        //         if (recipeGuess) {
+        //             this.openRecipeDialog({
+        //                 name: '-',
+        //                 status: RecipeStatus.Failed,
+        //                 ingredients: recipeGuess.ingredients.map(
+        //                     ({ count, ingredient: { id } }) => ({
+        //                         ingredient: { id },
+        //                         count: count ?? 1,
+        //                     }),
+        //                 ),
+        //             } as unknown as Recipe);
+        //         }
+        //     });
     }
 
     public openRecipeDialog(recipe?: Recipe, status?: RecipeStatus) {
