@@ -51,14 +51,3 @@ mutation UpdateRecipe($id: ID!, $recipe: RecipeUpdateInput!) {
 mutation RemoveRecipe($id: ID!) {
     removeRecipe(id: $id)
 }
-
-mutation RecipeGuess($input: RecipeGuessInput!) {
-  recipeGuess(input: $input) {
-    ingredients {
-      ingredient {
-        ...IngredientFragment
-      }
-      count
-    }
-  }
-}

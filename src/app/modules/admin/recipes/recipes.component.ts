@@ -29,6 +29,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 
 import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { RecipeVisionGuessService } from '../../../core/recipe-vision/recipe-vision-guess.service';
 import { IngredientSearchComponent } from '../../../components/ingredient-search/ingredient-search.component';
 import {
     IngredientRarity,
@@ -79,7 +80,7 @@ export class RecipesComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
-    // readonly #recipeGuessGQL = inject(RecipeGuessGQL);
+    readonly #recipeVisionGuess = inject(RecipeVisionGuessService);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
@@ -255,27 +256,22 @@ export class RecipesComponent implements AfterViewInit {
             this.#defaultSnackBarConfig,
         );
 
-        // TODO: uncomment when it will be workable
-        // this.#recipeGuessGQL
-        //     .mutate({ variables: { input: { image: file } } })
-        //     .pipe(
-        //         takeUntilDestroyed(this.#destroyRef),
-        //         map(({ data }) => data?.recipeGuess),
-        //     )
-        //     .subscribe(recipeGuess => {
-        //         if (recipeGuess) {
-        //             this.openRecipeDialog({
-        //                 name: '-',
-        //                 status: RecipeStatus.Failed,
-        //                 ingredients: recipeGuess.ingredients.map(
-        //                     ({ count, ingredient: { id } }) => ({
-        //                         ingredient: { id },
-        //                         count: count ?? 1,
-        //                     }),
-        //                 ),
-        //             } as unknown as Recipe);
-        //         }
-        //     });
+        this.#recipeVisionGuess
+            .guessFromImage(file)
+            .pipe(takeUntilDestroyed(this.#destroyRef))
+            .subscribe({
+                next: guess => {
+                    this.openRecipeDialog(
+                        this.#recipeVisionGuess.buildDraftRecipeFromGuess(
+                            guess,
+                        ) as unknown as Recipe,
+                    );
+                },
+                error: (err: unknown) => {
+                    const message = err instanceof Error ? err.message : 'Recipe vision failed';
+                    this.#snackBar.open(message, undefined, this.#defaultSnackBarConfig);
+                },
+            });
     }
 
     public openRecipeDialog(recipe?: Recipe, status?: RecipeStatus) {
