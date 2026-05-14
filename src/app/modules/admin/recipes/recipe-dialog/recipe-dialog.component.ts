@@ -286,9 +286,7 @@ export class RecipeDialogComponent implements OnInit, AfterViewInit {
             return;
         }
 
-        const recipe = cloneDeep(
-            this.data.status ? this.recipeForm.getRawValue() : this.recipeForm.value,
-        );
+        const recipe = cloneDeep(this.recipeForm.getRawValue());
 
         if (recipe.status === RecipeStatus.Failed) {
             recipe.image = 'craft_failed.png';
