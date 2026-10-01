@@ -114,7 +114,7 @@
                                       class="w-12"
                                       width="48"
                                       height="48"
-                                      [ngSrc]="'images/ingredients/' + recipe.image"
+                                      [ngSrc]="recipe.image | ingredientImage"
                                       [alt]="recipe.name"
                                     />
                                   } @else {
