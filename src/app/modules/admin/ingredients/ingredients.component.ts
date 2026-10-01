@@ -1,5 +1,5 @@
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, DestroyRef, inject, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +16,9 @@ import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, 
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Ingredient, IngredientRarity } from '../../../graphql.generated';
+import { AuthService } from '../../../core/auth/auth.service';
+import { AuthUtils } from '../../../core/auth/auth.utils';
+import { Ingredient, IngredientRarity, UserRole } from '../../../graphql.generated';
 import { IngredientImagePipe } from '../../../pipes';
 import { IngredientDialogComponent } from './components/ingredient-dialog.component';
 import {
@@ -44,8 +46,9 @@ import {
         IngredientImagePipe,
     ],
 })
-export class IngredientsComponent implements AfterViewInit {
+export class IngredientsComponent implements OnInit, AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
+    readonly #authService = inject(AuthService);
     readonly #paginateIngredientGQL = inject(PaginateIngredientGQL);
     readonly #queryFactory = inject(BindQueryParamsFactory);
     readonly #matDialog = inject(MatDialog);
@@ -58,6 +61,7 @@ export class IngredientsComponent implements AfterViewInit {
     #ingredientRef!: QueryRef<PaginateIngredientQuery, PaginateIngredientQueryVariables>;
 
     public ingredients: Ingredient[] = [];
+    public isAdmin = false;
 
     public readonly filters = new FormGroup({
         search: new FormControl(''),
@@ -72,7 +76,15 @@ export class IngredientsComponent implements AfterViewInit {
         })
         .connect(this.filters);
 
+    ngOnInit(): void {
+        this.isAdmin = this.#hasAdminRole();
+    }
+
     public openIngredientDialog(ingredient?: Ingredient): void {
+        if (!ingredient && !this.isAdmin) {
+            return;
+        }
+
         this.#matDialog
             .open(IngredientDialogComponent, {
                 disableClose: true,
@@ -139,5 +151,20 @@ export class IngredientsComponent implements AfterViewInit {
         }
 
         return { filter, pager: null, order: null };
+    }
+
+    #hasAdminRole(): boolean {
+        const accessToken = this.#authService.getAccessToken();
+
+        if (!accessToken) {
+            return false;
+        }
+
+        try {
+            const payload = AuthUtils.getTokenPayload<{ role?: unknown }>(accessToken);
+            return payload?.role === UserRole.Admin;
+        } catch {
+            return false;
+        }
     }
 }

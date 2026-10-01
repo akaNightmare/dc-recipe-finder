@@ -36,10 +36,12 @@
                         />
                     </mat-form-field>
                 </form>
-                <button mat-flat-button color="primary" class="sm:ml-4 shrink-0" (click)="openIngredientDialog()">
-                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
-                    <span class="ml-2">Add ingredient</span>
-                </button>
+                @if (isAdmin) {
+                    <button mat-flat-button color="primary" class="sm:ml-4 shrink-0" (click)="openIngredientDialog()">
+                        <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                        <span class="ml-2">Add ingredient</span>
+                    </button>
+                }
             </div>
         </div>
     </div>
