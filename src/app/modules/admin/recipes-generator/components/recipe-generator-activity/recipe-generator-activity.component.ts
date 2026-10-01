@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
 import { filter, map } from 'rxjs';
 import { IngredientRarity, RecipeStatus } from '../../../../../graphql.generated';
+import { IngredientImagePipe } from '../../../../../pipes';
 import { RecipeListActivityGQL } from '../../recipes-list.generated';
 
 @Component({
@@ -29,6 +30,7 @@ import { RecipeListActivityGQL } from '../../recipes-list.generated';
         MatTooltip,
         NgTemplateOutlet,
         NgClass,
+        IngredientImagePipe,
     ],
 })
 export class RecipeGeneratorActivityComponent {

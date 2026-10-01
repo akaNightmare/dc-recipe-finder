@@ -36,7 +36,7 @@
                                 width="32"
                                 height="32"
                                 [alt]="ingredient.name"
-                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                                [ngSrc]="ingredient.image | ingredientImage"
                             />
                             <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
                         </div>
@@ -59,7 +59,7 @@
                                 class="w-8 h-8 rounded"
                                 height="32"
                                 width="32"
-                                [ngSrc]="'images/ingredients/' + ingredient.image"
+                                [ngSrc]="ingredient.image | ingredientImage"
                                 [alt]="ingredient.name"
                             />
                             <div class="flex flex-col ml-1">{{ingredient.name}}</div>
@@ -135,7 +135,7 @@
                                             height="32"
                                             class="w-8 h-8 rounded"
                                             [alt]="ingredient.name"
-                                            [ngSrc]="'images/ingredients/' + ingredient.image"
+                                            [ngSrc]="ingredient.image | ingredientImage"
                                         />
                                         <div class="flex flex-col ml-1">{{ ingredient.name }}</div>
                                     </div>
@@ -159,7 +159,7 @@
                                             class="w-8 h-8 rounded"
                                             height="32"
                                             width="32"
-                                            [ngSrc]="'images/ingredients/' + ingredient.image"
+                                            [ngSrc]="ingredient.image | ingredientImage"
                                             [alt]="ingredient.name"
                                         />
                                         <div class="flex flex-col ml-1">{{ingredient.name}}</div>

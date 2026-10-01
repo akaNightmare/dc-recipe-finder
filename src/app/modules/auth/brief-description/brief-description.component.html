@@ -14,7 +14,7 @@
       <div class="flex flex-0 items-center -space-x-1.5">
         @for (ingredient of randomRecipes.recipes; track ingredient.id) {
           <img
-              [ngSrc]="'images/ingredients/' + ingredient.image"
+              [ngSrc]="ingredient.image | ingredientImage"
               [alt]="ingredient.name"
               [matTooltip]="ingredient.name"
               class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"

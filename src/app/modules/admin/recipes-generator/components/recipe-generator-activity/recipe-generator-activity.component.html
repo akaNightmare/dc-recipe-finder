@@ -212,7 +212,7 @@
           </div>
         }
         <img
-          [ngSrc]="'images/ingredients/' + ingredient.image"
+          [ngSrc]="ingredient.image | ingredientImage"
           [alt]="ingredient.name"
           [matTooltip]="ingredient.name"
           class="w-9 h-9 rounded object-cover ring-[2px]"

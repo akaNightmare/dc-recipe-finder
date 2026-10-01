@@ -42,6 +42,7 @@ import {
     OrderDir,
     RecipeListCreateInput,
 } from '../../../../../graphql.generated';
+import { IngredientImagePipe } from '../../../../../pipes';
 import {
     PaginateIngredientListGQL,
     PaginateIngredientListQuery,
@@ -85,6 +86,7 @@ const baseRecipeSizeMap = new Map<number, number>([
         NgOptimizedImage,
         NgClass,
         IngredientSearchComponent,
+        IngredientImagePipe,
     ],
 })
 export class RecipeGeneratorCreateComponent implements OnInit {

@@ -22,6 +22,7 @@ import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
 
 import { fuseAnimations } from '@fuse/animations';
 import { Ingredient, IngredientPaginateOrderField, OrderDir } from '../../graphql.generated';
+import { IngredientImagePipe } from '../../pipes';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -42,6 +43,7 @@ import {
         NgOptimizedImage,
         MatTooltipModule,
         KeyValuePipe,
+        IngredientImagePipe,
     ],
 })
 export class IngredientSearchComponent implements AfterViewInit {

@@ -29,6 +29,7 @@ import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap }
 import { UsersGQL } from '../../../../../core/user/user.generated';
 import { UserService } from '../../../../../core/user/user.service';
 import { IngredientRarity, RecipeList, RecipeStatus, User } from '../../../../../graphql.generated';
+import { IngredientImagePipe } from '../../../../../pipes';
 import { RecipeDialogComponent } from '../../../recipes/recipe-dialog/recipe-dialog.component';
 import {
     AssignRecipeListRecipeToUserGQL,
@@ -58,6 +59,7 @@ import {
         MatMenuItem,
         MatDivider,
         MatSlideToggle,
+        IngredientImagePipe,
     ],
 })
 export class RecipeGeneratorViewComponent implements AfterViewInit {

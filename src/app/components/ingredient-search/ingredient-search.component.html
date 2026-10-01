@@ -20,7 +20,7 @@
               [class.mr-1]="!last"
               [matTooltip]="ingredient.name"
               [alt]="ingredient.name"
-              [ngSrc]="'images/ingredients/' + ingredient.image"
+              [ngSrc]="ingredient.image | ingredientImage"
             />
           }
         </div>
@@ -49,7 +49,7 @@
             class="w-8 h-8 rounded"
             height="32"
             width="32"
-            [ngSrc]="'images/ingredients/' + ingredient.image"
+            [ngSrc]="ingredient.image | ingredientImage"
             [alt]="ingredient.name"
           />
           <div class="flex flex-col ml-1">{{ ingredient.name }}</div>

@@ -1,3 +1,4 @@
+import { IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
   PreloadAllModules,
@@ -19,6 +20,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideHttpClient(),
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => config.src,
+    },
     provideApolloClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(

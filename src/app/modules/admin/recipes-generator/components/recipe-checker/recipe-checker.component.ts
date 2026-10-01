@@ -32,7 +32,7 @@ import {
     RecipeCheckInput,
     RecipeStatus,
 } from '../../../../../graphql.generated';
-import { SortByPipe } from '../../../../../pipes';
+import { IngredientImagePipe, SortByPipe } from '../../../../../pipes';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -61,6 +61,7 @@ import { RecipeCheckGQL } from '../../recipes-list.generated';
         NgOptimizedImage,
         NgClass,
         SortByPipe,
+        IngredientImagePipe,
         NgTemplateOutlet,
     ],
 })

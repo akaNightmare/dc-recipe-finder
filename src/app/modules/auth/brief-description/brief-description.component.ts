@@ -4,6 +4,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter, map } from 'rxjs';
 
 import { fuseAnimations } from '@fuse/animations';
+import { IngredientImagePipe } from '../../../pipes';
 import { RandomRecipesGQL } from './random-recipes.generated';
 
 @Component({
@@ -11,7 +12,7 @@ import { RandomRecipesGQL } from './random-recipes.generated';
     templateUrl: './brief-description.component.html',
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
-    imports: [NgOptimizedImage, AsyncPipe, MatTooltipModule],
+    imports: [NgOptimizedImage, AsyncPipe, MatTooltipModule, IngredientImagePipe],
 })
 export class BriefDescriptionComponent {
     readonly #randomRecipesGQL = inject(RandomRecipesGQL);

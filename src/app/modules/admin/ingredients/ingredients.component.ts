@@ -17,6 +17,7 @@ import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ingredient, IngredientRarity } from '../../../graphql.generated';
+import { IngredientImagePipe } from '../../../pipes';
 import { IngredientDialogComponent } from './components/ingredient-dialog.component';
 import {
     PaginateIngredientGQL,
@@ -40,6 +41,7 @@ import {
         MatOptionModule,
         MatSelectModule,
         NgClass,
+        IngredientImagePipe,
     ],
 })
 export class IngredientsComponent implements AfterViewInit {
@@ -80,6 +82,7 @@ export class IngredientsComponent implements AfterViewInit {
             .afterClosed()
             .subscribe(result => {
                 if (result) {
+                    void this.#ingredientRef.refetch(this.#buildVariables());
                     this.#snackBar.open(
                         `Ingredient has been ${ingredient ? 'updated' : 'created'}`,
                         undefined,

@@ -15,6 +15,37 @@
 
   <!-- Compose form -->
   <form class="flex-auto p-6 sm:p-8" (ngSubmit)="save()" [formGroup]="form">
+    <div class="mb-4 flex flex-col items-start gap-3">
+      @if (previewImageSrc) {
+        <img
+          class="h-20 w-20 rounded object-cover ring-2 ring-gray-200"
+          [ngSrc]="previewImageSrc"
+          alt="Ingredient preview"
+          height="80"
+          width="80"
+        />
+      }
+      <input
+        #imageInput
+        type="file"
+        accept="image/png,image/jpeg,image/webp,image/gif"
+        class="hidden"
+        (change)="onImageSelected($event)"
+        [disabled]="form.disabled"
+      />
+      <button
+        type="button"
+        mat-stroked-button
+        [disabled]="form.disabled"
+        (click)="imageInput.click()"
+      >
+        {{ data.ingredient ? 'Change image' : 'Upload image' }}
+      </button>
+      @if (imageError) {
+        <p class="text-sm text-warn">{{ imageError }}</p>
+      }
+    </div>
+
     <div class="flex">
       <mat-form-field class="flex-auto w-2/5">
         <mat-label>Name</mat-label>

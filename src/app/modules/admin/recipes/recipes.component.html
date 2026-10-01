@@ -189,7 +189,7 @@
                         {{ ri.count }}
                       </div>
                       <img
-                        [ngSrc]="'images/ingredients/' + ri.ingredient.image"
+                        [ngSrc]="ri.ingredient.image | ingredientImage"
                         [alt]="ri.ingredient.name"
                         class="w-9 h-9 rounded ring-[2px] object-cover"
                         [ngClass]="{

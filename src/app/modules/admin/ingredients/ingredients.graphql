@@ -13,8 +13,18 @@ query PaginateIngredient(
     }
 }
 
+mutation CreateIngredient($ingredient: IngredientCreateInput!) {
+    createIngredient(ingredient: $ingredient) {
+        ...IngredientFragment
+    }
+}
+
 mutation UpdateIngredient($id: ID!, $ingredient: IngredientUpdateInput!) {
     updateIngredient(id: $id, ingredient: $ingredient) {
         ...IngredientFragment
     }
+}
+
+mutation UploadIngredientImage($input: IngredientImageUploadInput!) {
+    uploadIngredientImage(input: $input)
 }

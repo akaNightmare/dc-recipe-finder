@@ -37,7 +37,7 @@ import {
     RecipePaginateOrderInput,
     RecipeStatus,
 } from '../../../graphql.generated';
-import { SortByPipe } from '../../../pipes';
+import { IngredientImagePipe, SortByPipe } from '../../../pipes';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { UsersGQL } from '../../../core/user/user.generated';
 import {
@@ -71,6 +71,7 @@ import {
         NgxMatSelectSearchModule,
         MatMenuModule,
         SortByPipe,
+        IngredientImagePipe,
         NgOptimizedImage,
         IngredientSearchComponent,
         MatSnackBarModule,

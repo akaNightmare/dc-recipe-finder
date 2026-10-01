@@ -131,7 +131,7 @@
                 <div class="flex flex-0 items-center -space-x-3">
                   @for (ingredient of bil.ingredients; track ingredient.id) {
                     <img
-                      [ngSrc]="'images/ingredients/' + ingredient.image"
+                      [ngSrc]="ingredient.image | ingredientImage"
                       [alt]="ingredient.name"
                       [matTooltip]="ingredient.name"
                       width="36"

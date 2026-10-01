@@ -39,6 +39,7 @@ import {
     Recipe,
     RecipeStatus,
 } from '../../../../graphql.generated';
+import { IngredientImagePipe } from '../../../../pipes';
 import {
     PaginateIngredientGQL,
     PaginateIngredientQuery,
@@ -75,6 +76,7 @@ const DEFAULT_INGREDIENT: Ingredient[] = [
         NgxMatSelectSearchModule,
         NgClass,
         NgOptimizedImage,
+        IngredientImagePipe,
     ],
 })
 export class RecipeDialogComponent implements OnInit, AfterViewInit {

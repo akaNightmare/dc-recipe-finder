@@ -97,7 +97,7 @@
                       </div>
                     }
                     <img
-                      [ngSrc]="'images/ingredients/' + rli.ingredient.image"
+                      [ngSrc]="rli.ingredient.image | ingredientImage"
                       [alt]="rli.ingredient.name"
                       [matTooltip]="rli.ingredient.name"
                       class="w-9 h-9 ring-[2px] rounded object-cover"

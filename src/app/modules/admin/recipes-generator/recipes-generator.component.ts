@@ -30,6 +30,7 @@ import { BindQueryParamsFactory } from '@ngneat/bind-query-params';
 import { QueryRef } from 'apollo-angular';
 import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 import { RecipeList, RecipeListPaginateOrderInput } from '../../../graphql.generated';
+import { IngredientImagePipe } from '../../../pipes';
 import {
     ArchiveRecipeListGQL,
     PaginateRecipeListGQL,
@@ -58,6 +59,7 @@ import {
         MatOptionModule,
         MatSelectModule,
         NgOptimizedImage,
+        IngredientImagePipe,
         MatSnackBarModule,
         RouterLink,
         MatProgressBar,

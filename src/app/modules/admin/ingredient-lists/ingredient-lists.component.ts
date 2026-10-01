@@ -34,6 +34,7 @@ import {
     IngredientListPaginateOrderInput,
     IngredientListType,
 } from '../../../graphql.generated';
+import { IngredientImagePipe } from '../../../pipes';
 import { IngredientListsDialogComponent } from './ingredient-lists-dialog/ingredient-lists-dialog.component';
 import {
     PaginateIngredientListGQL,
@@ -62,6 +63,7 @@ import {
         MatSelectModule,
         NgClass,
         NgOptimizedImage,
+        IngredientImagePipe,
         MatSnackBarModule,
     ],
 })

@@ -9,6 +9,10 @@
 
             <!-- Actions -->
             <div class="mt-6 flex shrink-0 items-center sm:ml-4 sm:mt-0">
+                <button mat-flat-button color="primary" (click)="openIngredientDialog()">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2">Add ingredient</span>
+                </button>
                 <form class="flex flex-auto" [formGroup]="filters">
                     <!-- Status -->
                     <mat-form-field
@@ -55,7 +59,7 @@
                           'ring-rare': ingredient.rarity === IngredientRarity.Rare,
                           'ring-ultra-rare': ingredient.rarity === IngredientRarity.UltraRare
                       }"
-                      [ngSrc]="'images/ingredients/' + ingredient.image"
+                      [ngSrc]="ingredient.image | ingredientImage"
                       [matTooltip]="ingredient.name + (ingredient.initial_count ? ' (initial count: ' + ingredient.initial_count + ')' : '')"
                       [alt]="ingredient.name"
                       height="56"
