@@ -9,10 +9,6 @@
 
             <!-- Actions -->
             <div class="mt-6 flex shrink-0 items-center sm:ml-4 sm:mt-0">
-                <button mat-flat-button color="primary" (click)="openIngredientDialog()">
-                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
-                    <span class="ml-2">Add ingredient</span>
-                </button>
                 <form class="flex flex-auto" [formGroup]="filters">
                     <!-- Status -->
                     <mat-form-field
@@ -40,6 +36,10 @@
                         />
                     </mat-form-field>
                 </form>
+                <button mat-flat-button color="primary" class="sm:ml-4 shrink-0" (click)="openIngredientDialog()">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2">Add ingredient</span>
+                </button>
             </div>
         </div>
     </div>
