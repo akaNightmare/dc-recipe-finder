@@ -18,7 +18,15 @@
     <div class="mb-4 flex flex-col items-start gap-3">
       @if (previewImageSrc) {
         <img
-          class="h-20 w-20 rounded object-cover ring-2 ring-gray-200"
+          class="h-20 w-20 rounded object-cover ring-[3px]"
+          [ngClass]="{
+            'ring-legendary': form.get('rarity')!.value === IngredientRarity.Legendary,
+            'ring-common': form.get('rarity')!.value === IngredientRarity.Common,
+            'ring-uncommon': form.get('rarity')!.value === IngredientRarity.Uncommon,
+            'ring-epic': form.get('rarity')!.value === IngredientRarity.Epic,
+            'ring-rare': form.get('rarity')!.value === IngredientRarity.Rare,
+            'ring-ultra-rare': form.get('rarity')!.value === IngredientRarity.UltraRare
+          }"
           [ngSrc]="previewImageSrc"
           alt="Ingredient preview"
           height="80"

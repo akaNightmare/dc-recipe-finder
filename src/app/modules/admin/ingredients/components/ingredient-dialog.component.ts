@@ -1,4 +1,4 @@
-import { NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { AfterContentInit, Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
 import {
     FormControl,
@@ -50,10 +50,12 @@ import {
         MatOptionModule,
         MatDialogModule,
         NgOptimizedImage,
+        NgClass,
     ],
 })
 export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
     public readonly data: { ingredient?: Ingredient } = inject(MAT_DIALOG_DATA);
+    public readonly IngredientRarity = IngredientRarity;
     public readonly RARITIES = Object.values(IngredientRarity);
     public readonly form = new FormGroup({
         name: new FormControl('', [Validators.required]),
