@@ -58,6 +58,14 @@
         }
       </mat-form-field>
       <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/5">
+        <mat-label>Rarity</mat-label>
+        <mat-select [formControlName]="'rarity'">
+          @for (rarity of RARITIES; track rarity) {
+            <mat-option [value]="rarity">{{ rarity }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/5">
         <mat-label>
           Initial count
           <mat-icon

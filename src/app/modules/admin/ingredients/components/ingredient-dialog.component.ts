@@ -8,6 +8,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +19,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { EMPTY, finalize, map, of, switchMap } from 'rxjs';
 
-import { Ingredient, IngredientCreateInput, IngredientUpdateInput } from '../../../../graphql.generated';
+import {
+    Ingredient,
+    IngredientCreateInput,
+    IngredientRarity,
+    IngredientUpdateInput,
+} from '../../../../graphql.generated';
 import { IngredientImagePipe } from '../../../../pipes';
 import {
     CreateIngredientGQL,
@@ -41,15 +47,18 @@ import {
         MatProgressSpinnerModule,
         MatRippleModule,
         MatSelectModule,
+        MatOptionModule,
         MatDialogModule,
         NgOptimizedImage,
     ],
 })
 export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
     public readonly data: { ingredient?: Ingredient } = inject(MAT_DIALOG_DATA);
+    public readonly RARITIES = Object.values(IngredientRarity);
     public readonly form = new FormGroup({
         name: new FormControl('', [Validators.required]),
         initial_count: new FormControl<number | null>(null, [Validators.min(1)]),
+        rarity: new FormControl<IngredientRarity>(IngredientRarity.Common, [Validators.required]),
     });
 
     readonly #createIngredientGQL = inject(CreateIngredientGQL);
@@ -74,6 +83,7 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
                 this.form.patchValue({
                     name: ingredient.name,
                     initial_count: ingredient.initial_count,
+                    rarity: ingredient.rarity ?? IngredientRarity.Common,
                 }),
             0,
         );
@@ -154,6 +164,7 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
                             name: formValues.name!,
                             image: uploadedImageUrl,
                             initial_count: formValues.initial_count ?? undefined,
+                            rarity: formValues.rarity ?? IngredientRarity.Common,
                         };
 
                         return this.#createIngredientGQL.mutate({
@@ -174,6 +185,10 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
 
                     if (uploadedImageUrl && uploadedImageUrl !== ingredient!.image) {
                         Object.assign(updateInput, { image: uploadedImageUrl });
+                    }
+
+                    if (ingredient!.rarity !== formValues.rarity) {
+                        Object.assign(updateInput, { rarity: formValues.rarity });
                     }
 
                     if (Object.keys(updateInput).length === 0) {
