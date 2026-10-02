@@ -12,14 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-    IsActiveMatchOptions,
-    NavigationEnd,
-    Router,
-    RouterLink,
-    RouterLinkActive,
-} from '@angular/router';
-import { filter } from 'rxjs';
+import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
 import { FuseHorizontalNavigationComponent } from '@fuse/components/navigation/horizontal/horizontal.component';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
@@ -44,7 +37,6 @@ export class FuseHorizontalNavigationBasicItemComponent implements OnInit {
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _fuseNavigationService = inject(FuseNavigationService);
     private _fuseUtilsService = inject(FuseUtilsService);
-    private _router = inject(Router);
 
     @Input() item!: FuseNavigationItem;
     @Input() name!: string;
@@ -86,15 +78,6 @@ export class FuseHorizontalNavigationBasicItemComponent implements OnInit {
             .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        this._router.events
-            .pipe(
-                filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-                takeUntilDestroyed(this.#destroyRef),
-            )
-            .subscribe(() => {
                 this._changeDetectorRef.markForCheck();
             });
     }

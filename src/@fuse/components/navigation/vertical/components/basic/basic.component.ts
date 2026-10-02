@@ -11,14 +11,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-    IsActiveMatchOptions,
-    NavigationEnd,
-    Router,
-    RouterLink,
-    RouterLinkActive,
-} from '@angular/router';
-import { filter } from 'rxjs';
+import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
@@ -42,7 +35,6 @@ export class FuseVerticalNavigationBasicItemComponent implements OnInit {
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _fuseNavigationService = inject(FuseNavigationService);
     private _fuseUtilsService = inject(FuseUtilsService);
-    private _router = inject(Router);
 
     @Input() item!: FuseNavigationItem;
     @Input() name!: string;
@@ -82,16 +74,6 @@ export class FuseVerticalNavigationBasicItemComponent implements OnInit {
             .pipe(takeUntilDestroyed(this.#destroyRef))
             .subscribe(() => {
                 // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        // OnPush: re-check routerLinkActive when the route changes (not only on click)
-        this._router.events
-            .pipe(
-                filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-                takeUntilDestroyed(this.#destroyRef),
-            )
-            .subscribe(() => {
                 this._changeDetectorRef.markForCheck();
             });
     }
