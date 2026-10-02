@@ -8,6 +8,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:beaker',
         link: '/recipes',
+        exactMatch: true,
     },
     {
         id: 'ingredients',
@@ -45,6 +46,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:beaker',
         link: '/recipes',
+        exactMatch: true,
     },
     {
         id: 'ingredients',
@@ -82,6 +84,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:beaker',
         link: '/recipes',
+        exactMatch: true,
     },
     {
         id: 'ingredients',
@@ -119,6 +122,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:beaker',
         link: '/recipes',
+        exactMatch: true,
     },
     {
         id: 'ingredients',
