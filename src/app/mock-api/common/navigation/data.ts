@@ -30,6 +30,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:calculator',
         link: '/recipes-generator',
     },
+    {
+        id: 'statistics',
+        title: 'Statistics',
+        type: 'basic',
+        icon: 'heroicons_outline:chart-bar',
+        link: '/statistics',
+    },
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
@@ -59,6 +66,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:calculator',
         link: '/recipes-generator',
+    },
+    {
+        id: 'statistics',
+        title: 'Statistics',
+        type: 'basic',
+        icon: 'heroicons_outline:chart-bar',
+        link: '/statistics',
     },
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -90,6 +104,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:calculator',
         link: '/recipes-generator',
     },
+    {
+        id: 'statistics',
+        title: 'Statistics',
+        type: 'basic',
+        icon: 'heroicons_outline:chart-bar',
+        link: '/statistics',
+    },
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
@@ -119,5 +140,12 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:calculator',
         link: '/recipes-generator',
+    },
+    {
+        id: 'statistics',
+        title: 'Statistics',
+        type: 'basic',
+        icon: 'heroicons_outline:chart-bar',
+        link: '/statistics',
     },
 ];

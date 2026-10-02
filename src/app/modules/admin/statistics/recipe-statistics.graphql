@@ -1,0 +1,14 @@
+query RecipeStatistics($filter: RecipeStatisticsFilter) {
+  recipeStatistics(filter: $filter) {
+    ingredientRarityByRecipeSize {
+      recipeSize
+      recipeCount
+      totalSlots
+      byRarity {
+        rarity
+        slotCount
+        share
+      }
+    }
+  }
+}

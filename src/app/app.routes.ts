@@ -78,6 +78,10 @@ export const routes: Routes = [
                 loadChildren: () =>
                     import('./modules/admin/recipes-generator/recipes-generator.routes'),
             },
+            {
+                path: 'statistics',
+                loadChildren: () => import('./modules/admin/statistics/statistics.routes'),
+            },
         ],
     },
 ];
