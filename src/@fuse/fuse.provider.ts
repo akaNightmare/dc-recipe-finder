@@ -43,7 +43,6 @@ export const provideFuse = (
   // Base providers
   const providers: Array<Provider | EnvironmentProviders> = [
     {
-      // Disable 'theme' check
       provide: MATERIAL_SANITY_CHECKS,
       useValue: {
         doctype: true,
