@@ -1,36 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable, of, ReplaySubject, tap } from 'rxjs';
+import { createAppNavigation } from './navigation.data';
 import { Navigation } from './navigation.types';
-import { Observable, ReplaySubject, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
-    readonly #httpClient = inject(HttpClient);
-    readonly #navigation = new ReplaySubject<Navigation>(1);
+  readonly #navigation = new ReplaySubject<Navigation>(1);
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
+  get navigation$(): Observable<Navigation> {
+    return this.#navigation.asObservable();
+  }
 
-    /**
-     * Getter for navigation
-     */
-    get navigation$(): Observable<Navigation> {
-        return this.#navigation.asObservable();
-    }
+  get(): Observable<Navigation> {
+    const navigation = createAppNavigation();
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get all navigation data
-     */
-    get(): Observable<Navigation> {
-        return this.#httpClient.get<Navigation>('api/common/navigation').pipe(
-            tap((navigation) => {
-                this.#navigation.next(navigation);
-            })
-        );
-    }
+    return of(navigation).pipe(
+      tap((value) => {
+        this.#navigation.next(value);
+      }),
+    );
+  }
 }

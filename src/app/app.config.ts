@@ -14,8 +14,6 @@ import { provideApolloClient } from './apollo.provider';
 import { routes } from './app.routes';
 import { provideAuth } from './core/auth/auth.provider';
 import { provideIcons } from './core/icons/icons.provider';
-import { mockApiServices } from './mock-api';
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
@@ -35,10 +33,6 @@ export const appConfig: ApplicationConfig = {
     provideIcons(),
 
     provideFuse({
-      mockApi: {
-        delay: 0,
-        services: mockApiServices,
-      },
       fuse: {
         layout: 'classy',
         scheme: 'light',
@@ -53,26 +47,6 @@ export const appConfig: ApplicationConfig = {
           {
             id: 'theme-default',
             name: 'Default',
-          },
-          {
-            id: 'theme-brand',
-            name: 'Brand',
-          },
-          {
-            id: 'theme-teal',
-            name: 'Teal',
-          },
-          {
-            id: 'theme-rose',
-            name: 'Rose',
-          },
-          {
-            id: 'theme-purple',
-            name: 'Purple',
-          },
-          {
-            id: 'theme-amber',
-            name: 'Amber',
           },
         ],
       },
