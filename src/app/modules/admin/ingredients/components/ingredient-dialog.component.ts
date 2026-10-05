@@ -147,7 +147,7 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
         const upload$ = this.#pendingImageFile
             ? this.#uploadIngredientImageGQL
                   .mutate({ variables: { input: { image: this.#pendingImageFile } } })
-                  .pipe(map(result => result.data?.uploadIngredientImage ?? null))
+                  .pipe(map((result) => result.data?.uploadIngredientImage ?? null))
             : of<string | null>(null);
 
         upload$

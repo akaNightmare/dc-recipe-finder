@@ -9,4 +9,20 @@ declare module '@apollo/client' {
         Streaming: PreserveDataValue;
         Partial: PreserveDataValue;
     }
+
+    namespace ApolloClient {
+        namespace DeclareDefaultOptions {
+            interface WatchQuery {
+                errorPolicy?: ErrorPolicy;
+            }
+
+            interface Query {
+                errorPolicy?: ErrorPolicy;
+            }
+
+            interface Mutate {
+                errorPolicy?: ErrorPolicy;
+            }
+        }
+    }
 }

@@ -29,7 +29,6 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { distinctUntilChanged, filter, map, of, pairwise, startWith, switchMap, timer } from 'rxjs';
 
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { RecipeVisionGuessService } from '../../../core/recipe-vision/recipe-vision-guess.service';
 import { IngredientSearchComponent } from '../../../components/ingredient-search/ingredient-search.component';
 import {
     IngredientRarity,
@@ -81,7 +80,6 @@ export class RecipesComponent implements AfterViewInit {
     readonly #destroyRef = inject(DestroyRef);
     readonly #paginateRecipeGQL = inject(PaginateRecipeGQL);
     readonly #removeRecipeGQL = inject(RemoveRecipeGQL);
-    readonly #recipeVisionGuess = inject(RecipeVisionGuessService);
     readonly #fuseConfirmationService = inject(FuseConfirmationService);
     readonly #matDialog = inject(MatDialog);
     readonly #queryFactory = inject(BindQueryParamsFactory);
@@ -112,8 +110,6 @@ export class RecipesComponent implements AfterViewInit {
         filter(({ data }) => Array.isArray(data?.users)),
         map(({ data }) => data!.users),
     );
-
-    public isDragging = false;
 
     public readonly filters = new FormGroup({
         search: new FormControl(''),
@@ -215,64 +211,6 @@ export class RecipesComponent implements AfterViewInit {
 
     public updateFilters(changes: Record<string, unknown>): void {
         this.filters.patchValue(changes);
-    }
-
-    public onDragOver(event: DragEvent): void {
-        event.preventDefault();
-        event.stopPropagation();
-        this.isDragging = true;
-    }
-
-    public onDragLeave(event: DragEvent): void {
-        event.preventDefault();
-        event.stopPropagation();
-        this.isDragging = false;
-    }
-
-    public onDrop(event: DragEvent): void {
-        event.preventDefault();
-        event.stopPropagation();
-        this.isDragging = false;
-
-        const files = event.dataTransfer?.files;
-        if (!files?.length) {
-            return;
-        }
-
-        const file = files[0];
-        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-
-        if (!allowedTypes.includes(file.type)) {
-            this.#snackBar.open(
-                'Please drop a valid image file (jpeg, jpg, png)',
-                undefined,
-                this.#defaultSnackBarConfig,
-            );
-            return;
-        }
-
-        this.#snackBar.open(
-            `File ${file.name} received for processing`,
-            undefined,
-            this.#defaultSnackBarConfig,
-        );
-
-        this.#recipeVisionGuess
-            .guessFromImage(file)
-            .pipe(takeUntilDestroyed(this.#destroyRef))
-            .subscribe({
-                next: guess => {
-                    this.openRecipeDialog(
-                        this.#recipeVisionGuess.buildDraftRecipeFromGuess(
-                            guess,
-                        ) as unknown as Recipe,
-                    );
-                },
-                error: (err: unknown) => {
-                    const message = err instanceof Error ? err.message : 'Recipe vision failed';
-                    this.#snackBar.open(message, undefined, this.#defaultSnackBarConfig);
-                },
-            });
     }
 
     public openRecipeDialog(recipe?: Recipe, status?: RecipeStatus) {

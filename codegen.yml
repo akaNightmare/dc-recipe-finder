@@ -1,13 +1,11 @@
 overwrite: true
 schema: '${API_URL}q'
 documents: 'src/**/*.graphql'
-hooks:
-    afterAllFileWrite:
-        - prettier --write
 config:
     scalars:
         DateTime: string
         JSON: Record<string, unknown>
+        Upload: File
 generates:
     ./src/app/graphql.generated.ts:
         plugins:
@@ -15,11 +13,14 @@ generates:
         config:
             immutableTypes: true
             preResolveTypes: true
+    ./src/app/possible-types.json:
+        plugins:
+            - fragment-matcher
     ./src/:
         preset: near-operation-file
         presetConfig:
             extension: .generated.ts
             baseTypesPath: ./app/graphql.generated.ts
         plugins:
-            - 'typescript-operations'
-            - 'typescript-apollo-angular'
+            - typescript-operations
+            - typescript-apollo-angular
