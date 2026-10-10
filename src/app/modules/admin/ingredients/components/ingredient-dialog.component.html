@@ -65,7 +65,19 @@
           <mat-error> List with such name already exists</mat-error>
         }
       </mat-form-field>
-      <mat-form-field class="ml-2 flex-auto sm:ml-4 w-1/5">
+      <mat-form-field class="ml-2 flex-auto sm:ml-4 w-2/5">
+        <mat-label>Group</mat-label>
+        <mat-select formControlName="group">
+          <mat-option [value]="null">None</mat-option>
+          @for (group of GROUPS; track group) {
+            <mat-option [value]="group">{{ group }}</mat-option>
+          }
+        </mat-select>
+        <mat-hint>Same group = at most one per craft attempt</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex">
+      <mat-form-field class="flex-auto w-2/5">
         <mat-label>Rarity</mat-label>
         <mat-select [formControlName]="'rarity'">
           @for (rarity of RARITIES; track rarity) {

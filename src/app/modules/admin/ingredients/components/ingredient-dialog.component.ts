@@ -22,6 +22,7 @@ import { EMPTY, finalize, map, of, switchMap } from 'rxjs';
 import {
     Ingredient,
     IngredientCreateInput,
+    IngredientGroup,
     IngredientRarity,
     IngredientUpdateInput,
 } from '../../../../graphql.generated';
@@ -56,11 +57,14 @@ import {
 export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
     public readonly data: { ingredient?: Ingredient } = inject(MAT_DIALOG_DATA);
     public readonly IngredientRarity = IngredientRarity;
+    public readonly IngredientGroup = IngredientGroup;
     public readonly RARITIES = Object.values(IngredientRarity);
+    public readonly GROUPS = Object.values(IngredientGroup);
     public readonly form = new FormGroup({
         name: new FormControl('', [Validators.required]),
         initial_count: new FormControl<number | null>(null, [Validators.min(1)]),
         rarity: new FormControl<IngredientRarity>(IngredientRarity.Common, [Validators.required]),
+        group: new FormControl<IngredientGroup | null>(null),
     });
 
     readonly #createIngredientGQL = inject(CreateIngredientGQL);
@@ -86,6 +90,7 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
                     name: ingredient.name,
                     initial_count: ingredient.initial_count,
                     rarity: ingredient.rarity ?? IngredientRarity.Common,
+                    group: ingredient.group ?? null,
                 }),
             0,
         );
@@ -167,6 +172,7 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
                             image: uploadedImageUrl,
                             initial_count: formValues.initial_count ?? undefined,
                             rarity: formValues.rarity ?? IngredientRarity.Common,
+                            ...(formValues.group ? { group: formValues.group } : {}),
                         };
 
                         return this.#createIngredientGQL.mutate({
@@ -191,6 +197,10 @@ export class IngredientDialogComponent implements AfterContentInit, OnDestroy {
 
                     if (ingredient!.rarity !== formValues.rarity) {
                         Object.assign(updateInput, { rarity: formValues.rarity });
+                    }
+
+                    if (ingredient!.group !== formValues.group) {
+                        Object.assign(updateInput, { group: formValues.group });
                     }
 
                     if (Object.keys(updateInput).length === 0) {
